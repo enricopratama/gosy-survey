@@ -28,8 +28,10 @@ class LoginController extends Controller
         if ($validator->fails()) {
             return redirect('login')
                 ->withErrors($validator)
-                ->withInput();
+                ->withInput()
+                ->with('failed', 'validation has failed, please try again later');
         }
+
         $existingUser = User::where('user_login', $request->username)->first();
 
         if ($existingUser) {
@@ -49,7 +51,7 @@ class LoginController extends Controller
             return redirect('login')
                 ->withErrors($validator)
                 ->withInput()
-                ->with('failed', 'user not found');
+                ->with('failed', 'user not found'); // Error will be viewed in frontend
         }
     }
 
