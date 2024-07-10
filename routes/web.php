@@ -1,18 +1,37 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReactController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('welcome');
+// Example route for counting
+Route::post('count', function (Request $request) {
+    return response()->json([
+        'message' => $request->message,
+    ]);
 });
+
+// Define a route that requires authentication middleware
+Route::get('/flights', function () {
+    // Only authenticated users may access this route...
+    return 'This is a protected route for authenticated users only.';
+})->middleware('auth'); // Middleware
+
+// Login and Logout:
+Route::get('/login', [LoginController::class, 'show'])
+    ->name('login')
+    ->middleware('guest');
+
+Route::post('/authenticated', [LoginController::class, 'authenticated']);
+Route::get('/logout', [LoginController::class, 'logout']);
+
+// Alias for /users to be named as users only
+Route::get('/users', [UserController::class, 'show'])->name('users');
+
+// All other routes, are defined through React.js
+Route::get('/{path?}', [ReactController::class, 'show'])
+    ->middleware('auth')
+    ->where('path', '.*')
+    ->name('react');
