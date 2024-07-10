@@ -60,7 +60,7 @@ class LoginController extends Controller
      */
     function logout()
     {
-        Auth::logout();
+        Auth::logout(); // Logs out of the Session
         return redirect('login');
     }
 }
