@@ -29,7 +29,10 @@ class LoginController extends Controller
             return redirect('login')
                 ->withErrors($validator)
                 ->withInput()
-                ->with('failed', 'validation has failed, please try again later');
+                ->with(
+                    'failed',
+                    'validation has failed, please try again later'
+                );
         }
 
         $existingUser = User::where('user_login', $request->username)->first();

@@ -31,7 +31,7 @@
                 </ul>
             </div>
         @endif
-        
+
         <form action="/authenticated" method="POST">
             @csrf
             <div class="form-group">

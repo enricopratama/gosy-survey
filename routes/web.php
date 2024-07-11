@@ -12,6 +12,9 @@ Route::post('count', function (Request $request) {
         'message' => $request->message,
     ]);
 });
+Route::get('/test', function (Request $request) {
+    return view('home');
+});
 
 // Define a route that requires authentication middleware
 Route::get('/flights', function () {
@@ -27,8 +30,13 @@ Route::get('/login', [LoginController::class, 'show'])
 Route::post('/authenticated', [LoginController::class, 'authenticated']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
+// Sidebar Testing
+Route::view('/sidebar', 'sidebar');
+Route::view('/sidebarCI', 'sidebarCI');
+
 // Alias for /users to be named as users only
 Route::get('/users', [UserController::class, 'show'])->name('users');
+// Route::get('/app', [UserController::class, 'show'])->name('users');
 
 // All other routes, are defined through React.js
 Route::get('/{path?}', [ReactController::class, 'show'])
