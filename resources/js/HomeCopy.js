@@ -1,14 +1,14 @@
 import React from "react";
-import { useTheme } from "./ThemeContext";
-import "../css/Home.css"; // Import the CSS file
 import BreadcrumbComponent from "./components/BreadcrumbComponent";
 
-export default function Home() {
-    const { theme } = useTheme();
-
+/**
+ * A copy of the home page that is not optimised for the light or dark mode (for testing)
+ * @returns HTML component
+ */
+export default function HomeCopy() {
     return (
-        <div className={theme === "light" ? "bg-light" : "bg-dark"}>
-            <div className="d-flex flex-row justify-content-between rounded flex-wrap-reverse align-items-center">
+        <div className="">
+            <div className="d-flex flex-row justify-content-between bg-white rounded flex-wrap-reverse align-items-center">
                 <div className="d-flex flex-column m-4 m-md-5">
                     <BreadcrumbComponent />
                     <div className="text-muted">Welcome Back,</div>
@@ -29,17 +29,13 @@ export default function Home() {
                     style={{ gap: "15px" }}
                 >
                     <div
-                        className={`p-2 text-center flex-fill bd-highlight rounded ${
-                            theme === "light" ? "bg-white" : "bg-dark-mode"
-                        }`}
+                        className="p-2 text-center flex-fill bd-highlight bg-white rounded"
                         style={{ minWidth: "49%" }}
                     >
                         Flex item
                     </div>
                     <div
-                        className={`p-2 text-center flex-fill bd-highlight rounded ${
-                            theme === "light" ? "bg-white" : "bg-dark-mode"
-                        }`}
+                        className="p-2 text-center flex-fill bd-highlight bg-white rounded"
                         style={{ minWidth: "49%" }}
                     >
                         Flex item
