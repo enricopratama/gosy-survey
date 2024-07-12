@@ -61,9 +61,14 @@ class LoginController extends Controller
     /**
      * A function to logout the current existing user
      */
-    function logout()
+    public function logout(Request $request)
     {
-        Auth::logout(); // Logs out of the Session
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
         return redirect('login');
     }
 }
