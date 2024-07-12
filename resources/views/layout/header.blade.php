@@ -34,7 +34,7 @@
     }
 
     .bg-slate {
-        background-color: #E5E4E2;
+        background-color: #f4f4f4;
         transition: background-color 0.3s ease;
     }
 
