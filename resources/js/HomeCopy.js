@@ -6,6 +6,8 @@ import BreadcrumbComponent from "./components/BreadcrumbComponent";
  * @returns HTML component
  */
 export default function HomeCopy() {
+    const userLogin = window.userData;
+    console.log(userLogin);
     return (
         <div className="">
             <div className="d-flex flex-row justify-content-between bg-white rounded flex-wrap-reverse align-items-center">

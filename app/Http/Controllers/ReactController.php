@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -13,6 +14,10 @@ class ReactController extends Controller
      */
     public function show()
     {
-        return view('app');
+        return view('app')->with([
+            "globalData" => collect([
+                'user' => Auth::user(),
+            ]),
+        ]);
     }
 }

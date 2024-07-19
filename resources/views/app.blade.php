@@ -29,10 +29,13 @@
     <div class="main-content overflow">
         @yield('content')
         <div class="page-content" style="margin:30px">
-        <div id="root"></div>
+        <div id="root" data-userdata="{!! $globalData->toJson() !!}"></div>
         </div>
         </div>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        let userData = {!! $globalData->toJson() !!};
+    </script>
 </body>
 </html>

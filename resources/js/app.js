@@ -21,6 +21,8 @@ export default function App() {
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const data = document.getElementById("root").dataset.userdata;
+console.log(data);
 root.render(
     <React.StrictMode>
         <App />
