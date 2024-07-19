@@ -6,13 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\MstUser;
 
 class UserController extends Controller
 {
-    /**
-     * For MstUser table, not User (testing)
-     */
     public function index()
     {
         $users = User::all();
@@ -24,12 +20,43 @@ class UserController extends Controller
      */
     public function getUserAccess(Request $req)
     {
-        $users = User::get([
-            'user_id',
-            'user_login',
-            'salesman_code',
-            'account_name',
-        ]);
+        $users = User::select(
+            "mst_user.user_id",
+            "mst_user.user_login",
+            "mst_user.salesman_code",
+            "mst_user.account_name",
+            "b.company_code"
+        )
+            ->leftJoin(
+                'mst_user_company as b',
+                'mst_user.user_id',
+                '=',
+                'b.user_id'
+            )
+            ->get();
+
+        // $users= User::select("mst_user.user_id","b.")
+        // ->leftJoin('mst_usr_company as b','mst_user.user_id','=','b.user_id')
+        // ->leftJoin('mst_usr_company as b',function($j){
+        //     $j->on('mst_user.user_id','=','b.user_id')->where('b.status','=','1');
+        // })
+        // ->get();
+        return response()->json($users);
+    }
+
+    public function show($user_id)
+    {
+        $user = User::find($user_id);
+        if (!empty($user)) {
+            return response()->json($user);
+        } else {
+            return response()->json(
+                [
+                    'message' => 'user not found',
+                ],
+                404
+            );
+        }
     }
 
     public function update(Request $req, $user_id)

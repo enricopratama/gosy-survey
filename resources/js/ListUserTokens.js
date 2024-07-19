@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import UserAccessTable from "./components/UserAccessTable";
 import BreadcrumbComponent from "./components/BreadcrumbComponent";
+import UserTokensTable from "./components/UserTokensTable";
 
-export default function ListUserAccess() {
+export default function ListUserTokens() {
     var [date, setDate] = useState(new Date());
 
     useEffect(() => {
@@ -23,7 +23,7 @@ export default function ListUserAccess() {
                 </div>
             </div>
             <div className="pt-4">
-                <UserAccessTable />
+                <UserTokensTable />
             </div>
         </div>
     );

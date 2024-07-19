@@ -35,8 +35,10 @@ Route::view('/sidebar', 'sidebar');
 Route::view('/sidebarCI', 'sidebarCI');
 
 // Alias for /users to be named as users only
-Route::get('/users', [UserController::class, 'show'])->name('users');
-// Route::get('/app', [UserController::class, 'show'])->name('users');
+Route::get('/users', [UserController::class, 'index'])->name('users');
+
+Route::get('/master-users', [UserController::class, 'getUserAccess']);
+Route::get('/master-users/{user_id}', [UserController::class, 'show']);
 
 // All other routes, are defined through React.js
 Route::get('/{path?}', [ReactController::class, 'show'])
