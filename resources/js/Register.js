@@ -15,7 +15,7 @@ export default function Register() {
             console.warn(item);
         }
 
-        let result = await fetch("http://127.0.0.1:8000/api/register", {
+        let result = await fetch("/api/register", {
             method: "POST",
             body: JSON.stringify(item),
             headers: {

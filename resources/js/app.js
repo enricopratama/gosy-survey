@@ -5,11 +5,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Register from "./Register";
 import HomeCopy from "./HomeCopy";
 import ListUserAccess from "./ListUserAccess";
+import ListUserTokens from "./ListUserTokens";
 import { ThemeProvider } from "./ThemeContext";
 import { PrimeReactProvider } from "primereact/api";
 import "primereact/resources/themes/saga-blue/theme.css"; // or any other theme you prefer
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
+import { NoPage } from "./NoPage";
 
 export default function App() {
     return (
@@ -24,6 +26,12 @@ export default function App() {
                             path="/configs/user-access"
                             element={<ListUserAccess />}
                         />
+                        <Route
+                            exact
+                            path="/configs/user-tokens"
+                            element={<ListUserTokens />}
+                        />
+                        <Route exact path="*" element={<NoPage />} />
                     </Routes>
                 </Router>
             </PrimeReactProvider>

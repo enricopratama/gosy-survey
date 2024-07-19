@@ -57,7 +57,7 @@
                                 <a href="/configs/user-access" class="nav-link" data-key="t-horizontal">List User Access</a>
                             </li>
                             <li class="nav-item">
-                                <a href="layouts-detached.html" class="nav-link" data-key="t-detached">List User Tokens</a>
+                                <a href="/configs/user-tokens" class="nav-link" data-key="t-detached">List User Tokens</a>
                             </li>
                         </ul>
                     </div>
