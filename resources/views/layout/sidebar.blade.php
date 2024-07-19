@@ -2,7 +2,7 @@
     <!-- LOGO -->
     <div class="navbar-brand-box">
         <!-- Dark Logo-->
-        <a href="index.html" class="logo logo-dark">
+        <a href="/home" class="logo logo-dark">
             <span class="logo-sm">
                 <img src="{{ asset('images/gonusa-logo-doang.png') }}" alt="logoDarkSm" height="38">
             </span>
@@ -11,7 +11,7 @@
             </span>
         </a>
         <!-- Light Logo-->
-        <a href="index.html" class="logo logo-light">
+        <a href="/home" class="logo logo-light">
             <span class="logo-sm">
                 <img src="{{ asset('images/gonusa-logo-doang.png') }}" alt="logoLightSm" height="38">
             </span>
@@ -54,10 +54,10 @@
                     <div class="collapse menu-dropdown" id="sidebarLayouts">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="layouts-horizontal.html" target="_blank" class="nav-link" data-key="t-horizontal">List User Access</a>
+                                <a href="/configs/user-access" class="nav-link" data-key="t-horizontal">List User Access</a>
                             </li>
                             <li class="nav-item">
-                                <a href="layouts-detached.html" target="_blank" class="nav-link" data-key="t-detached">List User Tokens</a>
+                                <a href="layouts-detached.html" class="nav-link" data-key="t-detached">List User Tokens</a>
                             </li>
                         </ul>
                     </div>

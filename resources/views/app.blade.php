@@ -21,8 +21,6 @@
     @include('layout.asset') 
 </head>
 <body>
-    <!-- React CSR -->
-
     <div id="layout-wrapper">
     @include('layout.header')
     @include('layout.sidebar')

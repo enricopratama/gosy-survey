@@ -1,17 +1,17 @@
 import React from "react";
-export default function BreadcrumbComponent() {
+export default function BreadcrumbComponent(props) {
     return (
         <>
             <nav aria-label="breadcrumb" className="ml-auto">
                 <ol className="breadcrumb">
                     <li className="breadcrumb-item">
-                        <a href="#">Home</a>
+                        <a href="/home">Home</a>
                     </li>
                     <li className="breadcrumb-item">
-                        <a href="#">Library</a>
+                        <a href="#">Configs</a>
                     </li>
                     <li className="breadcrumb-item active" aria-current="page">
-                        Data
+                        {props.pageName}
                     </li>
                 </ol>
             </nav>

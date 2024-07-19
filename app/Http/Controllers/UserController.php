@@ -13,10 +13,46 @@ class UserController extends Controller
     /**
      * For MstUser table, not User (testing)
      */
-    public function show()
+    public function index()
     {
-        $users = MstUser::all();
+        $users = User::all();
         return response()->json($users);
+    }
+
+    /**
+     * Get User Properties for columns of database for Master User Access
+     */
+    public function getUserAccess(Request $req)
+    {
+        $users = User::get([
+            'user_id',
+            'user_login',
+            'salesman_code',
+            'account_name',
+        ]);
+    }
+
+    public function update(Request $req, $user_id)
+    {
+        if (User::where('user_id', $user_id)->exists()) {
+            $user = User::find($user_id);
+            // add more controller logic here, depending on mst_user columns
+        } else {
+            return response()->json(
+                [
+                    "message" => "User not found",
+                ],
+                404
+            );
+        }
+    }
+
+    public function onUser(Request $req)
+    {
+    }
+
+    public function offUser(Request $req)
+    {
     }
 
     /**
@@ -79,35 +115,5 @@ class UserController extends Controller
                 201
             );
         }
-    }
-
-    /**
-     * Login user
-     *
-     * @param  \Illuminate\Http\Request  $req
-     * @return \Illuminate\Http\Response
-     */
-    public function login(Request $req)
-    {
-        $user = User::where('email', $req->email)->first();
-        // $credentials = $req->validate([
-        //     'email' => 'required|string|email',
-        //     'password' => 'required|string',
-        // ]);
-
-        // if (Auth::attempt($credentials)) {
-        //     // Authentication passed
-        //     return response()->json(
-        //         ['message' => 'Logged in successfully', 'user' => Auth::user()],
-        //         200
-        //     );
-        // } else {
-        //     // Authentication failed
-        //     return response()->json(
-        //         ['message' => 'Invalid credentials, login failed'],
-        //         401
-        //     );
-        // }
-        return $user;
     }
 }

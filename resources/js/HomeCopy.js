@@ -1,10 +1,6 @@
 import React from "react";
 import BreadcrumbComponent from "./components/BreadcrumbComponent";
 
-/**
- * A copy of the home page that is not optimised for the light or dark mode (for testing)
- * @returns HTML component
- */
 export default function HomeCopy() {
     const userLogin = window.userData;
     console.log(userLogin);
@@ -12,7 +8,7 @@ export default function HomeCopy() {
         <div className="">
             <div className="d-flex flex-row justify-content-between bg-white rounded flex-wrap-reverse align-items-center">
                 <div className="d-flex flex-column m-4 m-md-5">
-                    <BreadcrumbComponent />
+                    <BreadcrumbComponent pageName="Home" />
                     <div className="text-muted">Welcome Back,</div>
                     <h1 className="">Admin Jakbar!</h1>
                 </div>

@@ -10,7 +10,7 @@ export default function Home() {
         <div className={theme === "light" ? "bg-light" : "bg-dark"}>
             <div className="d-flex flex-row justify-content-between rounded flex-wrap-reverse align-items-center">
                 <div className="d-flex flex-column m-4 m-md-5">
-                    <BreadcrumbComponent />
+                    <BreadcrumbComponent pageName="Home" />
                     <div className="text-muted">Welcome Back,</div>
                     <h1 className="">Admin Jakbar!</h1>
                 </div>

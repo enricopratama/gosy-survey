@@ -27,6 +27,8 @@
     },
     "dependencies": {
         "bootstrap": "^5.3.3",
+        "primeicons": "^7.0.0",
+        "primereact": "^10.7.0",
         "react-bootstrap": "^2.10.4",
         "react-pro-sidebar": "^1.1.0",
         "react-router-dom": "^6.24.1"
