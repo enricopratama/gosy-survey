@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import BreadcrumbComponent from "./components/BreadcrumbComponent";
 import "../css/Home.css";
 import axios from "axios";
+import { CircularProgress } from "@chakra-ui/react";
 
 export default function HomeCopy() {
     const userLogin = window.userData;
@@ -30,7 +31,7 @@ export default function HomeCopy() {
                     {user ? (
                         <h1 className="">{user.user_login}</h1> // Display the user's name
                     ) : (
-                        <h1 className="">Loading...</h1> // Display loading while fetching data
+                        <CircularProgress isIndeterminate color="green.300" />
                     )}
                 </div>
                 <div className="m-4 m-md-5">
