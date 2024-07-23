@@ -18,7 +18,62 @@ class UserController extends Controller
     /**
      * Get User Properties for columns of database for Master User Access
      */
-    public function getUserAccess(Request $req)
+    public function getUserAccess()
+    {
+        $users = User::selectRaw(
+            "mst_user.user_id, mst_user.user_login, mst_user.salesman_code, mst_user.account_name, group_concat(b.company_code) as company_code"
+        )
+            ->leftJoin(
+                'mst_user_company as b',
+                'mst_user.user_id',
+                '=',
+                'b.user_id'
+            )
+            ->groupBy(
+                "mst_user.user_id",
+                "mst_user.user_login",
+                "mst_user.salesman_code",
+                "mst_user.account_name"
+            )
+            ->get();
+
+        // $users= User::select("mst_user.user_id","b.")
+        // ->leftJoin('mst_usr_company as b','mst_user.user_id','=','b.user_id')
+        // ->leftJoin('mst_usr_company as b',function($j){
+        //     $j->on('mst_user.user_id','=','b.user_id')->where('b.status','=','1');
+        // })
+        // ->get();
+        return response()->json($users);
+    }
+
+    public function getAccessToken()
+    {
+        $users = User::select(
+            'mst_user.user_id',
+            'mst_user_company.*',
+            'mst_otp_user_ac.*'
+        )
+            ->leftJoin(
+                'mst_user_company',
+                'mst_user.user_id',
+                '=',
+                'mst_user_company.user_id'
+            )
+            ->leftJoin(
+                'mst_otp_user_ac',
+                'mst_user.user_id',
+                '=',
+                'mst_otp_user_ac.user_id'
+            )
+            ->get();
+
+        return response()->json($users);
+    }
+
+    /**
+     * Get User Properties for columns of database for Master User Access
+     */
+    public function getUserAccessByCompany()
     {
         $users = User::select(
             "mst_user.user_id",
@@ -35,12 +90,6 @@ class UserController extends Controller
             )
             ->get();
 
-        // $users= User::select("mst_user.user_id","b.")
-        // ->leftJoin('mst_usr_company as b','mst_user.user_id','=','b.user_id')
-        // ->leftJoin('mst_usr_company as b',function($j){
-        //     $j->on('mst_user.user_id','=','b.user_id')->where('b.status','=','1');
-        // })
-        // ->get();
         return response()->json($users);
     }
 
@@ -72,14 +121,6 @@ class UserController extends Controller
                 404
             );
         }
-    }
-
-    public function onUser(Request $req)
-    {
-    }
-
-    public function offUser(Request $req)
-    {
     }
 
     /**

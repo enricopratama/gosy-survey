@@ -22,6 +22,7 @@
 </head>
 <body>
     <div id="layout-wrapper">
+    <div id='loader'></div>
     @include('layout.header')
     @include('layout.sidebar')
     <div class="main-content overflow">

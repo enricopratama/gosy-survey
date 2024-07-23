@@ -1,14 +1,18 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { DataTable, Column } from "primereact/datatable";
 import { InputText } from "primereact/inputtext";
 import { Skeleton } from "primereact/skeleton";
 import { FilterMatchMode } from "primereact/api";
-import { Button } from "primereact/button";
-import { Toast } from "primereact/toast";
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
-export default function UserAccessTable() {
+import { Button } from "primereact/button";
+
+/**
+ * Same as UserAccessTable, but grouped by company
+ * @returns JSX object
+ */
+export default function UserAccessTableCompany() {
     const [customers, setCustomers] = useState([]);
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -20,19 +24,17 @@ export default function UserAccessTable() {
     const [loading, setLoading] = useState(true);
     const [globalFilterValue, setGlobalFilterValue] = useState("");
     const [userIdFilterValue, setUserIdFilterValue] = useState("");
-    const [selectedCustomer, setSelectedCustomer] = useState(null);
-    const toast = useRef(null);
-
     const getUsers = async () => {
-        setLoading(true);
-        try {
-            const response = await axios.get("/master-users");
-            setCustomers(response.data);
-        } catch (error) {
-            console.error("There was an error fetching the users!", error);
-        } finally {
-            setLoading(false);
-        }
+        await axios
+            .get("/master-users-by-company")
+            .then((response) => {
+                setCustomers(response.data);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error("There was an error fetching the users!", error);
+                setLoading(false);
+            });
     };
 
     useEffect(() => {
@@ -41,43 +43,23 @@ export default function UserAccessTable() {
 
     const onGlobalFilterChange = (e) => {
         const value = e.target.value || ""; // Use empty string instead of null
-        setFilters((prevFilters) => ({
-            ...prevFilters,
-            global: { ...prevFilters.global, value },
-        }));
+        let _filters = { ...filters };
+        _filters["global"].value = value;
+        setFilters(_filters);
         setGlobalFilterValue(value);
     };
 
     const onUserIdFilterChange = (e) => {
         const value = e.target.value || ""; // Use empty string instead of null
-        setFilters((prevFilters) => ({
-            ...prevFilters,
-            user_id: { ...prevFilters.user_id, value },
-        }));
+        let _filters = { ...filters };
+        _filters["user_id"].value = value;
+        setFilters(_filters);
         setUserIdFilterValue(value);
-    };
-
-    const onRowSelect = (event) => {
-        toast.current.show({
-            severity: "info",
-            summary: "User Selected",
-            detail: `User ID: ${event.data.user_id}`,
-            life: 3000,
-        });
-    };
-
-    const onRowUnselect = (event) => {
-        toast.current.show({
-            severity: "warn",
-            summary: "User Unselected",
-            detail: `User ID: ${event.data.user_id}`,
-            life: 3000,
-        });
     };
 
     const renderHeader = () => {
         return (
-            <div className="d-flex justify-content-between align-items-center flex-wrap">
+            <div className="d-flex justify-content-between align-items-center">
                 <Button label="Add" />
                 <IconField iconPosition="left" className="ml-3">
                     <InputIcon className="pi pi-search" />
@@ -93,40 +75,8 @@ export default function UserAccessTable() {
 
     const header = renderHeader();
 
-    const exportCSV = () => {
-        const csvData = customers.map((row) => ({
-            user_id: row.user_id,
-            user_login: row.user_login,
-            account_name: row.account_name,
-            company_code: row.company_code,
-        }));
-        const csvContent = [
-            ["User ID", "Access Login", "Account Name", "Company Code"],
-            ...csvData.map((item) => [
-                item.user_id,
-                item.user_login,
-                item.account_name,
-                item.company_code,
-            ]),
-        ]
-            .map((e) => e.join(","))
-            .join("\n");
-        const blob = new Blob([csvContent], {
-            type: "text/csv;charset=utf-8;",
-        });
-        saveAs(blob, "users.csv");
-    };
-
-    const paginatorLeft = (
-        <Button type="button" icon="pi pi-refresh" text onClick={getUsers} />
-    );
-    const paginatorRight = (
-        <Button type="button" icon="pi pi-download" text onClick={exportCSV} />
-    );
-
     return (
         <div className="card border-1 surface-border border-round">
-            <Toast ref={toast} />
             {loading ? (
                 <div>
                     <Skeleton width="100%" height="4rem" />
@@ -137,11 +87,16 @@ export default function UserAccessTable() {
             ) : (
                 <DataTable
                     value={customers}
+                    rowGroupMode="rowspan"
+                    groupRowsBy="account_name"
                     rows={5}
                     paginator
                     rowsPerPageOptions={[5, 10, 25, 50]}
-                    dataKey="user_id"
+                    dataKey="account_name"
                     stripedRows
+                    removableSort
+                    sortField="account_name"
+                    sortOrder={1}
                     filters={filters}
                     filterDisplay="row"
                     loading={loading}
@@ -154,37 +109,12 @@ export default function UserAccessTable() {
                     header={header}
                     emptyMessage="No users found."
                     className="border-1 surface-border border-round"
-                    paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-                    currentPageReportTemplate="{first} to {last} of {totalRecords}"
-                    paginatorLeft={paginatorLeft}
-                    paginatorRight={paginatorRight}
-                    selectionMode="single"
-                    selection={selectedCustomer}
-                    onSelectionChange={(e) => setSelectedCustomer(e.value)}
-                    onRowSelect={onRowSelect}
-                    onRowUnselect={onRowUnselect}
                 >
                     <Column
                         header="No."
                         headerStyle={{ width: "3rem" }}
                         body={(data, options) => options.rowIndex + 1}
-                    />
-                    <Column
-                        field="user_id"
-                        header="User ID"
-                        filter
-                        filterPlaceholder="Search by user ID"
-                        style={{ minWidth: "12rem" }}
-                        sortable
-                    />
-                    <Column
-                        field="user_login"
-                        header="Access Login"
-                        filter
-                        filterPlaceholder="Search by user login"
-                        style={{ minWidth: "12rem" }}
-                        sortable
-                    />
+                    ></Column>
                     <Column
                         field="account_name"
                         header="Account Name"
@@ -193,7 +123,24 @@ export default function UserAccessTable() {
                         filter
                         sortable
                         filterPlaceholder="Search by account name"
-                    />
+                    ></Column>
+                    <Column
+                        field="user_id"
+                        header="User ID"
+                        filter
+                        filterPlaceholder="Search by user ID"
+                        style={{ minWidth: "12rem" }}
+                        sortable
+                    ></Column>
+                    <Column
+                        field="user_login"
+                        header="Access Login"
+                        filter
+                        filterPlaceholder="Search by user login"
+                        style={{ minWidth: "12rem" }}
+                        sortable
+                    ></Column>
+
                     <Column
                         field="company_code"
                         header="Company Code"
@@ -202,7 +149,7 @@ export default function UserAccessTable() {
                         filter
                         sortable
                         filterPlaceholder="Search by company code"
-                    />
+                    ></Column>
                 </DataTable>
             )}
         </div>
