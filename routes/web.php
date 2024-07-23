@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReactController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
 
 // Example route for counting
 Route::post('count', function (Request $request) {
@@ -30,6 +34,10 @@ Route::get('/login', [LoginController::class, 'show'])
 Route::post('/authenticated', [LoginController::class, 'authenticated']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
+Route::get('/api/user', function (Request $request) {
+    return Auth::user();
+})->middleware('auth');
+
 // Sidebar Testing
 Route::view('/sidebar', 'sidebar');
 Route::view('/sidebarCI', 'sidebarCI');
@@ -38,6 +46,10 @@ Route::view('/sidebarCI', 'sidebarCI');
 Route::get('/users', [UserController::class, 'index'])->name('users');
 
 Route::get('/master-users', [UserController::class, 'getUserAccess']);
+Route::get('/master-users-by-company', [
+    UserController::class,
+    'getUserAccessByCompany',
+]);
 Route::get('/master-users/{user_id}', [UserController::class, 'show']);
 
 // All other routes, are defined through React.js

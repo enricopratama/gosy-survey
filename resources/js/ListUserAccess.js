@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import UserAccessTable from "./components/UserAccessTable";
 import BreadcrumbComponent from "./components/BreadcrumbComponent";
+import UserAccessTableCompany from "./components/UserAccessTableCompany";
 
 export default function ListUserAccess() {
     var [date, setDate] = useState(new Date());
@@ -24,6 +25,7 @@ export default function ListUserAccess() {
             </div>
             <div className="pt-4">
                 <UserAccessTable />
+                <UserAccessTableCompany />
             </div>
         </div>
     );
