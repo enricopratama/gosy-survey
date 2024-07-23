@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import BreadcrumbComponent from "./components/BreadcrumbComponent";
-import "../css/Home.css";
+import BreadcrumbComponent from "../components/BreadcrumbComponent";
+import "../../css/Home.css";
 import axios from "axios";
 import { CircularProgress } from "@chakra-ui/react";
 
