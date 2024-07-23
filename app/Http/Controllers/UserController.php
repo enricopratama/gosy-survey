@@ -49,9 +49,9 @@ class UserController extends Controller
     public function getAccessToken()
     {
         $users = User::select(
-            'mst_user.user_id',
+            'mst_user.*',
             'mst_user_company.*',
-            'mst_otp_user_ac.*'
+            'mst_otp_user_access.*'
         )
             ->leftJoin(
                 'mst_user_company',
@@ -60,10 +60,10 @@ class UserController extends Controller
                 'mst_user_company.user_id'
             )
             ->leftJoin(
-                'mst_otp_user_ac',
+                'mst_otp_user_access',
                 'mst_user.user_id',
                 '=',
-                'mst_otp_user_ac.user_id'
+                'mst_otp_user_access.user_id'
             )
             ->get();
 

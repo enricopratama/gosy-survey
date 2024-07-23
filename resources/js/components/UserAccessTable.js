@@ -163,6 +163,7 @@ export default function UserAccessTable() {
                     onSelectionChange={(e) => setSelectedCustomer(e.value)}
                     onRowSelect={onRowSelect}
                     onRowUnselect={onRowUnselect}
+                    removableSort
                 >
                     <Column
                         header="No."
