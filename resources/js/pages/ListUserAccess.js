@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import BreadcrumbComponent from "./components/BreadcrumbComponent";
-import UserTokensTable from "./components/UserTokensTable";
+import UserAccessTable from "../components/UserAccessTable";
+import BreadcrumbComponent from "../components/BreadcrumbComponent";
+import UserAccessTableCompany from "../components/UserAccessTableCompany";
+import Spinner from "../components/SpinnerUser";
 
-export default function ListUserTokens() {
+export default function ListUserAccess() {
     var [date, setDate] = useState(new Date());
 
     useEffect(() => {
@@ -15,15 +17,15 @@ export default function ListUserTokens() {
         <div>
             <BreadcrumbComponent pageName="List User Access" />
             <div className="d-flex p-2 justify-content-between bg-white rounded flex-wrap pt-4 pb-4">
-                <div className="">Welcome back, admin jabar</div>
-
+                <Spinner />
                 <div>
                     Time : {date.toLocaleTimeString()}, Date :{" "}
                     {date.toLocaleDateString()}
                 </div>
             </div>
             <div className="pt-4">
-                <UserTokensTable />
+                <UserAccessTable />
+                <UserAccessTableCompany />
             </div>
         </div>
     );

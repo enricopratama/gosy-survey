@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserOTP extends Model
 {
     use HasFactory;
-    protected $table = 'mst_otp_user_ac';
+    protected $table = 'mst_otp_user_access';
     protected $primaryKey = 'user_id';
     public $incrementing = true;
     protected $keyType = 'int';

@@ -2,16 +2,18 @@ require("bootstrap");
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Register from "./Register";
-import HomeCopy from "./HomeCopy";
-import ListUserAccess from "./ListUserAccess";
-import ListUserTokens from "./ListUserTokens";
+import Register from "./components/Register";
+import HomeCopy from "./pages/HomeCopy";
+import ListUserAccess from "./pages/ListUserAccess";
+import ListUserTokens from "./pages/ListUserTokens";
 import { ThemeProvider } from "./ThemeContext";
 import { PrimeReactProvider } from "primereact/api";
 import "primereact/resources/themes/saga-blue/theme.css"; // or any other theme you prefer
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
-import { NoPage } from "./NoPage";
+import { NoPage } from "./pages/NoPage";
+import ViewSurvey from "./pages/ViewSurvey";
+import EditSurvey from "./pages/EditSurvey";
 
 export default function App() {
     return (
@@ -31,6 +33,16 @@ export default function App() {
                             path="/configs/user-tokens"
                             element={<ListUserTokens />}
                         />
+                        <Route
+                            exact
+                            path="/survey/view"
+                            element={<ViewSurvey />}
+                        />
+                        <Route
+                            exact
+                            path="/survey/edit"
+                            element={<EditSurvey />}
+                        />
                         <Route exact path="*" element={<NoPage />} />
                     </Routes>
                 </Router>
@@ -41,8 +53,8 @@ export default function App() {
 
 // Testing user information:
 const root = ReactDOM.createRoot(document.getElementById("root"));
-const data = document.getElementById("root").dataset.userdata;
-console.log(data);
+// const data = document.getElementById("root").dataset.userdata;
+// console.log(data);
 
 root.render(
     <React.StrictMode>

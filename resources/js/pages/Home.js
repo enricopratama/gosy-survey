@@ -1,7 +1,7 @@
 import React from "react";
-import { useTheme } from "./ThemeContext";
+import { useTheme } from "../ThemeContext";
 import "../css/Home.css"; // Import the CSS file
-import BreadcrumbComponent from "./components/BreadcrumbComponent";
+import BreadcrumbComponent from "../components/BreadcrumbComponent";
 
 export default function Home() {
     const { theme } = useTheme();
