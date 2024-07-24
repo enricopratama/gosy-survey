@@ -21,13 +21,13 @@
     @include('layout.asset') 
 </head>
 <body>
-    <div id="layout-wrapper">
+    <div id="layout">
     <div id='loader'></div>
     @include('layout.header')
     @include('layout.sidebar')
     <div class="main-content overflow">
-        @yield('content')
-        <div class="page-content" style="margin:30px">
+
+        <div class="page-content" style="margin:20px">
         <div id="root" data-userdata="{!! $globalData->toJson() !!}"></div>
         </div>
         </div>
