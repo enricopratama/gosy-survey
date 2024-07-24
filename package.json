@@ -1,4 +1,6 @@
 {
+    "name": "GOSY Survey Generator",
+    "description": "**** GOSY Survey Generator",
     "private": true,
     "scripts": {
         "dev": "npm run development",

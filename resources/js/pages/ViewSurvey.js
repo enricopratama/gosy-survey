@@ -3,7 +3,7 @@ import StepperComponent from "../components/StepperComponent";
 
 export default function ViewSurvey() {
     return (
-        <div>
+        <div className="mx-auto">
             <StepperComponent />
         </div>
     );

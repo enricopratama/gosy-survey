@@ -8,6 +8,7 @@ import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
+import ButtonComponent from "./ButtonComponent";
 
 export default function UserTokensTable() {
     const [customers, setCustomers] = useState([]);
@@ -82,7 +83,7 @@ export default function UserTokensTable() {
     const renderHeader = () => {
         return (
             <div className="d-flex justify-content-between align-items-center flex-wrap">
-                <Button label="Add" />
+                <ButtonComponent label="Add" icon="pi pi-plus" iconPos="left" />
                 <IconField iconPosition="left" className="ml-3">
                     <InputIcon className="pi pi-search" />
                     <InputText

@@ -1,5 +1,4 @@
-/* Custom styles for buttons */
 .custom-button {
-    border-radius: 12px; /* Rounded corners */
+    border-radius: 8px; /* Rounded corners */
     transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }

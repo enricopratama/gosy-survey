@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import UserAccessTable from "../components/UserAccessTable";
 import BreadcrumbComponent from "../components/BreadcrumbComponent";
 import UserAccessTableCompany from "../components/UserAccessTableCompany";
-import Spinner from "../components/SpinnerUser";
+import SkeletonUser from "../components/SkeletonUser";
 
 export default function ListUserAccess() {
     var [date, setDate] = useState(new Date());
@@ -17,7 +17,7 @@ export default function ListUserAccess() {
         <div>
             <BreadcrumbComponent pageName="List User Access" />
             <div className="d-flex p-2 justify-content-between bg-white rounded flex-wrap pt-4 pb-4">
-                <Spinner />
+                <SkeletonUser />
                 <div>
                     Time : {date.toLocaleTimeString()}, Date :{" "}
                     {date.toLocaleDateString()}
@@ -25,7 +25,7 @@ export default function ListUserAccess() {
             </div>
             <div className="pt-4">
                 <UserAccessTable />
-                <UserAccessTableCompany />
+                {/* <UserAccessTableCompany /> */}
             </div>
         </div>
     );

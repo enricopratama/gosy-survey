@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Skeleton } from "primereact/skeleton";
 
-export default function Spinner() {
+export default function SkeletonUser() {
     const [user, setUser] = useState(null);
 
     useEffect(() => {

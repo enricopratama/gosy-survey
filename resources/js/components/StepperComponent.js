@@ -1,26 +1,39 @@
-import React, { useContext, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Stepper } from "primereact/stepper";
 import { StepperPanel } from "primereact/stepperpanel";
-import { Button } from "primereact/button";
-import { PrimeReactContext } from "primereact/api";
-import "../../css/StepperComponent.css";
+import ButtonComponent from "./ButtonComponent";
+import axios from "axios";
 
 export default function StepperComponent() {
     const stepperRef = useRef(null);
+    const [questions, setQuestions] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const getQuestions = async () => {
+        try {
+            const response = await axios.get("/api/questions");
+            setQuestions(response.data);
+        } catch (error) {
+            console.error("There was an error fetching the questions!", error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-    const { setRipple } = useContext(PrimeReactContext);
-    setRipple(true);
+    useEffect(() => {
+        getQuestions();
+    }, []);
+
     return (
-        <div className="card flex justify-content-center">
+        <div className="card flex justify-content-center mx-auto">
             <Stepper linear ref={stepperRef} style={{ flexBasis: "50rem" }}>
                 <StepperPanel header="Header I">
                     <div className="flex flex-column h-12rem">
-                        <div className="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
+                        <div className="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium mx-auto">
                             Content I
                         </div>
                     </div>
                     <div className="flex pt-4 justify-content-end">
-                        <Button
+                        <ButtonComponent
                             label="Next"
                             icon="pi pi-arrow-right"
                             iconPos="right"
@@ -36,14 +49,15 @@ export default function StepperComponent() {
                         </div>
                     </div>
                     <div className="flex pt-4 justify-content-between">
-                        <Button
+                        <ButtonComponent
                             label="Back"
-                            className="custom-button me-2"
-                            severity="secondary"
                             icon="pi pi-arrow-left"
+                            iconPos="right"
+                            className="custom-button"
+                            severity="secondary"
                             onClick={() => stepperRef.current.prevCallback()}
                         />
-                        <Button
+                        <ButtonComponent
                             label="Next"
                             icon="pi pi-arrow-right"
                             iconPos="right"
@@ -59,11 +73,12 @@ export default function StepperComponent() {
                         </div>
                     </div>
                     <div className="flex pt-4 justify-content-start">
-                        <Button
+                        <ButtonComponent
                             label="Back"
+                            icon="pi pi-arrow-left"
+                            iconPos="right"
                             className="custom-button"
                             severity="secondary"
-                            icon="pi pi-arrow-left"
                             onClick={() => stepperRef.current.prevCallback()}
                         />
                     </div>

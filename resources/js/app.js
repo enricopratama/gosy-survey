@@ -1,19 +1,19 @@
 require("bootstrap");
+import "primereact/resources/themes/lara-light-indigo/theme.css"; // theme
+import "primereact/resources/primereact.css"; // core css
+import "primeicons/primeicons.css"; // icons
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Register from "./components/Register";
 import HomeCopy from "./pages/HomeCopy";
 import ListUserAccess from "./pages/ListUserAccess";
 import ListUserTokens from "./pages/ListUserTokens";
-import { ThemeProvider } from "./ThemeContext";
-import { PrimeReactProvider } from "primereact/api";
-import "primereact/resources/themes/lara-light-indigo/theme.css"; // theme
-import "primereact/resources/primereact.css"; // core css
-import "primeicons/primeicons.css"; // icons
-import { NoPage } from "./pages/NoPage";
 import ViewSurvey from "./pages/ViewSurvey";
 import EditSurvey from "./pages/EditSurvey";
+import { NoPage } from "./pages/NoPage";
+import { ThemeProvider } from "./ThemeContext";
+import { PrimeReactProvider } from "primereact/api";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export default function App() {
     return (

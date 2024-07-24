@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BreadcrumbComponent from "../components/BreadcrumbComponent";
 import UserTokensTable from "../components/UserTokensTable";
-import Spinner from "../components/SpinnerUser";
+import SkeletonUser from "../components/SkeletonUser";
 
 export default function ListUserTokens() {
     var [date, setDate] = useState(new Date());
@@ -15,7 +15,7 @@ export default function ListUserTokens() {
         <div>
             <BreadcrumbComponent pageName="List User Access" />
             <div className="d-flex p-2 justify-content-between bg-white rounded flex-wrap pt-4 pb-4">
-                <Spinner />
+                <SkeletonUser />
                 Time : {date.toLocaleTimeString()}, Date :{" "}
                 {date.toLocaleDateString()}
             </div>
