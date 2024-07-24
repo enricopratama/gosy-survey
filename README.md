@@ -7,6 +7,11 @@
 # GONUSA SURVEY GENERATOR SYSTEM
 This repository is for a web application built with Laravel as the backend framework and React.js for the frontend. The project aims to provide a robust foundation for developing modern web applications with a clear separation of concerns and an efficient development workflow.
 
+## Dependencies (Potential Package Conflicts)
+- Uses React Bootstrap
+- Uses Prime React
+- Depends on public/modern/assets to work for HTML
+
 ## Table of Contents
 
 - [Installation](#installation)
