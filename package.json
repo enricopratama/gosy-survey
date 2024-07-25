@@ -30,6 +30,7 @@
     },
     "dependencies": {
         "@chakra-ui/react": "^2.8.2",
+        "@cimpress/react-components": "^16.10.4",
         "@emotion/react": "^11.13.0",
         "@emotion/styled": "^11.13.0",
         "@mantine/core": "^7.11.2",
@@ -42,6 +43,7 @@
         "primeicons": "^7.0.0",
         "primereact": "^10.7.0",
         "react-bootstrap": "^2.10.4",
+        "react-favicon": "^2.0.7",
         "react-pro-sidebar": "^1.1.0",
         "react-router-dom": "^6.24.1",
         "styled-components": "^5.3.11"

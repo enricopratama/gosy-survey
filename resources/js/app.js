@@ -10,6 +10,7 @@ import ListUserAccess from "./pages/ListUserAccess";
 import ListUserTokens from "./pages/ListUserTokens";
 import ViewSurvey from "./pages/ViewSurvey";
 import EditSurvey from "./pages/EditSurvey";
+import Favicon from "react-favicon";
 import { NoPage } from "./pages/NoPage";
 import { ThemeProvider } from "./ThemeContext";
 import { PrimeReactProvider } from "primereact/api";
@@ -55,6 +56,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
     <React.StrictMode>
+        <Favicon url="/favicon.ico" />
         <App />
     </React.StrictMode>
 );

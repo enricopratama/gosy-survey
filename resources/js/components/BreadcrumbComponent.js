@@ -11,6 +11,7 @@ export default function BreadcrumbComponent() {
                 <li className="breadcrumb-item">
                     <Link to="/home">Dashboard</Link>
                 </li>
+                {/* .map to iterate through pathnames,  value to get each pathname, index to keep track of index */}
                 {pathnames.map((value, index) => {
                     const to = `/${pathnames.slice(0, index + 1).join("/")}`;
                     const isLast = index === pathnames.length - 1;
