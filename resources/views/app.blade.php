@@ -20,6 +20,17 @@
     <title>GOSY | PT. GONUSA PRIMA DISTRIBUSI</title>
     @include('layout.asset') 
 </head>
+<style>
+        .page-content {
+            margin: 0px;
+        }
+        
+        @media (min-width: 768px) {
+            .page-content {
+                margin: 12px;
+            }
+        }
+    </style>
 <body>
     <div id="layout">
     <div id='loader'></div>
@@ -27,7 +38,7 @@
     @include('layout.sidebar')
     <div class="main-content overflow">
 
-        <div class="page-content" style="margin:20px">
+        <div class="page-content">
         <div id="root" data-userdata="{!! $globalData->toJson() !!}"></div>
         </div>
         </div>

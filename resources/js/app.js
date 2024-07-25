@@ -15,40 +15,46 @@ import { NoPage } from "./pages/NoPage";
 import { ThemeProvider } from "./ThemeContext";
 import { PrimeReactProvider } from "primereact/api";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
 export default function App() {
     return (
-        <PrimeReactProvider>
-            <ThemeProvider>
-                <Router>
-                    <Routes>
-                        <Route exact path="/home" element={<HomeCopy />} />
-                        <Route exact path="/register" element={<Register />} />
-                        <Route
-                            exact
-                            path="/configs/user-access"
-                            element={<ListUserAccess />}
-                        />
-                        <Route
-                            exact
-                            path="/configs/user-tokens"
-                            element={<ListUserTokens />}
-                        />
-                        <Route
-                            exact
-                            path="/survey/view"
-                            element={<ViewSurvey />}
-                        />
-                        <Route
-                            exact
-                            path="/survey/edit"
-                            element={<EditSurvey />}
-                        />
-                        <Route exact path="*" element={<NoPage />} />
-                    </Routes>
-                </Router>
-            </ThemeProvider>
-        </PrimeReactProvider>
+        <>
+            {/* <GlobalStyles /> */}
+            <PrimeReactProvider>
+                <ThemeProvider>
+                    <Router>
+                        <Routes>
+                            <Route exact path="/home" element={<HomeCopy />} />
+                            <Route
+                                exact
+                                path="/register"
+                                element={<Register />}
+                            />
+                            <Route
+                                exact
+                                path="/configs/user-access"
+                                element={<ListUserAccess />}
+                            />
+                            <Route
+                                exact
+                                path="/configs/user-tokens"
+                                element={<ListUserTokens />}
+                            />
+                            <Route
+                                exact
+                                path="/survey/view"
+                                element={<ViewSurvey />}
+                            />
+                            <Route
+                                exact
+                                path="/survey/edit"
+                                element={<EditSurvey />}
+                            />
+                            <Route exact path="*" element={<NoPage />} />
+                        </Routes>
+                    </Router>
+                </ThemeProvider>
+            </PrimeReactProvider>
+        </>
     );
 }
 
