@@ -1,14 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Step, StepGroup, Stepper } from "@cimpress/react-components";
 import axios from "axios";
 import { Skeleton } from "primereact/skeleton";
+import { RenderQuestion } from "./RenderQuestion";
+// import { Ripple } from "primereact/ripple";
+// import { PrimeReactContext } from "primereact/api";
 
 const StepperDemo = () => {
     const [activeStep, setActiveStep] = useState("0");
     const [verticalActiveStep, setVerticalActiveStep] = useState("0");
     const [questions, setQuestions] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const [currResponse, setCurrResponse] = useState(null);
+    const [wantParent, setWantParent] = useState(true);
     const [responses, setResponses] = useState({});
+    // const { setRipple } = useContext(PrimeReactContext);
+
+    // useEffect(() => {
+    //     setRipple(true);
+    // }, [setRipple]);
 
     const setStep = (index) => {
         setActiveStep(index);
@@ -18,6 +29,9 @@ const StepperDemo = () => {
         setVerticalActiveStep(index);
     };
 
+    /**
+     * Fetch Questions API
+     */
     const getQuestions = async () => {
         try {
             const response = await axios.get("/api/questions");
@@ -32,6 +46,79 @@ const StepperDemo = () => {
     useEffect(() => {
         getQuestions();
     }, []);
+
+    const handleNext = () => {
+        if (currentQuestionIndex < questions.length - 1) {
+            setCurrentQuestionIndex(currentQuestionIndex + 1);
+            setCurrResponse(
+                responses[questions[currentQuestionIndex + 1]?.question_id] ||
+                    null
+            );
+        }
+    };
+
+    const handlePrev = () => {
+        if (currentQuestionIndex > 0) {
+            setCurrentQuestionIndex(currentQuestionIndex - 1);
+            setCurrResponse(
+                responses[questions[currentQuestionIndex - 1]?.question_id] ||
+                    null
+            );
+        }
+    };
+
+    const handleInputChange = (e, questionId) => {
+        const value = e.target.value;
+        setCurrResponse(value);
+        setResponses({
+            ...responses,
+            [questionId]: e.target.value,
+        });
+    };
+
+    const currentQuestion = questions[currentQuestionIndex];
+
+    /**
+     * Renders the options for each question
+     * @param {*} question A question
+     * @returns A rendered HTML element of 9 options per question
+     * RI: count(option_x) <= 9
+     */
+    const renderOptions = (question) => {
+        const options = [];
+        for (let i = 1; i <= 9; i++) {
+            const option = question[`option_${i}`];
+            if (option && currentQuestion.question_type === "Choice") {
+                options.push(
+                    <div key={i}>
+                        <input
+                            type="radio"
+                            id={`option_${i}`}
+                            name="options"
+                            value={option}
+                        />
+                        <label htmlFor={`option_${i}`}>{option}</label>
+                    </div>
+                );
+            } else if (option && currentQuestion.question_type === "Text") {
+                options.push(
+                    <div key={i}>
+                        <label htmlFor={`text_option_${i}`}>{option}</label>
+                        <input
+                            type="text"
+                            id={`text_option_${i}`}
+                            name={`text_option_${question.question_id}`}
+                            value={responses[question.question_id] || ""}
+                            onChange={(e) =>
+                                handleInputChange(e, question.question_id)
+                            }
+                        />
+                    </div>
+                );
+            }
+        }
+        return options;
+    };
 
     const checkmarkIcon = "✓";
 
@@ -78,13 +165,11 @@ const StepperDemo = () => {
                                 wisi. Aenean fermentum, elit eget tincidunt
                                 condimentum, eros ipsum rutrum orci, sagittis
                                 tempus lacus enim ac dui.{" "}
-                                <a href="#">Donec non enim</a> in turpis
-                                pulvinar facilisis. Ut felis.
                             </p>
                         )}
                         {/* Stepper Mobile Only */}
                         <div className="overflow-x-auto d-md-none d-block">
-                            <Stepper
+                            {/* <Stepper
                                 style={{ minWidth: "450px" }}
                                 activeStep={activeStep}
                             >
@@ -103,7 +188,59 @@ const StepperDemo = () => {
                                     <div>Step Three</div>
                                     <small>A third step</small>
                                 </Step>
-                            </Stepper>
+                            </Stepper> */}
+                            <div style={{ height: "50vh" }}>
+                                <Stepper
+                                    activeStep={verticalActiveStep}
+                                    vertical
+                                >
+                                    <Step onClick={() => setVerticalStep("0")}>
+                                        <div style={{ textAlign: "left" }}>
+                                            <div>
+                                                Step 1 - Survey Kualitas Outlet
+                                            </div>
+                                            <small>Produk Kopi</small>
+                                        </div>
+                                    </Step>
+                                    <Step onClick={() => setVerticalStep("1")}>
+                                        <div>Step Two</div>
+                                    </Step>
+                                    <StepGroup
+                                        onClick={() => setVerticalStep("2")}
+                                        tip="Lorem ipsum tipsum"
+                                        contents={<div>Step Three</div>}
+                                    >
+                                        <Step
+                                            tip="This step causes Step Three to inherit the danger color"
+                                            onClick={() =>
+                                                setVerticalStep("2.0")
+                                            }
+                                        >
+                                            <div>Sub-step one</div>
+                                        </Step>
+                                        <Step
+                                            onClick={() =>
+                                                setVerticalStep("2.1")
+                                            }
+                                        >
+                                            <div>Sub-step two</div>
+                                        </Step>
+                                        <Step
+                                            onClick={() =>
+                                                setVerticalStep("2.2")
+                                            }
+                                        >
+                                            <div>Sub-step three</div>
+                                        </Step>
+                                    </StepGroup>
+                                    <Step
+                                        onClick={() => setVerticalStep("3")}
+                                        icon={checkmarkIcon}
+                                    >
+                                        <div>Step With Custom Icon</div>
+                                    </Step>
+                                </Stepper>
+                            </div>
                         </div>
 
                         {/* Stepper Desktop Only */}
@@ -158,29 +295,28 @@ const StepperDemo = () => {
 
                 {/* Text on Desktop */}
                 <div className="col-12 col-md-6 d-md-block d-none ms-4">
-                    <div className="">
-                        {questions.map((question, index) => (
-                            <div>
-                                <p>Step {question.question_key}</p>
-                                <h2>{question.question_name}</h2>
-                            </div>
-                        ))}
-                    </div>
+                    <RenderQuestion
+                        currentQuestion={currentQuestion}
+                        currentQuestionIndex={currentQuestionIndex}
+                        questions={questions}
+                        handlePrev={handlePrev}
+                        handleNext={handleNext}
+                        renderOptions={renderOptions}
+                    />
                 </div>
             </div>
 
             {/* Text on Mobile */}
             <div className="row d-md-none d-block p-2">
-                <div className="col-12">
-                    <div className="">
-                        {questions.map((question, index) => (
-                            <div>
-                                <p>Step {question.question_key}</p>
-                                <h2>{question.question_name}</h2>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                <RenderQuestion
+                    currentQuestion={currentQuestion}
+                    currentQuestionIndex={currentQuestionIndex}
+                    questions={questions}
+                    handlePrev={handlePrev}
+                    handleNext={handleNext}
+                    renderOptions={renderOptions}
+                    wantParent={wantParent}
+                />
             </div>
         </div>
     );
