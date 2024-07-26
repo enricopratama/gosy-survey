@@ -83,11 +83,17 @@ export default function UserTokensTable() {
     const renderHeader = () => {
         return (
             <div className="d-flex justify-content-between align-items-center flex-wrap">
-                <ButtonComponent label="Add" icon="pi pi-plus" iconPos="left" />
+                <ButtonComponent
+                    label="New"
+                    icon="pi pi-plus"
+                    iconPos="left"
+                    severity="success"
+                />
                 <IconField iconPosition="left" className="ml-3">
                     <InputIcon className="pi pi-search" />
                     <InputText
                         value={globalFilterValue}
+                        type="search"
                         onChange={onGlobalFilterChange}
                         placeholder="Search..."
                     />

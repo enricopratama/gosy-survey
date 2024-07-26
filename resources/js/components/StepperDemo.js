@@ -3,8 +3,6 @@ import { Step, StepGroup, Stepper } from "@cimpress/react-components";
 import axios from "axios";
 import { Skeleton } from "primereact/skeleton";
 import { RenderQuestion } from "./RenderQuestion";
-// import { Ripple } from "primereact/ripple";
-// import { PrimeReactContext } from "primereact/api";
 
 const StepperDemo = () => {
     const [activeStep, setActiveStep] = useState("0");
@@ -13,9 +11,7 @@ const StepperDemo = () => {
     const [loading, setLoading] = useState(true);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [currResponse, setCurrResponse] = useState(null);
-    const [wantParent, setWantParent] = useState(true);
     const [responses, setResponses] = useState({});
-    // const { setRipple } = useContext(PrimeReactContext);
 
     // useEffect(() => {
     //     setRipple(true);
@@ -82,7 +78,7 @@ const StepperDemo = () => {
      * Renders the options for each question
      * @param {*} question A question
      * @returns A rendered HTML element of 9 options per question
-     * RI: count(option_x) <= 9
+     * RI: count(currentQuestion.option_x) <= 9
      */
     const renderOptions = (question) => {
         const options = [];
@@ -170,25 +166,25 @@ const StepperDemo = () => {
                         {/* Stepper Mobile Only */}
                         <div className="overflow-x-auto d-md-none d-block">
                             {/* <Stepper
-                                style={{ minWidth: "450px" }}
-                                activeStep={activeStep}
-                            >
-                                <Step onClick={() => setStep("0")}>
-                                    <div>Step One</div>
-                                    <small>A step</small>
-                                </Step>
-                                <Step onClick={() => setStep("1")}>
-                                    <div>Step Two</div>
-                                    <small>It's another step!</small>
-                                </Step>
-                                <Step
-                                    onClick={() => setStep("2")}
-                                    tip="Lorem ipsum tipsum"
-                                >
-                                    <div>Step Three</div>
-                                    <small>A third step</small>
-                                </Step>
-                            </Stepper> */}
+                               style={{ minWidth: "450px" }}
+                               activeStep={activeStep}
+                           >
+                               <Step onClick={() => setStep("0")}>
+                                   <div>Step One</div>
+                                   <small>A step</small>
+                               </Step>
+                               <Step onClick={() => setStep("1")}>
+                                   <div>Step Two</div>
+                                   <small>It's another step!</small>
+                               </Step>
+                               <Step
+                                   onClick={() => setStep("2")}
+                                   tip="Lorem ipsum tipsum"
+                               >
+                                   <div>Step Three</div>
+                                   <small>A third step</small>
+                               </Step>
+                           </Stepper> */}
                             <div style={{ height: "50vh" }}>
                                 <Stepper
                                     activeStep={verticalActiveStep}
@@ -302,6 +298,7 @@ const StepperDemo = () => {
                         handlePrev={handlePrev}
                         handleNext={handleNext}
                         renderOptions={renderOptions}
+                        currResponse={currResponse}
                     />
                 </div>
             </div>
@@ -315,7 +312,7 @@ const StepperDemo = () => {
                     handlePrev={handlePrev}
                     handleNext={handleNext}
                     renderOptions={renderOptions}
-                    wantParent={wantParent}
+                    currResponse={currResponse}
                 />
             </div>
         </div>

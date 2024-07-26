@@ -1,11 +1,13 @@
 import React from "react";
-import StepperComponent from "../components/StepperComponent";
+import SurveyTable from "../components/SurveyTable";
+// import StepperComponent from "../components/StepperComponent";
 // import StepperCopy from "../components/StepperCopy";
 
 export default function ViewSurvey() {
     return (
         <div className="mx-auto">
-            <StepperComponent />
+            <SurveyTable />
+            {/* <StepperComponent /> */}
             {/* <StepperCopy /> */}
         </div>
     );

@@ -73,7 +73,7 @@
                                 <a href="/survey/view" class="nav-link" data-key="t-detached">View Survey</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/survey/edit" class="nav-link" data-key="t-detached">Edit Survey</a>
+                                <a href="/survey/questions" class="nav-link" data-key="t-detached">Questions</a>
                             </li>
                         </ul>
                     </div>
