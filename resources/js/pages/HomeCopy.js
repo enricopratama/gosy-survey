@@ -4,6 +4,8 @@ import "../../css/Home.css";
 import axios from "axios";
 import { CircularProgress } from "@chakra-ui/react";
 
+import { Button } from "primereact/button";
+
 export default function HomeCopy() {
     const userLogin = window.userData;
     console.log(userLogin);
@@ -28,6 +30,7 @@ export default function HomeCopy() {
                 <div className="d-flex flex-column m-4 m-md-5">
                     <BreadcrumbComponent pageName="Home" />
                     <div className="text-muted">Welcome Back,</div>
+
                     {user ? (
                         <h1 className="">{user.user_login}</h1> // Display the user's name
                     ) : (

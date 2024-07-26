@@ -4,15 +4,31 @@ import { PrimeReactContext } from "primereact/api";
 import { Button } from "primereact/button";
 
 const ButtonComponent = ({
-    label,
+    badge,
+    badgeClassName,
+    children,
+    disabled = false,
     icon,
-    iconPos,
-    onClick,
-    severity,
-    className,
+    iconPos = "left",
+    label,
+    link = false,
+    loading = false,
+    loadingIcon,
     outlined = false,
-    text = false,
+    plain = false,
+    pt,
+    ptOptions,
+    raised = false,
     rounded = false,
+    severity,
+    size,
+    text = false,
+    tooltip,
+    tooltipOptions,
+    unstyled = false,
+    visible = true,
+    onClick,
+    className,
 }) => {
     const { setRipple } = useContext(PrimeReactContext);
 
@@ -22,30 +38,70 @@ const ButtonComponent = ({
 
     return (
         <Button
-            label={label}
+            badge={badge}
+            badgeClassName={badgeClassName}
+            disabled={disabled}
             icon={icon}
             iconPos={iconPos}
-            onClick={onClick}
-            severity={severity}
-            style={{ borderRadius: "8px" }}
-            className={className}
+            label={label}
+            link={link}
+            loading={loading}
+            loadingIcon={loadingIcon}
             outlined={outlined}
-            text={text}
+            plain={plain}
+            pt={pt}
+            ptOptions={ptOptions}
+            raised={raised}
             rounded={rounded}
-        />
+            severity={severity}
+            size={size}
+            text={text}
+            tooltip={tooltip}
+            tooltipOptions={tooltipOptions}
+            unstyled={unstyled}
+            visible={visible}
+            onClick={onClick}
+            className={className}
+            style={{ borderRadius: "8px" }}
+        >
+            {children}
+        </Button>
     );
 };
 
 ButtonComponent.propTypes = {
-    label: PropTypes.string.isRequired,
-    className: PropTypes.string,
-    icon: PropTypes.string,
-    iconPos: PropTypes.string,
-    onClick: PropTypes.func,
-    severity: PropTypes.string,
+    badge: PropTypes.string,
+    badgeClassName: PropTypes.string,
+    children: PropTypes.node,
+    disabled: PropTypes.bool,
+    icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    iconPos: PropTypes.oneOf(["left", "top", "bottom", "right"]),
+    label: PropTypes.string,
+    link: PropTypes.bool,
+    loading: PropTypes.bool,
+    loadingIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     outlined: PropTypes.bool,
-    text: PropTypes.bool,
+    plain: PropTypes.bool,
+    pt: PropTypes.object,
+    ptOptions: PropTypes.object,
+    raised: PropTypes.bool,
     rounded: PropTypes.bool,
+    severity: PropTypes.oneOf([
+        "success",
+        "help",
+        "warning",
+        "secondary",
+        "info",
+        "danger",
+    ]),
+    size: PropTypes.oneOf(["small", "large"]),
+    text: PropTypes.bool,
+    tooltip: PropTypes.string,
+    tooltipOptions: PropTypes.object,
+    unstyled: PropTypes.bool,
+    visible: PropTypes.bool,
+    onClick: PropTypes.func,
+    className: PropTypes.string,
 };
 
 export default ButtonComponent;

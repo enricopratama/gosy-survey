@@ -1,14 +1,11 @@
 import React from "react";
 import SurveyTable from "../components/SurveyTable";
-// import StepperComponent from "../components/StepperComponent";
-// import StepperCopy from "../components/StepperCopy";
+// import "primeflex/primeflex.css";
 
 export default function ViewSurvey() {
     return (
         <div className="mx-auto">
             <SurveyTable />
-            {/* <StepperComponent /> */}
-            {/* <StepperCopy /> */}
         </div>
     );
 }

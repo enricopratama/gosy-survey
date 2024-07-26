@@ -1,48 +1,36 @@
 import React, { useState, useEffect, useRef } from "react";
-import { classNames } from "primereact/utils";
-import { DataTable } from "primereact/datatable";
+import Form from "react-bootstrap/Form";
+import axios from "axios";
 import { Column } from "primereact/column";
-import { ProductService } from "./ProductService";
-import { Toast } from "primereact/toast";
-import { FileUpload } from "primereact/fileupload";
-import { Rating } from "primereact/rating";
-import { Toolbar } from "primereact/toolbar";
-import { InputTextarea } from "primereact/inputtextarea";
-import { IconField } from "primereact/iconfield";
-import { InputIcon } from "primereact/inputicon";
-import { RadioButton } from "primereact/radiobutton";
-import { InputNumber } from "primereact/inputnumber";
-import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
-import { Tag } from "primereact/tag";
-import ButtonComponent from "./ButtonComponent";
-import { SelectButton } from "primereact/selectbutton";
 import { FilterMatchMode } from "primereact/api";
+import { SelectButton } from "primereact/selectbutton";
+import { Toolbar } from "primereact/toolbar";
+import { DataTable } from "primereact/datatable";
+import { Dialog } from "primereact/dialog";
+import { Toast } from "primereact/toast";
+import { InputNumber } from "primereact/inputnumber";
+import { InputIcon } from "primereact/inputicon";
+import { IconField } from "primereact/iconfield";
+import { classNames } from "primereact/utils";
+import { Button } from "primereact/button";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
 
+/**
+ * Needs fixing of maxID, don't change it's state in try-catch, instead use useEffect to change every compilation
+ * @returns
+ */
 export default function SurveyTable() {
-    let emptyQuestion = {
-        question_id: null,
-    };
-
-    const [filters, setFilters] = useState({
-        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        question_id: { value: null, matchMode: FilterMatchMode.EQUALS },
-        user_login: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-        account_name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-        company_code: { value: null, matchMode: FilterMatchMode.EQUALS },
-    });
-
-    const [products, setProducts] = useState(null);
     const [questions, setQuestions] = useState([]);
-    const [productDialog, setProductDialog] = useState(false);
-    const [deleteProductDialog, setDeleteProductDialog] = useState(false);
-    const [deleteProductsDialog, setDeleteProductsDialog] = useState(false);
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [product, setProduct] = useState(emptyProduct);
+    const [questionDialog, setQuestionDialog] = useState(false);
+    const [deleteQuestionDialog, setDeleteQuestionDialog] = useState(false);
+    const [deleteQuestionsDialog, setDeleteQuestionsDialog] = useState(false);
+    const [question, setQuestion] = useState({});
+    const [maxId, setMaxId] = useState(1);
     const [loading, setLoading] = useState(true);
-    const [selectedProducts, setSelectedProducts] = useState(null);
+    const [selectedQuestions, setSelectedQuestions] = useState(null);
     const [submitted, setSubmitted] = useState(false);
-    const [globalFilter, setGlobalFilter] = useState(null);
+    const [globalFilterValue, setGlobalFilterValue] = useState("");
     const toast = useRef(null);
     const dt = useRef(null);
     const [sizeOptions] = useState([
@@ -52,9 +40,20 @@ export default function SurveyTable() {
     ]);
     const [size, setSize] = useState(sizeOptions[1].value);
 
-    useEffect(() => {
-        ProductService.getProducts().then((data) => setProducts(data));
-    }, []);
+    const [filters, setFilters] = useState({
+        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        question_id: { value: null, matchMode: FilterMatchMode.EQUALS },
+    });
+
+    const initialEmptyQuestion = {
+        question_id: null,
+        question_key: "",
+        question_group_id: null,
+        sequence: null,
+        question_name: "",
+        question_type: "",
+        data_status: null,
+    };
 
     /**
      * Fetch Questions API
@@ -63,6 +62,15 @@ export default function SurveyTable() {
         try {
             const response = await axios.get("/api/questions");
             setQuestions(response.data);
+            const maxId =
+                response.data.length > 0
+                    ? Math.max(...response.data.map((q) => q.question_id)) + 1
+                    : 1;
+            setMaxId(maxId);
+            setQuestion({
+                ...initialEmptyQuestion,
+                question_id: maxId,
+            });
         } catch (error) {
             console.error("There was an error fetching the questions!", error);
         } finally {
@@ -74,7 +82,14 @@ export default function SurveyTable() {
         getQuestions();
     }, []);
 
-    const currentQuestion = questions[currentQuestionIndex];
+    useEffect(() => {
+        if (!question.question_id) {
+            setQuestion((prevQuestion) => ({
+                ...prevQuestion,
+                question_id: maxId,
+            }));
+        }
+    }, [maxId]);
 
     const onGlobalFilterChange = (e) => {
         const value = e.target.value || ""; // Use empty string instead of null
@@ -82,83 +97,155 @@ export default function SurveyTable() {
             ...prevFilters,
             global: { ...prevFilters.global, value },
         }));
-        setGlobalFilter(value);
+        setGlobalFilterValue(value);
     };
 
     const openNew = () => {
-        setProduct(emptyProduct);
+        setQuestion({
+            ...initialEmptyQuestion,
+            question_id: maxId,
+        });
         setSubmitted(false);
-        setProductDialog(true);
+        setQuestionDialog(true);
     };
 
     const hideDialog = () => {
         setSubmitted(false);
-        setProductDialog(false);
+        setQuestionDialog(false);
     };
 
-    const hideDeleteProductDialog = () => {
-        setDeleteProductDialog(false);
+    const hideDeleteQuestionDialog = () => {
+        setDeleteQuestionDialog(false);
     };
 
-    const hideDeleteProductsDialog = () => {
-        setDeleteProductsDialog(false);
+    const hideDeleteQuestionsDialog = () => {
+        setDeleteQuestionsDialog(false);
     };
 
-    const saveProduct = () => {
+    const saveQuestion = () => {
         setSubmitted(true);
 
-        if (product.name.trim()) {
-            let _products = [...products];
-            let _product = { ...product };
+        if (question.question_name.trim()) {
+            let _questions = [...questions];
+            let _question = { ...question };
 
-            if (product.id) {
-                const index = findIndexById(product.id);
+            // Check if the question already exists
+            if (question.question_id) {
+                const index = findIndexById(question.question_id);
 
-                _products[index] = _product;
-                toast.current.show({
-                    severity: "success",
-                    summary: "Successful",
-                    detail: "Product Updated",
-                    life: 3000,
-                });
+                if (index >= 0) {
+                    _questions[index] = _question;
+                    toast.current.show({
+                        severity: "success",
+                        summary: "Successful",
+                        detail: "Question Updated",
+                        life: 3000,
+                    });
+                } else {
+                    _questions.push(_question);
+                    toast.current.show({
+                        severity: "success",
+                        summary: "Successful",
+                        detail: "Question Created",
+                        life: 3000,
+                    });
+                }
             } else {
-                _product.id = createId();
-                _product.image = "product-placeholder.svg";
-                _products.push(_product);
+                // Generate new question ID
+                const maxId =
+                    _questions.length > 0
+                        ? Math.max(..._questions.map((q) => q.question_id))
+                        : 0;
+                setMaxId(maxId);
+                _question.question_id = maxId;
+                _questions.push(_question);
                 toast.current.show({
                     severity: "success",
                     summary: "Successful",
-                    detail: "Product Created",
+                    detail: "Question Created",
                     life: 3000,
                 });
             }
 
-            setProducts(_products);
-            setProductDialog(false);
-            setProduct(emptyProduct);
+            setQuestions(_questions);
+            setQuestionDialog(false);
+            setQuestion(emptyQuestion);
         }
     };
 
-    const editProduct = (product) => {
-        setProduct({ ...product });
-        setProductDialog(true);
+    const saveQuestionAdd = () => {
+        setSubmitted(true);
+
+        if (question.question_name.trim()) {
+            let _questions = [...questions];
+            let _question = { ...question };
+
+            // Check if the question already exists
+            if (question.question_id) {
+                const index = findIndexById(question.question_id);
+
+                if (index >= 0) {
+                    _questions[index] = _question;
+                    toast.current.show({
+                        severity: "success",
+                        summary: "Successful",
+                        detail: "Question Updated",
+                        life: 3000,
+                    });
+                } else {
+                    _questions.push(_question);
+                    toast.current.show({
+                        severity: "success",
+                        summary: "Successful",
+                        detail: "Question Created",
+                        life: 3000,
+                    });
+                }
+            } else {
+                // Generate new question ID
+                const maxId =
+                    _questions.length > 0
+                        ? Math.max(..._questions.map((q) => q.question_id))
+                        : 0;
+                setMaxId(maxId);
+                _question.question_id = maxId;
+                _questions.push(_question);
+                toast.current.show({
+                    severity: "success",
+                    summary: "Successful",
+                    detail: "Question Created",
+                    life: 3000,
+                });
+            }
+
+            setQuestions(_questions);
+            setQuestionDialog(false);
+            setQuestion(emptyQuestion);
+        }
     };
 
-    const confirmDeleteProduct = (product) => {
-        setProduct(product);
-        setDeleteProductDialog(true);
+    const editQuestion = (question) => {
+        setQuestion({ ...question });
+        setQuestionDialog(true);
     };
 
-    const deleteProduct = () => {
-        let _products = products.filter((val) => val.id !== product.id);
+    const confirmDeleteQuestion = (question) => {
+        setQuestion(question);
+        setDeleteQuestionDialog(true);
+    };
 
-        setProducts(_products);
-        setDeleteProductDialog(false);
-        setProduct(emptyProduct);
+    const deleteQuestion = () => {
+        let _questions = questions.filter(
+            (val) => val.question_id !== question.question_id
+        );
+
+        setQuestions(_questions);
+        setDeleteQuestionDialog(false);
+        setQuestion(emptyQuestion);
         toast.current.show({
             severity: "success",
             summary: "Successful",
-            detail: "Product Deleted",
+            detail: "Question Deleted",
             life: 3000,
         });
     };
@@ -166,8 +253,8 @@ export default function SurveyTable() {
     const findIndexById = (id) => {
         let index = -1;
 
-        for (let i = 0; i < products.length; i++) {
-            if (products[i].id === id) {
+        for (let i = 0; i < questions.length; i++) {
+            if (questions[i].question_id === id) {
                 index = i;
                 break;
             }
@@ -181,60 +268,61 @@ export default function SurveyTable() {
     };
 
     const confirmDeleteSelected = () => {
-        setDeleteProductsDialog(true);
+        setDeleteQuestionsDialog(true);
     };
 
-    const deleteSelectedProducts = () => {
-        let _products = products.filter(
-            (val) => !selectedProducts.includes(val)
+    const deleteSelectedQuestions = () => {
+        let _questions = questions.filter(
+            (val) => !selectedQuestions.includes(val)
         );
 
-        setProducts(_products);
-        setDeleteProductsDialog(false);
-        setSelectedProducts(null);
+        setQuestions(_questions);
+        setDeleteQuestionsDialog(false);
+        setSelectedQuestions(null);
         toast.current.show({
             severity: "success",
             summary: "Successful",
-            detail: "Products Deleted",
+            detail: "Questions Deleted",
             life: 3000,
         });
     };
 
     const onInputChange = (e, name) => {
         const val = (e.target && e.target.value) || "";
-        let _product = { ...product };
+        let _question = { ...question };
 
-        _product[`${name}`] = val;
+        _question[`${name}`] = val;
 
-        setProduct(_product);
+        setQuestion(_question);
     };
 
     const onInputNumberChange = (e, name) => {
         const val = e.value || 0;
-        let _product = { ...product };
+        let _question = { ...question };
 
-        _product[`${name}`] = val;
+        _question[`${name}`] = val;
 
-        setProduct(_product);
+        setQuestion(_question);
     };
 
     const leftToolbarTemplate = () => {
         return (
-            <div className="flex flex-wrap gap-2">
-                <ButtonComponent
+            <div className="d-flex flex-wrap gap-2">
+                <Button
                     label="New"
                     icon="pi pi-plus"
                     iconPos="left"
-                    severity="success"
                     onClick={openNew}
+                    className="rounded"
                 />
-                <ButtonComponent
+                <Button
                     label="Delete"
                     icon="pi pi-trash"
                     iconPos="left"
                     severity="danger"
                     onClick={confirmDeleteSelected}
-                    disabled={!selectedProducts || !selectedProducts.length}
+                    disabled={!selectedQuestions || !selectedQuestions.length}
+                    className="rounded"
                 />
             </div>
         );
@@ -242,11 +330,12 @@ export default function SurveyTable() {
 
     const rightToolbarTemplate = () => {
         return (
-            <ButtonComponent
+            <Button
                 label="Export"
                 icon="pi pi-upload"
                 iconPos="left"
                 onClick={exportCSV}
+                className="rounded"
             />
         );
     };
@@ -254,92 +343,96 @@ export default function SurveyTable() {
     const actionBodyTemplate = (rowData) => {
         return (
             <React.Fragment>
-                <ButtonComponent
+                <Button
                     icon="pi pi-pencil"
-                    className="mr-2"
-                    rounded
+                    className="me-2 rounded-pill"
                     outlined
-                    onClick={() => editProduct(rowData)}
+                    onClick={() => editQuestion(rowData)}
                 />
-                <ButtonComponent
+                <Button
                     icon="pi pi-trash"
                     rounded
                     outlined
                     severity="danger"
-                    onClick={() => confirmDeleteProduct(rowData)}
+                    className="rounded-pill"
+                    onClick={() => confirmDeleteQuestion(rowData)}
                 />
             </React.Fragment>
         );
     };
 
     const header = (
-        <div className="flex flex-wrap gap-2 align-items-center justify-content-between">
+        <div className="d-flex gap-2 justify-content-between align-items-center flex-wrap">
             <h4 className="m-0">Manage Questions</h4>
-            <IconField iconPosition="left">
+            <IconField iconPosition="left" className="me-3">
                 <InputIcon className="pi pi-search" />
                 <InputText
+                    value={globalFilterValue}
                     type="search"
-                    onInput={(e) => setGlobalFilter(e.target.value)}
+                    onChange={onGlobalFilterChange}
                     placeholder="Search..."
                 />
             </IconField>
         </div>
     );
-    const productDialogFooter = (
+
+    const questionDialogFooter = (
         <React.Fragment>
-            <ButtonComponent
+            <Button
                 label="Cancel"
                 icon="pi pi-times"
                 iconPos="left"
-                className="ms-2"
+                className="ms-2 rounded"
                 outlined
                 onClick={hideDialog}
             />
-            <ButtonComponent
+            <Button
                 label="Save"
                 icon="pi pi-check"
-                className="ms-2"
+                className="ms-2 rounded"
                 iconPos="left"
-                onClick={saveProduct}
+                onClick={saveQuestion}
             />
         </React.Fragment>
     );
-    const deleteProductDialogFooter = (
+
+    const deleteQuestionDialogFooter = (
         <React.Fragment>
-            <ButtonComponent
+            <Button
                 label="No"
                 icon="pi pi-times"
                 iconPos="left"
                 className="ms-2"
                 outlined
-                onClick={hideDeleteProductDialog}
+                onClick={hideDeleteQuestionDialog}
             />
-            <ButtonComponent
+            <Button
                 label="Yes"
                 icon="pi pi-check"
                 iconPos="left"
                 severity="danger"
                 className="ms-2"
-                onClick={deleteProduct}
+                onClick={deleteQuestion}
             />
         </React.Fragment>
     );
-    const deleteProductsDialogFooter = (
+
+    const deleteQuestionsDialogFooter = (
         <React.Fragment>
-            <ButtonComponent
+            <Button
                 label="No"
                 icon="pi pi-times"
                 iconPos="left"
                 outlined
-                onClick={hideDeleteProductsDialog}
+                onClick={hideDeleteQuestionsDialog}
             />
-            <ButtonComponent
+            <Button
                 label="Yes"
                 icon="pi pi-check"
                 className="ms-2"
                 iconPos="left"
                 severity="danger"
-                onClick={deleteSelectedProducts}
+                onClick={deleteSelectedQuestions}
             />
         </React.Fragment>
     );
@@ -348,7 +441,7 @@ export default function SurveyTable() {
         <div>
             <Toast ref={toast} />
             <div className="card">
-                <div className="flex justify-content-center mb-4 mt-4">
+                <div className="d-flex justify-content-center mb-4 mt-4">
                     <SelectButton
                         value={size}
                         onChange={(e) => setSize(e.value)}
@@ -363,19 +456,22 @@ export default function SurveyTable() {
 
                 <DataTable
                     ref={dt}
-                    value={products}
-                    // selection={selectedProducts}
-                    // onSelectionChange={(e) => setSelectedProducts(e.value)}
-                    dataKey="id"
+                    value={questions}
+                    selection={selectedQuestions}
+                    onSelectionChange={(e) => setSelectedQuestions(e.value)}
+                    dataKey="question_id"
                     paginator
                     size={size}
                     removableSort
                     rows={10}
                     rowsPerPageOptions={[5, 10, 25]}
-                    paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products"
-                    globalFilter={globalFilter}
+                    paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown showGridlines"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} questions"
+                    filters={filters}
                     header={header}
+                    stripedRows
+                    sortField="question_id"
+                    sortOrder={1}
                 >
                     <Column
                         selectionMode="multiple"
@@ -385,222 +481,263 @@ export default function SurveyTable() {
                         field="question_id"
                         header="Question ID"
                         sortable
-                        style={{ minWidth: "12rem" }}
-                    ></Column>
-                    <Column
-                        field="question_key"
-                        header="Question Key"
-                        sortable
-                        style={{ minWidth: "12rem" }}
-                    ></Column>
-                    <Column
-                        field="question_group_id"
-                        header="Question Group ID"
-                        sortable
-                        style={{ minWidth: "12rem" }}
-                    ></Column>
-                    <Column
-                        field="sequence"
-                        header="Sequence"
-                        body={priceBodyTemplate}
-                        sortable
-                        style={{ minWidth: "8rem" }}
+                        style={{ width: "2rem" }}
                     ></Column>
                     <Column
                         field="question_name"
                         header="Question Name"
                         sortable
-                        style={{ minWidth: "10rem" }}
+                        style={{ minWidth: "20rem" }}
+                    ></Column>
+                    <Column
+                        field="question_key"
+                        header="Question Key"
+                        sortable
+                        style={{ width: "2rem" }}
+                    ></Column>
+                    <Column
+                        field="question_group_id"
+                        header="Question Group ID"
+                        sortable
+                        style={{ width: "2rem" }}
+                    ></Column>
+
+                    <Column
+                        field="sequence"
+                        header="Sequence"
+                        sortable
+                        style={{ width: "4rem" }}
+                    ></Column>
+
+                    <Column
+                        field="data_status"
+                        header="Status"
+                        sortable
+                        style={{ width: "12rem" }}
                     ></Column>
                     <Column
                         field="question_type"
                         header="Question Type"
                         sortable
-                        style={{ minWidth: "12rem" }}
-                    ></Column>
-                    <Column
-                        field="data_status"
-                        header="Status"
-                        body={statusBodyTemplate}
-                        sortable
-                        style={{ minWidth: "12rem" }}
+                        style={{ width: "8rem" }}
                     ></Column>
                     <Column
                         body={actionBodyTemplate}
+                        field="Edit"
+                        header="Edit"
                         exportable={false}
                         style={{ minWidth: "12rem" }}
+                        alignFrozen="right"
+                        frozen
                     ></Column>
                 </DataTable>
             </div>
 
             <Dialog
-                visible={productDialog}
-                style={{ width: "32rem" }}
+                visible={questionDialog}
+                style={{ width: "32rem", maxHeight: "55vh" }}
                 breakpoints={{ "960px": "75vw", "641px": "90vw" }}
-                header="Product Details"
+                header="Question Details"
                 modal
                 className="p-fluid"
-                footer={productDialogFooter}
+                footer={questionDialogFooter}
                 onHide={hideDialog}
             >
-                {product.image && (
-                    <img
-                        src={`https://primefaces.org/cdn/primereact/images/product/${product.image}`}
-                        alt={product.image}
-                        className="product-image block m-auto pb-3"
-                    />
-                )}
-                <div className="field">
-                    <label htmlFor="name" className="font-bold">
-                        Name
+                <div className="field" style={{ marginBottom: "35px" }}>
+                    <label htmlFor="question_id" className="font-bold">
+                        Question ID
                     </label>
                     <InputText
-                        id="name"
-                        value={product.name}
-                        onChange={(e) => onInputChange(e, "name")}
+                        id="question_id"
+                        value={question.question_id}
+                        onChange={(e) => onInputChange(e, "question_id")}
                         required
                         autoFocus
                         className={classNames({
-                            "p-invalid": submitted && !product.name,
+                            "p-invalid": submitted && !question.question_id,
                         })}
                     />
-                    {submitted && !product.name && (
-                        <small className="p-error">Name is required.</small>
+                    {submitted && !question.question_id && (
+                        <small className="p-error">
+                            Question ID is required.
+                        </small>
                     )}
                 </div>
-                <div className="field">
-                    <label htmlFor="description" className="font-bold">
-                        Description
-                    </label>
-                    <InputTextarea
-                        id="description"
-                        value={product.description}
-                        onChange={(e) => onInputChange(e, "description")}
-                        required
-                        rows={3}
-                        cols={20}
-                    />
+
+                <div className="field" style={{ marginBottom: "35px" }}>
+                    <span className="p-float-label">
+                        <InputText
+                            id="question_group_id"
+                            value={question.question_group_id}
+                            onChange={(e) =>
+                                onInputChange(e, "question_group_id")
+                            }
+                            required
+                            className={classNames({
+                                "p-invalid":
+                                    submitted && !question.question_group_id,
+                            })}
+                        />
+                        <label
+                            htmlFor="question_group_id"
+                            className="font-bold"
+                        >
+                            Question Group ID
+                        </label>
+                    </span>
+                    {submitted && !question.question_group_id && (
+                        <small className="p-error">
+                            Question Group ID is required.
+                        </small>
+                    )}
                 </div>
 
-                <div className="field">
-                    <label className="mb-3 font-bold">Category</label>
-                    <div className="formgrid grid">
-                        <div className="field-radiobutton col-6">
-                            <RadioButton
-                                inputId="category1"
-                                name="category"
-                                value="Accessories"
-                                onChange={onCategoryChange}
-                                checked={product.category === "Accessories"}
-                            />
-                            <label htmlFor="category1">Accessories</label>
-                        </div>
-                        <div className="field-radiobutton col-6">
-                            <RadioButton
-                                inputId="category2"
-                                name="category"
-                                value="Clothing"
-                                onChange={onCategoryChange}
-                                checked={product.category === "Clothing"}
-                            />
-                            <label htmlFor="category2">Clothing</label>
-                        </div>
-                        <div className="field-radiobutton col-6">
-                            <RadioButton
-                                inputId="category3"
-                                name="category"
-                                value="Electronics"
-                                onChange={onCategoryChange}
-                                checked={product.category === "Electronics"}
-                            />
-                            <label htmlFor="category3">Electronics</label>
-                        </div>
-                        <div className="field-radiobutton col-6">
-                            <RadioButton
-                                inputId="category4"
-                                name="category"
-                                value="Fitness"
-                                onChange={onCategoryChange}
-                                checked={product.category === "Fitness"}
-                            />
-                            <label htmlFor="category4">Fitness</label>
-                        </div>
-                    </div>
+                <div className="field" style={{ marginBottom: "35px" }}>
+                    <span className="p-float-label">
+                        <InputText
+                            id="question_name"
+                            value={question.question_name}
+                            onChange={(e) => onInputChange(e, "question_name")}
+                            required
+                            className={classNames({
+                                "p-invalid":
+                                    submitted && !question.question_name,
+                            })}
+                        />
+                        <label htmlFor="question_name" className="font-bold">
+                            Question Name
+                        </label>
+                    </span>
+                    {submitted && !question.question_name && (
+                        <small className="p-error">
+                            Question Name is required.
+                        </small>
+                    )}
                 </div>
 
-                <div className="formgrid grid">
-                    <div className="field col">
-                        <label htmlFor="price" className="font-bold">
-                            Price
-                        </label>
-                        <InputNumber
-                            id="price"
-                            value={product.price}
-                            onValueChange={(e) =>
-                                onInputNumberChange(e, "price")
-                            }
-                            mode="currency"
-                            currency="USD"
-                            locale="en-US"
+                <div className="field" style={{ marginBottom: "35px" }}>
+                    <span className="p-float-label">
+                        <InputText
+                            id="question_key"
+                            value={question.question_key}
+                            onChange={(e) => onInputChange(e, "question_key")}
+                            required
+                            className={classNames({
+                                "p-invalid":
+                                    submitted && !question.question_key,
+                            })}
                         />
+                        <label htmlFor="question_key" className="font-bold">
+                            Question Key
+                        </label>
+                    </span>
+                    {submitted && !question.question_key && (
+                        <small className="p-error">
+                            Question Key is required.
+                        </small>
+                    )}
+                </div>
+
+                <div
+                    className="field mb-3 mt-3"
+                    style={{ marginBottom: "35px" }}
+                >
+                    <span className="p-float-label">
+                        <InputText
+                            id="question_type"
+                            value={question.question_type}
+                            onChange={(e) => onInputChange(e, "question_type")}
+                            required
+                            className={classNames({
+                                "p-invalid":
+                                    submitted && !question.question_type,
+                            })}
+                        />
+                        <label htmlFor="question_type" className="font-bold">
+                            Question Type
+                        </label>
+                    </span>
+                    {submitted && !question.question_type && (
+                        <small className="p-error">
+                            Question Type is required.
+                        </small>
+                    )}
+                </div>
+
+                <div className="formgrid grid" style={{ marginTop: "35px" }}>
+                    <div className="field col">
+                        <span className="p-float-label">
+                            <InputNumber
+                                id="sequence"
+                                value={question.sequence}
+                                onValueChange={(e) =>
+                                    onInputNumberChange(e, "sequence")
+                                }
+                            />
+                            <label htmlFor="sequence" className="font-bold">
+                                Sequence
+                            </label>
+                        </span>
                     </div>
-                    <div className="field col">
-                        <label htmlFor="quantity" className="font-bold">
-                            Quantity
-                        </label>
-                        <InputNumber
-                            id="quantity"
-                            value={product.quantity}
-                            onValueChange={(e) =>
-                                onInputNumberChange(e, "quantity")
-                            }
-                        />
+                    <div className="field col" style={{ marginTop: "35px" }}>
+                        <span className="p-float-label">
+                            <InputNumber
+                                id="data_status"
+                                value={question.data_status}
+                                onValueChange={(e) =>
+                                    onInputNumberChange(e, "data_status")
+                                }
+                            />
+                            <label htmlFor="data_status" className="font-bold">
+                                Status
+                            </label>
+                        </span>
                     </div>
                 </div>
             </Dialog>
 
             <Dialog
-                visible={deleteProductDialog}
+                visible={deleteQuestionDialog}
                 style={{ width: "32rem" }}
                 breakpoints={{ "960px": "75vw", "641px": "90vw" }}
                 header="Confirm"
                 modal
-                footer={deleteProductDialogFooter}
-                onHide={hideDeleteProductDialog}
+                footer={deleteQuestionDialogFooter}
+                onHide={hideDeleteQuestionDialog}
             >
                 <div className="confirmation-content">
                     <i
-                        className="pi pi-exclamation-triangle mr-3"
+                        className="pi pi-exclamation-triangle me-3"
                         style={{ fontSize: "2rem" }}
                     />
-                    {product && (
+                    {question && (
                         <span>
                             Are you sure you want to delete{" "}
-                            <b>{product.name}</b>?
+                            <b>{question.question_name}</b>?
                         </span>
                     )}
                 </div>
             </Dialog>
 
             <Dialog
-                visible={deleteProductsDialog}
+                visible={deleteQuestionsDialog}
                 style={{ width: "32rem" }}
                 breakpoints={{ "960px": "75vw", "641px": "90vw" }}
                 header="Confirm"
                 modal
-                footer={deleteProductsDialogFooter}
-                onHide={hideDeleteProductsDialog}
+                footer={deleteQuestionsDialogFooter}
+                onHide={hideDeleteQuestionsDialog}
             >
                 <div className="d-flex align-middle">
                     <div className="confirmation-content">
                         <i
-                            className="pi pi-exclamation-triangle mr-3"
+                            className="pi pi-exclamation-triangle me-3"
                             style={{ fontSize: "2rem" }}
                         />
-                        {product && (
+                        {question && (
                             <span className="">
                                 Are you sure you want to delete the selected
-                                products?
+                                questions?
                             </span>
                         )}
                     </div>
