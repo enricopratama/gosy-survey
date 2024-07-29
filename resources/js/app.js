@@ -8,7 +8,6 @@ import Register from "./components/Register";
 import HomeCopy from "./pages/HomeCopy";
 import ListUserAccess from "./pages/ListUserAccess";
 import ListUserTokens from "./pages/ListUserTokens";
-import TestPage from "./pages/TestPage";
 import ViewSurvey from "./pages/ViewSurvey";
 import SurveyQuestions from "./pages/SurveyQuestions";
 import Favicon from "react-favicon";
@@ -17,6 +16,7 @@ import { ThemeProvider } from "./ThemeContext";
 import { PrimeReactContext, PrimeReactProvider } from "primereact/api";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrimeReact from "primereact/api";
+import NewQuestion from "./pages/NewQuestion";
 
 // Initialize PrimeReact settings
 PrimeReact.ripple = true;
@@ -35,7 +35,6 @@ function App() {
                     <Routes>
                         <Route exact path="/home" element={<HomeCopy />} />
                         <Route exact path="/register" element={<Register />} />
-                        <Route exact path="/test-page" element={<TestPage />} />
                         <Route
                             exact
                             path="/configs/user-access"
@@ -55,6 +54,11 @@ function App() {
                             exact
                             path="/survey/questions"
                             element={<SurveyQuestions />}
+                        />
+                        <Route
+                            exact
+                            path="/survey/new"
+                            element={<NewQuestion />}
                         />
                         <Route exact path="*" element={<NoPage />} />
                     </Routes>

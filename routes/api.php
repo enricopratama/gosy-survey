@@ -28,3 +28,4 @@ Route::post('login', [UserController::class, 'login']);
 // Survey / Questions
 Route::get('/questionsRaw', [QuestionController::class, 'index']);
 Route::get('/questions', [QuestionController::class, 'getQuestions']);
+Route::get('/survey', [QuestionController::class, 'getSurveyNames']);

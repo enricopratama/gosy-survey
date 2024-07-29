@@ -18,7 +18,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 /**
  * Needs fixing of maxID, don't change it's state in try-catch, instead use useEffect to change every compilation
- * @returns
+ * @returns JSX HTML Element
  */
 export default function SurveyTable() {
     const [questions, setQuestions] = useState([]);
@@ -123,57 +123,6 @@ export default function SurveyTable() {
     };
 
     const saveQuestion = () => {
-        setSubmitted(true);
-
-        if (question.question_name.trim()) {
-            let _questions = [...questions];
-            let _question = { ...question };
-
-            // Check if the question already exists
-            if (question.question_id) {
-                const index = findIndexById(question.question_id);
-
-                if (index >= 0) {
-                    _questions[index] = _question;
-                    toast.current.show({
-                        severity: "success",
-                        summary: "Successful",
-                        detail: "Question Updated",
-                        life: 3000,
-                    });
-                } else {
-                    _questions.push(_question);
-                    toast.current.show({
-                        severity: "success",
-                        summary: "Successful",
-                        detail: "Question Created",
-                        life: 3000,
-                    });
-                }
-            } else {
-                // Generate new question ID
-                const maxId =
-                    _questions.length > 0
-                        ? Math.max(..._questions.map((q) => q.question_id))
-                        : 0;
-                setMaxId(maxId);
-                _question.question_id = maxId;
-                _questions.push(_question);
-                toast.current.show({
-                    severity: "success",
-                    summary: "Successful",
-                    detail: "Question Created",
-                    life: 3000,
-                });
-            }
-
-            setQuestions(_questions);
-            setQuestionDialog(false);
-            setQuestion(emptyQuestion);
-        }
-    };
-
-    const saveQuestionAdd = () => {
         setSubmitted(true);
 
         if (question.question_name.trim()) {
@@ -524,15 +473,15 @@ export default function SurveyTable() {
                     <Column
                         body={actionBodyTemplate}
                         field="Edit"
-                        header="Edit"
                         exportable={false}
                         style={{ minWidth: "12rem" }}
-                        alignFrozen="right"
                         frozen
+                        alignFrozen="right"
                     ></Column>
                 </DataTable>
             </div>
 
+            {/* Question Dialog */}
             <Dialog
                 visible={questionDialog}
                 style={{ width: "32rem", maxHeight: "55vh" }}
@@ -696,6 +645,7 @@ export default function SurveyTable() {
                 </div>
             </Dialog>
 
+            {/* Delete Question Dialog */}
             <Dialog
                 visible={deleteQuestionDialog}
                 style={{ width: "32rem" }}
@@ -719,6 +669,7 @@ export default function SurveyTable() {
                 </div>
             </Dialog>
 
+            {/* Delete Questions Dialog */}
             <Dialog
                 visible={deleteQuestionsDialog}
                 style={{ width: "32rem" }}

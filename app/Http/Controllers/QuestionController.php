@@ -49,4 +49,10 @@ class QuestionController extends Controller
 
         return response()->json($questions);
     }
+
+    public function getSurveyNames()
+    {
+        $questions = Survey::all();
+        return response()->json($questions);
+    }
 }

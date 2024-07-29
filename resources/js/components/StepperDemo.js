@@ -13,10 +13,6 @@ const StepperDemo = () => {
     const [currResponse, setCurrResponse] = useState(null);
     const [responses, setResponses] = useState({});
 
-    // useEffect(() => {
-    //     setRipple(true);
-    // }, [setRipple]);
-
     const setStep = (index) => {
         setActiveStep(index);
     };

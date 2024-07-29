@@ -10,16 +10,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 
-// Example route for counting
-Route::post('count', function (Request $request) {
-    return response()->json([
-        'message' => $request->message,
-    ]);
-});
-Route::get('/test', function (Request $request) {
-    return view('home');
-});
-
 // Define a route that requires authentication middleware
 Route::get('/flights', function () {
     // Only authenticated users may access this route...
@@ -37,10 +27,6 @@ Route::get('/logout', [LoginController::class, 'logout']);
 Route::get('/api/user', function (Request $request) {
     return Auth::user();
 })->middleware('auth');
-
-// Sidebar Testing
-Route::view('/sidebar', 'sidebar');
-Route::view('/sidebarCI', 'sidebarCI');
 
 // Alias for /users to be named as users only
 Route::get('/users', [UserController::class, 'index'])->name('users');

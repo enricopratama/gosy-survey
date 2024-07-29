@@ -14647,11 +14647,6 @@ var StepperDemo = function StepperDemo() {
     _useState14 = _slicedToArray(_useState13, 2),
     responses = _useState14[0],
     setResponses = _useState14[1];
-
-  // useEffect(() => {
-  //     setRipple(true);
-  // }, [setRipple]);
-
   var setStep = function setStep(index) {
     setActiveStep(index);
   };
@@ -15034,7 +15029,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 /**
  * Needs fixing of maxID, don't change it's state in try-catch, instead use useEffect to change every compilation
- * @returns
+ * @returns JSX HTML Element
  */
 
 function SurveyTable() {
@@ -15234,52 +15229,6 @@ function SurveyTable() {
         }))) : 0;
         setMaxId(_maxId2);
         _question.question_id = _maxId2;
-        _questions.push(_question);
-        toast.current.show({
-          severity: "success",
-          summary: "Successful",
-          detail: "Question Created",
-          life: 3000
-        });
-      }
-      setQuestions(_questions);
-      setQuestionDialog(false);
-      setQuestion(emptyQuestion);
-    }
-  };
-  var saveQuestionAdd = function saveQuestionAdd() {
-    setSubmitted(true);
-    if (question.question_name.trim()) {
-      var _questions = _toConsumableArray(questions);
-      var _question = _objectSpread({}, question);
-
-      // Check if the question already exists
-      if (question.question_id) {
-        var index = findIndexById(question.question_id);
-        if (index >= 0) {
-          _questions[index] = _question;
-          toast.current.show({
-            severity: "success",
-            summary: "Successful",
-            detail: "Question Updated",
-            life: 3000
-          });
-        } else {
-          _questions.push(_question);
-          toast.current.show({
-            severity: "success",
-            summary: "Successful",
-            detail: "Question Created",
-            life: 3000
-          });
-        }
-      } else {
-        // Generate new question ID
-        var _maxId3 = _questions.length > 0 ? Math.max.apply(Math, _toConsumableArray(_questions.map(function (q) {
-          return q.question_id;
-        }))) : 0;
-        setMaxId(_maxId3);
-        _question.question_id = _maxId3;
         _questions.push(_question);
         toast.current.show({
           severity: "success",
@@ -15567,13 +15516,12 @@ function SurveyTable() {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_12__.Column, {
           body: actionBodyTemplate,
           field: "Edit",
-          header: "Edit",
           exportable: false,
           style: {
             minWidth: "12rem"
           },
-          alignFrozen: "right",
-          frozen: true
+          frozen: true,
+          alignFrozen: "right"
         })]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(primereact_dialog__WEBPACK_IMPORTED_MODULE_13__.Dialog, {
@@ -16707,6 +16655,238 @@ function ListUserTokens() {
 
 /***/ }),
 
+/***/ "./resources/js/pages/NewQuestion.js":
+/*!*******************************************!*\
+  !*** ./resources/js/pages/NewQuestion.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ NewQuestion)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var primereact_stepper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primereact/stepper */ "./node_modules/primereact/stepper/stepper.esm.js");
+/* harmony import */ var primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! primereact/stepperpanel */ "./node_modules/primereact/stepperpanel/stepperpanel.esm.js");
+/* harmony import */ var primereact_button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! primereact/button */ "./node_modules/primereact/button/button.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+
+
+
+function NewQuestion() {
+  var stepperRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    questions = _useState2[0],
+    setQuestions = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState4 = _slicedToArray(_useState3, 2),
+    surveys = _useState4[0],
+    setSurveys = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState6 = _slicedToArray(_useState5, 2),
+    loading = _useState6[0],
+    setLoading = _useState6[1];
+  /**
+   * Fetch Questions API
+   */
+  var getQuestions = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var response;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/questions");
+          case 3:
+            response = _context.sent;
+            setQuestions(response.data);
+            _context.next = 10;
+            break;
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
+            console.error("There was an error fetching the questions!", _context.t0);
+          case 10:
+            _context.prev = 10;
+            setLoading(false);
+            return _context.finish(10);
+          case 13:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[0, 7, 10, 13]]);
+    }));
+    return function getQuestions() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  /**
+   * Fetch Survey API
+   */
+  var getSurveys = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      var response;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/survey");
+          case 3:
+            response = _context2.sent;
+            setSurveys(response.data);
+            _context2.next = 10;
+            break;
+          case 7:
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](0);
+            console.error("There was an error fetching the surveys!", _context2.t0);
+          case 10:
+            _context2.prev = 10;
+            setLoading(false);
+            return _context2.finish(10);
+          case 13:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2, null, [[0, 7, 10, 13]]);
+    }));
+    return function getSurveys() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    getQuestions();
+    getSurveys();
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "card d-flex justify-content-center",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(primereact_stepper__WEBPACK_IMPORTED_MODULE_3__.Stepper, {
+      linear: true,
+      ref: stepperRef,
+      style: {
+        flexBasis: "60rem"
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_4__.StepperPanel, {
+        header: "Survey Type",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "d-flex flex-column",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "rounded surface-ground flex-auto d-flex font-medium",
+            style: {
+              height: "50vh"
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+              className: "d-flex flex-column",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
+                className: "text-muted",
+                children: "Step 1"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+                children: "Pilih Nama Tipe Survey"
+              }), surveys.map(function (survey, index) {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                  children: [survey.survey_name, " "]
+                }, index);
+              })]
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "d-flex pt-4 justify-content-end",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_5__.Button, {
+            label: "Next",
+            className: "rounded",
+            icon: "pi pi-arrow-right",
+            iconPos: "right",
+            onClick: function onClick() {
+              return stepperRef.current.nextCallback();
+            }
+          })
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_4__.StepperPanel, {
+        header: "Header II",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "d-flex flex-column",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "rounded surface-ground flex-auto d-flex font-medium",
+            style: {
+              height: "50vh"
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+              className: "d-flex flex-column",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
+                className: "text-muted",
+                children: "Step 2"
+              })
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "d-flex pt-4 justify-content-between",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_5__.Button, {
+            label: "Back",
+            className: "rounded",
+            icon: "pi pi-arrow-left",
+            onClick: function onClick() {
+              return stepperRef.current.prevCallback();
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_5__.Button, {
+            label: "Next",
+            className: "rounded",
+            icon: "pi pi-arrow-right",
+            iconPos: "right",
+            onClick: function onClick() {
+              return stepperRef.current.nextCallback();
+            }
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_4__.StepperPanel, {
+        header: "Header III",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "d-flex flex-column",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "rounded surface-ground flex-auto d-flex justify-content-center align-items-center font-medium",
+            style: {
+              height: "50vh"
+            },
+            children: "Content III"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "d-flex pt-4 justify-content-start",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_5__.Button, {
+            label: "Back",
+            className: "rounded",
+            icon: "pi pi-arrow-left",
+            onClick: function onClick() {
+              return stepperRef.current.prevCallback();
+            }
+          })
+        })]
+      })]
+    })
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/pages/NoPage.js":
 /*!**************************************!*\
   !*** ./resources/js/pages/NoPage.js ***!
@@ -16762,79 +16942,6 @@ function SurveyQuestions() {
     })]
   });
 }
-
-/***/ }),
-
-/***/ "./resources/js/pages/TestPage.js":
-/*!****************************************!*\
-  !*** ./resources/js/pages/TestPage.js ***!
-  \****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
-function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
-function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-
-
-function TestPage() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("PredefinedUser"),
-    _useState2 = _slicedToArray(_useState, 2),
-    username = _useState2[0],
-    setUsername = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("example@example.com"),
-    _useState4 = _slicedToArray(_useState3, 2),
-    email = _useState4[0],
-    setEmail = _useState4[1];
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
-    // Handle form submission
-    console.log("Username:", username);
-    console.log("Email:", email);
-  };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
-      onSubmit: handleSubmit,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-        htmlFor: "username",
-        children: "Username:"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-        type: "text",
-        id: "username",
-        name: "username",
-        value: username,
-        onChange: function onChange(e) {
-          return setUsername(e.target.value);
-        }
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-        htmlFor: "email",
-        children: "Email:"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-        type: "email",
-        id: "email",
-        name: "email",
-        value: email,
-        onChange: function onChange(e) {
-          return setEmail(e.target.value);
-        }
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-        type: "submit",
-        value: "Submit"
-      })]
-    })
-  });
-}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TestPage);
 
 /***/ }),
 
@@ -43821,6 +43928,632 @@ var Skeleton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo( /*#__PURE__
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", rootProps);
 }));
 Skeleton.displayName = 'Skeleton';
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/primereact/stepper/stepper.esm.js":
+/*!********************************************************!*\
+  !*** ./node_modules/primereact/stepper/stepper.esm.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Stepper: () => (/* binding */ Stepper)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var primereact_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! primereact/api */ "./node_modules/primereact/api/api.esm.js");
+/* harmony import */ var primereact_componentbase__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primereact/componentbase */ "./node_modules/primereact/componentbase/componentbase.esm.js");
+/* harmony import */ var primereact_csstransition__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! primereact/csstransition */ "./node_modules/primereact/csstransition/csstransition.esm.js");
+/* harmony import */ var primereact_hooks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primereact/hooks */ "./node_modules/primereact/hooks/hooks.esm.js");
+/* harmony import */ var primereact_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primereact/utils */ "./node_modules/primereact/utils/utils.esm.js");
+'use client';
+
+
+
+
+
+
+
+
+function _typeof(o) {
+  "@babel/helpers - typeof";
+
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+    return typeof o;
+  } : function (o) {
+    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+  }, _typeof(o);
+}
+
+function _toPrimitive(input, hint) {
+  if (_typeof(input) !== "object" || input === null) return input;
+  var prim = input[Symbol.toPrimitive];
+  if (prim !== undefined) {
+    var res = prim.call(input, hint || "default");
+    if (_typeof(res) !== "object") return res;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return (hint === "string" ? String : Number)(input);
+}
+
+function _toPropertyKey(arg) {
+  var key = _toPrimitive(arg, "string");
+  return _typeof(key) === "symbol" ? key : String(key);
+}
+
+function _defineProperty(obj, key, value) {
+  key = _toPropertyKey(key);
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
+
+function _extends() {
+  _extends = Object.assign ? Object.assign.bind() : function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
+  return _extends.apply(this, arguments);
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+function _iterableToArrayLimit(r, l) {
+  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+  if (null != t) {
+    var e,
+      n,
+      i,
+      u,
+      a = [],
+      f = !0,
+      o = !1;
+    try {
+      if (i = (t = t.call(r)).next, 0 === l) {
+        if (Object(t) !== t) return;
+        f = !1;
+      } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
+    } catch (r) {
+      o = !0, n = r;
+    } finally {
+      try {
+        if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return;
+      } finally {
+        if (o) throw n;
+      }
+    }
+    return a;
+  }
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+  return arr2;
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+
+var classes = {
+  root: function root(_ref) {
+    var props = _ref.props;
+    return (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)('p-stepper p-component', {
+      'p-stepper-horizontal': props.orientation === 'horizontal',
+      'p-stepper-vertical': props.orientation === 'vertical',
+      'p-readonly': props.linear
+    });
+  },
+  nav: 'p-stepper-nav',
+  stepper: {
+    header: function header(_ref2) {
+      var isStepActive = _ref2.isStepActive,
+        isItemDisabled = _ref2.isItemDisabled,
+        index = _ref2.index;
+      return (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)('p-stepper-header', {
+        'p-highlight': isStepActive(index),
+        'p-disabled': isItemDisabled(index)
+      });
+    },
+    action: 'p-stepper-action p-component',
+    number: 'p-stepper-number',
+    title: 'p-stepper-title',
+    separator: 'p-stepper-separator',
+    toggleableContent: 'p-stepper-toggleable-content',
+    content: function content(_ref3) {
+      var props = _ref3.props;
+      return (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)('p-stepper-content', {
+        'p-toggleable-content': props.orientation === 'vertical'
+      });
+    }
+  },
+  panelContainer: 'p-stepper-panels',
+  panel: function panel(_ref4) {
+    var props = _ref4.props,
+      isStepActive = _ref4.isStepActive,
+      index = _ref4.index;
+    return (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)('p-stepper-panel', {
+      'p-stepper-panel-active': props.orientation === 'vertical' && isStepActive(index)
+    });
+  }
+};
+var styles = "\n@layer primereact {\n    .p-stepper .p-stepper-nav {\n        position: relative;\n        display: flex;\n        justify-content: space-between;\n        align-items: center;\n        margin: 0;\n        padding: 0;\n        list-style-type: none;\n        overflow-x: auto;\n    }\n    \n    .p-stepper-vertical .p-stepper-nav {\n        flex-direction: column;\n    }\n    \n    .p-stepper-header {\n        position: relative;\n        display: flex;\n        flex: 1 1 auto;\n        align-items: center;\n    \n        &:last-of-type {\n            flex: initial;\n        }\n    }\n    \n    .p-stepper-header .p-stepper-action {\n        border: 0 none;\n        display: inline-flex;\n        align-items: center;\n        text-decoration: none;\n        cursor: pointer;\n    \n        &:focus-visible {\n            @include focused();\n        }\n    }\n    \n    .p-stepper.p-stepper-readonly .p-stepper-header {\n        cursor: auto;\n    }\n    \n    .p-stepper-header.p-highlight .p-stepper-action {\n        cursor: default;\n    }\n    \n    .p-stepper-title {\n        display: block;\n        white-space: nowrap;\n        overflow: hidden;\n        text-overflow: ellipsis;\n        max-width: 100%;\n    }\n    \n    .p-stepper-number {\n        position: relative;\n        display: flex;\n        align-items: center;\n        justify-content: center;\n    }\n    \n    .p-stepper-separator {\n        flex: 1 1 0;\n    }\n}\n";
+var StepperBase = primereact_componentbase__WEBPACK_IMPORTED_MODULE_2__.ComponentBase.extend({
+  defaultProps: {
+    __TYPE: 'Stepper',
+    activeStep: 0,
+    orientation: 'horizontal',
+    linear: false
+  },
+  css: {
+    classes: classes,
+    styles: styles
+  }
+});
+
+function ownKeys$2(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$2(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$2(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$2(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var StepperContent = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function (props, ref) {
+  var mergeProps = (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_3__.useMergeProps)();
+  var cx = props.cx,
+    ptm = props.ptm;
+  var rootProps = mergeProps(_objectSpread$2(_objectSpread$2(_objectSpread$2({
+    ref: ref,
+    id: props.id,
+    className: cx('stepper.content', {
+      stepperpanel: props.stepperpanel,
+      index: props.index
+    }),
+    role: 'tabpanel',
+    'aria-labelledby': props.ariaLabelledby
+  }, props.getStepPT(props.stepperpanel, 'root', props.index)), props.getStepPT(props.stepperpanel, 'content', props.index)), {}, {
+    'data-p-active': props.active
+  }), ptm('stepperpanel'));
+  var createContent = function createContent() {
+    var ComponentToRender = props.template;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(ComponentToRender, {
+      index: props.index,
+      active: props.active,
+      highlighted: props.highlighted,
+      clickCallback: function clickCallback(event) {
+        return props.onItemClick(event, props.index);
+      },
+      prevCallback: function prevCallback(event) {
+        return props.prevCallback(event, props.index);
+      },
+      nextCallback: function nextCallback(event) {
+        return props.nextCallback(event, props.index);
+      }
+    });
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", rootProps, props.template ? createContent() : props.stepperpanel);
+}));
+StepperContent.displayName = 'StepperContent';
+
+var StepperHeader = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function (props, ref) {
+  var mergeProps = (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_3__.useMergeProps)();
+  var cx = props.cx;
+  var buttonProps = mergeProps({
+    ref: ref,
+    id: props.id,
+    className: cx('stepper.action'),
+    role: 'tab',
+    type: 'button',
+    tabIndex: props.disabled ? -1 : undefined,
+    'aria-controls': props.ariaControls,
+    onClick: function onClick(e) {
+      return props.clickCallback(e, props.index);
+    }
+  });
+  return props.template ? props.template() : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", buttonProps, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    className: cx('stepper.number')
+  }, props.index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    className: cx('stepper.title')
+  }, props.getStepProp(props.stepperpanel, 'header')));
+}));
+StepperHeader.displayName = 'StepperHeader';
+
+function ownKeys$1(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$1(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$1(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$1(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var StepperSeparator = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function (props, ref) {
+  var mergeProps = (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_3__.useMergeProps)();
+  var separatorProps = mergeProps(_objectSpread$1({
+    ref: ref,
+    'aria-hidden': true,
+    className: props.separatorClass
+  }, props.getStepPT(props.stepperpanel, 'separator', props.index)));
+  return props.template ? props.template() : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", separatorProps);
+}));
+StepperSeparator.displayName = 'StepperSeparator';
+
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var Stepper = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().memo( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().forwardRef(function (inProps, ref) {
+  var mergeProps = (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_3__.useMergeProps)();
+  var context = react__WEBPACK_IMPORTED_MODULE_0___default().useContext(primereact_api__WEBPACK_IMPORTED_MODULE_4__.PrimeReactContext);
+  var props = StepperBase.getProps(inProps, context);
+  var _StepperBase$setMetaD = StepperBase.setMetaData({
+      props: props
+    }),
+    ptm = _StepperBase$setMetaD.ptm,
+    cx = _StepperBase$setMetaD.cx,
+    isUnstyled = _StepperBase$setMetaD.isUnstyled,
+    ptmo = _StepperBase$setMetaD.ptmo;
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default().useState(props.id),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    idState = _React$useState2[0],
+    setIdState = _React$useState2[1];
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default().useState(props.activeStep),
+    _React$useState4 = _slicedToArray(_React$useState3, 2),
+    activeStepState = _React$useState4[0],
+    setActiveStepState = _React$useState4[1];
+  var navRef = react__WEBPACK_IMPORTED_MODULE_0___default().useRef();
+  (0,primereact_componentbase__WEBPACK_IMPORTED_MODULE_2__.useHandleStyle)(StepperBase.css.styles, isUnstyled, {
+    name: 'stepper'
+  });
+  (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_3__.useMountEffect)(function () {
+    if (!idState) {
+      setIdState((0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.UniqueComponentId)());
+    }
+  });
+  var getStepProp = function getStepProp(step, name) {
+    var _step$props;
+    return step === null || step === void 0 || (_step$props = step.props) === null || _step$props === void 0 ? void 0 : _step$props[name];
+  };
+  var getStepKey = function getStepKey(step, index) {
+    return getStepProp(step, 'header') || index;
+  };
+  var isStep = function isStep(child) {
+    return child.type.displayName === 'StepperPanel';
+  };
+  var isStepActive = function isStepActive(index) {
+    return activeStepState === index;
+  };
+  var isItemDisabled = function isItemDisabled(index) {
+    return props.linear && !isStepActive(index);
+  };
+  var updateActiveStep = function updateActiveStep(event, index) {
+    setActiveStepState(index);
+    props.onChangeStep && props.onChangeStep({
+      originalEvent: event,
+      index: index
+    });
+  };
+  var getStepHeaderActionId = function getStepHeaderActionId(index) {
+    return "".concat(idState, "_").concat(index, "_header_action");
+  };
+  var getStepContentId = function getStepContentId(index) {
+    return "".concat(idState, "_").concat(index, "content");
+  };
+  var stepperPanels = function stepperPanels() {
+    return react__WEBPACK_IMPORTED_MODULE_0___default().Children.toArray(props.children).reduce(function (stepperpanels, child) {
+      if (isStep(child)) {
+        stepperpanels.push(child);
+      } else if (child && Array.isArray(child)) {
+        react__WEBPACK_IMPORTED_MODULE_0___default().Children.toArray(child.props.children).forEach(function (nestedChild) {
+          if (isStep(nestedChild)) {
+            stepperpanels.push(nestedChild);
+          }
+        });
+      }
+      return stepperpanels;
+    }, []);
+  };
+  var _prevCallback = function prevCallback(event, index) {
+    if (index !== 0) {
+      updateActiveStep(event, index - 1);
+    }
+  };
+  var _nextCallback = function nextCallback(event, index) {
+    if (index !== stepperPanels().length - 1) {
+      updateActiveStep(event, index + 1);
+    }
+  };
+  var getStepPT = function getStepPT(step, key, index) {
+    var count = stepperPanels().length;
+    var stepMetaData = {
+      props: step.props,
+      parent: {
+        props: props
+      },
+      context: {
+        index: index,
+        count: count,
+        first: index === 0,
+        last: index === count - 1,
+        active: isStepActive(index),
+        highlighted: index < activeStepState,
+        disabled: isItemDisabled(index)
+      }
+    };
+    return mergeProps(ptm("stepperpanel.".concat(key), {
+      stepperpanel: stepMetaData
+    }), ptm("stepperpanel.".concat(key), stepMetaData), ptmo(getStepProp(step, 'pt'), key, stepMetaData));
+  };
+  var onItemClick = function onItemClick(event, index) {
+    if (props.linear) {
+      event.preventDefault();
+      return;
+    }
+    if (index !== activeStepState) {
+      updateActiveStep(event, index);
+    }
+  };
+  var createPanel = function createPanel() {
+    return stepperPanels().map(function (step, index) {
+      var _step$children, _step$children2;
+      var panelProps = mergeProps({
+        className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)(cx('stepper.header', {
+          isStepActive: isStepActive,
+          isItemDisabled: isItemDisabled,
+          step: step,
+          index: index
+        })),
+        'aria-current': isStepActive(index) && 'step',
+        role: 'presentation',
+        'data-p-highlight': isStepActive(index),
+        'data-p-disabled': isItemDisabled(index),
+        'data-p-active': isStepActive(index)
+      }, ptm('stepperpanel'));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", _extends({
+        key: getStepKey(step, index)
+      }, panelProps), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(StepperHeader, {
+        id: getStepHeaderActionId(index),
+        template: (_step$children = step.children) === null || _step$children === void 0 ? void 0 : _step$children.header,
+        stepperpanel: step,
+        index: index,
+        disabled: isItemDisabled(index),
+        active: isStepActive(index),
+        highlighted: index < activeStepState,
+        ariaControls: getStepContentId(index),
+        clickCallback: onItemClick,
+        getStepPT: getStepPT,
+        getStepProp: getStepProp,
+        cx: cx
+      }), index !== stepperPanels().length - 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(StepperSeparator, {
+        template: (_step$children2 = step.children) === null || _step$children2 === void 0 ? void 0 : _step$children2.separator,
+        separatorClass: cx('stepper.separator'),
+        stepperpanel: step,
+        index: index,
+        active: isStepActive(index),
+        highlighted: index < activeStepState,
+        getStepPT: getStepPT
+      }));
+    });
+  };
+  react__WEBPACK_IMPORTED_MODULE_0___default().useImperativeHandle(ref, function () {
+    return {
+      getElement: function getElement() {
+        return navRef.current;
+      },
+      getActiveStep: function getActiveStep() {
+        return activeStepState;
+      },
+      setActiveStep: function setActiveStep(step) {
+        return setActiveStepState(step);
+      },
+      nextCallback: function nextCallback(e) {
+        return _nextCallback(e, activeStepState);
+      },
+      prevCallback: function prevCallback(e) {
+        return _prevCallback(e, activeStepState);
+      }
+    };
+  });
+  var createPanelContent = function createPanelContent() {
+    return stepperPanels().map(function (step, index) {
+      var _step$children3;
+      if (!isStepActive(index)) {
+        return null;
+      }
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(StepperContent, {
+        key: getStepContentId(index),
+        id: getStepContentId(index),
+        tempate: step === null || step === void 0 || (_step$children3 = step.children) === null || _step$children3 === void 0 ? void 0 : _step$children3.content,
+        stepperpanel: step,
+        index: index,
+        active: isStepActive(index),
+        highlighted: index < activeStepState,
+        clickCallback: onItemClick,
+        prevCallback: _prevCallback,
+        nextCallback: _nextCallback,
+        getStepPT: getStepPT,
+        ariaLabelledby: getStepHeaderActionId(index),
+        ptm: ptm,
+        cx: cx
+      });
+    });
+  };
+  var createHorizontal = function createHorizontal() {
+    var items = createPanel();
+    var navProps = mergeProps({
+      className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)(cx('nav')),
+      ref: navRef
+    }, ptm('nav'));
+    var panelContainerProps = mergeProps({
+      className: cx('panelContainer')
+    }, ptm('panelContainer'));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", navProps, items), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", panelContainerProps, createPanelContent()));
+  };
+  var createVertical = function createVertical() {
+    return stepperPanels().map(function (step, index) {
+      var _step$children4, _step$children5, _step$children6;
+      var contentRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createRef(null);
+      var navProps = mergeProps(_objectSpread(_objectSpread(_objectSpread({
+        ref: navRef,
+        className: cx('panel', {
+          props: props,
+          index: index,
+          isStepActive: isStepActive
+        }),
+        'aria-current': isStepActive(index) && 'step'
+      }, getStepPT(step, 'root', index)), getStepPT(step, 'panel', index)), {}, {
+        'data-p-highlight': isStepActive(index),
+        'data-p-disabled': isItemDisabled(index),
+        'data-p-active': isStepActive(index)
+      }), ptm('nav'));
+      var headerProps = mergeProps(_objectSpread({
+        className: cx('stepper.header', {
+          step: step,
+          isStepActive: isStepActive,
+          isItemDisabled: isItemDisabled,
+          index: index
+        })
+      }, getStepPT(step, 'header', index)));
+      var transitionProps = mergeProps(_objectSpread(_objectSpread({
+        classNames: cx('stepper.content')
+      }, getStepPT(step, 'transition', index)), {}, {
+        timeout: {
+          enter: 1000,
+          exit: 450
+        },
+        "in": isStepActive(index),
+        unmountOnExit: true
+      }));
+      var toggleableContentProps = mergeProps(_objectSpread({
+        ref: contentRef,
+        className: cx('stepper.toggleableContent')
+      }, getStepPT(step, 'toggleableContent', index)));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", _extends({
+        key: getStepKey(step, index)
+      }, navProps), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", headerProps, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(StepperHeader, {
+        id: getStepHeaderActionId(index),
+        template: (_step$children4 = step.children) === null || _step$children4 === void 0 ? void 0 : _step$children4.header,
+        stepperpanel: step,
+        index: index,
+        disabled: isItemDisabled(index),
+        active: isStepActive(index),
+        highlighted: index < activeStepState,
+        ariaControls: getStepContentId(index),
+        clickCallback: onItemClick,
+        getStepPT: getStepPT,
+        getStepProp: getStepProp,
+        cx: cx
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(primereact_csstransition__WEBPACK_IMPORTED_MODULE_5__.CSSTransition, _extends({
+        nodeRef: contentRef
+      }, transitionProps), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", toggleableContentProps, index !== stepperPanels().length - 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(StepperSeparator, {
+        template: (_step$children5 = step.children) === null || _step$children5 === void 0 ? void 0 : _step$children5.separator,
+        separatorClass: cx('stepper.separator'),
+        stepperpanel: step,
+        index: index,
+        active: isStepActive(index),
+        highlighted: index < activeStepState,
+        getStepPT: getStepPT
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(StepperContent, {
+        key: getStepContentId(index),
+        id: getStepContentId(index),
+        tempate: step === null || step === void 0 || (_step$children6 = step.children) === null || _step$children6 === void 0 ? void 0 : _step$children6.content,
+        stepperpanel: step,
+        index: index,
+        active: isStepActive(index),
+        highlighted: index < activeStepState,
+        clickCallback: onItemClick,
+        prevCallback: _prevCallback,
+        nextCallback: _nextCallback,
+        getStepPT: getStepPT,
+        ariaLabelledby: getStepHeaderActionId(index),
+        ptm: ptm,
+        cx: cx
+      }))));
+    });
+  };
+  var rootProps = mergeProps({
+    className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)(cx('root')),
+    role: 'tablist'
+  }, StepperBase.getOtherProps(props), ptm('root'));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", rootProps, props.start && props.start(), props.orientation === 'horizontal' && createHorizontal(), props.orientation === 'vertical' && createVertical(), props.end && props.end());
+}));
+StepperBase.displayName = 'StepperBase';
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/primereact/stepperpanel/stepperpanel.esm.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/primereact/stepperpanel/stepperpanel.esm.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   StepperPanel: () => (/* binding */ StepperPanel)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var primereact_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primereact/api */ "./node_modules/primereact/api/api.esm.js");
+/* harmony import */ var primereact_componentbase__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primereact/componentbase */ "./node_modules/primereact/componentbase/componentbase.esm.js");
+'use client';
+
+
+
+
+var styles = '';
+var StepperPanelBase = primereact_componentbase__WEBPACK_IMPORTED_MODULE_1__.ComponentBase.extend({
+  defaultProps: {
+    __TYPE: 'StepperPanel',
+    children: undefined,
+    header: null
+  },
+  css: {
+    styles: styles
+  }
+});
+
+var StepperPanel = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function (inProps, ref) {
+  var context = react__WEBPACK_IMPORTED_MODULE_0__.useContext(primereact_api__WEBPACK_IMPORTED_MODULE_2__.PrimeReactContext);
+  var props = StepperPanelBase.getProps(inProps, context);
+  var _StepperPanelBase$set = StepperPanelBase.setMetaData({
+      props: props
+    }),
+    isUnstyled = _StepperPanelBase$set.isUnstyled;
+  (0,primereact_componentbase__WEBPACK_IMPORTED_MODULE_1__.useHandleStyle)(StepperPanelBase.css.styles, isUnstyled, {
+    name: 'StepperPanel'
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    ref: ref
+  }, props.children);
+}));
+StepperPanel.displayName = 'StepperPanel';
 
 
 
@@ -96755,16 +97488,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_HomeCopy__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/HomeCopy */ "./resources/js/pages/HomeCopy.js");
 /* harmony import */ var _pages_ListUserAccess__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/ListUserAccess */ "./resources/js/pages/ListUserAccess.js");
 /* harmony import */ var _pages_ListUserTokens__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/ListUserTokens */ "./resources/js/pages/ListUserTokens.js");
-/* harmony import */ var _pages_TestPage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/TestPage */ "./resources/js/pages/TestPage.js");
-/* harmony import */ var _pages_ViewSurvey__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/ViewSurvey */ "./resources/js/pages/ViewSurvey.js");
-/* harmony import */ var _pages_SurveyQuestions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pages/SurveyQuestions */ "./resources/js/pages/SurveyQuestions.js");
-/* harmony import */ var react_favicon__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-favicon */ "./node_modules/react-favicon/dist/index.js");
-/* harmony import */ var react_favicon__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(react_favicon__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _pages_NoPage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./pages/NoPage */ "./resources/js/pages/NoPage.js");
-/* harmony import */ var _ThemeContext__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./ThemeContext */ "./resources/js/ThemeContext.js");
+/* harmony import */ var _pages_ViewSurvey__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/ViewSurvey */ "./resources/js/pages/ViewSurvey.js");
+/* harmony import */ var _pages_SurveyQuestions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/SurveyQuestions */ "./resources/js/pages/SurveyQuestions.js");
+/* harmony import */ var react_favicon__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-favicon */ "./node_modules/react-favicon/dist/index.js");
+/* harmony import */ var react_favicon__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react_favicon__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _pages_NoPage__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./pages/NoPage */ "./resources/js/pages/NoPage.js");
+/* harmony import */ var _ThemeContext__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./ThemeContext */ "./resources/js/ThemeContext.js");
 /* harmony import */ var primereact_api__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! primereact/api */ "./node_modules/primereact/api/api.esm.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var _pages_NewQuestion__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./pages/NewQuestion */ "./resources/js/pages/NewQuestion.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
  // theme
@@ -96796,7 +97529,7 @@ function App() {
     setRipple(true);
   }, [setRipple]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ThemeContext__WEBPACK_IMPORTED_MODULE_14__.ThemeProvider, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ThemeContext__WEBPACK_IMPORTED_MODULE_13__.ThemeProvider, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.BrowserRouter, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Routes, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
@@ -96809,10 +97542,6 @@ function App() {
             element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_Register__WEBPACK_IMPORTED_MODULE_5__["default"], {})
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
             exact: true,
-            path: "/test-page",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_pages_TestPage__WEBPACK_IMPORTED_MODULE_9__["default"], {})
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
-            exact: true,
             path: "/configs/user-access",
             element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_pages_ListUserAccess__WEBPACK_IMPORTED_MODULE_7__["default"], {})
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
@@ -96822,15 +97551,19 @@ function App() {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
             exact: true,
             path: "/survey/view",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_pages_ViewSurvey__WEBPACK_IMPORTED_MODULE_10__["default"], {})
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_pages_ViewSurvey__WEBPACK_IMPORTED_MODULE_9__["default"], {})
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
             exact: true,
             path: "/survey/questions",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_pages_SurveyQuestions__WEBPACK_IMPORTED_MODULE_11__["default"], {})
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_pages_SurveyQuestions__WEBPACK_IMPORTED_MODULE_10__["default"], {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+            exact: true,
+            path: "/survey/new",
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_pages_NewQuestion__WEBPACK_IMPORTED_MODULE_14__["default"], {})
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
             exact: true,
             path: "*",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_pages_NoPage__WEBPACK_IMPORTED_MODULE_13__.NoPage, {})
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_pages_NoPage__WEBPACK_IMPORTED_MODULE_12__.NoPage, {})
           })]
         })
       })
@@ -96839,7 +97572,7 @@ function App() {
 }
 var root = react_dom_client__WEBPACK_IMPORTED_MODULE_4__.createRoot(document.getElementById("root"));
 root.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)((react__WEBPACK_IMPORTED_MODULE_3___default().StrictMode), {
-  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)((react_favicon__WEBPACK_IMPORTED_MODULE_12___default()), {
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)((react_favicon__WEBPACK_IMPORTED_MODULE_11___default()), {
     url: "/favicon.ico"
   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(primereact_api__WEBPACK_IMPORTED_MODULE_16__.PrimeReactProvider, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(App, {})
