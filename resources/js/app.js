@@ -1,4 +1,4 @@
-require("bootstrap");
+// require("bootstrap");
 import "primereact/resources/themes/lara-light-indigo/theme.css"; // theme
 import "primereact/resources/primereact.css"; // core css
 import "primeicons/primeicons.css"; // icons
@@ -17,6 +17,7 @@ import { PrimeReactContext, PrimeReactProvider } from "primereact/api";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrimeReact from "primereact/api";
 import NewQuestion from "./pages/NewQuestion";
+import "../css/app.css";
 
 // Initialize PrimeReact settings
 PrimeReact.ripple = true;

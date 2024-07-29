@@ -55,4 +55,10 @@ class QuestionController extends Controller
         $questions = Survey::all();
         return response()->json($questions);
     }
+
+    public function getQuestionGroupName()
+    {
+        $questions = QuestionGroup::all();
+        return response()->json($questions);
+    }
 }

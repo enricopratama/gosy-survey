@@ -19,6 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GOSY | PT. GONUSA PRIMA DISTRIBUSI</title>
     @include('layout.asset') 
+    
 </head>
 <style>
         .page-content {
@@ -37,11 +38,11 @@
     @include('layout.header')
     @include('layout.sidebar')
     <div class="main-content overflow">
-
         <div class="page-content">
         <div id="root" data-userdata="{!! $globalData->toJson() !!}"></div>
         </div>
         </div>
+        
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
     <script>

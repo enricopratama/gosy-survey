@@ -16,10 +16,6 @@ import { classNames } from "primereact/utils";
 import { Button } from "primereact/button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 
-/**
- * Needs fixing of maxID, don't change it's state in try-catch, instead use useEffect to change every compilation
- * @returns JSX HTML Element
- */
 export default function SurveyTable() {
     const [questions, setQuestions] = useState([]);
     const [questionDialog, setQuestionDialog] = useState(false);
@@ -45,6 +41,9 @@ export default function SurveyTable() {
         question_id: { value: null, matchMode: FilterMatchMode.EQUALS },
     });
 
+    /**
+     * Initialise a new empty question
+     */
     const initialEmptyQuestion = {
         question_id: null,
         question_key: "",
@@ -82,14 +81,25 @@ export default function SurveyTable() {
         getQuestions();
     }, []);
 
+    /**
+     * Updates Max ID
+     */
     useEffect(() => {
-        if (!question.question_id) {
-            setQuestion((prevQuestion) => ({
-                ...prevQuestion,
-                question_id: maxId,
-            }));
-        }
-    }, [maxId]);
+        const maxId =
+            questions.length > 0
+                ? Math.max(...questions.map((q) => q.question_id)) + 1
+                : 1;
+        setMaxId(maxId);
+    }, [questions]); // also runs whenever 'question' state changes
+
+    // useEffect(() => {
+    //     if (!question.question_id) {
+    //         setQuestion((prevQuestion) => ({
+    //             ...prevQuestion,
+    //             question_id: maxId,
+    //         }));
+    //     }
+    // }, [maxId]);
 
     const onGlobalFilterChange = (e) => {
         const value = e.target.value || ""; // Use empty string instead of null
@@ -100,6 +110,9 @@ export default function SurveyTable() {
         setGlobalFilterValue(value);
     };
 
+    /**
+     * Create New Question Dialog
+     */
     const openNew = () => {
         setQuestion({
             ...initialEmptyQuestion,
@@ -109,6 +122,9 @@ export default function SurveyTable() {
         setQuestionDialog(true);
     };
 
+    /**
+     * Close Dialog
+     */
     const hideDialog = () => {
         setSubmitted(false);
         setQuestionDialog(false);
@@ -122,56 +138,119 @@ export default function SurveyTable() {
         setDeleteQuestionsDialog(false);
     };
 
-    const saveQuestion = () => {
+    /**
+     * Fix buggy implementation of Update Existing question: Still works at first time (fix)
+     * @returns JSX
+     */
+    const saveQuestion = async () => {
         setSubmitted(true);
 
         if (question.question_name.trim()) {
             let _questions = [...questions];
             let _question = { ...question };
 
-            // Check if the question already exists
-            if (question.question_id) {
-                const index = findIndexById(question.question_id);
+            // Check if the question_id already exists
+            const existingQuestion = _questions.find(
+                (q) => q.question_id === _question.question_id
+            );
 
-                if (index >= 0) {
-                    _questions[index] = _question;
-                    toast.current.show({
-                        severity: "success",
-                        summary: "Successful",
-                        detail: "Question Updated",
-                        life: 3000,
-                    });
+            if (existingQuestion) {
+                toast.current.show({
+                    severity: "danger",
+                    summary: "Oops.. Question ID has already been taken",
+                    detail: "",
+                    life: 3000,
+                });
+                return;
+            } else {
+                if (_question.question_id) {
+                    // Update existing question
+                    const index = findIndexById(_question.question_id);
+
+                    if (index >= 0) {
+                        _questions[index] = _question;
+                        toast.current.show({
+                            severity: "success",
+                            summary: "Successful",
+                            detail: "Question Updated",
+                            life: 3000,
+                        });
+                    } else {
+                        _questions.push(_question);
+                        toast.current.show({
+                            severity: "success",
+                            summary: "Successful",
+                            detail: "Question Created Successfully",
+                            life: 3000,
+                        });
+                    }
                 } else {
+                    // Generate new question ID
+                    const maxId =
+                        _questions.length > 0
+                            ? Math.max(
+                                  ..._questions.map((q) => q.question_id)
+                              ) + 1
+                            : 1;
+                    _question.question_id = maxId;
                     _questions.push(_question);
                     toast.current.show({
                         severity: "success",
                         summary: "Successful",
-                        detail: "Question Created",
+                        detail: "Question Created Successfully",
                         life: 3000,
                     });
                 }
-            } else {
-                // Generate new question ID
-                const maxId =
-                    _questions.length > 0
-                        ? Math.max(..._questions.map((q) => q.question_id))
-                        : 0;
-                setMaxId(maxId);
-                _question.question_id = maxId;
-                _questions.push(_question);
-                toast.current.show({
-                    severity: "success",
-                    summary: "Successful",
-                    detail: "Question Created",
-                    life: 3000,
-                });
-            }
 
-            setQuestions(_questions);
-            setQuestionDialog(false);
-            setQuestion(emptyQuestion);
+                setQuestions(_questions);
+                setQuestionDialog(false);
+                setQuestion(initialEmptyQuestion);
+            }
         }
     };
+
+    // Implement when Server is set up
+    // const saveQuestion = async () => {
+    //     setSubmitted(true);
+
+    //     if (question.question_name.trim()) {
+    //         let _questions = [...questions];
+    //         let _question = { ...question };
+
+    //         // Update existing question
+    //         if (question.question_id) {
+    //             const index = findIndexById(question.question_id);
+    //             _questions[index] = _question;
+
+    //             await axios.put(
+    //                 `/api/questions/${question.question_id}`,
+    //                 _question
+    //             );
+    //             toast.current.show({
+    //                 severity: "success",
+    //                 summary: "Successful",
+    //                 detail: "Question Updated",
+    //                 life: 3000,
+    //             });
+    //         } else {
+    //             // Add new question
+    //             _question.question_id = maxId;
+    //             _questions.push(_question);
+
+    //             await axios.post("/api/questions", _question);
+    //             toast.current.show({
+    //                 severity: "success",
+    //                 summary: "Successful",
+    //                 detail: "Question Created",
+    //                 life: 3000,
+    //             });
+    //         }
+
+    //         setQuestions(_questions);
+    //         setQuestionDialog(false);
+    //         setQuestion(emptyQuestion);
+    //     }
+    // };
 
     const editQuestion = (question) => {
         setQuestion({ ...question });

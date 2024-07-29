@@ -95,6 +95,7 @@
             padding-right: 40px;
         }
     </style>
+    
 </head>
 <body>
     <div class="auth-page-wrapper">
@@ -149,9 +150,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="mt-4 text-center">
-                    <p class="mb-0">Don't have an account? <a href="#" class="fw-semibold text-primary text-decoration-underline">Signup</a></p>
-                </div> -->
             </div>
         </div>
         <footer class="footer">

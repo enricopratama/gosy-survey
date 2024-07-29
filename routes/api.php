@@ -21,11 +21,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('products', ProductController::class);
-Route::post('register', [UserController::class, 'register']);
-Route::post('login', [UserController::class, 'login']);
-
 // Survey / Questions
 Route::get('/questionsRaw', [QuestionController::class, 'index']);
 Route::get('/questions', [QuestionController::class, 'getQuestions']);
 Route::get('/survey', [QuestionController::class, 'getSurveyNames']);
+Route::get('/surveyQuestionGroup', [
+    QuestionController::class,
+    'getQuestionGroupName',
+]);
