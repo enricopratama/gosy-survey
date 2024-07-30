@@ -4,6 +4,8 @@ import { StepperPanel } from "primereact/stepperpanel";
 import { Button } from "primereact/button";
 import axios from "axios";
 import "../../css/app.css";
+import "../../css/NewQuestion.css";
+import { InputText } from "primereact/inputtext";
 
 export default function NewQuestion() {
     const stepperRef = useRef(null);
@@ -103,17 +105,13 @@ export default function NewQuestion() {
 
     return (
         <div className="card d-flex justify-content-center">
-            <Stepper
-                linear
-                ref={stepperRef}
-                style={{ flexBasis: "60rem", paddingRight: "2rem" }}
-            >
+            <Stepper ref={stepperRef} style={{ flexBasis: "60rem" }}>
                 {/* Step 1 - Survey Type */}
                 <StepperPanel header="Survey Type">
                     <div className="d-flex flex-column">
                         <div
-                            className="rounded surface-ground flex-auto d-flex font-medium ms-5 me-5"
-                            style={{ height: "50vh" }}
+                            className="rounded surface-ground flex-auto d-flex font-medium mx-5 h-small"
+                            style={{ overflow: "auto" }}
                         >
                             <div className="d-flex flex-column">
                                 <h5 className="text-muted">Step 1</h5>
@@ -147,16 +145,18 @@ export default function NewQuestion() {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="d-flex pt-4 justify-content-end">
-                        <Button
-                            label="Next"
-                            className="rounded"
-                            icon="pi pi-arrow-right"
-                            iconPos="right"
-                            disabled={response.surveyType === null}
-                            onClick={() => stepperRef.current.nextCallback()}
-                        />
+                        <div className="d-flex pt-4 justify-content-end mx-5">
+                            <Button
+                                label="Next"
+                                className="rounded"
+                                icon="pi pi-arrow-right"
+                                iconPos="right"
+                                disabled={response.surveyType === null}
+                                onClick={() =>
+                                    stepperRef.current.nextCallback()
+                                }
+                            />
+                        </div>
                     </div>
                 </StepperPanel>
 
@@ -164,8 +164,8 @@ export default function NewQuestion() {
                 <StepperPanel header="Question Group Name">
                     <div className="d-flex flex-column">
                         <div
-                            className="rounded surface-ground flex-auto d-flex font-medium"
-                            style={{ height: "50vh" }}
+                            className="rounded surface-ground flex-auto d-flex font-medium mx-5"
+                            style={{ height: "50vh", overflow: "auto" }}
                         >
                             <div className="d-flex flex-column">
                                 <h5 className="text-muted">Step 2</h5>
@@ -216,57 +216,80 @@ export default function NewQuestion() {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="d-flex pt-4 justify-content-between">
-                        <Button
-                            label="Back"
-                            className="rounded"
-                            icon="pi pi-arrow-left"
-                            severity="secondary"
-                            onClick={() => stepperRef.current.prevCallback()}
-                        />
-                        <Button
-                            label="Next"
-                            className="rounded"
-                            icon="pi pi-arrow-right"
-                            iconPos="right"
-                            disabled={response.questionGroup === null}
-                            onClick={() => stepperRef.current.nextCallback()}
-                        />
+                        <div className="d-flex pt-4 justify-content-between mx-5">
+                            <Button
+                                label="Back"
+                                className="rounded"
+                                icon="pi pi-arrow-left"
+                                severity="secondary"
+                                onClick={() =>
+                                    stepperRef.current.prevCallback()
+                                }
+                            />
+                            <Button
+                                label="Next"
+                                className="rounded"
+                                icon="pi pi-arrow-right"
+                                iconPos="right"
+                                disabled={response.questionGroup === null}
+                                onClick={() =>
+                                    stepperRef.current.nextCallback()
+                                }
+                            />
+                        </div>
                     </div>
                 </StepperPanel>
 
                 {/* Step 3 - Rest of Survey */}
-                <StepperPanel header="Header III">
+                <StepperPanel header="Add Question">
                     <div className="d-flex flex-column">
                         <div
-                            className="rounded surface-ground flex-auto d-flex justify-content-center align-items-center font-medium"
-                            style={{ height: "50vh" }}
+                            className="rounded surface-ground flex-auto d-flex font-medium mx-5"
+                            style={{ height: "50vh", overflow: "auto" }}
                         >
-                            Content III
+                            <div className="d-flex flex-column">
+                                <h5 className="text-muted">Step 3</h5>
+                                <h1>
+                                    Tambah Pertanyaan {response.questionGroup}
+                                </h1>
+                                <div
+                                    className="d-flex flex-row flex-wrap"
+                                    style={{ gap: "25px" }}
+                                >
+                                    <div
+                                        className="field"
+                                        style={{ marginBottom: "35px" }}
+                                    >
+                                        <span className="p-float-label">
+                                            <InputText
+                                                id="question_name"
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="question_name"
+                                                className="font-bold"
+                                            >
+                                                Question Name
+                                            </label>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div className="d-flex pt-4 justify-content-start">
-                        <Button
-                            label="Back"
-                            className="rounded"
-                            icon="pi pi-arrow-left"
-                            onClick={() => stepperRef.current.prevCallback()}
-                        />
+                        <div className="d-flex pt-4 justify-content-start mx-5">
+                            <Button
+                                label="Back"
+                                severity="secondary"
+                                className="rounded"
+                                icon="pi pi-arrow-left"
+                                onClick={() =>
+                                    stepperRef.current.prevCallback()
+                                }
+                            />
+                        </div>
                     </div>
                 </StepperPanel>
             </Stepper>
-
-            {/* Export Button */}
-            <div className="d-flex justify-content-center pt-4">
-                <Button
-                    label="Export Responses"
-                    className="rounded"
-                    severity="success"
-                    onClick={exportResponsesToJson}
-                    disabled={!isFormComplete()}
-                />
-            </div>
         </div>
     );
 }

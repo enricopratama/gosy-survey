@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
@@ -14,19 +13,21 @@ import { InputIcon } from "primereact/inputicon";
 import { IconField } from "primereact/iconfield";
 import { classNames } from "primereact/utils";
 import { Button } from "primereact/button";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 export default function SurveyTable() {
     const [questions, setQuestions] = useState([]);
     const [questionDialog, setQuestionDialog] = useState(false);
     const [deleteQuestionDialog, setDeleteQuestionDialog] = useState(false);
     const [deleteQuestionsDialog, setDeleteQuestionsDialog] = useState(false);
+    const [questionResponse, setQuestionResponse] = useState({});
     const [question, setQuestion] = useState({});
     const [maxId, setMaxId] = useState(1);
     const [loading, setLoading] = useState(true);
     const [selectedQuestions, setSelectedQuestions] = useState(null);
     const [submitted, setSubmitted] = useState(false);
     const [globalFilterValue, setGlobalFilterValue] = useState("");
+    const [editState, setEditState] = useState(false);
+    const [currID, setCurrID] = useState(null);
     const toast = useRef(null);
     const dt = useRef(null);
     const [sizeOptions] = useState([
@@ -77,32 +78,33 @@ export default function SurveyTable() {
         }
     };
 
+    const getQuestionById = async (question_id) => {
+        try {
+            const response = await axios.get(`/api/questions/${question_id}`);
+            setQuestionResponse(response.data);
+        } catch (error) {
+            console.error(
+                `There was an error fetching the question_id ${question_id}, ${error}`
+            );
+        } finally {
+            setLoading(false);
+        }
+    };
+
     useEffect(() => {
         getQuestions();
     }, []);
 
-    /**
-     * Updates Max ID
-     */
     useEffect(() => {
         const maxId =
             questions.length > 0
                 ? Math.max(...questions.map((q) => q.question_id)) + 1
                 : 1;
         setMaxId(maxId);
-    }, [questions]); // also runs whenever 'question' state changes
-
-    // useEffect(() => {
-    //     if (!question.question_id) {
-    //         setQuestion((prevQuestion) => ({
-    //             ...prevQuestion,
-    //             question_id: maxId,
-    //         }));
-    //     }
-    // }, [maxId]);
+    }, [questions]);
 
     const onGlobalFilterChange = (e) => {
-        const value = e.target.value || ""; // Use empty string instead of null
+        const value = e.target.value || "";
         setFilters((prevFilters) => ({
             ...prevFilters,
             global: { ...prevFilters.global, value },
@@ -110,9 +112,6 @@ export default function SurveyTable() {
         setGlobalFilterValue(value);
     };
 
-    /**
-     * Create New Question Dialog
-     */
     const openNew = () => {
         setQuestion({
             ...initialEmptyQuestion,
@@ -122,20 +121,20 @@ export default function SurveyTable() {
         setQuestionDialog(true);
     };
 
-    /**
-     * Close Dialog
-     */
     const hideDialog = () => {
         setSubmitted(false);
         setQuestionDialog(false);
+        setEditState(false);
     };
 
     const hideDeleteQuestionDialog = () => {
         setDeleteQuestionDialog(false);
+        setEditState(false);
     };
 
     const hideDeleteQuestionsDialog = () => {
         setDeleteQuestionsDialog(false);
+        setEditState(false);
     };
 
     /**
@@ -150,116 +149,79 @@ export default function SurveyTable() {
             let _question = { ...question };
 
             // Check if the question_id already exists
-            const existingQuestion = _questions.find(
-                (q) => q.question_id === _question.question_id
+            const existingQuestion = questions.find(
+                (q) => q.question_id === parseInt(currID)
             );
 
-            if (existingQuestion) {
+            if (existingQuestion && !editState) {
                 toast.current.show({
-                    severity: "danger",
+                    severity: "error",
                     summary: "Oops.. Question ID has already been taken",
                     detail: "",
-                    life: 3000,
+                    life: 2000,
+                    position: "center",
                 });
                 return;
-            } else {
-                if (_question.question_id) {
-                    // Update existing question
-                    const index = findIndexById(_question.question_id);
+            }
 
-                    if (index >= 0) {
-                        _questions[index] = _question;
-                        toast.current.show({
-                            severity: "success",
-                            summary: "Successful",
-                            detail: "Question Updated",
-                            life: 3000,
-                        });
-                    } else {
-                        _questions.push(_question);
-                        toast.current.show({
-                            severity: "success",
-                            summary: "Successful",
-                            detail: "Question Created Successfully",
-                            life: 3000,
-                        });
-                    }
+            if (_question.question_id) {
+                // Update existing question
+                const index = findIndexById(_question.question_id);
+                console.log("question_id:", _question.question_id); // Log question_id
+                console.log("index:", index); // Log index
+
+                if (index >= 0) {
+                    _questions[index] = _question;
+                    toast.current.show({
+                        severity: "success",
+                        summary: "Successful",
+                        detail: "Question Updated",
+                        life: 2000,
+                    });
                 } else {
-                    // Generate new question ID
-                    const maxId =
-                        _questions.length > 0
-                            ? Math.max(
-                                  ..._questions.map((q) => q.question_id)
-                              ) + 1
-                            : 1;
-                    _question.question_id = maxId;
                     _questions.push(_question);
                     toast.current.show({
                         severity: "success",
                         summary: "Successful",
-                        detail: "Question Created Successfully",
-                        life: 3000,
+                        detail: "Question Created",
+                        life: 2000,
                     });
                 }
-
-                setQuestions(_questions);
-                setQuestionDialog(false);
-                setQuestion(initialEmptyQuestion);
+            } else {
+                // Generate new question ID
+                // const maxId =
+                //     _questions.length > 0
+                //         ? Math.max(..._questions.map((q) => q.question_id)) + 1
+                //         : 1;
+                // _question.question_id = maxId;
+                _questions.push(_question);
+                toast.current.show({
+                    severity: "success",
+                    summary: "Successful",
+                    detail: "Question Created Successfully",
+                    life: 2000,
+                });
             }
+
+            setQuestions(_questions);
+            setQuestionDialog(false);
+            setQuestion(initialEmptyQuestion);
+            setCurrID(null);
+            setEditState(false);
         }
     };
 
-    // Implement when Server is set up
-    // const saveQuestion = async () => {
-    //     setSubmitted(true);
-
-    //     if (question.question_name.trim()) {
-    //         let _questions = [...questions];
-    //         let _question = { ...question };
-
-    //         // Update existing question
-    //         if (question.question_id) {
-    //             const index = findIndexById(question.question_id);
-    //             _questions[index] = _question;
-
-    //             await axios.put(
-    //                 `/api/questions/${question.question_id}`,
-    //                 _question
-    //             );
-    //             toast.current.show({
-    //                 severity: "success",
-    //                 summary: "Successful",
-    //                 detail: "Question Updated",
-    //                 life: 3000,
-    //             });
-    //         } else {
-    //             // Add new question
-    //             _question.question_id = maxId;
-    //             _questions.push(_question);
-
-    //             await axios.post("/api/questions", _question);
-    //             toast.current.show({
-    //                 severity: "success",
-    //                 summary: "Successful",
-    //                 detail: "Question Created",
-    //                 life: 3000,
-    //             });
-    //         }
-
-    //         setQuestions(_questions);
-    //         setQuestionDialog(false);
-    //         setQuestion(emptyQuestion);
-    //     }
-    // };
-
     const editQuestion = (question) => {
         setQuestion({ ...question });
+        setCurrID(question.question_id);
         setQuestionDialog(true);
+        setEditState(true);
     };
 
     const confirmDeleteQuestion = (question) => {
         setQuestion(question);
         setDeleteQuestionDialog(true);
+        setEditState(false);
     };
 
     const deleteQuestion = () => {
@@ -269,12 +231,13 @@ export default function SurveyTable() {
 
         setQuestions(_questions);
         setDeleteQuestionDialog(false);
-        setQuestion(emptyQuestion);
+        setQuestion(initialEmptyQuestion);
+        setEditState(false);
         toast.current.show({
             severity: "success",
             summary: "Successful",
             detail: "Question Deleted",
-            life: 3000,
+            life: 2000,
         });
     };
 
@@ -297,6 +260,7 @@ export default function SurveyTable() {
 
     const confirmDeleteSelected = () => {
         setDeleteQuestionsDialog(true);
+        setEditState(false);
     };
 
     const deleteSelectedQuestions = () => {
@@ -307,11 +271,12 @@ export default function SurveyTable() {
         setQuestions(_questions);
         setDeleteQuestionsDialog(false);
         setSelectedQuestions(null);
+        setEditState(false);
         toast.current.show({
             severity: "success",
             summary: "Successful",
             detail: "Questions Deleted",
-            life: 3000,
+            life: 2000,
         });
     };
 
@@ -319,8 +284,11 @@ export default function SurveyTable() {
         const val = (e.target && e.target.value) || "";
         let _question = { ...question };
 
-        _question[`${name}`] = val;
+        if (name === "question_id") {
+            setCurrID(val);
+        }
 
+        _question[`${name}`] = val;
         setQuestion(_question);
     };
 
@@ -328,8 +296,11 @@ export default function SurveyTable() {
         const val = e.value || 0;
         let _question = { ...question };
 
-        _question[`${name}`] = val;
+        if (name === "question_id") {
+            setCurrID(val);
+        }
 
+        _question[`${name}`] = val;
         setQuestion(_question);
     };
 
@@ -375,7 +346,10 @@ export default function SurveyTable() {
                     icon="pi pi-pencil"
                     className="me-2 rounded-pill"
                     outlined
-                    onClick={() => editQuestion(rowData)}
+                    onClick={() => {
+                        setEditState(true);
+                        editQuestion(rowData);
+                    }}
                 />
                 <Button
                     icon="pi pi-trash"
@@ -506,6 +480,12 @@ export default function SurveyTable() {
                         exportable={false}
                     ></Column>
                     <Column
+                        header="No."
+                        headerStyle={{ width: "3rem" }}
+                        body={(data, options) => options.rowIndex + 1}
+                        exportable={false}
+                    />
+                    <Column
                         field="question_id"
                         header="Question ID"
                         sortable
@@ -563,7 +543,7 @@ export default function SurveyTable() {
             {/* Question Dialog */}
             <Dialog
                 visible={questionDialog}
-                style={{ width: "32rem", maxHeight: "55vh" }}
+                style={{ width: "32rem", maxHeight: "90vh" }}
                 breakpoints={{ "960px": "75vw", "641px": "90vw" }}
                 header="Question Details"
                 modal
@@ -575,12 +555,12 @@ export default function SurveyTable() {
                     <label htmlFor="question_id" className="font-bold">
                         Question ID
                     </label>
+
                     <InputText
                         id="question_id"
                         value={question.question_id}
                         onChange={(e) => onInputChange(e, "question_id")}
-                        required
-                        autoFocus
+                        disabled={editState}
                         className={classNames({
                             "p-invalid": submitted && !question.question_id,
                         })}
@@ -601,6 +581,7 @@ export default function SurveyTable() {
                                 onInputChange(e, "question_group_id")
                             }
                             required
+                            autoFocus
                             className={classNames({
                                 "p-invalid":
                                     submitted && !question.question_group_id,
@@ -698,6 +679,7 @@ export default function SurveyTable() {
                             <InputNumber
                                 id="sequence"
                                 value={question.sequence}
+                                required
                                 onValueChange={(e) =>
                                     onInputNumberChange(e, "sequence")
                                 }
@@ -706,12 +688,18 @@ export default function SurveyTable() {
                                 Sequence
                             </label>
                         </span>
+                        {submitted && !question.sequence && (
+                            <small className="p-error">
+                                Sequence is required.
+                            </small>
+                        )}
                     </div>
                     <div className="field col" style={{ marginTop: "35px" }}>
                         <span className="p-float-label">
                             <InputNumber
                                 id="data_status"
                                 value={question.data_status}
+                                required
                                 onValueChange={(e) =>
                                     onInputNumberChange(e, "data_status")
                                 }
@@ -720,6 +708,11 @@ export default function SurveyTable() {
                                 Status
                             </label>
                         </span>
+                        {submitted && !question.status && (
+                            <small className="p-error">
+                                Status is required.
+                            </small>
+                        )}
                     </div>
                 </div>
             </Dialog>

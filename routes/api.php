@@ -24,6 +24,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Survey / Questions
 Route::get('/questionsRaw', [QuestionController::class, 'index']);
 Route::get('/questions', [QuestionController::class, 'getQuestions']);
+Route::get('/questions/{question_id}', [
+    QuestionController::class,
+    'getQuestionById',
+]);
+
 Route::get('/survey', [QuestionController::class, 'getSurveyNames']);
 Route::get('/surveyQuestionGroup', [
     QuestionController::class,

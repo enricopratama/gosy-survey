@@ -50,6 +50,21 @@ class QuestionController extends Controller
         return response()->json($questions);
     }
 
+    public function getQuestionById($question_id)
+    {
+        $question = Question::find($question_id);
+        if (!empty($question)) {
+            return response()->json($question);
+        } else {
+            return response()->json(
+                [
+                    'message' => 'question not found',
+                ],
+                404
+            );
+        }
+    }
+
     public function getSurveyNames()
     {
         $questions = Survey::all();
