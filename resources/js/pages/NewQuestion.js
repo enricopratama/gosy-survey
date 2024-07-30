@@ -6,6 +6,7 @@ import axios from "axios";
 import "../../css/app.css";
 import "../../css/NewQuestion.css";
 import { InputText } from "primereact/inputtext";
+import { maxIdRef } from "../components/SurveyTable";
 
 export default function NewQuestion() {
     const stepperRef = useRef(null);
@@ -244,32 +245,214 @@ export default function NewQuestion() {
                 <StepperPanel header="Add Question">
                     <div className="d-flex flex-column">
                         <div
-                            className="rounded surface-ground flex-auto d-flex font-medium mx-5"
-                            style={{ height: "50vh", overflow: "auto" }}
+                            className="rounded surface-ground flex-column d-flex font-medium mx-5"
+                            style={{
+                                height: "55vh",
+                                overflow: "auto",
+                                alignContent: "center",
+                            }}
                         >
-                            <div className="d-flex flex-column">
+                            <div
+                                className="d-flex flex-column"
+                                style={{
+                                    alignContent: "center",
+                                    textAlign: "left",
+                                }}
+                            >
                                 <h5 className="text-muted">Step 3</h5>
                                 <h1>
                                     Tambah Pertanyaan {response.questionGroup}
                                 </h1>
-                                <div
-                                    className="d-flex flex-row flex-wrap"
-                                    style={{ gap: "25px" }}
-                                >
+                                <div className="d-flex flex-column flex-wrap flex-column align-items-center mt-4">
                                     <div
                                         className="field"
-                                        style={{ marginBottom: "35px" }}
+                                        style={{
+                                            marginBottom: "35px",
+                                            minWidth: "12rem",
+                                        }}
+                                    >
+                                        <span className="p-float-label">
+                                            <InputText
+                                                id="question_id"
+                                                required
+                                                style={{ minWidth: "20rem" }}
+                                                value={maxIdRef.current}
+                                            />
+                                            <label
+                                                htmlFor="question_id"
+                                                className="font-bold"
+                                            >
+                                                Question ID
+                                            </label>
+                                        </span>
+                                    </div>
+                                    <div
+                                        className="field"
+                                        style={{
+                                            marginBottom: "35px",
+                                            minWidth: "12rem",
+                                        }}
                                     >
                                         <span className="p-float-label">
                                             <InputText
                                                 id="question_name"
                                                 required
+                                                style={{ minWidth: "20rem" }}
+                                            />
+                                            <label
+                                                htmlFor="question_name"
+                                                className="font-bold"
+                                            >
+                                                Question Group ID
+                                            </label>
+                                        </span>
+                                    </div>
+                                    <div
+                                        className="field"
+                                        style={{
+                                            marginBottom: "35px",
+                                            minWidth: "12rem",
+                                        }}
+                                    >
+                                        <span className="p-float-label">
+                                            <InputText
+                                                id="question_name"
+                                                required
+                                                style={{ minWidth: "20rem" }}
+                                                value={response.surveyType}
+                                            />
+                                            <label
+                                                htmlFor="survey_name"
+                                                className="font-bold"
+                                            >
+                                                Survey Name
+                                            </label>
+                                        </span>
+                                    </div>
+                                    <div
+                                        className="field"
+                                        style={{
+                                            marginBottom: "35px",
+                                            minWidth: "12rem",
+                                        }}
+                                    >
+                                        <span className="p-float-label">
+                                            <InputText
+                                                id="question_name"
+                                                required
+                                                style={{ minWidth: "20rem" }}
+                                                value={response.questionGroup}
+                                            />
+                                            <label
+                                                htmlFor="question_group_name"
+                                                className="font-bold"
+                                            >
+                                                Question Group Name
+                                            </label>
+                                        </span>
+                                    </div>
+                                    <div
+                                        className="field"
+                                        style={{
+                                            marginBottom: "35px",
+                                            minWidth: "12rem",
+                                        }}
+                                    >
+                                        <span className="p-float-label">
+                                            <InputText
+                                                id="question_name"
+                                                required
+                                                style={{ minWidth: "20rem" }}
                                             />
                                             <label
                                                 htmlFor="question_name"
                                                 className="font-bold"
                                             >
                                                 Question Name
+                                            </label>
+                                        </span>
+                                    </div>
+                                    <div
+                                        className="field"
+                                        style={{
+                                            marginBottom: "35px",
+                                            minWidth: "12rem",
+                                        }}
+                                    >
+                                        <span className="p-float-label">
+                                            <InputText
+                                                id="question_name"
+                                                required
+                                                style={{ minWidth: "20rem" }}
+                                            />
+                                            <label
+                                                htmlFor="question_name"
+                                                className="font-bold"
+                                            >
+                                                Question Key
+                                            </label>
+                                        </span>
+                                    </div>
+                                    <div
+                                        className="field"
+                                        style={{
+                                            marginBottom: "35px",
+                                            minWidth: "12rem",
+                                        }}
+                                    >
+                                        <span className="p-float-label">
+                                            <InputText
+                                                id="question_name"
+                                                required
+                                                style={{ minWidth: "20rem" }}
+                                            />
+                                            <label
+                                                htmlFor="question_name"
+                                                className="font-bold"
+                                            >
+                                                Question Type
+                                            </label>
+                                        </span>
+                                    </div>
+                                    <div
+                                        className="field"
+                                        style={{
+                                            marginBottom: "35px",
+                                            minWidth: "12rem",
+                                        }}
+                                    >
+                                        <span className="p-float-label">
+                                            <InputText
+                                                id="question_name"
+                                                required
+                                                style={{ minWidth: "20rem" }}
+                                            />
+                                            <label
+                                                htmlFor="question_name"
+                                                className="font-bold"
+                                            >
+                                                Sequence
+                                            </label>
+                                        </span>
+                                    </div>
+                                    <div
+                                        className="field"
+                                        style={{
+                                            marginBottom: "35px",
+                                            minWidth: "12rem",
+                                        }}
+                                    >
+                                        <span className="p-float-label">
+                                            <InputText
+                                                id="question_name"
+                                                required
+                                                style={{ minWidth: "20rem" }}
+                                            />
+                                            <label
+                                                htmlFor="question_name"
+                                                className="font-bold"
+                                            >
+                                                Status
                                             </label>
                                         </span>
                                     </div>
@@ -293,3 +476,4 @@ export default function NewQuestion() {
         </div>
     );
 }
+console.log("current", setTimeout(maxIdRef.current));
