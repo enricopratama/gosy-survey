@@ -9,8 +9,11 @@ import { classNames } from "primereact/utils";
 import axios from "axios";
 import "../../css/app.css";
 import "../../css/NewQuestion.css";
+import { Message } from "primereact/message";
+import { OverlayPanel } from "primereact/overlaypanel";
 
 export default function NewQuestion() {
+    const op = useRef(null);
     const stepperRef = useRef(null);
     const [questions, setQuestions] = useState([]);
     const [surveys, setSurveys] = useState([]);
@@ -19,6 +22,8 @@ export default function NewQuestion() {
     const [customSurvey, setCustomSurvey] = useState("");
     const [customQuestionGroup, setCustomQuestionGroup] = useState("");
     const [submitted, setSubmitted] = useState(false);
+    const [submittedQuestion, setSubmittedQuestion] = useState(false);
+    const [hoveredSurveyType, setHoveredSurveyType] = useState(null);
     const [questionDialog, setQuestionDialog] = useState(false);
     const [questionGroupDialog, setQuestionGroupDialog] = useState(false);
     const [response, setResponse] = useState({
@@ -84,24 +89,32 @@ export default function NewQuestion() {
         }));
     };
 
+    const handleQuestionGroupClick = (group) => {
+        setResponse((prevResponse) => ({
+            ...prevResponse,
+            questionGroup: group.question_group_name,
+        }));
+    };
+
     const handleCustomSurveySubmit = () => {
         setSubmitted(true);
         if (customSurvey.trim()) {
             handleSurveyClick({ survey_name: customSurvey });
-            // setCustomSurvey("");
         }
         setQuestionDialog(false);
     };
 
     const handleCustomQuestionGroupSubmit = () => {
-        setSubmitted(true);
+        setSubmittedQuestion(true);
+        const additionalString = `${response.surveyType} - `;
+        const totalString = additionalString + customQuestionGroup;
         if (customQuestionGroup.trim()) {
             handleQuestionGroupClick({
-                question_group_name: customQuestionGroup,
+                question_group_name: totalString,
             });
-            setCustomQuestionGroup("");
-            setQuestionGroupDialog(false);
+            setCustomQuestionGroup(""); // Clear the input after submission
         }
+        setQuestionGroupDialog(false);
     };
 
     const showDialog = () => {
@@ -115,12 +128,10 @@ export default function NewQuestion() {
 
     const showQuestionGroupDialog = () => {
         setQuestionGroupDialog(true);
-        setSubmitted(false);
     };
 
     const hideQuestionGroupDialog = () => {
         setQuestionGroupDialog(false);
-        setSubmitted(false);
         setCustomQuestionGroup("");
     };
 
@@ -152,13 +163,6 @@ export default function NewQuestion() {
             />
         </React.Fragment>
     );
-
-    const handleQuestionGroupClick = (group) => {
-        setResponse((prevResponse) => ({
-            ...prevResponse,
-            questionGroup: group.question_group_name,
-        }));
-    };
 
     const questionGroupDialogFooter = (
         <React.Fragment>
@@ -219,28 +223,81 @@ export default function NewQuestion() {
                                     style={{ gap: "25px" }}
                                 >
                                     {surveys.map((survey, index) => (
-                                        <button
-                                            key={index}
-                                            onClick={() => {
-                                                handleSurveyClick(survey);
-                                                setSubmitted(false);
-                                            }}
-                                            className={`btn btn-lg m-2 flex-fill ${
-                                                response.surveyType ===
-                                                survey.survey_name
-                                                    ? "btn-primary"
-                                                    : "btn-outline-primary"
-                                            }`}
-                                            style={{
-                                                height: "100px",
-                                                minWidth: "200px",
-                                                fontSize: "18px",
-                                                borderRadius: "30px",
-                                            }}
-                                        >
-                                            {survey.survey_name}
-                                        </button>
+                                        <>
+                                            <button
+                                                key={index}
+                                                onClick={() => {
+                                                    handleSurveyClick(survey);
+                                                    setSubmitted(false);
+                                                }}
+                                                onMouseEnter={(e) => {
+                                                    op.current.show(e);
+                                                    setHoveredSurveyType(
+                                                        survey.survey_name
+                                                    );
+                                                }}
+                                                onMouseOut={(e) => {
+                                                    op.current.hide(e);
+                                                    setHoveredSurveyType(null);
+                                                }}
+                                                className={`btn btn-lg m-2 flex-fill ${
+                                                    response.surveyType ===
+                                                    survey.survey_name
+                                                        ? "btn-primary"
+                                                        : "btn-outline-primary"
+                                                }`}
+                                                style={{
+                                                    height: "100px",
+                                                    minWidth: "200px",
+                                                    fontSize: "18px",
+                                                    borderRadius: "30px",
+                                                }}
+                                            >
+                                                {survey.survey_name}
+                                            </button>
+
+                                            {/* Popover Over Button */}
+                                            <OverlayPanel ref={op}>
+                                                <div>
+                                                    {surveyQuestionGroups
+                                                        .filter((group) =>
+                                                            group.question_group_name.includes(
+                                                                hoveredSurveyType
+                                                            )
+                                                        )
+                                                        .map((group, index) => {
+                                                            const groupNameAfterDash = group.question_group_name
+                                                                .substring(
+                                                                    group.question_group_name.indexOf(
+                                                                        "-"
+                                                                    ) + 1
+                                                                )
+                                                                .trim();
+                                                            return (
+                                                                <div
+                                                                    key={index}
+                                                                >
+                                                                    {
+                                                                        groupNameAfterDash
+                                                                    }
+                                                                </div>
+                                                            );
+                                                        })}
+                                                    {surveyQuestionGroups.filter(
+                                                        (group) =>
+                                                            group.question_group_name.includes(
+                                                                hoveredSurveyType
+                                                            )
+                                                    ).length === 0 && (
+                                                        <div>
+                                                            No Question Group
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </OverlayPanel>
+                                        </>
                                     ))}
+
                                     <div className="d-flex flex-column m-2 flex-fill">
                                         <button
                                             onClick={() => {
@@ -271,7 +328,7 @@ export default function NewQuestion() {
                                             ) ? (
                                                 <div>
                                                     <i className="pi pi-plus me-2"></i>
-                                                    Tambahkan Tipe Survey
+                                                    Tambah Tipe Survey
                                                 </div>
                                             ) : (
                                                 response.surveyType
@@ -287,7 +344,7 @@ export default function NewQuestion() {
                                                 "960px": "75vw",
                                                 "641px": "90vw",
                                             }}
-                                            header="Question Details"
+                                            header="Survey Details"
                                             modal
                                             className="p-fluid"
                                             footer={questionDialogFooter}
@@ -315,12 +372,19 @@ export default function NewQuestion() {
                                                             !customSurvey,
                                                     })}
                                                 />
+
                                                 {submitted &&
                                                     !response.surveyType && (
-                                                        <small className="p-error">
-                                                            Survey Type is
-                                                            required
-                                                        </small>
+                                                        <>
+                                                            <small className="p-error">
+                                                                Survey Type is
+                                                                required
+                                                            </small>
+                                                            <Message
+                                                                severity="error"
+                                                                text="Survey Name is required"
+                                                            />
+                                                        </>
                                                     )}
                                             </div>
                                         </Dialog>
@@ -378,7 +442,9 @@ export default function NewQuestion() {
                                                         handleQuestionGroupClick(
                                                             group
                                                         );
-                                                        setSubmitted(false);
+                                                        setSubmittedQuestion(
+                                                            false
+                                                        );
                                                     }}
                                                     className={`btn btn-lg m-2 flex-fill ${
                                                         response.questionGroup ===
@@ -397,20 +463,42 @@ export default function NewQuestion() {
                                                 </button>
                                             );
                                         })}
+
                                     <div className="d-flex flex-column m-2 flex-fill">
                                         <button
                                             onClick={() => {
                                                 showQuestionGroupDialog();
-                                                setSubmitted(false);
+                                                setSubmittedQuestion(false);
                                             }}
-                                            className="btn btn-lg btn-outline-primary"
+                                            className={`btn btn-lg ${
+                                                !submittedQuestion ||
+                                                surveys.some(
+                                                    (survey) =>
+                                                        survey.question_group_name ===
+                                                        customQuestionGroup
+                                                )
+                                                    ? "btn-outline-primary"
+                                                    : "btn-primary"
+                                            }`}
                                             style={{
                                                 height: "100px",
                                                 fontSize: "18px",
                                                 borderRadius: "30px",
                                             }}
                                         >
-                                            Tambah Question Group
+                                            {!submittedQuestion ||
+                                            surveys.some(
+                                                (survey) =>
+                                                    survey.question_group_name ===
+                                                    customQuestionGroup
+                                            ) ? (
+                                                <div>
+                                                    <i className="pi pi-plus me-2"></i>
+                                                    Tambah Question Group
+                                                </div>
+                                            ) : (
+                                                response.questionGroup
+                                            )}
                                         </button>
                                         <Dialog
                                             visible={questionGroupDialog}
@@ -441,18 +529,18 @@ export default function NewQuestion() {
                                                 <InputText
                                                     id="question_group_name"
                                                     value={customQuestionGroup}
-                                                    placeholder="(Survey Name) + Question Group Survey Name" // needs to handle to add the Survey Name at the start
+                                                    placeholder="(Survey Name) + Question Group Survey Name"
                                                     onChange={
                                                         onQuestionGroupInputChange
                                                     }
                                                     required
                                                     className={classNames({
                                                         "p-invalid":
-                                                            submitted &&
+                                                            submittedQuestion &&
                                                             !customQuestionGroup,
                                                     })}
                                                 />
-                                                {submitted &&
+                                                {submittedQuestion &&
                                                     !customQuestionGroup && (
                                                         <small className="p-error">
                                                             Question Group Name
