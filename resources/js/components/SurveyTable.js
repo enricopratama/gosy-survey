@@ -14,6 +14,7 @@ import { IconField } from "primereact/iconfield";
 import { classNames } from "primereact/utils";
 import { Button } from "primereact/button";
 
+// Needs fixing --> to be used in NewQuestion.js
 export let maxIdRef = { current: 0 };
 
 export default function SurveyTable() {
@@ -74,7 +75,7 @@ export default function SurveyTable() {
                 question_id: maxId,
             });
             maxIdRef.current = maxId;
-            console.log("Updated maxIdRef in getQuestions:", maxIdRef.current); // Log the updated maxIdRef here
+            // console.log("Updated maxIdRef in getQuestions:", maxIdRef.current); // Log the updated maxIdRef here
         } catch (error) {
             console.error("There was an error fetching the questions!", error);
         } finally {
@@ -106,7 +107,7 @@ export default function SurveyTable() {
                 : 1;
         setMaxId(maxId);
         maxIdRef.current = maxId;
-        console.log("Updated maxIdRef in useEffect:", maxIdRef.current); // Log the updated maxIdRef here
+        // console.log("Updated maxIdRef in useEffect:", maxIdRef.current); // Log the updated maxIdRef here
     }, [questions]);
 
     const onGlobalFilterChange = (e) => {
@@ -772,4 +773,4 @@ export default function SurveyTable() {
     );
 }
 
-console.log(maxIdRef.current);
+// console.log(maxIdRef.current);

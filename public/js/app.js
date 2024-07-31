@@ -11166,7 +11166,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_NewQuestion__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./pages/NewQuestion */ "./resources/js/pages/NewQuestion.js");
 /* harmony import */ var _css_app_css__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../css/app.css */ "./resources/css/app.css");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-// require("bootstrap");
  // theme
  // core css
  // icons
@@ -12129,6 +12128,8 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
+// Needs fixing --> to be used in NewQuestion.js
+
 var maxIdRef = {
   current: 0
 };
@@ -12253,22 +12254,22 @@ function SurveyTable() {
               question_id: _maxId
             }));
             maxIdRef.current = _maxId;
-            console.log("Updated maxIdRef in getQuestions:", maxIdRef.current); // Log the updated maxIdRef here
-            _context.next = 15;
+            // console.log("Updated maxIdRef in getQuestions:", maxIdRef.current); // Log the updated maxIdRef here
+            _context.next = 14;
             break;
-          case 12:
-            _context.prev = 12;
+          case 11:
+            _context.prev = 11;
             _context.t0 = _context["catch"](0);
             console.error("There was an error fetching the questions!", _context.t0);
-          case 15:
-            _context.prev = 15;
+          case 14:
+            _context.prev = 14;
             setLoading(false);
-            return _context.finish(15);
-          case 18:
+            return _context.finish(14);
+          case 17:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 12, 15, 18]]);
+      }, _callee, null, [[0, 11, 14, 17]]);
     }));
     return function getQuestions() {
       return _ref.apply(this, arguments);
@@ -12315,7 +12316,7 @@ function SurveyTable() {
     }))) + 1 : 1;
     setMaxId(maxId);
     maxIdRef.current = maxId;
-    console.log("Updated maxIdRef in useEffect:", maxIdRef.current); // Log the updated maxIdRef here
+    // console.log("Updated maxIdRef in useEffect:", maxIdRef.current); // Log the updated maxIdRef here
   }, [questions]);
   var onGlobalFilterChange = function onGlobalFilterChange(e) {
     var value = e.target.value || "";
@@ -12984,7 +12985,8 @@ function SurveyTable() {
     })]
   });
 }
-console.log(maxIdRef.current);
+
+// console.log(maxIdRef.current);
 
 /***/ }),
 
@@ -13887,15 +13889,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var primereact_stepper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primereact/stepper */ "./node_modules/primereact/stepper/stepper.esm.js");
-/* harmony import */ var primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primereact/stepperpanel */ "./node_modules/primereact/stepperpanel/stepperpanel.esm.js");
-/* harmony import */ var primereact_button__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primereact/button */ "./node_modules/primereact/button/button.esm.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _css_app_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../css/app.css */ "./resources/css/app.css");
-/* harmony import */ var _css_NewQuestion_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../css/NewQuestion.css */ "./resources/css/NewQuestion.css");
-/* harmony import */ var primereact_inputtext__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! primereact/inputtext */ "./node_modules/primereact/inputtext/inputtext.esm.js");
-/* harmony import */ var _components_SurveyTable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/SurveyTable */ "./resources/js/components/SurveyTable.js");
+/* harmony import */ var primereact_stepper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primereact/stepper */ "./node_modules/primereact/stepper/stepper.esm.js");
+/* harmony import */ var primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primereact/stepperpanel */ "./node_modules/primereact/stepperpanel/stepperpanel.esm.js");
+/* harmony import */ var primereact_button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primereact/button */ "./node_modules/primereact/button/button.esm.js");
+/* harmony import */ var primereact_inputtext__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! primereact/inputtext */ "./node_modules/primereact/inputtext/inputtext.esm.js");
+/* harmony import */ var _components_SurveyTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/SurveyTable */ "./resources/js/components/SurveyTable.js");
+/* harmony import */ var primereact_dialog__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! primereact/dialog */ "./node_modules/primereact/dialog/dialog.esm.js");
+/* harmony import */ var primereact_utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! primereact/utils */ "./node_modules/primereact/utils/utils.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _css_app_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../css/app.css */ "./resources/css/app.css");
+/* harmony import */ var _css_NewQuestion_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../css/NewQuestion.css */ "./resources/css/NewQuestion.css");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -13912,6 +13916,8 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
 
 
 
@@ -13940,13 +13946,33 @@ function NewQuestion() {
     _useState8 = _slicedToArray(_useState7, 2),
     loading = _useState8[0],
     setLoading = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState10 = _slicedToArray(_useState9, 2),
+    customSurvey = _useState10[0],
+    setCustomSurvey = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState12 = _slicedToArray(_useState11, 2),
+    customQuestionGroup = _useState12[0],
+    setCustomQuestionGroup = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState14 = _slicedToArray(_useState13, 2),
+    submitted = _useState14[0],
+    setSubmitted = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState16 = _slicedToArray(_useState15, 2),
+    questionDialog = _useState16[0],
+    setQuestionDialog = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState18 = _slicedToArray(_useState17, 2),
+    questionGroupDialog = _useState18[0],
+    setQuestionGroupDialog = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       surveyType: null,
       questionGroup: null
     }),
-    _useState10 = _slicedToArray(_useState9, 2),
-    response = _useState10[0],
-    setResponse = _useState10[1];
+    _useState20 = _slicedToArray(_useState19, 2),
+    response = _useState20[0],
+    setResponse = _useState20[1];
 
   /**
    * Fetch Questions API
@@ -13959,7 +13985,7 @@ function NewQuestion() {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/questions");
+            return axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/questions");
           case 3:
             _response = _context.sent;
             setQuestions(_response.data);
@@ -13995,7 +14021,7 @@ function NewQuestion() {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/survey");
+            return axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/survey");
           case 3:
             _response2 = _context2.sent;
             setSurveys(_response2.data);
@@ -14031,7 +14057,7 @@ function NewQuestion() {
           case 0:
             _context3.prev = 0;
             _context3.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/surveyQuestionGroup");
+            return axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/surveyQuestionGroup");
           case 3:
             _response3 = _context3.sent;
             setSurveyQuestionGroups(_response3.data);
@@ -14067,6 +14093,65 @@ function NewQuestion() {
       });
     });
   };
+  var handleCustomSurveySubmit = function handleCustomSurveySubmit() {
+    setSubmitted(true);
+    if (customSurvey.trim()) {
+      handleSurveyClick({
+        survey_name: customSurvey
+      });
+      // setCustomSurvey("");
+    }
+    setQuestionDialog(false);
+  };
+  var handleCustomQuestionGroupSubmit = function handleCustomQuestionGroupSubmit() {
+    setSubmitted(true);
+    if (customQuestionGroup.trim()) {
+      handleQuestionGroupClick({
+        question_group_name: customQuestionGroup
+      });
+      setCustomQuestionGroup("");
+      setQuestionGroupDialog(false);
+    }
+  };
+  var showDialog = function showDialog() {
+    setQuestionDialog(true);
+  };
+  var hideDialog = function hideDialog() {
+    setQuestionDialog(false);
+    setCustomSurvey("");
+  };
+  var showQuestionGroupDialog = function showQuestionGroupDialog() {
+    setQuestionGroupDialog(true);
+    setSubmitted(false);
+  };
+  var hideQuestionGroupDialog = function hideQuestionGroupDialog() {
+    setQuestionGroupDialog(false);
+    setSubmitted(false);
+    setCustomQuestionGroup("");
+  };
+  var onInputChange = function onInputChange(e) {
+    setCustomSurvey(e.target.value);
+  };
+  var onQuestionGroupInputChange = function onQuestionGroupInputChange(e) {
+    setCustomQuestionGroup(e.target.value);
+  };
+  var questionDialogFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
+      label: "Cancel",
+      icon: "pi pi-times",
+      iconPos: "left",
+      className: "ms-2 rounded",
+      outlined: true,
+      onClick: hideDialog
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
+      label: "Save",
+      icon: "pi pi-check",
+      className: "ms-2 rounded",
+      iconPos: "left",
+      onClick: handleCustomSurveySubmit,
+      disabled: !customSurvey.trim()
+    })]
+  });
   var handleQuestionGroupClick = function handleQuestionGroupClick(group) {
     setResponse(function (prevResponse) {
       return _objectSpread(_objectSpread({}, prevResponse), {}, {
@@ -14074,6 +14159,23 @@ function NewQuestion() {
       });
     });
   };
+  var questionGroupDialogFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
+      label: "Cancel",
+      icon: "pi pi-times",
+      iconPos: "left",
+      className: "ms-2 rounded",
+      outlined: true,
+      onClick: hideQuestionGroupDialog
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
+      label: "Save",
+      icon: "pi pi-check",
+      className: "ms-2 rounded",
+      iconPos: "left",
+      onClick: handleCustomQuestionGroupSubmit,
+      disabled: !customQuestionGroup.trim()
+    })]
+  });
   var exportResponsesToJson = function exportResponsesToJson() {
     var jsonResponse = JSON.stringify(response);
     console.log(jsonResponse);
@@ -14092,12 +14194,12 @@ function NewQuestion() {
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     className: "card d-flex justify-content-center",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(primereact_stepper__WEBPACK_IMPORTED_MODULE_6__.Stepper, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(primereact_stepper__WEBPACK_IMPORTED_MODULE_7__.Stepper, {
       ref: stepperRef,
       style: {
         flexBasis: "60rem"
       },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_7__.StepperPanel, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_8__.StepperPanel, {
         header: "Survey Type",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
           className: "d-flex flex-column",
@@ -14113,15 +14215,16 @@ function NewQuestion() {
                 children: "Step 1"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
                 children: "Apa Nama Tipe Survey Anda?"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                 className: "d-flex flex-row flex-wrap",
                 style: {
                   gap: "25px"
                 },
-                children: surveys.map(function (survey, index) {
+                children: [surveys.map(function (survey, index) {
                   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
                     onClick: function onClick() {
-                      return handleSurveyClick(survey);
+                      handleSurveyClick(survey);
+                      setSubmitted(false);
                     },
                     className: "btn btn-lg m-2 flex-fill ".concat(response.surveyType === survey.survey_name ? "btn-primary" : "btn-outline-primary"),
                     style: {
@@ -14132,12 +14235,73 @@ function NewQuestion() {
                     },
                     children: survey.survey_name
                   }, index);
-                })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                  className: "d-flex flex-column m-2 flex-fill",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                    onClick: function onClick() {
+                      showDialog();
+                      setSubmitted(false);
+                    },
+                    className: "btn btn-lg ".concat(!submitted || surveys.some(function (survey) {
+                      return survey.survey_name === customSurvey;
+                    }) ? "btn-outline-primary" : "btn-primary"),
+                    style: {
+                      height: "100px",
+                      fontSize: "18px",
+                      borderRadius: "30px"
+                    },
+                    children: !submitted || surveys.some(function (survey) {
+                      return survey.survey_name === customSurvey;
+                    }) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
+                        className: "pi pi-plus me-2"
+                      }), "Tambahkan Tipe Survey"]
+                    }) : response.surveyType
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_9__.Dialog, {
+                    visible: questionDialog,
+                    style: {
+                      width: "32rem",
+                      maxHeight: "90vh"
+                    },
+                    breakpoints: {
+                      "960px": "75vw",
+                      "641px": "90vw"
+                    },
+                    header: "Question Details",
+                    modal: true,
+                    className: "p-fluid",
+                    footer: questionDialogFooter,
+                    onHide: hideDialog,
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                      className: "field",
+                      style: {
+                        marginBottom: "35px"
+                      },
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+                        htmlFor: "survey_name",
+                        className: "font-bold",
+                        children: "Survey Type/Name"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_10__.InputText, {
+                        id: "survey_name",
+                        value: customSurvey,
+                        onChange: onInputChange,
+                        required: true,
+                        placeholder: "Survey [survey name]",
+                        className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_11__.classNames)({
+                          "p-invalid": submitted && !customSurvey
+                        })
+                      }), submitted && !response.surveyType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("small", {
+                        className: "p-error",
+                        children: "Survey Type is required"
+                      })]
+                    })
+                  })]
+                })]
               })]
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
             className: "d-flex pt-4 justify-content-end mx-5",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_8__.Button, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
               label: "Next",
               className: "rounded",
               icon: "pi pi-arrow-right",
@@ -14149,7 +14313,7 @@ function NewQuestion() {
             })
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_7__.StepperPanel, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_8__.StepperPanel, {
         header: "Question Group Name",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
           className: "d-flex flex-column",
@@ -14166,18 +14330,19 @@ function NewQuestion() {
                 children: "Step 2"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h1", {
                 children: ["Apakah Grup ", response.surveyType, " Anda?"]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                 className: "d-flex flex-row flex-wrap",
                 style: {
                   gap: "25px"
                 },
-                children: surveyQuestionGroups.filter(function (group) {
+                children: [surveyQuestionGroups.filter(function (group) {
                   return group.question_group_name.includes(response.surveyType);
                 }).map(function (group, index) {
                   var groupNameAfterDash = group.question_group_name.substring(group.question_group_name.indexOf("-") + 1).trim();
                   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
                     onClick: function onClick() {
-                      return handleQuestionGroupClick(group);
+                      handleQuestionGroupClick(group);
+                      setSubmitted(false);
                     },
                     className: "btn btn-lg m-2 flex-fill ".concat(response.questionGroup === group.question_group_name ? "btn-primary" : "btn-outline-primary"),
                     style: {
@@ -14188,12 +14353,66 @@ function NewQuestion() {
                     },
                     children: groupNameAfterDash
                   }, index);
-                })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                  className: "d-flex flex-column m-2 flex-fill",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                    onClick: function onClick() {
+                      showQuestionGroupDialog();
+                      setSubmitted(false);
+                    },
+                    className: "btn btn-lg btn-outline-primary",
+                    style: {
+                      height: "100px",
+                      fontSize: "18px",
+                      borderRadius: "30px"
+                    },
+                    children: "Tambah Question Group"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_9__.Dialog, {
+                    visible: questionGroupDialog,
+                    style: {
+                      width: "32rem",
+                      maxHeight: "90vh"
+                    },
+                    breakpoints: {
+                      "960px": "75vw",
+                      "641px": "90vw"
+                    },
+                    header: "Question Group Details",
+                    modal: true,
+                    className: "p-fluid",
+                    footer: questionGroupDialogFooter,
+                    onHide: hideQuestionGroupDialog,
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                      className: "field",
+                      style: {
+                        marginBottom: "35px"
+                      },
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+                        htmlFor: "question_group_name",
+                        className: "font-bold",
+                        children: "Question Group Name"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_10__.InputText, {
+                        id: "question_group_name",
+                        value: customQuestionGroup,
+                        placeholder: "(Survey Name) + Question Group Survey Name" // needs to handle to add the Survey Name at the start
+                        ,
+                        onChange: onQuestionGroupInputChange,
+                        required: true,
+                        className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_11__.classNames)({
+                          "p-invalid": submitted && !customQuestionGroup
+                        })
+                      }), submitted && !customQuestionGroup && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("small", {
+                        className: "p-error",
+                        children: "Question Group Name is required"
+                      })]
+                    })
+                  })]
+                })]
               })]
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
             className: "d-flex pt-4 justify-content-between mx-5",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_8__.Button, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
               label: "Back",
               className: "rounded",
               icon: "pi pi-arrow-left",
@@ -14201,7 +14420,7 @@ function NewQuestion() {
               onClick: function onClick() {
                 return stepperRef.current.prevCallback();
               }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_8__.Button, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
               label: "Next",
               className: "rounded",
               icon: "pi pi-arrow-right",
@@ -14213,7 +14432,7 @@ function NewQuestion() {
             })]
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_7__.StepperPanel, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_8__.StepperPanel, {
         header: "Add Question",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
           className: "d-flex flex-column",
@@ -14245,13 +14464,13 @@ function NewQuestion() {
                   },
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
                     className: "p-float-label",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_9__.InputText, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_10__.InputText, {
                       id: "question_id",
                       required: true,
                       style: {
                         minWidth: "20rem"
                       },
-                      value: _components_SurveyTable__WEBPACK_IMPORTED_MODULE_4__.maxIdRef.current
+                      value: _components_SurveyTable__WEBPACK_IMPORTED_MODULE_1__.maxIdRef.current
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
                       htmlFor: "question_id",
                       className: "font-bold",
@@ -14266,7 +14485,7 @@ function NewQuestion() {
                   },
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
                     className: "p-float-label",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_9__.InputText, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_10__.InputText, {
                       id: "question_name",
                       required: true,
                       style: {
@@ -14286,7 +14505,7 @@ function NewQuestion() {
                   },
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
                     className: "p-float-label",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_9__.InputText, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_10__.InputText, {
                       id: "question_name",
                       required: true,
                       style: {
@@ -14307,7 +14526,7 @@ function NewQuestion() {
                   },
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
                     className: "p-float-label",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_9__.InputText, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_10__.InputText, {
                       id: "question_name",
                       required: true,
                       style: {
@@ -14328,7 +14547,7 @@ function NewQuestion() {
                   },
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
                     className: "p-float-label",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_9__.InputText, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_10__.InputText, {
                       id: "question_name",
                       required: true,
                       style: {
@@ -14348,7 +14567,7 @@ function NewQuestion() {
                   },
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
                     className: "p-float-label",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_9__.InputText, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_10__.InputText, {
                       id: "question_name",
                       required: true,
                       style: {
@@ -14368,7 +14587,7 @@ function NewQuestion() {
                   },
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
                     className: "p-float-label",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_9__.InputText, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_10__.InputText, {
                       id: "question_name",
                       required: true,
                       style: {
@@ -14388,7 +14607,7 @@ function NewQuestion() {
                   },
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
                     className: "p-float-label",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_9__.InputText, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_10__.InputText, {
                       id: "question_name",
                       required: true,
                       style: {
@@ -14408,7 +14627,7 @@ function NewQuestion() {
                   },
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
                     className: "p-float-label",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_9__.InputText, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_10__.InputText, {
                       id: "question_name",
                       required: true,
                       style: {
@@ -14425,7 +14644,7 @@ function NewQuestion() {
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
             className: "d-flex pt-4 justify-content-start mx-5",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_8__.Button, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
               label: "Back",
               severity: "secondary",
               className: "rounded",
@@ -14440,7 +14659,7 @@ function NewQuestion() {
     })
   });
 }
-console.log("current", _components_SurveyTable__WEBPACK_IMPORTED_MODULE_4__.maxIdRef.current);
+// console.log("current", setTimeout(maxIdRef.current));
 
 /***/ }),
 
