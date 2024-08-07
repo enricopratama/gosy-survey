@@ -22,7 +22,7 @@ export default function NewQuestion() {
     const [customSurvey, setCustomSurvey] = useState("");
     const [customQuestionGroup, setCustomQuestionGroup] = useState("");
     const [submitted, setSubmitted] = useState(false);
-    const { maxId } = useContext(MaxIdContext); // Use global context for maxId
+    const { maxId } = useContext(MaxIdContext); // declare from global var
     const [submittedQuestion, setSubmittedQuestion] = useState(false);
     const [hoveredSurveyType, setHoveredSurveyType] = useState(null);
     const [questionDialog, setQuestionDialog] = useState(false);
@@ -45,15 +45,6 @@ export default function NewQuestion() {
             questionId: maxId,
         }));
     }, [maxId]);
-
-    // Dynamic input change handler
-    const onInputChange = (e, name) => {
-        const val = (e.target && e.target.value) || "";
-        setResponse((prevResponse) => ({
-            ...prevResponse,
-            [name]: val,
-        }));
-    };
 
     /**
      * Fetch Questions API
@@ -158,7 +149,7 @@ export default function NewQuestion() {
         setCustomQuestionGroup("");
     };
 
-    const onSurveyInputChange = (e) => {
+    const onInputChange = (e) => {
         setCustomSurvey(e.target.value);
     };
 
@@ -247,8 +238,9 @@ export default function NewQuestion() {
                                 >
                                     {/* Button Options */}
                                     {surveys.map((survey, index) => (
-                                        <React.Fragment key={index}>
+                                        <>
                                             <button
+                                                key={index}
                                                 onClick={() => {
                                                     handleSurveyClick(survey);
                                                     setSubmitted(false);
@@ -317,7 +309,7 @@ export default function NewQuestion() {
                                                     )}
                                                 </div>
                                             </OverlayPanel>
-                                        </React.Fragment>
+                                        </>
                                     ))}
 
                                     {/* Tambah Tipe Survey Button */}
@@ -386,9 +378,7 @@ export default function NewQuestion() {
                                                 <InputText
                                                     id="survey_name"
                                                     value={customSurvey}
-                                                    onChange={
-                                                        onSurveyInputChange
-                                                    }
+                                                    onChange={onInputChange}
                                                     required
                                                     placeholder="Survey [survey name]"
                                                     className={classNames({
@@ -550,9 +540,7 @@ export default function NewQuestion() {
                                         >
                                             <div
                                                 className="field"
-                                                style={{
-                                                    marginBottom: "35px",
-                                                }}
+                                                style={{ marginBottom: "35px" }}
                                             >
                                                 <label
                                                     htmlFor="question_group_name"
@@ -692,13 +680,7 @@ export default function NewQuestion() {
                                                 id="question_id"
                                                 required
                                                 style={{ minWidth: "20rem" }}
-                                                value={response.questionId}
-                                                onChange={(e) =>
-                                                    onInputChange(
-                                                        e,
-                                                        "questionId"
-                                                    )
-                                                }
+                                                value={maxId}
                                             />
                                             <label
                                                 htmlFor="question_id"
@@ -717,36 +699,17 @@ export default function NewQuestion() {
                                     >
                                         <span className="p-float-label">
                                             <InputText
-                                                id="question_group_id"
+                                                id="question_name"
                                                 required
                                                 style={{ minWidth: "20rem" }}
-                                                value={response.questionGroupId}
-                                                onChange={(e) =>
-                                                    onInputChange(
-                                                        e,
-                                                        "questionGroupId"
-                                                    )
-                                                }
-                                                className={classNames({
-                                                    "p-invalid":
-                                                        submitted &&
-                                                        !response.questionGroupId,
-                                                })}
                                             />
                                             <label
-                                                htmlFor="question_group_id"
+                                                htmlFor="question_name"
                                                 className="font-bold"
                                             >
                                                 Question Group ID
                                             </label>
                                         </span>
-                                        {submitted &&
-                                            !response.questionGroupId && (
-                                                <small className="p-error">
-                                                    Question Group ID is
-                                                    required.
-                                                </small>
-                                            )}
                                     </div>
                                     <div
                                         className="field"
@@ -760,18 +723,6 @@ export default function NewQuestion() {
                                                 id="question_name"
                                                 required
                                                 style={{ minWidth: "20rem" }}
-                                                value={response.questionName}
-                                                onChange={(e) =>
-                                                    onInputChange(
-                                                        e,
-                                                        "questionName"
-                                                    )
-                                                }
-                                                className={classNames({
-                                                    "p-invalid":
-                                                        submitted &&
-                                                        !response.questionName,
-                                                })}
                                             />
                                             <label
                                                 htmlFor="question_name"
@@ -780,12 +731,6 @@ export default function NewQuestion() {
                                                 Question Name
                                             </label>
                                         </span>
-                                        {submitted &&
-                                            !response.questionName && (
-                                                <small className="p-error">
-                                                    Question Name is required.
-                                                </small>
-                                            )}
                                     </div>
                                     <div
                                         className="field"
@@ -796,34 +741,17 @@ export default function NewQuestion() {
                                     >
                                         <span className="p-float-label">
                                             <InputText
-                                                id="question_key"
+                                                id="question_name"
                                                 required
                                                 style={{ minWidth: "20rem" }}
-                                                value={response.questionKey}
-                                                onChange={(e) =>
-                                                    onInputChange(
-                                                        e,
-                                                        "questionKey"
-                                                    )
-                                                }
-                                                className={classNames({
-                                                    "p-invalid":
-                                                        submitted &&
-                                                        !response.questionKey,
-                                                })}
                                             />
                                             <label
-                                                htmlFor="question_key"
+                                                htmlFor="question_name"
                                                 className="font-bold"
                                             >
                                                 Question Key
                                             </label>
                                         </span>
-                                        {submitted && !response.questionKey && (
-                                            <small className="p-error">
-                                                Question Key is required.
-                                            </small>
-                                        )}
                                     </div>
                                     <div
                                         className="field"
@@ -834,35 +762,17 @@ export default function NewQuestion() {
                                     >
                                         <span className="p-float-label">
                                             <InputText
-                                                id="question_type"
+                                                id="question_name"
                                                 required
                                                 style={{ minWidth: "20rem" }}
-                                                value={response.questionType}
-                                                onChange={(e) =>
-                                                    onInputChange(
-                                                        e,
-                                                        "questionType"
-                                                    )
-                                                }
-                                                className={classNames({
-                                                    "p-invalid":
-                                                        submitted &&
-                                                        !response.questionType,
-                                                })}
                                             />
                                             <label
-                                                htmlFor="question_type"
+                                                htmlFor="question_name"
                                                 className="font-bold"
                                             >
                                                 Question Type
                                             </label>
                                         </span>
-                                        {submitted &&
-                                            !response.questionType && (
-                                                <small className="p-error">
-                                                    Question Type is required.
-                                                </small>
-                                            )}
                                     </div>
                                     <div
                                         className="field"
@@ -873,31 +783,17 @@ export default function NewQuestion() {
                                     >
                                         <span className="p-float-label">
                                             <InputText
-                                                id="sequence"
+                                                id="question_name"
                                                 required
                                                 style={{ minWidth: "20rem" }}
-                                                value={response.sequence}
-                                                onChange={(e) =>
-                                                    onInputChange(e, "sequence")
-                                                }
-                                                className={classNames({
-                                                    "p-invalid":
-                                                        submitted &&
-                                                        !response.sequence,
-                                                })}
                                             />
                                             <label
-                                                htmlFor="sequence"
+                                                htmlFor="question_name"
                                                 className="font-bold"
                                             >
                                                 Sequence
                                             </label>
                                         </span>
-                                        {submitted && !response.sequence && (
-                                            <small className="p-error">
-                                                Sequence is required.
-                                            </small>
-                                        )}
                                     </div>
                                     <div
                                         className="field"
@@ -908,13 +804,9 @@ export default function NewQuestion() {
                                     >
                                         <span className="p-float-label">
                                             <InputText
-                                                id="statuss" // needs altering
+                                                id="question_name"
                                                 required
                                                 style={{ minWidth: "20rem" }}
-                                                value={response.status}
-                                                onChange={(e) =>
-                                                    onInputChange(e, "status")
-                                                }
                                             />
                                             <label
                                                 htmlFor="question_name"
@@ -923,11 +815,6 @@ export default function NewQuestion() {
                                                 Status
                                             </label>
                                         </span>
-                                        {submitted && !response.status && (
-                                            <small className="p-error">
-                                                Status is required.
-                                            </small>
-                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -943,12 +830,14 @@ export default function NewQuestion() {
                                 }
                             />
                             <Button
-                                label="Finish"
+                                label="Next"
                                 className="rounded"
-                                icon="pi pi-check"
+                                icon="pi pi-arrow-right"
                                 iconPos="right"
-                                onClick={() => exportResponsesToJson()}
-                                disabled={!isFormComplete()}
+                                disabled={response.questionGroup === null}
+                                onClick={() =>
+                                    stepperRef.current.nextCallback()
+                                }
                             />
                         </div>
                     </div>

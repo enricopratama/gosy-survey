@@ -673,6 +673,7 @@ export default function SurveyTable() {
                         <span className="p-float-label">
                             <InputNumber
                                 id="sequence"
+                                name="sequence"
                                 value={question.sequence}
                                 required
                                 onValueChange={(e) =>

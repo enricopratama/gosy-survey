@@ -11,7 +11,7 @@ import ViewSurvey from "./pages/ViewSurvey";
 import SurveyQuestions from "./pages/SurveyQuestions";
 import Favicon from "react-favicon";
 import { NoPage } from "./pages/NoPage";
-import { ThemeProvider } from "./ThemeContext";
+import { ThemeProvider } from "./components/ThemeContext";
 import { PrimeReactContext, PrimeReactProvider } from "primereact/api";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrimeReact from "primereact/api";
