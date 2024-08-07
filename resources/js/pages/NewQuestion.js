@@ -1,16 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Stepper } from "primereact/stepper";
 import { StepperPanel } from "primereact/stepperpanel";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
-import { maxIdRef } from "../components/SurveyTable";
 import { Dialog } from "primereact/dialog";
 import { classNames } from "primereact/utils";
+import { Message } from "primereact/message";
+import { OverlayPanel } from "primereact/overlaypanel";
+import { MaxIdContext } from "../components/MaxIdContext";
 import axios from "axios";
 import "../../css/app.css";
 import "../../css/NewQuestion.css";
-import { Message } from "primereact/message";
-import { OverlayPanel } from "primereact/overlaypanel";
 
 export default function NewQuestion() {
     const op = useRef(null);
@@ -22,6 +22,10 @@ export default function NewQuestion() {
     const [customSurvey, setCustomSurvey] = useState("");
     const [customQuestionGroup, setCustomQuestionGroup] = useState("");
     const [submitted, setSubmitted] = useState(false);
+    const { maxId } = useContext(MaxIdContext);
+    // useEffect(() => {
+    //     console.log("Max ID from context:", maxId);
+    // }, [maxId]);
     const [submittedQuestion, setSubmittedQuestion] = useState(false);
     const [hoveredSurveyType, setHoveredSurveyType] = useState(null);
     const [questionDialog, setQuestionDialog] = useState(false);
@@ -44,6 +48,22 @@ export default function NewQuestion() {
             setLoading(false);
         }
     };
+
+    // const getMaxId = async () => {
+    //     try {
+    //         const response = await axios.get("/api/maxId");
+    //         setMaxId(response.data.maxId);
+    //         console.log("Max ID:", maxId);
+    //     } catch (error) {
+    //         console.error("Error in fetching Max ID", error);
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
+
+    // useEffect(() => {
+    //     getMaxId();
+    // }, []);
 
     /**
      * Fetch Survey API
@@ -221,7 +241,7 @@ export default function NewQuestion() {
                                     className="d-flex flex-row flex-wrap"
                                     style={{ gap: "25px" }}
                                 >
-                                    {/* Button Options  */}
+                                    {/* Button Options */}
                                     {surveys.map((survey, index) => (
                                         <>
                                             <button
@@ -665,7 +685,7 @@ export default function NewQuestion() {
                                                 id="question_id"
                                                 required
                                                 style={{ minWidth: "20rem" }}
-                                                // value={maxIdRef.current}
+                                                value={maxId}
                                             />
                                             <label
                                                 htmlFor="question_id"
@@ -814,6 +834,16 @@ export default function NewQuestion() {
                                     stepperRef.current.prevCallback()
                                 }
                             />
+                            <Button
+                                label="Next"
+                                className="rounded"
+                                icon="pi pi-arrow-right"
+                                iconPos="right"
+                                disabled={response.questionGroup === null}
+                                onClick={() =>
+                                    stepperRef.current.nextCallback()
+                                }
+                            />
                         </div>
                     </div>
                 </StepperPanel>
@@ -821,4 +851,3 @@ export default function NewQuestion() {
         </div>
     );
 }
-// console.log("current", setTimeout(maxIdRef.current));

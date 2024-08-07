@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, createContext } from "react";
 import axios from "axios";
 import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
@@ -14,6 +14,7 @@ import { IconField } from "primereact/iconfield";
 import { classNames } from "primereact/utils";
 import { Button } from "primereact/button";
 
+export const maxIdContext = createContext(null);
 export default function SurveyTable() {
     const [questions, setQuestions] = useState([]);
     const [questionDialog, setQuestionDialog] = useState(false);
@@ -30,12 +31,35 @@ export default function SurveyTable() {
     const [currID, setCurrID] = useState(null);
     const toast = useRef(null);
     const dt = useRef(null);
+
     const [sizeOptions] = useState([
         { label: "Small", value: "small" },
         { label: "Normal", value: "normal" },
         { label: "Large", value: "large" },
     ]);
-    const [size, setSize] = useState(sizeOptions[1].value);
+    const initialSize =
+        window.innerHeight > 640 && window.innerWidth > 540
+            ? sizeOptions[1].value // "Normal" for tablets and larger
+            : sizeOptions[0].value; // "Small" for mobile
+
+    const [size, setSize] = useState(initialSize);
+
+    // Handle the change of Window Size
+    useEffect(() => {
+        const handleResize = () => {
+            setSize(
+                window.innerHeight > 640 && window.innerWidth > 540
+                    ? sizeOptions[1].value
+                    : sizeOptions[0].value
+            );
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -43,7 +67,7 @@ export default function SurveyTable() {
     });
 
     /**
-     * Initialise a new empty question
+     * Initialise an empty question
      */
     const initialEmptyQuestion = {
         question_id: null,
@@ -56,8 +80,9 @@ export default function SurveyTable() {
     };
 
     /**
-     * Fetch Questions API
+     * Fetch Questions API and POST Max ID
      */
+    // To Change: API to use MaxIdContext
     const getQuestions = async () => {
         try {
             const response = await axios.get("/api/questions");
@@ -72,20 +97,7 @@ export default function SurveyTable() {
                 question_id: maxId,
             });
         } catch (error) {
-            console.error("There was an error fetching the questions!", error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const getQuestionById = async (question_id) => {
-        try {
-            const response = await axios.get(`/api/questions/${question_id}`);
-            setQuestionResponse(response.data);
-        } catch (error) {
-            console.error(
-                `There was an error fetching the question_id ${question_id}, ${error}`
-            );
+            console.error("Error fetching the questions:", error);
         } finally {
             setLoading(false);
         }
@@ -93,29 +105,7 @@ export default function SurveyTable() {
 
     useEffect(() => {
         getQuestions();
-        getQuestionById();
     }, []);
-
-    useEffect(() => {
-        const maxId =
-            questions.length > 0
-                ? Math.max(...questions.map((q) => q.question_id)) + 1
-                : 1;
-        setMaxId(maxId);
-    }, [questions]);
-
-    const postMaxId = () => {
-        try {
-            const response = axios.post("/api/maxId", { maxId });
-            console.log("Max ID posted successfully:", response.data);
-        } catch (error) {
-            console.error("There was an error posting the maxId:", error);
-        }
-    };
-
-    useEffect(() => {
-        postMaxId();
-    });
 
     const onGlobalFilterChange = (e) => {
         const value = e.target.value || "";
@@ -163,6 +153,7 @@ export default function SurveyTable() {
                 (q) => q.question_id === parseInt(currID)
             );
 
+            // To Fix: toast occasionally shows, despite unique Question ID
             if (existingQuestion && !editState) {
                 toast.current.show({
                     severity: "error",
@@ -198,12 +189,6 @@ export default function SurveyTable() {
                     });
                 }
             } else {
-                // Generate new question ID
-                // const maxId =
-                //     _questions.length > 0
-                //         ? Math.max(..._questions.map((q) => q.question_id)) + 1
-                //         : 1;
-                // _question.question_id = maxId;
                 _questions.push(_question);
                 toast.current.show({
                     severity: "success",

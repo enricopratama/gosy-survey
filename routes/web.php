@@ -1,20 +1,16 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReactController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
-use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 // Define a route that requires authentication middleware
 Route::get('/flights', function () {
     // Only authenticated users may access this route...
     return 'This is a protected route for authenticated users only.';
-})->middleware('auth'); // Middleware
+})->middleware('auth');
 
 // Login and Logout:
 Route::get('/login', [LoginController::class, 'show'])
@@ -24,7 +20,7 @@ Route::get('/login', [LoginController::class, 'show'])
 Route::post('/authenticated', [LoginController::class, 'authenticated']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
-Route::get('/api/user', function (Request $request) {
+Route::get('/api/user', function () {
     return Auth::user();
 })->middleware('auth');
 
