@@ -14,9 +14,6 @@ import { IconField } from "primereact/iconfield";
 import { classNames } from "primereact/utils";
 import { Button } from "primereact/button";
 
-// Needs fixing --> to be used in NewQuestion.js
-export let maxIdRef = { current: 0 };
-
 export default function SurveyTable() {
     const [questions, setQuestions] = useState([]);
     const [questionDialog, setQuestionDialog] = useState(false);
@@ -74,8 +71,6 @@ export default function SurveyTable() {
                 ...initialEmptyQuestion,
                 question_id: maxId,
             });
-            maxIdRef.current = maxId;
-            // console.log("Updated maxIdRef in getQuestions:", maxIdRef.current); // Log the updated maxIdRef here
         } catch (error) {
             console.error("There was an error fetching the questions!", error);
         } finally {
@@ -98,6 +93,7 @@ export default function SurveyTable() {
 
     useEffect(() => {
         getQuestions();
+        getQuestionById();
     }, []);
 
     useEffect(() => {
@@ -106,9 +102,20 @@ export default function SurveyTable() {
                 ? Math.max(...questions.map((q) => q.question_id)) + 1
                 : 1;
         setMaxId(maxId);
-        maxIdRef.current = maxId;
-        // console.log("Updated maxIdRef in useEffect:", maxIdRef.current); // Log the updated maxIdRef here
     }, [questions]);
+
+    const postMaxId = () => {
+        try {
+            const response = axios.post("/api/maxId", { maxId });
+            console.log("Max ID posted successfully:", response.data);
+        } catch (error) {
+            console.error("There was an error posting the maxId:", error);
+        }
+    };
+
+    useEffect(() => {
+        postMaxId();
+    });
 
     const onGlobalFilterChange = (e) => {
         const value = e.target.value || "";
@@ -772,5 +779,3 @@ export default function SurveyTable() {
         </div>
     );
 }
-
-// console.log(maxIdRef.current);

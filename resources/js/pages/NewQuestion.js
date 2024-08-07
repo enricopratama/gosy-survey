@@ -64,7 +64,7 @@ export default function NewQuestion() {
      */
     const getSurveyQuestionGroups = async () => {
         try {
-            const response = await axios.get("/api/surveyQuestionGroup");
+            const response = await axios.get("/api/questionGroups");
             setSurveyQuestionGroups(response.data);
         } catch (error) {
             console.error(
@@ -112,7 +112,6 @@ export default function NewQuestion() {
             handleQuestionGroupClick({
                 question_group_name: totalString,
             });
-            setCustomQuestionGroup(""); // Clear the input after submission
         }
         setQuestionGroupDialog(false);
     };
@@ -222,6 +221,7 @@ export default function NewQuestion() {
                                     className="d-flex flex-row flex-wrap"
                                     style={{ gap: "25px" }}
                                 >
+                                    {/* Button Options  */}
                                     {surveys.map((survey, index) => (
                                         <>
                                             <button
@@ -259,6 +259,7 @@ export default function NewQuestion() {
                                             {/* Popover Over Button */}
                                             <OverlayPanel ref={op}>
                                                 <div>
+                                                    <h5>Question Groups:</h5>
                                                     {surveyQuestionGroups
                                                         .filter((group) =>
                                                             group.question_group_name.includes(
@@ -289,15 +290,14 @@ export default function NewQuestion() {
                                                                 hoveredSurveyType
                                                             )
                                                     ).length === 0 && (
-                                                        <div>
-                                                            No Question Group
-                                                        </div>
+                                                        <div>None</div>
                                                     )}
                                                 </div>
                                             </OverlayPanel>
                                         </>
                                     ))}
 
+                                    {/* Tambah Tipe Survey Button */}
                                     <div className="d-flex flex-column m-2 flex-fill">
                                         <button
                                             onClick={() => {
@@ -421,6 +421,7 @@ export default function NewQuestion() {
                                     className="d-flex flex-row flex-wrap"
                                     style={{ gap: "25px" }}
                                 >
+                                    {/* Button Options  */}
                                     {surveyQuestionGroups
                                         .filter((group) =>
                                             group.question_group_name.includes(
@@ -472,10 +473,10 @@ export default function NewQuestion() {
                                             }}
                                             className={`btn btn-lg ${
                                                 !submittedQuestion ||
-                                                surveys.some(
-                                                    (survey) =>
-                                                        survey.question_group_name ===
-                                                        customQuestionGroup
+                                                surveyQuestionGroups.some(
+                                                    (group) =>
+                                                        group.question_group_name ===
+                                                        `${response.surveyType} - ${customQuestionGroup}`
                                                 )
                                                     ? "btn-outline-primary"
                                                     : "btn-primary"
@@ -487,10 +488,10 @@ export default function NewQuestion() {
                                             }}
                                         >
                                             {!submittedQuestion ||
-                                            surveys.some(
-                                                (survey) =>
-                                                    survey.question_group_name ===
-                                                    customQuestionGroup
+                                            surveyQuestionGroups.some(
+                                                (group) =>
+                                                    group.question_group_name ===
+                                                    `${response.surveyType} - ${customQuestionGroup}`
                                             ) ? (
                                                 <div>
                                                     <i className="pi pi-plus me-2"></i>
@@ -498,6 +499,12 @@ export default function NewQuestion() {
                                                 </div>
                                             ) : (
                                                 response.questionGroup
+                                                    .substring(
+                                                        response.questionGroup.indexOf(
+                                                            "-"
+                                                        ) + 1
+                                                    )
+                                                    .trim()
                                             )}
                                         </button>
                                         <Dialog
@@ -529,7 +536,7 @@ export default function NewQuestion() {
                                                 <InputText
                                                     id="question_group_name"
                                                     value={customQuestionGroup}
-                                                    placeholder="(Survey Name) + Question Group Survey Name"
+                                                    placeholder={`${response.surveyType} - `}
                                                     onChange={
                                                         onQuestionGroupInputChange
                                                     }
@@ -609,10 +616,56 @@ export default function NewQuestion() {
                                     >
                                         <span className="p-float-label">
                                             <InputText
+                                                id="survey_name"
+                                                required
+                                                style={{ minWidth: "20rem" }}
+                                                value={response.surveyType}
+                                                disabled
+                                            />
+                                            <label
+                                                htmlFor="survey_name"
+                                                className="font-bold"
+                                            >
+                                                Survey Name
+                                            </label>
+                                        </span>
+                                    </div>
+                                    <div
+                                        className="field"
+                                        style={{
+                                            marginBottom: "35px",
+                                            minWidth: "12rem",
+                                        }}
+                                    >
+                                        <span className="p-float-label">
+                                            <InputText
+                                                id="question_group_name"
+                                                required
+                                                style={{ minWidth: "20rem" }}
+                                                value={response.questionGroup}
+                                                disabled
+                                            />
+                                            <label
+                                                htmlFor="question_group_name"
+                                                className="font-bold"
+                                            >
+                                                Question Group Name
+                                            </label>
+                                        </span>
+                                    </div>
+                                    <div
+                                        className="field"
+                                        style={{
+                                            marginBottom: "35px",
+                                            minWidth: "12rem",
+                                        }}
+                                    >
+                                        <span className="p-float-label">
+                                            <InputText
                                                 id="question_id"
                                                 required
                                                 style={{ minWidth: "20rem" }}
-                                                value={maxIdRef.current}
+                                                // value={maxIdRef.current}
                                             />
                                             <label
                                                 htmlFor="question_id"
@@ -640,50 +693,6 @@ export default function NewQuestion() {
                                                 className="font-bold"
                                             >
                                                 Question Group ID
-                                            </label>
-                                        </span>
-                                    </div>
-                                    <div
-                                        className="field"
-                                        style={{
-                                            marginBottom: "35px",
-                                            minWidth: "12rem",
-                                        }}
-                                    >
-                                        <span className="p-float-label">
-                                            <InputText
-                                                id="question_name"
-                                                required
-                                                style={{ minWidth: "20rem" }}
-                                                value={response.surveyType}
-                                            />
-                                            <label
-                                                htmlFor="survey_name"
-                                                className="font-bold"
-                                            >
-                                                Survey Name
-                                            </label>
-                                        </span>
-                                    </div>
-                                    <div
-                                        className="field"
-                                        style={{
-                                            marginBottom: "35px",
-                                            minWidth: "12rem",
-                                        }}
-                                    >
-                                        <span className="p-float-label">
-                                            <InputText
-                                                id="question_name"
-                                                required
-                                                style={{ minWidth: "20rem" }}
-                                                value={response.questionGroup}
-                                            />
-                                            <label
-                                                htmlFor="question_group_name"
-                                                className="font-bold"
-                                            >
-                                                Question Group Name
                                             </label>
                                         </span>
                                     </div>

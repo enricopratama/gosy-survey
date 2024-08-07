@@ -19,7 +19,7 @@ Route::get('/questions/{question_id}', [
 ]);
 
 Route::get('/survey', [QuestionController::class, 'getSurveyNames']);
-Route::get('/surveyQuestionGroup', [
+Route::get('/questionGroups', [
     QuestionController::class,
     'getQuestionGroupName',
 ]);
