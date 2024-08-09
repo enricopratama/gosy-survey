@@ -45,8 +45,8 @@
         
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
-    <script>
+    <!-- <script>
         let userData = {!! $globalData->toJson() !!};
-    </script>
+    </script> -->
 </body>
 </html>

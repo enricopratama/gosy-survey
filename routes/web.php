@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReactController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Auth;
 
 // Define a route that requires authentication middleware
@@ -23,6 +24,9 @@ Route::get('/logout', [LoginController::class, 'logout']);
 Route::get('/api/user', function () {
     return Auth::user();
 })->middleware('auth');
+
+// API route to add question
+Route::post('/addQuestion', [QuestionController::class, 'store']);
 
 // Alias for /users to be named as users only
 Route::get('/users', [UserController::class, 'index'])->name('users');

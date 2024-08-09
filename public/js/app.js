@@ -11111,13 +11111,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_favicon__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react_favicon__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var _pages_NoPage__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./pages/NoPage */ "./resources/js/pages/NoPage.js");
 /* harmony import */ var _components_ThemeContext__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/ThemeContext */ "./resources/js/components/ThemeContext.js");
-/* harmony import */ var primereact_api__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! primereact/api */ "./node_modules/primereact/api/api.esm.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var primereact_api__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! primereact/api */ "./node_modules/primereact/api/api.esm.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var _pages_NewQuestion__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./pages/NewQuestion */ "./resources/js/pages/NewQuestion.js");
-/* harmony import */ var _components_MaxIdContext__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/MaxIdContext */ "./resources/js/components/MaxIdContext.js");
-/* harmony import */ var _css_app_css__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../css/app.css */ "./resources/css/app.css");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _css_app_css__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../css/app.css */ "./resources/css/app.css");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
  // theme
  // core css
  // icons
@@ -11136,65 +11135,61 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // Import the MaxIdProvider
-
 
 function App() {
-  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_3__.useContext)(primereact_api__WEBPACK_IMPORTED_MODULE_18__.PrimeReactContext),
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_3__.useContext)(primereact_api__WEBPACK_IMPORTED_MODULE_17__.PrimeReactContext),
     setRipple = _useContext.setRipple;
   (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
     setRipple(true);
   }, [setRipple]);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_components_ThemeContext__WEBPACK_IMPORTED_MODULE_13__.ThemeProvider, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_components_MaxIdContext__WEBPACK_IMPORTED_MODULE_15__.MaxIdProvider, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.BrowserRouter, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Routes, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
-              exact: true,
-              path: "/home",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_pages_HomeCopy__WEBPACK_IMPORTED_MODULE_6__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
-              exact: true,
-              path: "/register",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_components_Register__WEBPACK_IMPORTED_MODULE_5__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
-              exact: true,
-              path: "/configs/user-access",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_pages_ListUserAccess__WEBPACK_IMPORTED_MODULE_7__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
-              exact: true,
-              path: "/configs/user-tokens",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_pages_ListUserTokens__WEBPACK_IMPORTED_MODULE_8__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
-              exact: true,
-              path: "/survey/view",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_pages_ViewSurvey__WEBPACK_IMPORTED_MODULE_9__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
-              exact: true,
-              path: "/survey/questions",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_pages_SurveyQuestions__WEBPACK_IMPORTED_MODULE_10__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
-              exact: true,
-              path: "/survey/new",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_pages_NewQuestion__WEBPACK_IMPORTED_MODULE_14__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
-              exact: true,
-              path: "*",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_pages_NoPage__WEBPACK_IMPORTED_MODULE_12__.NoPage, {})
-            })]
-          })
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_components_ThemeContext__WEBPACK_IMPORTED_MODULE_13__.ThemeProvider, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.BrowserRouter, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Routes, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
+            exact: true,
+            path: "/home",
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_pages_HomeCopy__WEBPACK_IMPORTED_MODULE_6__["default"], {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
+            exact: true,
+            path: "/register",
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_components_Register__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
+            exact: true,
+            path: "/configs/user-access",
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_pages_ListUserAccess__WEBPACK_IMPORTED_MODULE_7__["default"], {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
+            exact: true,
+            path: "/configs/user-tokens",
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_pages_ListUserTokens__WEBPACK_IMPORTED_MODULE_8__["default"], {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
+            exact: true,
+            path: "/survey/view",
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_pages_ViewSurvey__WEBPACK_IMPORTED_MODULE_9__["default"], {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
+            exact: true,
+            path: "/survey/questions",
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_pages_SurveyQuestions__WEBPACK_IMPORTED_MODULE_10__["default"], {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
+            exact: true,
+            path: "/survey/new",
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_pages_NewQuestion__WEBPACK_IMPORTED_MODULE_14__["default"], {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
+            exact: true,
+            path: "*",
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_pages_NoPage__WEBPACK_IMPORTED_MODULE_12__.NoPage, {})
+          })]
         })
       })
     })
   });
 }
 var root = react_dom_client__WEBPACK_IMPORTED_MODULE_4__.createRoot(document.getElementById("root"));
-root.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)((react__WEBPACK_IMPORTED_MODULE_3___default().StrictMode), {
-  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)((react_favicon__WEBPACK_IMPORTED_MODULE_11___default()), {
+root.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)((react__WEBPACK_IMPORTED_MODULE_3___default().StrictMode), {
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)((react_favicon__WEBPACK_IMPORTED_MODULE_11___default()), {
     url: "/favicon.ico"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(primereact_api__WEBPACK_IMPORTED_MODULE_18__.PrimeReactProvider, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(App, {})
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(primereact_api__WEBPACK_IMPORTED_MODULE_17__.PrimeReactProvider, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(App, {})
   })]
 }));
 
@@ -11381,95 +11376,6 @@ ButtonComponent.propTypes = {
   className: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ButtonComponent);
-
-/***/ }),
-
-/***/ "./resources/js/components/MaxIdContext.js":
-/*!*************************************************!*\
-  !*** ./resources/js/components/MaxIdContext.js ***!
-  \*************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   MaxIdContext: () => (/* binding */ MaxIdContext),
-/* harmony export */   MaxIdProvider: () => (/* binding */ MaxIdProvider)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
-function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
-function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
-function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
-function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
-function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
-function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
-function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-
-
-
-var MaxIdContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)();
-var MaxIdProvider = function MaxIdProvider(_ref) {
-  var children = _ref.children;
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
-    _useState2 = _slicedToArray(_useState, 2),
-    maxId = _useState2[0],
-    setMaxId = _useState2[1];
-  // const [questions, setQuestions] = useState([]);
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var fetchQuestions = /*#__PURE__*/function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var response, fetchedQuestions, calculatedMaxId;
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) switch (_context.prev = _context.next) {
-            case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/questions");
-            case 3:
-              response = _context.sent;
-              fetchedQuestions = response.data; // setQuestions(fetchedQuestions);
-              calculatedMaxId = fetchedQuestions.length > 0 ? Math.max.apply(Math, _toConsumableArray(fetchedQuestions.map(function (q) {
-                return q.question_id;
-              }))) + 1 : 1;
-              setMaxId(calculatedMaxId);
-              _context.next = 12;
-              break;
-            case 9:
-              _context.prev = 9;
-              _context.t0 = _context["catch"](0);
-              console.error("Error fetching questions:", _context.t0);
-            case 12:
-            case "end":
-              return _context.stop();
-          }
-        }, _callee, null, [[0, 9]]);
-      }));
-      return function fetchQuestions() {
-        return _ref2.apply(this, arguments);
-      };
-    }();
-    fetchQuestions();
-  }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(MaxIdContext.Provider, {
-    value: {
-      maxId: maxId,
-      setMaxId: setMaxId
-    },
-    children: children
-  });
-};
 
 /***/ }),
 
@@ -12113,8 +12019,7 @@ var StepperDemo = function StepperDemo() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ SurveyTable),
-/* harmony export */   maxIdContext: () => (/* binding */ maxIdContext)
+/* harmony export */   "default": () => (/* binding */ SurveyTable)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -12135,16 +12040,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primereact_button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! primereact/button */ "./node_modules/primereact/button/button.esm.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
-function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
@@ -12169,7 +12074,8 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
-var maxIdContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)(null);
+// export const maxIdContext = createContext(null);
+
 function SurveyTable() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
@@ -12187,45 +12093,33 @@ function SurveyTable() {
     _useState8 = _slicedToArray(_useState7, 2),
     deleteQuestionsDialog = _useState8[0],
     setDeleteQuestionsDialog = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState10 = _slicedToArray(_useState9, 2),
-    questionResponse = _useState10[0],
-    setQuestionResponse = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    question = _useState10[0],
+    setQuestion = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
     _useState12 = _slicedToArray(_useState11, 2),
-    question = _useState12[0],
-    setQuestion = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    loading = _useState12[0],
+    setLoading = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState14 = _slicedToArray(_useState13, 2),
-    maxId = _useState14[0],
-    setMaxId = _useState14[1];
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    selectedQuestions = _useState14[0],
+    setSelectedQuestions = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState16 = _slicedToArray(_useState15, 2),
-    loading = _useState16[0],
-    setLoading = _useState16[1];
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    submitted = _useState16[0],
+    setSubmitted = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState18 = _slicedToArray(_useState17, 2),
-    selectedQuestions = _useState18[0],
-    setSelectedQuestions = _useState18[1];
+    globalFilterValue = _useState18[0],
+    setGlobalFilterValue = _useState18[1];
   var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState20 = _slicedToArray(_useState19, 2),
-    submitted = _useState20[0],
-    setSubmitted = _useState20[1];
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-    _useState22 = _slicedToArray(_useState21, 2),
-    globalFilterValue = _useState22[0],
-    setGlobalFilterValue = _useState22[1];
-  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState24 = _slicedToArray(_useState23, 2),
-    editState = _useState24[0],
-    setEditState = _useState24[1];
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState26 = _slicedToArray(_useState25, 2),
-    currID = _useState26[0],
-    setCurrID = _useState26[1];
+    editState = _useState20[0],
+    setEditState = _useState20[1];
   var toast = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var dt = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
       label: "Small",
       value: "small"
     }, {
@@ -12235,17 +12129,17 @@ function SurveyTable() {
       label: "Large",
       value: "large"
     }]),
-    _useState28 = _slicedToArray(_useState27, 1),
-    sizeOptions = _useState28[0];
+    _useState22 = _slicedToArray(_useState21, 1),
+    sizeOptions = _useState22[0];
   var initialSize = window.innerHeight > 640 && window.innerWidth > 540 ? sizeOptions[1].value // "Normal" for tablets and larger
   : sizeOptions[0].value; // "Small" for mobile
 
-  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialSize),
-    _useState30 = _slicedToArray(_useState29, 2),
-    size = _useState30[0],
-    setSize = _useState30[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialSize),
+    _useState24 = _slicedToArray(_useState23, 2),
+    size = _useState24[0],
+    setSize = _useState24[1];
 
-  // Handle the change of Window Size
+  // Handle the change f Window Size
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var handleResize = function handleResize() {
       setSize(window.innerHeight > 640 && window.innerWidth > 540 ? sizeOptions[1].value : sizeOptions[0].value);
@@ -12255,7 +12149,7 @@ function SurveyTable() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       global: {
         value: null,
         matchMode: primereact_api__WEBPACK_IMPORTED_MODULE_3__.FilterMatchMode.CONTAINS
@@ -12265,15 +12159,15 @@ function SurveyTable() {
         matchMode: primereact_api__WEBPACK_IMPORTED_MODULE_3__.FilterMatchMode.EQUALS
       }
     }),
-    _useState32 = _slicedToArray(_useState31, 2),
-    filters = _useState32[0],
-    setFilters = _useState32[1];
+    _useState26 = _slicedToArray(_useState25, 2),
+    filters = _useState26[0],
+    setFilters = _useState26[1];
 
   /**
    * Initialise an empty question
    */
   var initialEmptyQuestion = {
-    question_id: null,
+    // question_id: questions.length + 1,
     question_key: "",
     question_group_id: null,
     sequence: null,
@@ -12285,10 +12179,10 @@ function SurveyTable() {
   /**
    * Fetch Questions API and POST Max ID
    */
-  // To Change: API to use MaxIdContext
+  // To Change MaxId: API to use MaxIdContext
   var getQuestions = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var response, _maxId;
+      var response;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
@@ -12298,28 +12192,22 @@ function SurveyTable() {
           case 3:
             response = _context.sent;
             setQuestions(response.data);
-            _maxId = response.data.length > 0 ? Math.max.apply(Math, _toConsumableArray(response.data.map(function (q) {
-              return q.question_id;
-            }))) + 1 : 1;
-            setMaxId(_maxId);
-            setQuestion(_objectSpread(_objectSpread({}, initialEmptyQuestion), {}, {
-              question_id: _maxId
-            }));
-            _context.next = 13;
+            setQuestion(_objectSpread({}, initialEmptyQuestion));
+            _context.next = 11;
             break;
-          case 10:
-            _context.prev = 10;
+          case 8:
+            _context.prev = 8;
             _context.t0 = _context["catch"](0);
             console.error("Error fetching the questions:", _context.t0);
-          case 13:
-            _context.prev = 13;
+          case 11:
+            _context.prev = 11;
             setLoading(false);
-            return _context.finish(13);
-          case 16:
+            return _context.finish(11);
+          case 14:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 10, 13, 16]]);
+      }, _callee, null, [[0, 8, 11, 14]]);
     }));
     return function getQuestions() {
       return _ref.apply(this, arguments);
@@ -12340,9 +12228,7 @@ function SurveyTable() {
     setGlobalFilterValue(value);
   };
   var openNew = function openNew() {
-    setQuestion(_objectSpread(_objectSpread({}, initialEmptyQuestion), {}, {
-      question_id: maxId
-    }));
+    setQuestion(_objectSpread({}, initialEmptyQuestion));
     setSubmitted(false);
     setQuestionDialog(true);
   };
@@ -12361,39 +12247,19 @@ function SurveyTable() {
   };
   var saveQuestion = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-      var _questions, _question, existingQuestion, index;
+      var _questions, _question, index, formData, url, hasil;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
             setSubmitted(true);
             if (!question.question_name.trim()) {
-              _context2.next = 14;
+              _context2.next = 22;
               break;
             }
             _questions = _toConsumableArray(questions);
-            _question = _objectSpread({}, question); // Check if the question_id already exists
-            existingQuestion = questions.find(function (q) {
-              return q.question_id === parseInt(currID);
-            }); // To Fix: toast occasionally shows, despite unique Question ID
-            if (!(existingQuestion && !editState)) {
-              _context2.next = 8;
-              break;
-            }
-            toast.current.show({
-              severity: "error",
-              summary: "Oops.. Question ID has already been taken",
-              detail: "",
-              life: 2000,
-              position: "center"
-            });
-            return _context2.abrupt("return");
-          case 8:
+            _question = _objectSpread({}, question);
             if (_question.question_id) {
-              // Update existing question
               index = findIndexById(_question.question_id);
-              console.log("question_id:", _question.question_id); // Log question_id
-              console.log("index:", index); // Log index
-
               if (index >= 0) {
                 _questions[index] = _question;
                 toast.current.show({
@@ -12411,21 +12277,32 @@ function SurveyTable() {
                   life: 2000
                 });
               }
-            } else {
-              _questions.push(_question);
-              toast.current.show({
-                severity: "success",
-                summary: "Successful",
-                detail: "Question Created Successfully",
-                life: 2000
-              });
             }
+            formData = new FormData(); // JS built in FormData
+            formData.append("question_group_id", _question.question_group_id);
+            formData.append("question_name", _question.question_name);
+            formData.append("question_key", _question.question_key);
+            formData.append("question_type", _question.question_type);
+            formData.append("sequence", _question.sequence);
+            formData.append("status", _question.status);
+            formData.append("data_status", _question.data_status);
+            url = "/addQuestion";
+            _context2.next = 16;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default()({
+              method: "post",
+              url: url,
+              data: formData
+            }).then(function (response) {
+              return response;
+            });
+          case 16:
+            hasil = _context2.sent;
             setQuestions(_questions);
             setQuestionDialog(false);
             setQuestion(initialEmptyQuestion);
-            setCurrID(null);
             setEditState(false);
-          case 14:
+            getQuestions();
+          case 22:
           case "end":
             return _context2.stop();
         }
@@ -12437,7 +12314,6 @@ function SurveyTable() {
   }();
   var editQuestion = function editQuestion(question) {
     setQuestion(_objectSpread({}, question));
-    setCurrID(question.question_id);
     setQuestionDialog(true);
     setEditState(true);
   };
@@ -12496,18 +12372,12 @@ function SurveyTable() {
   var onInputChange = function onInputChange(e, name) {
     var val = e.target && e.target.value || "";
     var _question = _objectSpread({}, question);
-    if (name === "question_id") {
-      setCurrID(val);
-    }
     _question["".concat(name)] = val;
     setQuestion(_question);
   };
   var onInputNumberChange = function onInputNumberChange(e, name) {
     var val = e.value || 0;
     var _question = _objectSpread({}, question);
-    if (name === "question_id") {
-      setCurrID(val);
-    }
     _question["".concat(name)] = val;
     setQuestion(_question);
   };
@@ -12540,6 +12410,18 @@ function SurveyTable() {
       className: "rounded"
     });
   };
+  var paginatorLeft = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_4__.Button, {
+    type: "button",
+    icon: "pi pi-refresh",
+    text: true,
+    onClick: getQuestions
+  });
+  var paginatorRight = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_4__.Button, {
+    type: "button",
+    icon: "pi pi-download",
+    text: true,
+    onClick: exportCSV
+  });
   var actionBodyTemplate = function actionBodyTemplate(rowData) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_4__.Button, {
@@ -12658,7 +12540,9 @@ function SurveyTable() {
         paginator: true,
         size: size,
         removableSort: true,
-        rows: 10,
+        paginatorLeft: paginatorLeft,
+        paginatorRight: paginatorRight,
+        rows: 5,
         rowsPerPageOptions: [5, 10, 25],
         paginatorTemplate: "FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown showGridlines",
         currentPageReportTemplate: "Showing {first} to {last} of {totalRecords} questions",
@@ -12667,6 +12551,7 @@ function SurveyTable() {
         stripedRows: true,
         sortField: "question_id",
         sortOrder: 1,
+        dragSelection: true,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_12__.Column, {
           selectionMode: "multiple",
           exportable: false
@@ -12757,30 +12642,8 @@ function SurveyTable() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: "field",
         style: {
-          marginBottom: "35px"
-        },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-          htmlFor: "question_id",
-          className: "font-bold",
-          children: "Question ID"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_7__.InputText, {
-          id: "question_id",
-          value: question.question_id,
-          onChange: function onChange(e) {
-            return onInputChange(e, "question_id");
-          },
-          disabled: editState,
-          className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_14__.classNames)({
-            "p-invalid": submitted && !question.question_id
-          })
-        }), submitted && !question.question_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("small", {
-          className: "p-error",
-          children: "Question ID is required."
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "field",
-        style: {
-          marginBottom: "35px"
+          marginBottom: "35px",
+          marginTop: "20px"
         },
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
           className: "p-float-label",
@@ -12861,26 +12724,41 @@ function SurveyTable() {
         style: {
           marginBottom: "35px"
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
-          className: "p-float-label",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_7__.InputText, {
-            id: "question_type",
-            value: question.question_type,
-            onChange: function onChange(e) {
-              return onInputChange(e, "question_type");
-            },
-            required: true,
-            className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_14__.classNames)({
-              "p-invalid": submitted && !question.question_type
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-            htmlFor: "question_type",
-            className: "font-bold",
-            children: "Question Type"
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+          htmlFor: "question_type",
+          className: "font-bold",
+          children: "Question Type:"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
+          id: "question_type",
+          name: "question_type"
+          // value={question.question_type}
+          ,
+          onChange: function onChange(e) {
+            return onInputChange(e, "question_type");
+          },
+          required: true,
+          className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_14__.classNames)({
+            "p-invalid": submitted && !question.question_type
+          }),
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+            value: "Choice",
+            children: "Choice"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+            value: "Text",
+            children: "Text"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+            value: "Paragraph",
+            children: "Paragraph"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+            value: "Checkboxes",
+            children: "Checkboxes"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+            value: "Dropdown",
+            children: "Dropdown"
           })]
         }), submitted && !question.question_type && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("small", {
           className: "p-error",
-          children: "Question Type is required."
+          children: "Question type is required."
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: "formgrid grid",
@@ -12927,7 +12805,7 @@ function SurveyTable() {
               className: "font-bold",
               children: "Status"
             })]
-          }), submitted && !question.status && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("small", {
+          }), submitted && !question.data_status && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("small", {
             className: "p-error",
             children: "Status is required."
           })]
@@ -13941,21 +13819,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var primereact_stepper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primereact/stepper */ "./node_modules/primereact/stepper/stepper.esm.js");
-/* harmony import */ var primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primereact/stepperpanel */ "./node_modules/primereact/stepperpanel/stepperpanel.esm.js");
-/* harmony import */ var primereact_button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primereact/button */ "./node_modules/primereact/button/button.esm.js");
-/* harmony import */ var primereact_inputtext__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! primereact/inputtext */ "./node_modules/primereact/inputtext/inputtext.esm.js");
-/* harmony import */ var primereact_dialog__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! primereact/dialog */ "./node_modules/primereact/dialog/dialog.esm.js");
-/* harmony import */ var primereact_utils__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! primereact/utils */ "./node_modules/primereact/utils/utils.esm.js");
-/* harmony import */ var primereact_message__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! primereact/message */ "./node_modules/primereact/message/message.esm.js");
-/* harmony import */ var primereact_overlaypanel__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! primereact/overlaypanel */ "./node_modules/primereact/overlaypanel/overlaypanel.esm.js");
-/* harmony import */ var _components_MaxIdContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/MaxIdContext */ "./resources/js/components/MaxIdContext.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _css_app_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../css/app.css */ "./resources/css/app.css");
-/* harmony import */ var _css_NewQuestion_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../css/NewQuestion.css */ "./resources/css/NewQuestion.css");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var primereact_stepper__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! primereact/stepper */ "./node_modules/primereact/stepper/stepper.esm.js");
+/* harmony import */ var primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! primereact/stepperpanel */ "./node_modules/primereact/stepperpanel/stepperpanel.esm.js");
+/* harmony import */ var primereact_button__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! primereact/button */ "./node_modules/primereact/button/button.esm.js");
+/* harmony import */ var primereact_inputtext__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primereact/inputtext */ "./node_modules/primereact/inputtext/inputtext.esm.js");
+/* harmony import */ var primereact_dialog__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! primereact/dialog */ "./node_modules/primereact/dialog/dialog.esm.js");
+/* harmony import */ var primereact_utils__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! primereact/utils */ "./node_modules/primereact/utils/utils.esm.js");
+/* harmony import */ var primereact_message__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! primereact/message */ "./node_modules/primereact/message/message.esm.js");
+/* harmony import */ var primereact_overlaypanel__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! primereact/overlaypanel */ "./node_modules/primereact/overlaypanel/overlaypanel.esm.js");
+/* harmony import */ var primereact_datatable__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! primereact/datatable */ "./node_modules/primereact/datatable/datatable.esm.js");
+/* harmony import */ var primereact_column__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! primereact/column */ "./node_modules/primereact/column/column.esm.js");
+/* harmony import */ var primereact_api__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! primereact/api */ "./node_modules/primereact/api/api.esm.js");
+/* harmony import */ var primereact_toolbar__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! primereact/toolbar */ "./node_modules/primereact/toolbar/toolbar.esm.js");
+/* harmony import */ var primereact_inputnumber__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! primereact/inputnumber */ "./node_modules/primereact/inputnumber/inputnumber.esm.js");
+/* harmony import */ var primereact_floatlabel__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! primereact/floatlabel */ "./node_modules/primereact/floatlabel/floatlabel.esm.js");
+/* harmony import */ var primereact_inputicon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primereact/inputicon */ "./node_modules/primereact/inputicon/inputicon.esm.js");
+/* harmony import */ var primereact_iconfield__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primereact/iconfield */ "./node_modules/primereact/iconfield/iconfield.esm.js");
+/* harmony import */ var primereact_dropdown__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! primereact/dropdown */ "./node_modules/primereact/dropdown/dropdown.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _css_app_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../css/app.css */ "./resources/css/app.css");
+/* harmony import */ var _css_NewQuestion_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../css/NewQuestion.css */ "./resources/css/NewQuestion.css");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
@@ -13984,6 +13874,14 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
+
+
+
+
+
+
+
+
 function NewQuestion() {
   var op = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var stepperRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
@@ -13993,78 +13891,115 @@ function NewQuestion() {
     setQuestions = _useState2[1];
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState4 = _slicedToArray(_useState3, 2),
-    surveys = _useState4[0],
-    setSurveys = _useState4[1];
+    question = _useState4[0],
+    setQuestion = _useState4[1];
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState6 = _slicedToArray(_useState5, 2),
-    surveyQuestionGroups = _useState6[0],
-    setSurveyQuestionGroups = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    filteredQuestions = _useState6[0],
+    setFilteredQuestions = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState8 = _slicedToArray(_useState7, 2),
-    loading = _useState8[0],
-    setLoading = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    surveys = _useState8[0],
+    setSurveys = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState10 = _slicedToArray(_useState9, 2),
-    customSurvey = _useState10[0],
-    setCustomSurvey = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    surveyQuestionGroups = _useState10[0],
+    setSurveyQuestionGroups = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
     _useState12 = _slicedToArray(_useState11, 2),
-    customQuestionGroup = _useState12[0],
-    setCustomQuestionGroup = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    loading = _useState12[0],
+    setLoading = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState14 = _slicedToArray(_useState13, 2),
-    submitted = _useState14[0],
-    setSubmitted = _useState14[1];
-  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_components_MaxIdContext__WEBPACK_IMPORTED_MODULE_1__.MaxIdContext),
-    maxId = _useContext.maxId; // Use global context for maxId
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    customSurvey = _useState14[0],
+    setCustomSurvey = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState16 = _slicedToArray(_useState15, 2),
-    submittedQuestion = _useState16[0],
-    setSubmittedQuestion = _useState16[1];
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    customQuestionGroup = _useState16[0],
+    setCustomQuestionGroup = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState18 = _slicedToArray(_useState17, 2),
-    hoveredSurveyType = _useState18[0],
-    setHoveredSurveyType = _useState18[1];
+    submitted = _useState18[0],
+    setSubmitted = _useState18[1];
   var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState20 = _slicedToArray(_useState19, 2),
-    questionDialog = _useState20[0],
-    setQuestionDialog = _useState20[1];
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    submittedQuestion = _useState20[0],
+    setSubmittedQuestion = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState22 = _slicedToArray(_useState21, 2),
-    questionGroupDialog = _useState22[0],
-    setQuestionGroupDialog = _useState22[1];
-  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-      surveyType: null,
-      // Survey Name
-      questionGroup: null,
-      // Question Group Name
-      questionId: maxId,
-      questionGroupId: null,
-      questionKey: null,
-      questionType: null,
-      sequence: null,
-      status: null
-    }),
+    selectedQuestions = _useState22[0],
+    setSelectedQuestions = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState24 = _slicedToArray(_useState23, 2),
-    response = _useState24[0],
-    setResponse = _useState24[1];
-
-  // Update questionId whenever maxId changes
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    setResponse(function (prevResponse) {
-      return _objectSpread(_objectSpread({}, prevResponse), {}, {
-        questionId: maxId
-      });
-    });
-  }, [maxId]);
-
-  // Dynamic input change handler
+    hoveredSurveyType = _useState24[0],
+    setHoveredSurveyType = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState26 = _slicedToArray(_useState25, 2),
+    questionDialog = _useState26[0],
+    setQuestionDialog = _useState26[1];
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState28 = _slicedToArray(_useState27, 2),
+    questionGroupDialog = _useState28[0],
+    setQuestionGroupDialog = _useState28[1];
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState30 = _slicedToArray(_useState29, 2),
+    globalFilterValue = _useState30[0],
+    setGlobalFilterValue = _useState30[1];
+  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState32 = _slicedToArray(_useState31, 2),
+    editState = _useState32[0],
+    setEditState = _useState32[1];
+  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState34 = _slicedToArray(_useState33, 2),
+    isSubmitted = _useState34[0],
+    setIsSubmitted = _useState34[1];
+  var dt = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var _useState35 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      survey_name: null,
+      question_group_name: null,
+      question_group_id: null,
+      question_key: "",
+      question_type: "",
+      question_name: "",
+      sequence: null,
+      data_status: null
+    }),
+    _useState36 = _slicedToArray(_useState35, 2),
+    response = _useState36[0],
+    setResponse = _useState36[1];
+  var _useState37 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      global: {
+        value: null,
+        matchMode: primereact_api__WEBPACK_IMPORTED_MODULE_5__.FilterMatchMode.CONTAINS
+      },
+      question_id: {
+        value: null,
+        matchMode: primereact_api__WEBPACK_IMPORTED_MODULE_5__.FilterMatchMode.EQUALS
+      }
+    }),
+    _useState38 = _slicedToArray(_useState37, 2),
+    filters = _useState38[0],
+    setFilters = _useState38[1];
   var onInputChange = function onInputChange(e, name) {
     var val = e.target && e.target.value || "";
-    setResponse(function (prevResponse) {
-      return _objectSpread(_objectSpread({}, prevResponse), {}, _defineProperty({}, name, val));
+    var _question = _objectSpread({}, question);
+    _question["".concat(name)] = val;
+    setQuestion(_question);
+  };
+  var onInputNumberChange = function onInputNumberChange(e, name) {
+    var val = e.value || 0;
+    var _question = _objectSpread({}, question);
+    _question["".concat(name)] = val;
+    setQuestion(_question);
+  };
+  var handleTypeChange = function handleTypeChange(e) {
+    setResponse(function (prev) {
+      return _objectSpread(_objectSpread({}, prev), {}, {
+        question_type: e.value
+      });
     });
   };
+  var questionTypes = ["Text", "Choice", "Checkboxes", "Dropdown"];
 
   /**
    * Fetch Questions API
@@ -14077,7 +14012,7 @@ function NewQuestion() {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/questions");
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/questions");
           case 3:
             _response = _context.sent;
             setQuestions(_response.data);
@@ -14103,6 +14038,18 @@ function NewQuestion() {
   }();
 
   /**
+   * Initialise an empty question
+   */
+  var initialEmptyQuestion = {
+    question_key: "",
+    question_group_id: null,
+    sequence: null,
+    question_name: "",
+    question_type: "",
+    data_status: null
+  };
+
+  /**
    * Fetch Survey API
    */
   var getSurveys = /*#__PURE__*/function () {
@@ -14113,7 +14060,7 @@ function NewQuestion() {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/survey");
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/survey");
           case 3:
             _response2 = _context2.sent;
             setSurveys(_response2.data);
@@ -14149,7 +14096,7 @@ function NewQuestion() {
           case 0:
             _context3.prev = 0;
             _context3.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/questionGroups");
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/questionGroups");
           case 3:
             _response3 = _context3.sent;
             setSurveyQuestionGroups(_response3.data);
@@ -14173,22 +14120,35 @@ function NewQuestion() {
       return _ref3.apply(this, arguments);
     };
   }();
+  var filterQuestionsByGroupName = function filterQuestionsByGroupName() {
+    if (response.question_group_name) {
+      var _filteredQuestions = questions.filter(function (question) {
+        return question.question_group_name && question.question_group_name.includes(response.question_group_name);
+      });
+      setFilteredQuestions(_filteredQuestions);
+    } else {
+      setFilteredQuestions([]);
+    }
+  };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     getQuestions();
     getSurveys();
     getSurveyQuestionGroups();
   }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    filterQuestionsByGroupName();
+  }, [questions, response.question_group_name, surveyQuestionGroups]);
   var handleSurveyClick = function handleSurveyClick(survey) {
     setResponse(function (prevResponse) {
       return _objectSpread(_objectSpread({}, prevResponse), {}, {
-        surveyType: survey.survey_name
+        survey_name: survey.survey_name
       });
     });
   };
   var handleQuestionGroupClick = function handleQuestionGroupClick(group) {
     setResponse(function (prevResponse) {
       return _objectSpread(_objectSpread({}, prevResponse), {}, {
-        questionGroup: group.question_group_name
+        question_group_name: group.question_group_name
       });
     });
   };
@@ -14201,9 +14161,76 @@ function NewQuestion() {
     }
     setQuestionDialog(false);
   };
+  var saveQuestion = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+      var _questions, _question, index, formData, url, hasil;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            setSubmitted(true);
+            if (!question.question_name.trim()) {
+              _context4.next = 22;
+              break;
+            }
+            _questions = _toConsumableArray(questions);
+            _question = _objectSpread({}, question);
+            if (_question.question_id) {
+              index = findIndexById(_question.question_id);
+              if (index >= 0) {
+                _questions[index] = _question;
+                toast.current.show({
+                  severity: "success",
+                  summary: "Successful",
+                  detail: "Question Updated",
+                  life: 2000
+                });
+              } else {
+                _questions.push(_question);
+                toast.current.show({
+                  severity: "success",
+                  summary: "Successful",
+                  detail: "Question Created",
+                  life: 2000
+                });
+              }
+            }
+            formData = new FormData();
+            formData.append("question_group_id", _question.question_group_id);
+            formData.append("question_name", _question.question_name);
+            formData.append("question_key", _question.question_key);
+            formData.append("question_type", _question.question_type);
+            formData.append("sequence", _question.sequence);
+            formData.append("status", _question.status);
+            formData.append("data_status", _question.data_status);
+            url = "/addQuestion";
+            _context4.next = 16;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default()({
+              method: "post",
+              url: url,
+              data: formData
+            }).then(function (response) {
+              return response;
+            });
+          case 16:
+            hasil = _context4.sent;
+            setQuestions(_questions);
+            setQuestionDialog(false);
+            setQuestion(initialEmptyQuestion);
+            setEditState(false);
+            getQuestions();
+          case 22:
+          case "end":
+            return _context4.stop();
+        }
+      }, _callee4);
+    }));
+    return function saveQuestion() {
+      return _ref4.apply(this, arguments);
+    };
+  }();
   var handleCustomQuestionGroupSubmit = function handleCustomQuestionGroupSubmit() {
     setSubmittedQuestion(true);
-    var additionalString = "".concat(response.surveyType, " - ");
+    var additionalString = "".concat(response.survey_name, " - ");
     var totalString = additionalString + customQuestionGroup;
     if (customQuestionGroup.trim()) {
       handleQuestionGroupClick({
@@ -14232,15 +14259,97 @@ function NewQuestion() {
   var onQuestionGroupInputChange = function onQuestionGroupInputChange(e) {
     setCustomQuestionGroup(e.target.value);
   };
-  var questionDialogFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
+  var onGlobalFilterChange = function onGlobalFilterChange(e) {
+    var value = e.target.value || "";
+    setFilters(function (prevFilters) {
+      return _objectSpread(_objectSpread({}, prevFilters), {}, {
+        global: _objectSpread(_objectSpread({}, prevFilters.global), {}, {
+          value: value
+        })
+      });
+    });
+    setGlobalFilterValue(value);
+  };
+  var header = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    className: "d-flex gap-2 justify-content-between align-items-center flex-wrap",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+      className: "m-0",
+      children: response.question_group_name
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(primereact_iconfield__WEBPACK_IMPORTED_MODULE_6__.IconField, {
+      iconPosition: "left",
+      className: "me-3",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_inputicon__WEBPACK_IMPORTED_MODULE_7__.InputIcon, {
+        className: "pi pi-search"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_8__.InputText, {
+        value: globalFilterValue,
+        type: "search",
+        onChange: onGlobalFilterChange,
+        placeholder: "Search..."
+      })]
+    })]
+  });
+  var confirmDeleteQuestion = function confirmDeleteQuestion(question) {
+    setQuestion(question);
+    setDeleteQuestionDialog(true);
+    setEditState(false);
+  };
+  var confirmDeleteSelected = function confirmDeleteSelected() {
+    setDeleteQuestionsDialog(true);
+    setEditState(false);
+  };
+  var deleteQuestion = function deleteQuestion() {
+    var _questions = questions.filter(function (val) {
+      return val.question_id !== question.question_id;
+    });
+    setQuestions(_questions);
+    setDeleteQuestionDialog(false);
+    setQuestion(initialEmptyQuestion);
+    setEditState(false);
+    toast.current.show({
+      severity: "success",
+      summary: "Successful",
+      detail: "Question Deleted",
+      life: 2000
+    });
+  };
+  var actionBodyTemplate = function actionBodyTemplate(rowData) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_9__.Button, {
+        icon: "pi pi-pencil",
+        className: "me-2 rounded-pill",
+        outlined: true,
+        onClick: function onClick() {
+          setEditState(true);
+          editQuestion(rowData);
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_9__.Button, {
+        icon: "pi pi-trash",
+        rounded: true,
+        outlined: true,
+        severity: "danger",
+        className: "rounded-pill",
+        onClick: function onClick() {
+          return confirmDeleteQuestion(rowData);
+        }
+      })]
+    });
+  };
+  var editQuestion = function editQuestion(question) {
+    setQuestion(_objectSpread({}, question));
+    setQuestionDialog(true);
+    setEditState(true);
+  };
+
+  // Step 1
+  var questionDialogFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_9__.Button, {
       label: "Cancel",
       icon: "pi pi-times",
       iconPos: "left",
       className: "ms-2 rounded",
       outlined: true,
       onClick: hideDialog
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_9__.Button, {
       label: "Save",
       icon: "pi pi-check",
       className: "ms-2 rounded",
@@ -14249,21 +14358,39 @@ function NewQuestion() {
       disabled: !customSurvey.trim()
     })]
   });
-  var questionGroupDialogFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
+
+  // Step 2
+  var questionGroupDialogFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_9__.Button, {
       label: "Cancel",
       icon: "pi pi-times",
       iconPos: "left",
       className: "ms-2 rounded",
       outlined: true,
       onClick: hideQuestionGroupDialog
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_9__.Button, {
       label: "Save",
       icon: "pi pi-check",
       className: "ms-2 rounded",
       iconPos: "left",
       onClick: handleCustomQuestionGroupSubmit,
       disabled: !customQuestionGroup.trim()
+    })]
+  });
+  var step3Footer = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_9__.Button, {
+      label: "Cancel",
+      icon: "pi pi-times",
+      iconPos: "left",
+      className: "ms-2 rounded",
+      outlined: true,
+      onClick: hideQuestionGroupDialog
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_9__.Button, {
+      label: "Save",
+      icon: "pi pi-check",
+      className: "ms-2 rounded",
+      iconPos: "left",
+      onClick: saveQuestion
     })]
   });
   var exportResponsesToJson = function exportResponsesToJson() {
@@ -14279,40 +14406,90 @@ function NewQuestion() {
     link.download = "responses.json";
     link.click();
   };
-  var isFormComplete = function isFormComplete() {
-    return response.surveyType !== null && response.questionGroup !== null && questions.length > 0; // Add additional checks as needed
+  var openNew = function openNew() {
+    setQuestion(_objectSpread({}, initialEmptyQuestion));
+    setSubmitted(false);
+    setQuestionDialog(true);
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+  var exportCSV = function exportCSV() {
+    dt.current.exportCSV();
+  };
+  var deleteSelectedQuestions = function deleteSelectedQuestions() {
+    var _questions = questions.filter(function (val) {
+      return !selectedQuestions.includes(val);
+    });
+    setQuestions(_questions);
+    setDeleteQuestionsDialog(false);
+    setSelectedQuestions(null);
+    setEditState(false);
+    toast.current.show({
+      severity: "success",
+      summary: "Successful",
+      detail: "Questions Deleted",
+      life: 2000
+    });
+  };
+  var leftToolbarTemplate = function leftToolbarTemplate() {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "d-flex flex-wrap gap-2",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_9__.Button, {
+        label: "New",
+        icon: "pi pi-plus",
+        iconPos: "left",
+        onClick: openNew,
+        className: "rounded"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_9__.Button, {
+        label: "Delete",
+        icon: "pi pi-trash",
+        iconPos: "left",
+        severity: "danger",
+        onClick: confirmDeleteSelected,
+        disabled: !selectedQuestions || !selectedQuestions.length,
+        className: "rounded"
+      })]
+    });
+  };
+  var rightToolbarTemplate = function rightToolbarTemplate() {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_9__.Button, {
+      label: "Export",
+      icon: "pi pi-upload",
+      iconPos: "left",
+      onClick: exportCSV,
+      className: "rounded"
+    });
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
     className: "card d-flex justify-content-center",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(primereact_stepper__WEBPACK_IMPORTED_MODULE_7__.Stepper, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(primereact_stepper__WEBPACK_IMPORTED_MODULE_10__.Stepper, {
+      linear: true,
       ref: stepperRef,
       style: {
         flexBasis: "60rem"
       },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_8__.StepperPanel, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_11__.StepperPanel, {
         header: "Survey Type",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "d-flex flex-column",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: "rounded surface-ground flex-auto d-flex font-medium mx-5 h-small",
             style: {
               overflow: "auto"
             },
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
               className: "d-flex flex-column",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h5", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h5", {
                 className: "text-muted",
                 children: "Step 1"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
                 children: "Apa Nama Tipe Survey Anda?"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                 className: "d-flex flex-row flex-wrap",
                 style: {
                   gap: "25px"
                 },
                 children: [surveys.map(function (survey, index) {
-                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
                       onClick: function onClick() {
                         handleSurveyClick(survey);
                         setSubmitted(false);
@@ -14325,7 +14502,7 @@ function NewQuestion() {
                         op.current.hide(e);
                         setHoveredSurveyType(null);
                       },
-                      className: "btn btn-lg m-2 flex-fill ".concat(response.surveyType === survey.survey_name ? "btn-primary" : "btn-outline-primary"),
+                      className: "btn btn-lg m-2 flex-fill ".concat(response.survey_name === survey.survey_name ? "btn-primary" : "btn-outline-primary"),
                       style: {
                         height: "100px",
                         minWidth: "200px",
@@ -14333,29 +14510,29 @@ function NewQuestion() {
                         borderRadius: "30px"
                       },
                       children: survey.survey_name
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_overlaypanel__WEBPACK_IMPORTED_MODULE_9__.OverlayPanel, {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_overlaypanel__WEBPACK_IMPORTED_MODULE_12__.OverlayPanel, {
                       ref: op,
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h5", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h5", {
                           children: "Question Groups:"
                         }), surveyQuestionGroups.filter(function (group) {
                           return group.question_group_name.includes(hoveredSurveyType);
                         }).map(function (group, index) {
                           var groupNameAfterDash = group.question_group_name.substring(group.question_group_name.indexOf("-") + 1).trim();
-                          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                             children: groupNameAfterDash
                           }, index);
                         }), surveyQuestionGroups.filter(function (group) {
                           return group.question_group_name.includes(hoveredSurveyType);
-                        }).length === 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                        }).length === 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                           children: "None"
                         })]
                       })
                     })]
                   }, index);
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                   className: "d-flex flex-column m-2 flex-fill",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
                     onClick: function onClick() {
                       showDialog();
                       setSubmitted(false);
@@ -14370,12 +14547,12 @@ function NewQuestion() {
                     },
                     children: !submitted || surveys.some(function (survey) {
                       return survey.survey_name === customSurvey;
-                    }) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
+                    }) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
                         className: "pi pi-plus me-2"
                       }), "Tambah Tipe Survey"]
-                    }) : response.surveyType
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_10__.Dialog, {
+                    }) : response.survey_name
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_13__.Dialog, {
                     visible: questionDialog,
                     style: {
                       width: "32rem",
@@ -14390,29 +14567,29 @@ function NewQuestion() {
                     className: "p-fluid",
                     footer: questionDialogFooter,
                     onHide: hideDialog,
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                       className: "field",
                       style: {
                         marginBottom: "35px"
                       },
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
                         htmlFor: "survey_name",
                         className: "font-bold",
                         children: "Survey Type/Name"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_11__.InputText, {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_8__.InputText, {
                         id: "survey_name",
                         value: customSurvey,
                         onChange: onSurveyInputChange,
                         required: true,
                         placeholder: "Survey [survey name]",
-                        className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_12__.classNames)({
+                        className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_14__.classNames)({
                           "p-invalid": submitted && !customSurvey
                         })
-                      }), submitted && !response.surveyType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("small", {
+                      }), submitted && !response.survey_name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
                           className: "p-error",
                           children: "Survey Type is required"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_message__WEBPACK_IMPORTED_MODULE_13__.Message, {
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_message__WEBPACK_IMPORTED_MODULE_15__.Message, {
                           severity: "error",
                           text: "Survey Name is required"
                         })]
@@ -14422,52 +14599,52 @@ function NewQuestion() {
                 })]
               })]
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: "d-flex pt-4 justify-content-end mx-5",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_9__.Button, {
               label: "Next",
               className: "rounded",
               icon: "pi pi-arrow-right",
               iconPos: "right",
-              disabled: response.surveyType === null,
+              disabled: response.survey_name === null,
               onClick: function onClick() {
                 return stepperRef.current.nextCallback();
               }
             })
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_8__.StepperPanel, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_11__.StepperPanel, {
         header: "Question Group Name",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "d-flex flex-column",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: "rounded surface-ground flex-auto d-flex font-medium mx-5",
             style: {
               height: "50vh",
               overflow: "auto"
             },
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
               className: "d-flex flex-column",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h5", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h5", {
                 className: "text-muted",
                 children: "Step 2"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h1", {
-                children: ["Apakah Grup ", response.surveyType, " Anda?"]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h1", {
+                children: ["Apakah Grup ", response.survey_name, " Anda?"]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                 className: "d-flex flex-row flex-wrap",
                 style: {
                   gap: "25px"
                 },
                 children: [surveyQuestionGroups.filter(function (group) {
-                  return group.question_group_name.includes(response.surveyType);
+                  return group.question_group_name.includes(response.survey_name);
                 }).map(function (group, index) {
                   var groupNameAfterDash = group.question_group_name.substring(group.question_group_name.indexOf("-") + 1).trim();
-                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
                     onClick: function onClick() {
                       handleQuestionGroupClick(group);
                       setSubmittedQuestion(false);
                     },
-                    className: "btn btn-lg m-2 flex-fill ".concat(response.questionGroup === group.question_group_name ? "btn-primary" : "btn-outline-primary"),
+                    className: "btn btn-lg m-2 flex-fill ".concat(response.question_group_name === group.question_group_name ? "btn-primary" : "btn-outline-primary"),
                     style: {
                       height: "100px",
                       minWidth: "200px",
@@ -14476,15 +14653,15 @@ function NewQuestion() {
                     },
                     children: groupNameAfterDash
                   }, index);
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                   className: "d-flex flex-column m-2 flex-fill",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
                     onClick: function onClick() {
                       showQuestionGroupDialog();
                       setSubmittedQuestion(false);
                     },
                     className: "btn btn-lg ".concat(!submittedQuestion || surveyQuestionGroups.some(function (group) {
-                      return group.question_group_name === "".concat(response.surveyType, " - ").concat(customQuestionGroup);
+                      return group.question_group_name === "".concat(response.survey_name, " - ").concat(customQuestionGroup);
                     }) ? "btn-outline-primary" : "btn-primary"),
                     style: {
                       height: "100px",
@@ -14492,13 +14669,13 @@ function NewQuestion() {
                       borderRadius: "30px"
                     },
                     children: !submittedQuestion || surveyQuestionGroups.some(function (group) {
-                      return group.question_group_name === "".concat(response.surveyType, " - ").concat(customQuestionGroup);
-                    }) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
+                      return group.question_group_name === "".concat(response.survey_name, " - ").concat(customQuestionGroup);
+                    }) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
                         className: "pi pi-plus me-2"
                       }), "Tambah Question Group"]
-                    }) : response.questionGroup.substring(response.questionGroup.indexOf("-") + 1).trim()
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_10__.Dialog, {
+                    }) : response.question_group_name.substring(response.question_group_name.indexOf("-") + 1).trim()
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_13__.Dialog, {
                     visible: questionGroupDialog,
                     style: {
                       width: "32rem",
@@ -14513,25 +14690,25 @@ function NewQuestion() {
                     className: "p-fluid",
                     footer: questionGroupDialogFooter,
                     onHide: hideQuestionGroupDialog,
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                       className: "field",
                       style: {
                         marginBottom: "35px"
                       },
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
                         htmlFor: "question_group_name",
                         className: "font-bold",
                         children: "Question Group Name"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_11__.InputText, {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_8__.InputText, {
                         id: "question_group_name",
                         value: customQuestionGroup,
-                        placeholder: "".concat(response.surveyType, " - "),
+                        placeholder: "".concat(response.survey_name, " - "),
                         onChange: onQuestionGroupInputChange,
                         required: true,
-                        className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_12__.classNames)({
+                        className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_14__.classNames)({
                           "p-invalid": submittedQuestion && !customQuestionGroup
                         })
-                      }), submittedQuestion && !customQuestionGroup && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("small", {
+                      }), submittedQuestion && !customQuestionGroup && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
                         className: "p-error",
                         children: "Question Group Name is required"
                       })]
@@ -14540,9 +14717,9 @@ function NewQuestion() {
                 })]
               })]
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "d-flex pt-4 justify-content-between mx-5",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_9__.Button, {
               label: "Back",
               className: "rounded",
               icon: "pi pi-arrow-left",
@@ -14550,313 +14727,324 @@ function NewQuestion() {
               onClick: function onClick() {
                 return stepperRef.current.prevCallback();
               }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_9__.Button, {
               label: "Next",
               className: "rounded",
               icon: "pi pi-arrow-right",
               iconPos: "right",
-              disabled: response.questionGroup === null,
+              disabled: response.question_group_name === null,
               onClick: function onClick() {
                 return stepperRef.current.nextCallback();
               }
             })]
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_8__.StepperPanel, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_11__.StepperPanel, {
         header: "Add Question",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-          className: "d-flex flex-column",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-            className: "rounded surface-ground flex-column d-flex font-medium mx-5",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_toolbar__WEBPACK_IMPORTED_MODULE_16__.Toolbar, {
+          className: "mb-4",
+          left: leftToolbarTemplate,
+          right: rightToolbarTemplate
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(primereact_datatable__WEBPACK_IMPORTED_MODULE_17__.DataTable, {
+          ref: dt,
+          value: filteredQuestions,
+          selection: selectedQuestions,
+          onSelectionChange: function onSelectionChange(e) {
+            return setSelectedQuestions(e.value);
+          },
+          paginator: true,
+          rows: 5,
+          filters: filters,
+          stripedRows: true,
+          header: header,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_18__.Column, {
+            selectionMode: "multiple",
+            exportable: false
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_18__.Column, {
+            field: "question_id",
+            header: "ID",
+            sortable: true
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_18__.Column, {
+            field: "question_name",
+            header: "Name",
+            sortable: true
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_18__.Column, {
+            field: "question_key",
+            header: "Key",
+            sortable: true
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_18__.Column, {
+            field: "question_type",
+            header: "Type",
+            sortable: true
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_18__.Column, {
+            field: "question_group_id",
+            header: "Question Group ID",
+            sortable: true
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_18__.Column, {
+            field: "sequence",
+            header: "Sequence",
+            sortable: true
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_18__.Column, {
+            body: actionBodyTemplate,
+            field: "Edit",
+            exportable: false,
             style: {
-              height: "65vh",
-              overflow: "auto",
-              alignContent: "center"
+              minWidth: "12rem"
             },
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-              className: "d-flex flex-column",
-              style: {
-                alignContent: "center",
-                textAlign: "left"
-              },
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h5", {
-                className: "text-muted",
-                children: "Step 3"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h1", {
-                children: ["Tambah Pertanyaan ", response.questionGroup]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                className: "d-flex flex-column flex-wrap flex-column align-items-center mt-4",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                  className: "field",
-                  style: {
-                    marginBottom: "35px",
-                    minWidth: "12rem"
-                  },
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
-                    className: "p-float-label",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_11__.InputText, {
-                      id: "survey_name",
-                      required: true,
-                      style: {
-                        minWidth: "20rem"
-                      },
-                      value: response.surveyType,
-                      disabled: true
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-                      htmlFor: "survey_name",
-                      className: "font-bold",
-                      children: "Survey Name"
-                    })]
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                  className: "field",
-                  style: {
-                    marginBottom: "35px",
-                    minWidth: "12rem"
-                  },
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
-                    className: "p-float-label",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_11__.InputText, {
-                      id: "question_group_name",
-                      required: true,
-                      style: {
-                        minWidth: "20rem"
-                      },
-                      value: response.questionGroup,
-                      disabled: true
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-                      htmlFor: "question_group_name",
-                      className: "font-bold",
-                      children: "Question Group Name"
-                    })]
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                  className: "field",
-                  style: {
-                    marginBottom: "35px",
-                    minWidth: "12rem"
-                  },
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
-                    className: "p-float-label",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_11__.InputText, {
-                      id: "question_id",
-                      required: true,
-                      style: {
-                        minWidth: "20rem"
-                      },
-                      value: response.questionId,
-                      onChange: function onChange(e) {
-                        return onInputChange(e, "questionId");
-                      }
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-                      htmlFor: "question_id",
-                      className: "font-bold",
-                      children: "Question ID"
-                    })]
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                  className: "field",
-                  style: {
-                    marginBottom: "35px",
-                    minWidth: "12rem"
-                  },
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
-                    className: "p-float-label",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_11__.InputText, {
-                      id: "question_group_id",
-                      required: true,
-                      style: {
-                        minWidth: "20rem"
-                      },
-                      value: response.questionGroupId,
-                      onChange: function onChange(e) {
-                        return onInputChange(e, "questionGroupId");
-                      },
-                      className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_12__.classNames)({
-                        "p-invalid": submitted && !response.questionGroupId
-                      })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-                      htmlFor: "question_group_id",
-                      className: "font-bold",
-                      children: "Question Group ID"
-                    })]
-                  }), submitted && !response.questionGroupId && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("small", {
-                    className: "p-error",
-                    children: "Question Group ID is required."
-                  })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                  className: "field",
-                  style: {
-                    marginBottom: "35px",
-                    minWidth: "12rem"
-                  },
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
-                    className: "p-float-label",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_11__.InputText, {
-                      id: "question_name",
-                      required: true,
-                      style: {
-                        minWidth: "20rem"
-                      },
-                      value: response.questionName,
-                      onChange: function onChange(e) {
-                        return onInputChange(e, "questionName");
-                      },
-                      className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_12__.classNames)({
-                        "p-invalid": submitted && !response.questionName
-                      })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-                      htmlFor: "question_name",
-                      className: "font-bold",
-                      children: "Question Name"
-                    })]
-                  }), submitted && !response.questionName && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("small", {
-                    className: "p-error",
-                    children: "Question Name is required."
-                  })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                  className: "field",
-                  style: {
-                    marginBottom: "35px",
-                    minWidth: "12rem"
-                  },
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
-                    className: "p-float-label",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_11__.InputText, {
-                      id: "question_key",
-                      required: true,
-                      style: {
-                        minWidth: "20rem"
-                      },
-                      value: response.questionKey,
-                      onChange: function onChange(e) {
-                        return onInputChange(e, "questionKey");
-                      },
-                      className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_12__.classNames)({
-                        "p-invalid": submitted && !response.questionKey
-                      })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-                      htmlFor: "question_key",
-                      className: "font-bold",
-                      children: "Question Key"
-                    })]
-                  }), submitted && !response.questionKey && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("small", {
-                    className: "p-error",
-                    children: "Question Key is required."
-                  })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                  className: "field",
-                  style: {
-                    marginBottom: "35px",
-                    minWidth: "12rem"
-                  },
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
-                    className: "p-float-label",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_11__.InputText, {
-                      id: "question_type",
-                      required: true,
-                      style: {
-                        minWidth: "20rem"
-                      },
-                      value: response.questionType,
-                      onChange: function onChange(e) {
-                        return onInputChange(e, "questionType");
-                      },
-                      className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_12__.classNames)({
-                        "p-invalid": submitted && !response.questionType
-                      })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-                      htmlFor: "question_type",
-                      className: "font-bold",
-                      children: "Question Type"
-                    })]
-                  }), submitted && !response.questionType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("small", {
-                    className: "p-error",
-                    children: "Question Type is required."
-                  })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                  className: "field",
-                  style: {
-                    marginBottom: "35px",
-                    minWidth: "12rem"
-                  },
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
-                    className: "p-float-label",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_11__.InputText, {
-                      id: "sequence",
-                      required: true,
-                      style: {
-                        minWidth: "20rem"
-                      },
-                      value: response.sequence,
-                      onChange: function onChange(e) {
-                        return onInputChange(e, "sequence");
-                      },
-                      className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_12__.classNames)({
-                        "p-invalid": submitted && !response.sequence
-                      })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-                      htmlFor: "sequence",
-                      className: "font-bold",
-                      children: "Sequence"
-                    })]
-                  }), submitted && !response.sequence && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("small", {
-                    className: "p-error",
-                    children: "Sequence is required."
-                  })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                  className: "field",
-                  style: {
-                    marginBottom: "35px",
-                    minWidth: "12rem"
-                  },
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
-                    className: "p-float-label",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_11__.InputText, {
-                      id: "statuss" // needs altering
-                      ,
-                      required: true,
-                      style: {
-                        minWidth: "20rem"
-                      },
-                      value: response.status,
-                      onChange: function onChange(e) {
-                        return onInputChange(e, "status");
-                      }
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-                      htmlFor: "question_name",
-                      className: "font-bold",
-                      children: "Status"
-                    })]
-                  }), submitted && !response.status && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("small", {
-                    className: "p-error",
-                    children: "Status is required."
-                  })]
-                })]
+            frozen: true,
+            alignFrozen: "right"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(primereact_dialog__WEBPACK_IMPORTED_MODULE_13__.Dialog, {
+          visible: questionDialog,
+          style: {
+            width: "32rem",
+            maxHeight: "90vh"
+          },
+          breakpoints: {
+            "960px": "75vw",
+            "641px": "90vw"
+          },
+          header: "Tambah Pertanyaan ".concat(response.question_group_name),
+          modal: true,
+          className: "p-fluid",
+          footer: step3Footer,
+          onHide: hideDialog,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            className: "field",
+            style: {
+              marginBottom: "35px",
+              marginTop: "20px",
+              minWidth: "12rem"
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+              className: "p-float-label",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_8__.InputText, {
+                id: "survey_name",
+                required: true,
+                style: {
+                  minWidth: "20rem"
+                },
+                value: response.survey_name,
+                disabled: true
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                htmlFor: "survey_name",
+                className: "font-bold",
+                children: "Survey Name"
               })]
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-            className: "d-flex pt-4 justify-content-between mx-5",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
-              label: "Back",
-              className: "rounded",
-              icon: "pi pi-arrow-left",
-              severity: "secondary",
-              onClick: function onClick() {
-                return stepperRef.current.prevCallback();
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
-              label: "Finish",
-              className: "rounded",
-              icon: "pi pi-check",
-              iconPos: "right",
-              onClick: function onClick() {
-                return exportResponsesToJson();
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            className: "field",
+            style: {
+              marginBottom: "35px",
+              minWidth: "12rem"
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+              className: "p-float-label",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_8__.InputText, {
+                id: "question_group_name",
+                required: true,
+                style: {
+                  minWidth: "20rem"
+                },
+                value: response.question_group_name,
+                disabled: true
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                htmlFor: "question_group_name",
+                className: "font-bold",
+                children: "Question Group Name"
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "field",
+            style: {
+              marginBottom: "35px",
+              marginTop: "20px"
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+              className: "p-float-label",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_8__.InputText, {
+                id: "question_group_id",
+                value: question.question_group_id,
+                onChange: function onChange(e) {
+                  return onInputChange(e, "question_group_id");
+                },
+                required: true,
+                autoFocus: true,
+                className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_14__.classNames)({
+                  "p-invalid": submitted && !question.question_group_id
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                htmlFor: "question_group_id",
+                className: "font-bold",
+                children: "Question Group ID"
+              })]
+            }), submitted && !question.question_group_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
+              className: "p-error",
+              children: "Question Group ID is required."
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "field",
+            style: {
+              marginBottom: "35px"
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+              className: "p-float-label",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_8__.InputText, {
+                id: "question_name",
+                value: question.question_name,
+                onChange: function onChange(e) {
+                  return onInputChange(e, "question_name");
+                },
+                required: true,
+                className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_14__.classNames)({
+                  "p-invalid": submitted && !question.question_name
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                htmlFor: "question_name",
+                className: "font-bold",
+                children: "Question Name"
+              })]
+            }), submitted && !question.question_name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
+              className: "p-error",
+              children: "Question Name is required."
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "field",
+            style: {
+              marginBottom: "35px"
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+              className: "p-float-label",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_8__.InputText, {
+                id: "question_key",
+                value: question.question_key,
+                onChange: function onChange(e) {
+                  return onInputChange(e, "question_key");
+                },
+                required: true,
+                className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_14__.classNames)({
+                  "p-invalid": submitted && !question.question_key
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                htmlFor: "question_key",
+                className: "font-bold",
+                children: "Question Key"
+              })]
+            }), submitted && !question.question_key && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
+              className: "p-error",
+              children: "Question Key is required."
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "field mb-3 mt-3",
+            style: {
+              marginBottom: "35px"
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(primereact_floatlabel__WEBPACK_IMPORTED_MODULE_19__.FloatLabel, {
+              className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_14__.classNames)("w-full md:w-14rem", {
+                "p-invalid": isSubmitted && !question.question_type
+              }),
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_dropdown__WEBPACK_IMPORTED_MODULE_20__.Dropdown, {
+                inputId: "question_type",
+                value: question.question_type,
+                options: questionTypes
+                // onChange={handleTypeChange}
+                ,
+                onChange: function onChange(e) {
+                  return onInputChange(e, "question_type");
+                },
+                optionLabel: "label",
+                required: true,
+                className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_14__.classNames)({
+                  "p-invalid": isSubmitted && !question.question_type
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                htmlFor: "question_type",
+                className: "font-bold",
+                children: "Question Type"
+              })]
+            }), isSubmitted && !question.question_type && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
+              className: "p-error",
+              children: "Question type is required."
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "formgrid grid",
+            style: {
+              marginTop: "35px"
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "field col",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+                className: "p-float-label",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_inputnumber__WEBPACK_IMPORTED_MODULE_21__.InputNumber, {
+                  id: "sequence",
+                  name: "sequence",
+                  value: question.sequence,
+                  required: true,
+                  className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_14__.classNames)({
+                    "p-invalid": submitted && !question.sequence
+                  }),
+                  onValueChange: function onValueChange(e) {
+                    return onInputNumberChange(e, "sequence");
+                  }
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                  htmlFor: "sequence",
+                  className: "font-bold",
+                  children: "Sequence"
+                })]
+              }), submitted && !question.sequence && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
+                className: "p-error",
+                children: "Sequence is required."
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "field col",
+              style: {
+                marginTop: "35px"
               },
-              disabled: !isFormComplete()
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+                className: "p-float-label",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_inputnumber__WEBPACK_IMPORTED_MODULE_21__.InputNumber, {
+                  id: "data_status",
+                  value: question.data_status,
+                  required: true,
+                  className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_14__.classNames)({
+                    "p-invalid": submitted && !question.data_status
+                  }),
+                  onValueChange: function onValueChange(e) {
+                    return onInputNumberChange(e, "data_status");
+                  }
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                  htmlFor: "data_status",
+                  className: "font-bold",
+                  children: "Status"
+                })]
+              }), submitted && !question.data_status && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
+                className: "p-error",
+                children: "Status is required."
+              })]
             })]
           })]
-        })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "d-flex pt-4 justify-content-between mx-5",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_9__.Button, {
+            label: "Back",
+            className: "rounded",
+            icon: "pi pi-arrow-left",
+            severity: "secondary",
+            onClick: function onClick() {
+              return stepperRef.current.prevCallback();
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_9__.Button, {
+            label: "Submit",
+            className: "rounded",
+            icon: "pi pi-check",
+            iconPos: "right"
+            // disabled={response.question_group_name === null}
+            ,
+            onClick: function onClick() {
+              return stepperRef.current.nextCallback();
+            }
+          })]
+        })]
       })]
     })
   });
@@ -14879,6 +15067,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
+
+/**
+ * Error 404 No Page Routing
+ * @returns HTML Element
+ */
 
 function NoPage() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
@@ -30348,6 +30541,75 @@ var Dropdown = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo( /*#__PURE__
   }, props.tooltipOptions)));
 }));
 Dropdown.displayName = 'Dropdown';
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/primereact/floatlabel/floatlabel.esm.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/primereact/floatlabel/floatlabel.esm.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FloatLabel: () => (/* binding */ FloatLabel)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var primereact_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primereact/api */ "./node_modules/primereact/api/api.esm.js");
+/* harmony import */ var primereact_componentbase__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primereact/componentbase */ "./node_modules/primereact/componentbase/componentbase.esm.js");
+/* harmony import */ var primereact_hooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primereact/hooks */ "./node_modules/primereact/hooks/hooks.esm.js");
+/* harmony import */ var primereact_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! primereact/utils */ "./node_modules/primereact/utils/utils.esm.js");
+'use client';
+
+
+
+
+
+
+var classes = {
+  root: 'p-float-label'
+};
+var styles = "\n@layer primereact {\n    .p-float-label {\n        display: block;\n        position: relative;\n    }\n    \n    .p-float-label label {\n        position: absolute;\n        pointer-events: none;\n        top: 50%;\n        margin-top: -.5rem;\n        transition-property: all;\n        transition-timing-function: ease;\n        line-height: 1;\n    }\n    \n    .p-float-label:has(textarea) label {\n        top: 1rem;\n    }\n    \n    .p-float-label:has(input:focus) label,\n    .p-float-label:has(input.p-filled) label,\n    .p-float-label:has(input:-webkit-autofill) label,\n    .p-float-label:has(textarea:focus) label,\n    .p-float-label:has(textarea.p-filled) label,\n    .p-float-label:has(.p-inputwrapper-focus) label,\n    .p-float-label:has(.p-inputwrapper-filled) label {\n        top: -.75rem;\n        font-size: 12px;\n    }\n    \n    .p-float-label .p-placeholder,\n    .p-float-label input::placeholder,\n    .p-float-label .p-inputtext::placeholder {\n        opacity: 0;\n        transition-property: all;\n        transition-timing-function: ease;\n    }\n    \n    .p-float-label .p-focus .p-placeholder,\n    .p-float-label input:focus::placeholder,\n    .p-float-label .p-inputtext:focus::placeholder {\n        opacity: 1;\n        transition-property: all;\n        transition-timing-function: ease;\n    }\n}";
+var FloatLabelBase = primereact_componentbase__WEBPACK_IMPORTED_MODULE_1__.ComponentBase.extend({
+  defaultProps: {
+    __TYPE: 'FloatLabel',
+    children: undefined
+  },
+  css: {
+    classes: classes,
+    styles: styles
+  }
+});
+
+var FloatLabel = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function (inProps, ref) {
+  var mergeProps = (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_2__.useMergeProps)();
+  var context = react__WEBPACK_IMPORTED_MODULE_0__.useContext(primereact_api__WEBPACK_IMPORTED_MODULE_3__.PrimeReactContext);
+  var props = FloatLabelBase.getProps(inProps, context);
+  var elementRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(ref);
+  var _FloatLabelBase$setMe = FloatLabelBase.setMetaData({
+      props: props
+    }),
+    ptm = _FloatLabelBase$setMe.ptm,
+    cx = _FloatLabelBase$setMe.cx,
+    isUnstyled = _FloatLabelBase$setMe.isUnstyled;
+  (0,primereact_componentbase__WEBPACK_IMPORTED_MODULE_1__.useHandleStyle)(FloatLabelBase.css.styles, isUnstyled, {
+    name: 'floatlabel'
+  });
+  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {
+    primereact_utils__WEBPACK_IMPORTED_MODULE_4__.ObjectUtils.combinedRefs(elementRef, ref);
+  }, [elementRef, ref]);
+  var rootProps = mergeProps({
+    ref: elementRef,
+    className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_4__.classNames)(cx('root'))
+  }, FloatLabelBase.getOtherProps(props), ptm('root'));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", rootProps, props.children);
+}));
+FloatLabel.displayName = 'FloatLabel';
 
 
 

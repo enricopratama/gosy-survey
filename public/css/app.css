@@ -8982,6 +8982,9 @@ video {
 .hidden {
   display: none;
 }
+.w-full {
+  width: 100%;
+}
 .flex-auto {
   flex: 1 1 auto;
 }
@@ -9088,6 +9091,7 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
+/* tailwind doesn't work */
 
 #loader {
     display: none;

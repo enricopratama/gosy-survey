@@ -231,9 +231,7 @@ class UserController extends ParentController
     {
         //
     }
-
   
-
     /**
      * Update the specified resource in storage.
      *

@@ -70,7 +70,7 @@
                     <div class="collapse menu-dropdown" id="sidebarAuth">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="/survey/view" class="nav-link" data-key="t-detached">View Questions</a>
+                                <a href="/survey/view" class="nav-link" data-key="t-detached">View All Questions</a>
                             </li>
                             <li class="nav-item">
                                 <a href="/survey/new" class="nav-link" data-key="t-detached">New Question</a>

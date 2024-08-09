@@ -11,7 +11,8 @@ class Question extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $table = 'mst_question_ori';
+    // table of questions
+    protected $table = 'mst_question_ori'; 
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +20,6 @@ class Question extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'question_id',
         'question_no',
         'question_key',
         'question_group_id',

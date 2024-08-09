@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* tailwind doesn't work */
 
 @import "primereact/resources/themes/saga-blue/theme.css";
 @import "primereact/resources/primereact.min.css";

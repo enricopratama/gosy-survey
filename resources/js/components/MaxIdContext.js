@@ -3,10 +3,12 @@ import axios from "axios";
 
 export const MaxIdContext = createContext();
 
+/**
+ * Declares Max ID Globally
+ * @returns JSX Element
+ */
 export const MaxIdProvider = ({ children }) => {
     const [maxId, setMaxId] = useState(1);
-    // const [questions, setQuestions] = useState([]);
-
     useEffect(() => {
         const fetchQuestions = async () => {
             try {

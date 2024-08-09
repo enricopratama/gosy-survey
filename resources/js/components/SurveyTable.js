@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, createContext } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
@@ -14,21 +14,18 @@ import { IconField } from "primereact/iconfield";
 import { classNames } from "primereact/utils";
 import { Button } from "primereact/button";
 
-export const maxIdContext = createContext(null);
+// export const maxIdContext = createContext(null);
 export default function SurveyTable() {
     const [questions, setQuestions] = useState([]);
     const [questionDialog, setQuestionDialog] = useState(false);
     const [deleteQuestionDialog, setDeleteQuestionDialog] = useState(false);
     const [deleteQuestionsDialog, setDeleteQuestionsDialog] = useState(false);
-    const [questionResponse, setQuestionResponse] = useState({});
-    const [question, setQuestion] = useState({});
-    const [maxId, setMaxId] = useState(1);
+    const [question, setQuestion] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedQuestions, setSelectedQuestions] = useState(null);
     const [submitted, setSubmitted] = useState(false);
     const [globalFilterValue, setGlobalFilterValue] = useState("");
     const [editState, setEditState] = useState(false);
-    const [currID, setCurrID] = useState(null);
     const toast = useRef(null);
     const dt = useRef(null);
 
@@ -44,7 +41,7 @@ export default function SurveyTable() {
 
     const [size, setSize] = useState(initialSize);
 
-    // Handle the change of Window Size
+    // Handle the change f Window Size
     useEffect(() => {
         const handleResize = () => {
             setSize(
@@ -70,7 +67,7 @@ export default function SurveyTable() {
      * Initialise an empty question
      */
     const initialEmptyQuestion = {
-        question_id: null,
+        // question_id: questions.length + 1,
         question_key: "",
         question_group_id: null,
         sequence: null,
@@ -82,19 +79,13 @@ export default function SurveyTable() {
     /**
      * Fetch Questions API and POST Max ID
      */
-    // To Change: API to use MaxIdContext
+    // To Change MaxId: API to use MaxIdContext
     const getQuestions = async () => {
         try {
             const response = await axios.get("/api/questions");
             setQuestions(response.data);
-            const maxId =
-                response.data.length > 0
-                    ? Math.max(...response.data.map((q) => q.question_id)) + 1
-                    : 1;
-            setMaxId(maxId);
             setQuestion({
                 ...initialEmptyQuestion,
-                question_id: maxId,
             });
         } catch (error) {
             console.error("Error fetching the questions:", error);
@@ -119,7 +110,6 @@ export default function SurveyTable() {
     const openNew = () => {
         setQuestion({
             ...initialEmptyQuestion,
-            question_id: maxId,
         });
         setSubmitted(false);
         setQuestionDialog(true);
@@ -148,29 +138,8 @@ export default function SurveyTable() {
             let _questions = [...questions];
             let _question = { ...question };
 
-            // Check if the question_id already exists
-            const existingQuestion = questions.find(
-                (q) => q.question_id === parseInt(currID)
-            );
-
-            // To Fix: toast occasionally shows, despite unique Question ID
-            if (existingQuestion && !editState) {
-                toast.current.show({
-                    severity: "error",
-                    summary: "Oops.. Question ID has already been taken",
-                    detail: "",
-                    life: 2000,
-                    position: "center",
-                });
-                return;
-            }
-
             if (_question.question_id) {
-                // Update existing question
                 const index = findIndexById(_question.question_id);
-                console.log("question_id:", _question.question_id); // Log question_id
-                console.log("index:", index); // Log index
-
                 if (index >= 0) {
                     _questions[index] = _question;
                     toast.current.show({
@@ -188,27 +157,34 @@ export default function SurveyTable() {
                         life: 2000,
                     });
                 }
-            } else {
-                _questions.push(_question);
-                toast.current.show({
-                    severity: "success",
-                    summary: "Successful",
-                    detail: "Question Created Successfully",
-                    life: 2000,
-                });
             }
 
+            var formData = new FormData(); // JS built in FormData
+            formData.append("question_group_id", _question.question_group_id);
+            formData.append("question_name", _question.question_name);
+            formData.append("question_key", _question.question_key);
+            formData.append("question_type", _question.question_type);
+            formData.append("sequence", _question.sequence);
+            formData.append("status", _question.status);
+            formData.append("data_status", _question.data_status);
+            var url = "/addQuestion";
+            var hasil = await axios({
+                method: "post",
+                url: url,
+                data: formData,
+            }).then(function (response) {
+                return response;
+            });
             setQuestions(_questions);
             setQuestionDialog(false);
             setQuestion(initialEmptyQuestion);
-            setCurrID(null);
             setEditState(false);
+            getQuestions();
         }
     };
 
     const editQuestion = (question) => {
         setQuestion({ ...question });
-        setCurrID(question.question_id);
         setQuestionDialog(true);
         setEditState(true);
     };
@@ -278,11 +254,6 @@ export default function SurveyTable() {
     const onInputChange = (e, name) => {
         const val = (e.target && e.target.value) || "";
         let _question = { ...question };
-
-        if (name === "question_id") {
-            setCurrID(val);
-        }
-
         _question[`${name}`] = val;
         setQuestion(_question);
     };
@@ -290,11 +261,6 @@ export default function SurveyTable() {
     const onInputNumberChange = (e, name) => {
         const val = e.value || 0;
         let _question = { ...question };
-
-        if (name === "question_id") {
-            setCurrID(val);
-        }
-
         _question[`${name}`] = val;
         setQuestion(_question);
     };
@@ -333,6 +299,18 @@ export default function SurveyTable() {
             />
         );
     };
+
+    const paginatorLeft = (
+        <Button
+            type="button"
+            icon="pi pi-refresh"
+            text
+            onClick={getQuestions}
+        />
+    );
+    const paginatorRight = (
+        <Button type="button" icon="pi pi-download" text onClick={exportCSV} />
+    );
 
     const actionBodyTemplate = (rowData) => {
         return (
@@ -460,7 +438,9 @@ export default function SurveyTable() {
                     paginator
                     size={size}
                     removableSort
-                    rows={10}
+                    paginatorLeft={paginatorLeft}
+                    paginatorRight={paginatorRight}
+                    rows={5}
                     rowsPerPageOptions={[5, 10, 25]}
                     paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown showGridlines"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} questions"
@@ -469,6 +449,7 @@ export default function SurveyTable() {
                     stripedRows
                     sortField="question_id"
                     sortOrder={1}
+                    dragSelection
                 >
                     <Column
                         selectionMode="multiple"
@@ -504,7 +485,6 @@ export default function SurveyTable() {
                         sortable
                         style={{ width: "2rem" }}
                     ></Column>
-
                     <Column
                         field="sequence"
                         header="Sequence"
@@ -546,28 +526,10 @@ export default function SurveyTable() {
                 footer={questionDialogFooter}
                 onHide={hideDialog}
             >
-                <div className="field" style={{ marginBottom: "35px" }}>
-                    <label htmlFor="question_id" className="font-bold">
-                        Question ID
-                    </label>
-
-                    <InputText
-                        id="question_id"
-                        value={question.question_id}
-                        onChange={(e) => onInputChange(e, "question_id")}
-                        disabled={editState}
-                        className={classNames({
-                            "p-invalid": submitted && !question.question_id,
-                        })}
-                    />
-                    {submitted && !question.question_id && (
-                        <small className="p-error">
-                            Question ID is required.
-                        </small>
-                    )}
-                </div>
-
-                <div className="field" style={{ marginBottom: "35px" }}>
+                <div
+                    className="field"
+                    style={{ marginBottom: "35px", marginTop: "20px" }}
+                >
                     <span className="p-float-label">
                         <InputText
                             id="question_group_id"
@@ -646,24 +608,28 @@ export default function SurveyTable() {
                     className="field mb-3 mt-3"
                     style={{ marginBottom: "35px" }}
                 >
-                    <span className="p-float-label">
-                        <InputText
-                            id="question_type"
-                            value={question.question_type}
-                            onChange={(e) => onInputChange(e, "question_type")}
-                            required
-                            className={classNames({
-                                "p-invalid":
-                                    submitted && !question.question_type,
-                            })}
-                        />
-                        <label htmlFor="question_type" className="font-bold">
-                            Question Type
-                        </label>
-                    </span>
+                    <label htmlFor="question_type" className="font-bold">
+                        Question Type:
+                    </label>
+                    <select
+                        id="question_type"
+                        name="question_type"
+                        // value={question.question_type}
+                        onChange={(e) => onInputChange(e, "question_type")}
+                        required
+                        className={classNames({
+                            "p-invalid": submitted && !question.question_type,
+                        })}
+                    >
+                        <option value="Choice">Choice</option>
+                        <option value="Text">Text</option>
+                        <option value="Paragraph">Paragraph</option>
+                        <option value="Checkboxes">Checkboxes</option>
+                        <option value="Dropdown">Dropdown</option>
+                    </select>
                     {submitted && !question.question_type && (
                         <small className="p-error">
-                            Question Type is required.
+                            Question type is required.
                         </small>
                     )}
                 </div>
@@ -704,7 +670,7 @@ export default function SurveyTable() {
                                 Status
                             </label>
                         </span>
-                        {submitted && !question.status && (
+                        {submitted && !question.data_status && (
                             <small className="p-error">
                                 Status is required.
                             </small>

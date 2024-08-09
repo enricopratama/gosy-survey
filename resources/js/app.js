@@ -14,9 +14,7 @@ import { NoPage } from "./pages/NoPage";
 import { ThemeProvider } from "./components/ThemeContext";
 import { PrimeReactContext, PrimeReactProvider } from "primereact/api";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import PrimeReact from "primereact/api";
 import NewQuestion from "./pages/NewQuestion";
-import { MaxIdProvider } from "./components/MaxIdContext"; // Import the MaxIdProvider
 import "../css/app.css";
 
 function App() {
@@ -29,44 +27,40 @@ function App() {
     return (
         <>
             <ThemeProvider>
-                <MaxIdProvider>
-                    <Router>
-                        <Routes>
-                            <Route exact path="/home" element={<HomeCopy />} />
-                            <Route
-                                exact
-                                path="/register"
-                                element={<Register />}
-                            />
-                            <Route
-                                exact
-                                path="/configs/user-access"
-                                element={<ListUserAccess />}
-                            />
-                            <Route
-                                exact
-                                path="/configs/user-tokens"
-                                element={<ListUserTokens />}
-                            />
-                            <Route
-                                exact
-                                path="/survey/view"
-                                element={<ViewSurvey />}
-                            />
-                            <Route
-                                exact
-                                path="/survey/questions"
-                                element={<SurveyQuestions />}
-                            />
-                            <Route
-                                exact
-                                path="/survey/new"
-                                element={<NewQuestion />}
-                            />
-                            <Route exact path="*" element={<NoPage />} />
-                        </Routes>
-                    </Router>
-                </MaxIdProvider>
+                {/* <MaxIdProvider> */}
+                <Router>
+                    <Routes>
+                        <Route exact path="/home" element={<HomeCopy />} />
+                        <Route exact path="/register" element={<Register />} />
+                        <Route
+                            exact
+                            path="/configs/user-access"
+                            element={<ListUserAccess />}
+                        />
+                        <Route
+                            exact
+                            path="/configs/user-tokens"
+                            element={<ListUserTokens />}
+                        />
+                        <Route
+                            exact
+                            path="/survey/view"
+                            element={<ViewSurvey />}
+                        />
+                        <Route
+                            exact
+                            path="/survey/questions"
+                            element={<SurveyQuestions />}
+                        />
+                        <Route
+                            exact
+                            path="/survey/new"
+                            element={<NewQuestion />}
+                        />
+                        <Route exact path="*" element={<NoPage />} />
+                    </Routes>
+                </Router>
+                {/* </MaxIdProvider> */}
             </ThemeProvider>
         </>
     );
