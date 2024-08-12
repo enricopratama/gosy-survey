@@ -14,7 +14,6 @@ import { IconField } from "primereact/iconfield";
 import { classNames } from "primereact/utils";
 import { Button } from "primereact/button";
 
-// export const maxIdContext = createContext(null);
 export default function SurveyTable() {
     const [questions, setQuestions] = useState([]);
     const [questionDialog, setQuestionDialog] = useState(false);
@@ -67,7 +66,6 @@ export default function SurveyTable() {
      * Initialise an empty question
      */
     const initialEmptyQuestion = {
-        // question_id: questions.length + 1,
         question_key: "",
         question_group_id: null,
         sequence: null,
@@ -79,7 +77,6 @@ export default function SurveyTable() {
     /**
      * Fetch Questions API and POST Max ID
      */
-    // To Change MaxId: API to use MaxIdContext
     const getQuestions = async () => {
         try {
             const response = await axios.get("/api/questions");

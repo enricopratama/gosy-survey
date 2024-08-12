@@ -2,7 +2,7 @@ import React from "react";
 import StepperDemo from "../components/StepperDemo";
 import BreadcrumbComponent from "../components/BreadcrumbComponent";
 
-export default function SurveyQuestions() {
+export default function PreviewQuest() {
     return (
         <>
             <BreadcrumbComponent />

@@ -25,10 +25,12 @@ Route::get('/api/user', function () {
     return Auth::user();
 })->middleware('auth');
 
-// API route to add question
+// Questions:
 Route::post('/addQuestion', [QuestionController::class, 'store']);
+Route::put('/editQuestion/{question_id}', [QuestionController::class, 'update']);
+Route::delete('/deleteQuestion/{question_id}', [QuestionController::class, 'destroy']);
 
-// Alias for /users to be named as users only
+// Users
 Route::get('/users', [UserController::class, 'index'])->name('users');
 
 // Data tables

@@ -3,36 +3,40 @@ import { useLocation, Link } from "react-router-dom";
 
 export default function BreadcrumbComponent() {
     const location = useLocation();
-    const pathnames = location.pathname.split("/").filter((x) => x); // use filter to remove whitespace
+    const pathnames = location.pathname.split("/").filter((x) => x);
 
     return (
-        <nav aria-label="breadcrumb" className="ml-auto">
-            <ol className="breadcrumb">
-                <li className="breadcrumb-item">
-                    <Link to="/home">Dashboard</Link>
-                </li>
-                {/* .map to iterate through pathnames,  value to get each pathname, index to keep track of index */}
-                {pathnames.map((value, index) => {
-                    const to = `/${pathnames.slice(0, index + 1).join("/")}`;
-                    const isLast = index === pathnames.length - 1;
+        <div className="card d-flex justify-content-center ps-4 pt-4 pb-2">
+            <nav aria-label="breadcrumb" className="ml-auto">
+                <ol className="breadcrumb">
+                    <li className="breadcrumb-item">
+                        <Link to="/home">Dashboard</Link>
+                    </li>
+                    {pathnames.map((value, index) => {
+                        const to = `/${pathnames
+                            .slice(0, index + 1)
+                            .join("/")}`;
+                        const isLast = index === pathnames.length - 1;
 
-                    return isLast ? (
-                        <li
-                            key={to}
-                            className="breadcrumb-item active"
-                            aria-current="page"
-                        >
-                            {value.charAt(0).toUpperCase() + value.slice(1)}
-                        </li>
-                    ) : (
-                        <li key={to} className="breadcrumb-item">
-                            <Link to={to}>
+                        return isLast ? (
+                            <li
+                                key={to}
+                                className="breadcrumb-item active"
+                                aria-current="page"
+                            >
                                 {value.charAt(0).toUpperCase() + value.slice(1)}
-                            </Link>
-                        </li>
-                    );
-                })}
-            </ol>
-        </nav>
+                            </li>
+                        ) : (
+                            <li key={to} className="breadcrumb-item">
+                                <Link to={to}>
+                                    {value.charAt(0).toUpperCase() +
+                                        value.slice(1)}
+                                </Link>
+                            </li>
+                        );
+                    })}
+                </ol>
+            </nav>
+        </div>
     );
 }

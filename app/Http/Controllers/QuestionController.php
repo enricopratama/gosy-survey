@@ -65,25 +65,48 @@ class QuestionController extends Controller
         }
     }
 
-    public function store(Request $request) {
+    /**
+     * Store the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'question_group_id' => 'required|integer',
             'question_name' => 'required|string|max:255',
             'question_key' => 'required|string|max:255',
-            'question_type' => ['required', Rule::in(['Text','Paragraph','Choice','Checkboxes','Dropdown'])], 
+            'question_type' => [
+                'required',
+                Rule::in([
+                    'Text',
+                    'Paragraph',
+                    'Choice',
+                    'Checkboxes',
+                    'Dropdown',
+                ]),
+            ],
             'sequence' => 'required|integer',
             'data_status' => 'required|integer',
         ]);
-    
+
         if ($validator->fails()) {
             $errors = $validator->errors();
             $messages = ['Validation Error!'];
             foreach ($errors->all() as $error) {
                 $messages[] = $error;
             }
-            return response()->json(['status' => 0, 'message' => implode(' | ', $messages), 'data' => $errors], 200);
+            return response()->json(
+                [
+                    'status' => 0,
+                    'message' => implode(' | ', $messages),
+                    'data' => $errors,
+                ],
+                200
+            );
         }
-    
+
         // Insert into database
         DB::beginTransaction();
         try {
@@ -96,17 +119,104 @@ class QuestionController extends Controller
                 'status' => $request->status,
                 'data_status' => $request->data_status,
             ]);
-    
+
             DB::commit();
-            return response()->json(['status' => 1, 'message' => "Successfully Saved", 'data' => $new], 200);
+            return response()->json(
+                [
+                    'status' => 1,
+                    'message' => "Successfully Saved",
+                    'data' => $new,
+                ],
+                200
+            );
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json(['status' => 0, 'message' => 'Failed to Save', 'error' => $e->getMessage()], 500);
+            return response()->json(
+                [
+                    'status' => 0,
+                    'message' => 'Failed to Save',
+                    'error' => $e->getMessage(),
+                ],
+                500
+            );
         }
     }
 
-    public function delete(Request $request) {
-        return true;
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'question_group_id' => 'required|integer',
+            'question_name' => 'required|string|max:255',
+            'question_key' => 'required|string|max:255',
+            'question_type' => [
+                'required',
+                Rule::in([
+                    'Text',
+                    'Paragraph',
+                    'Choice',
+                    'Checkboxes',
+                    'Dropdown',
+                ]),
+            ],
+            'sequence' => 'required|integer',
+            'data_status' => 'required|integer',
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            $messages = ['Validation Error!'];
+            foreach ($errors->all() as $error) {
+                $messages[] = $error;
+            }
+            return response()->json(
+                [
+                    'status' => 0,
+                    'message' => implode(' | ', $messages),
+                    'data' => $errors,
+                ],
+                200
+            );
+        }
+
+        $question = Question::find($id);
+        if (!$question) {
+            return response()->json(['message' => 'Question not found'], 404);
+        }
+
+        // Update the current question
+        $question->update($request->all());
+
+        return response()->json(
+            ['message' => 'Question updated successfully'],
+            200
+        );
     }
-    
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $question = Question::find($id);
+        if (!$question) {
+            return response()->json(['message' => 'Question not found'], 404);
+        }
+
+        $question->delete();
+
+        return response()->json(
+            ['message' => 'Question deleted successfully'],
+            200
+        );
+    }
 }

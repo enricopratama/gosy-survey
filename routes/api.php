@@ -23,3 +23,5 @@ Route::get('/questionGroups', [
     'index',
 ]);
 
+Route::get('/questionGroups/{question_group_id}', [QuestionGroupController:: class, 'getByQuestionGroup']);
+

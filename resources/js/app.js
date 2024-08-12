@@ -7,8 +7,8 @@ import Register from "./components/Register";
 import HomeCopy from "./pages/HomeCopy";
 import ListUserAccess from "./pages/ListUserAccess";
 import ListUserTokens from "./pages/ListUserTokens";
-import ViewSurvey from "./pages/ViewSurvey";
-import SurveyQuestions from "./pages/SurveyQuestions";
+import ViewAll from "./pages/ViewAll";
+import PreviewQuest from "./pages/PreviewQuest";
 import Favicon from "react-favicon";
 import { NoPage } from "./pages/NoPage";
 import { ThemeProvider } from "./components/ThemeContext";
@@ -27,7 +27,6 @@ function App() {
     return (
         <>
             <ThemeProvider>
-                {/* <MaxIdProvider> */}
                 <Router>
                     <Routes>
                         <Route exact path="/home" element={<HomeCopy />} />
@@ -45,12 +44,12 @@ function App() {
                         <Route
                             exact
                             path="/survey/view"
-                            element={<ViewSurvey />}
+                            element={<ViewAll />}
                         />
                         <Route
                             exact
                             path="/survey/questions"
-                            element={<SurveyQuestions />}
+                            element={<PreviewQuest />}
                         />
                         <Route
                             exact
@@ -60,7 +59,6 @@ function App() {
                         <Route exact path="*" element={<NoPage />} />
                     </Routes>
                 </Router>
-                {/* </MaxIdProvider> */}
             </ThemeProvider>
         </>
     );

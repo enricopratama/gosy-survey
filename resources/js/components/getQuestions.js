@@ -3,7 +3,6 @@ import axios from "axios";
 
 const GetQuestions = () => {
     const [questions, setQuestions] = useState([]);
-    const [maxId, setMaxId] = useState(1);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -11,12 +10,6 @@ const GetQuestions = () => {
             try {
                 const response = await axios.get("/api/questions");
                 setQuestions(response.data);
-                const maxId =
-                    response.data.length > 0
-                        ? Math.max(...response.data.map((q) => q.question_id)) +
-                          1
-                        : 1;
-                setMaxId(maxId);
             } catch (error) {
                 console.error(
                     "There was an error fetching the questions!",
@@ -30,7 +23,7 @@ const GetQuestions = () => {
         fetchQuestions();
     }, []);
 
-    return { questions, maxId, loading };
+    return { questions, loading };
 };
 
 export default GetQuestions;
