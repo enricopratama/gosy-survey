@@ -21,6 +21,10 @@ import axios from "axios";
 import "../../css/app.css";
 import "../../css/NewQuestion.css";
 import BreadcrumbComponent from "../components/BreadcrumbComponent";
+import ExportJsonButton from "../handlers/ExportJsonButton";
+import LeftToolbar from "../components/LeftToolbar";
+import RightToolbar from "../components/RightToolbar";
+import AddEditQuestionDialog from "./AddEditQuestionDialog";
 
 export default function NewQuestion() {
     const op = useRef(null);
@@ -58,38 +62,10 @@ export default function NewQuestion() {
         sequence: null,
         data_status: null,
     });
-    const [editedQuestion, setEditedQuestion] = useState({
-        survey_name: null,
-        question_group_name: "",
-        question_group_id: mapGrpId,
-        question_key: "",
-        question_type: "",
-        question_name: "",
-        sequence: null,
-        data_status: null,
-    });
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         question_id: { value: null, matchMode: FilterMatchMode.EQUALS },
     });
-
-    // const onInputChange = (e, name) => {
-    //     const val = (e.target && e.target.value) || "";
-    //     let _question = { ...question };
-    //     _question[`${name}`] = val;
-    //     _question;
-    // };
-
-    // const onInputNumberChange = (e, name) => {
-    //     const val = e.value || 0;
-    //     let _question = { ...question };
-    //     _question[`${name}`] = val;
-    //     setQuestion(_question);
-    // };
-
-    // const handleTypeChange = (e) => {
-    //     setResponse((prev) => ({ ...prev, question_type: e.value }));
-    // };
 
     const onInputChange = (e, name) => {
         const val = (e.target && e.target.value) || "";
@@ -112,7 +88,6 @@ export default function NewQuestion() {
      */
     const initialEmptyQuestion = {
         question_key: "",
-        question_group_id: null,
         sequence: null,
         question_name: "",
         question_type: "",
@@ -126,6 +101,8 @@ export default function NewQuestion() {
         try {
             const response = await axios.get("/api/questions");
             setQuestions(response.data);
+            // console.log("response:", response);
+            // console.log("questions:", questions);
         } catch (error) {
             console.error("There was an error fetching the questions!", error);
         } finally {
@@ -191,13 +168,21 @@ export default function NewQuestion() {
         }
     };
 
+    // Mapping between question_id and question_group_name
     useEffect(() => {
         if (response.question_group_name) {
             getQuestionIDMap(response.question_group_name);
         }
     }, [response.question_group_name]);
 
+    useEffect(() => {
+        getQuestions();
+        getSurveys();
+        getSurveyQuestionGroups();
+    }, response);
+
     const filterQuestionsByGroupName = () => {
+        getQuestions();
         if (response.question_group_name) {
             const filteredQuestions = questions.filter((question) => {
                 return (
@@ -214,14 +199,8 @@ export default function NewQuestion() {
     };
 
     useEffect(() => {
-        getQuestions();
-        getSurveys();
-        getSurveyQuestionGroups();
-    }, []);
-
-    useEffect(() => {
         filterQuestionsByGroupName();
-    }, [questions, response.question_group_name, surveyQuestionGroups]);
+    }, [response.question_group_name]);
 
     const handleSurveyClick = (survey) => {
         setResponse((prevResponse) => ({
@@ -274,25 +253,81 @@ export default function NewQuestion() {
         }
     };
 
+    /**
+     * Function to check if question_id exists.
+     * Returns the index of the found question_id if found, -1 otherwise.
+     * @param {*} question_id Question ID we want to check
+     * @returns The index of the found Question ID, -1 if not found
+     */
+    const findIndexByID = (question_id) => {
+        let index = -1;
+
+        for (let i = 0; i < questions.length; i++) {
+            if (questions[i].question_id === question_id) {
+                index = i;
+                break;
+            }
+        }
+
+        return index;
+    };
+
     const saveQuestion = async () => {
         setSubmitted(true);
 
-        if (response.question_name.trim()) {
-            let _questions = [...questions];
-            let _response = { ...response };
+        let _questions = [...questions];
+        let _response = { ...response };
 
-            if (_response.question_id) {
-                const index = findIndexById(_response.question_id);
-                if (index >= 0) {
-                    _questions[index] = _response;
+        console.log("Response Consoled:", _response);
+
+        var formData = new FormData();
+        formData.append("question_group_id", _response.question_group_id);
+        formData.append("question_name", _response.question_name);
+        formData.append("question_key", _response.question_key);
+        formData.append("question_type", _response.question_type);
+        formData.append("sequence", _response.sequence);
+        formData.append("data_status", _response.data_status);
+
+        console.log("Form Data INFO (edited):");
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + ", " + pair[1]);
+        }
+
+        console.log("Response Q ID:", _response.question_id);
+        const index = findIndexByID(_response.question_id);
+        console.log("Index here:", index);
+
+        try {
+            let result;
+            if (index >= 0) {
+                // Find the index of the existing question
+                console.log("Updating question at index", index);
+
+                // Update existing question
+                result = await axios.post(
+                    `/editQuestion/${_response.question_id}`,
+                    formData
+                );
+
+                console.log("'Result' of editing", result);
+
+                if (result.status === 200) {
+                    _questions[index] = result.data.data;
                     toast.current.show({
                         severity: "success",
                         summary: "Successful",
                         detail: "Question Updated",
                         life: 2000,
                     });
-                } else {
-                    _questions.push(_response);
+                }
+            } else {
+                // Create new question
+                console.log("Creating new question");
+
+                result = await axios.post("/addQuestion", formData);
+
+                if (result.status === 200) {
+                    _questions.push(result.data.data);
                     toast.current.show({
                         severity: "success",
                         summary: "Successful",
@@ -302,22 +337,18 @@ export default function NewQuestion() {
                 }
             }
 
-            console.log("Current Added Question:", _response);
-            var formData = new FormData();
-            formData.append("question_group_id", _response.question_group_id);
-            formData.append("question_name", _response.question_name);
-            formData.append("question_key", _response.question_key);
-            formData.append("question_type", _response.question_type);
-            formData.append("sequence", _response.sequence);
-            formData.append("status", _response.status);
-            formData.append("data_status", _response.data_status);
-            var url = "/addQuestion";
-            var result = await axios({
-                method: "post",
-                url: url,
-                data: formData,
-            });
+            // Update the questions state
             setQuestions(_questions);
+        } catch (error) {
+            console.error("There was an error saving the question!", error);
+            toast.current.show({
+                severity: "error",
+                summary: "Error",
+                detail: "Failed to save question",
+                life: 2000,
+            });
+        } finally {
+            // Reset the form and close the dialog
             setQuestionDialog(false);
             setResponse((prevResponse) => ({
                 ...prevResponse,
@@ -328,7 +359,7 @@ export default function NewQuestion() {
                 data_status: null,
             }));
             setEditState(false);
-            getQuestions();
+            getQuestions(); // Refresh the questions list
         }
     };
 
@@ -349,14 +380,10 @@ export default function NewQuestion() {
     };
 
     const hideDialog = () => {
+        setSubmitted(false);
         setQuestionDialog(false);
-        setCustomSurvey("");
         setEditState(false);
-    };
-
-    const hideEditDialog = () => {
-        setEditQuestionDialog(false);
-        setEditState(false);
+        getQuestions();
     };
 
     const hideDeleteQuestionDialog = () => {
@@ -432,9 +459,9 @@ export default function NewQuestion() {
         });
     };
 
-    const editQuestion = async (rowData) => {
-        setEditedQuestion({ ...rowData }); // Input current RowData inside Form
-        setEditQuestionDialog(true);
+    const editQuestion = async (question) => {
+        setResponse({ ...question }); // Put the rowData as question
+        setQuestionDialog(true);
         setEditState(true);
     };
 
@@ -512,7 +539,6 @@ export default function NewQuestion() {
         </React.Fragment>
     );
 
-    // Footer for: Add Question --> Save Question
     const saveQuestionFooter = (
         <React.Fragment>
             <Button
@@ -529,27 +555,6 @@ export default function NewQuestion() {
                 className="ms-2 rounded"
                 iconPos="left"
                 onClick={saveQuestion}
-            />
-        </React.Fragment>
-    );
-
-    // Footer for: Edit Question --> Save Question
-    const editQuestionFooter = (
-        <React.Fragment>
-            <Button
-                label="Cancel"
-                icon="pi pi-times"
-                iconPos="left"
-                className="ms-2 rounded"
-                outlined
-                onClick={hideEditDialog}
-            />
-            <Button
-                label="Save"
-                icon="pi pi-check"
-                className="ms-2 rounded"
-                iconPos="left"
-                onClick={confirmEditQuestion}
             />
         </React.Fragment>
     );
@@ -612,22 +617,12 @@ export default function NewQuestion() {
         </React.Fragment>
     );
 
-    const exportResponsesToJson = () => {
-        const jsonResponse = JSON.stringify(response);
-        console.log(jsonResponse);
-        // Trigger file download or send it to a server
-        const blob = new Blob([jsonResponse], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = "responses.json";
-        link.click();
-    };
-
     const openNew = () => {
-        setQuestion({
+        // console.log("Custom Survey:", customSurvey);
+        setResponse((prevResponse) => ({
+            ...prevResponse,
             ...initialEmptyQuestion,
-        });
+        }));
         setSubmitted(false);
         setQuestionDialog(true);
     };
@@ -636,39 +631,29 @@ export default function NewQuestion() {
         dt.current.exportCSV();
     };
 
+    const paginatorLeft = (
+        <Button
+            type="button"
+            icon="pi pi-refresh"
+            text
+            onClick={getQuestions}
+        />
+    );
+    const paginatorRight = (
+        <Button type="button" icon="pi pi-download" text onClick={exportCSV} />
+    );
     const leftToolbarTemplate = () => {
         return (
-            <div className="d-flex flex-wrap gap-2">
-                <Button
-                    label="New"
-                    icon="pi pi-plus"
-                    iconPos="left"
-                    onClick={openNew}
-                    className="rounded"
-                />
-                <Button
-                    label="Delete"
-                    icon="pi pi-trash"
-                    iconPos="left"
-                    severity="danger"
-                    onClick={confirmDeleteSelected}
-                    disabled={!selectedQuestions || !selectedQuestions.length}
-                    className="rounded"
-                />
-            </div>
+            <LeftToolbar
+                openNew={openNew}
+                confirmDeleteSelected={confirmDeleteSelected}
+                selectedQuestions={selectedQuestions}
+            />
         );
     };
 
     const rightToolbarTemplate = () => {
-        return (
-            <Button
-                label="Export"
-                icon="pi pi-upload"
-                iconPos="left"
-                onClick={exportCSV}
-                className="rounded"
-            />
-        );
+        return <RightToolbar exportCSV={exportCSV} />;
     };
 
     return (
@@ -676,7 +661,7 @@ export default function NewQuestion() {
             <BreadcrumbComponent />
             <Toast ref={toast} />
             <div className="card d-flex justify-content-center">
-                <Stepper linear ref={stepperRef} style={{ marginTop: "2rem" }}>
+                <Stepper ref={stepperRef} style={{ marginTop: "2rem" }}>
                     {/* Step 1 - Survey Type */}
                     <StepperPanel header="Survey Type">
                         <div className="d-flex flex-column">
@@ -1098,6 +1083,8 @@ export default function NewQuestion() {
                                 setSelectedQuestions(e.value)
                             }
                             paginator
+                            paginatorLeft={paginatorLeft}
+                            paginatorRight={paginatorRight}
                             rows={5}
                             filters={filters}
                             stripedRows
@@ -1143,555 +1130,18 @@ export default function NewQuestion() {
                             ></Column>
                         </DataTable>
 
-                        {/* Add Question Dialog */}
-                        <Dialog
+                        {/* Add and Edit Questions Dialog */}
+                        <AddEditQuestionDialog
                             visible={questionDialog}
-                            style={{ width: "32rem", maxHeight: "90vh" }}
-                            breakpoints={{ "960px": "75vw", "641px": "90vw" }}
-                            header="Question Details"
-                            modal
-                            className="p-fluid"
-                            footer={saveQuestionFooter}
-                            onHide={hideDialog}
-                        >
-                            <div
-                                className="field"
-                                style={{
-                                    marginBottom: "35px",
-                                    marginTop: "20px",
-                                }}
-                            >
-                                <span className="p-float-label">
-                                    <InputText
-                                        id="question_name"
-                                        value={response.question_name}
-                                        onChange={(e) =>
-                                            onInputChange(e, "question_name")
-                                        }
-                                        required
-                                        autoFocus
-                                        className={classNames({
-                                            "p-invalid":
-                                                submitted &&
-                                                !response.question_name,
-                                        })}
-                                    />
-                                    <label
-                                        htmlFor="question_name"
-                                        className="font-bold"
-                                    >
-                                        Question Name
-                                    </label>
-                                </span>
-                                {submitted && !response.question_name && (
-                                    <small className="p-error">
-                                        Question Name is required.
-                                    </small>
-                                )}
-                            </div>
-
-                            <div
-                                className="field"
-                                style={{ marginBottom: "35px" }}
-                            >
-                                <span className="p-float-label">
-                                    <InputText
-                                        id="question_key"
-                                        value={response.question_key}
-                                        onChange={(e) =>
-                                            onInputChange(e, "question_key")
-                                        }
-                                        required
-                                        className={classNames({
-                                            "p-invalid":
-                                                submitted &&
-                                                !response.question_key,
-                                        })}
-                                    />
-                                    <label
-                                        htmlFor="question_key"
-                                        className="font-bold"
-                                    >
-                                        Question Key
-                                    </label>
-                                </span>
-                                {submitted && !response.question_key && (
-                                    <small className="p-error">
-                                        Question Key is required.
-                                    </small>
-                                )}
-                            </div>
-                            <div
-                                className="field mb-3 mt-3"
-                                style={{ marginBottom: "35px" }}
-                            >
-                                <FloatLabel
-                                    className={classNames("w-full md:w-14rem", {
-                                        "p-invalid":
-                                            isSubmitted &&
-                                            !response.question_type,
-                                    })}
-                                >
-                                    <Dropdown
-                                        inputId="question_type"
-                                        value={response.question_type}
-                                        options={questionTypes}
-                                        onChange={(e) =>
-                                            onInputChange(e, "question_type")
-                                        }
-                                        optionLabel="label"
-                                        required
-                                        className={classNames({
-                                            "p-invalid":
-                                                isSubmitted &&
-                                                !response.question_type,
-                                        })}
-                                    />
-                                    <label
-                                        htmlFor="question_type"
-                                        className="font-bold"
-                                    >
-                                        Question Type
-                                    </label>
-                                </FloatLabel>
-                                {isSubmitted && !response.question_type && (
-                                    <small className="p-error">
-                                        Question type is required.
-                                    </small>
-                                )}
-                            </div>
-
-                            <div
-                                className="formgrid grid"
-                                style={{ marginTop: "35px" }}
-                            >
-                                <div className="field col">
-                                    <span className="p-float-label">
-                                        <InputNumber
-                                            id="sequence"
-                                            name="sequence"
-                                            value={response.sequence}
-                                            required
-                                            className={classNames({
-                                                "p-invalid":
-                                                    submitted &&
-                                                    !response.sequence,
-                                            })}
-                                            onValueChange={(e) =>
-                                                onInputNumberChange(
-                                                    e,
-                                                    "sequence"
-                                                )
-                                            }
-                                        />
-                                        <label
-                                            htmlFor="sequence"
-                                            className="font-bold"
-                                        >
-                                            Sequence
-                                        </label>
-                                    </span>
-                                    {submitted && !response.sequence && (
-                                        <small className="p-error">
-                                            Sequence is required.
-                                        </small>
-                                    )}
-                                </div>
-                                <div
-                                    className="field col"
-                                    style={{
-                                        marginTop: "35px",
-                                        marginBottom: "35px",
-                                    }}
-                                >
-                                    <span className="p-float-label">
-                                        <InputNumber
-                                            id="data_status"
-                                            value={response.data_status}
-                                            required
-                                            className={classNames({
-                                                "p-invalid":
-                                                    submitted &&
-                                                    !response.data_status,
-                                            })}
-                                            onValueChange={(e) =>
-                                                onInputNumberChange(
-                                                    e,
-                                                    "data_status"
-                                                )
-                                            }
-                                        />
-                                        <label
-                                            htmlFor="data_status"
-                                            className="font-bold"
-                                        >
-                                            Status
-                                        </label>
-                                    </span>
-                                    {submitted && !response.data_status && (
-                                        <small className="p-error">
-                                            Status is required.
-                                        </small>
-                                    )}
-                                </div>
-                                <div
-                                    className="field"
-                                    style={{
-                                        marginBottom: "35px",
-                                        minWidth: "12rem",
-                                        marginTop: "40px",
-                                    }}
-                                >
-                                    <span className="p-float-label">
-                                        <InputText
-                                            id="survey_name"
-                                            style={{
-                                                minWidth: "20rem",
-                                            }}
-                                            value={response.survey_name}
-                                            readOnly={true}
-                                        />
-                                        <label
-                                            htmlFor="survey_name"
-                                            className="font-bold"
-                                        >
-                                            Survey Name
-                                        </label>
-                                    </span>
-                                </div>
-                                <div
-                                    className="field"
-                                    style={{
-                                        marginBottom: "35px",
-                                        minWidth: "12rem",
-                                    }}
-                                >
-                                    <span className="p-float-label">
-                                        <InputText
-                                            id="question_group_name"
-                                            style={{ minWidth: "20rem" }}
-                                            value={response.question_group_name}
-                                            readOnly={true}
-                                        />
-                                        <label
-                                            htmlFor="question_group_name"
-                                            className="font-bold"
-                                        >
-                                            Question Group Name
-                                        </label>
-                                    </span>
-                                </div>
-                                <div
-                                    className="field"
-                                    style={{
-                                        marginBottom: "35px",
-                                    }}
-                                >
-                                    <span className="p-float-label">
-                                        <InputText
-                                            id="question_group_id"
-                                            value={response.question_group_id}
-                                            readOnly={true}
-                                            className={classNames({
-                                                "p-invalid":
-                                                    submitted &&
-                                                    !response.question_group_id,
-                                            })}
-                                        />
-                                        <label
-                                            htmlFor="question_group_id"
-                                            className="font-bold"
-                                        >
-                                            Question Group ID
-                                        </label>
-                                    </span>
-                                    {submitted &&
-                                        !response.question_group_id && (
-                                            <small className="p-error">
-                                                Question Group ID is required.
-                                            </small>
-                                        )}
-                                </div>
-                            </div>
-                        </Dialog>
-
-                        {/* Edit Question Dialog */}
-                        <Dialog
-                            visible={editQuestionDialog}
-                            style={{ width: "32rem", maxHeight: "90vh" }}
-                            breakpoints={{ "960px": "75vw", "641px": "90vw" }}
-                            header="Question Details"
-                            modal
-                            className="p-fluid"
-                            footer={editQuestionFooter}
-                            onHide={hideEditDialog}
-                        >
-                            <div
-                                className="field"
-                                style={{
-                                    marginBottom: "35px",
-                                    marginTop: "20px",
-                                }}
-                            >
-                                <span className="p-float-label">
-                                    <InputText
-                                        id="question_name"
-                                        value={editedQuestion.question_name}
-                                        onChange={(e) =>
-                                            onInputChange(e, "question_name")
-                                        }
-                                        required
-                                        autoFocus
-                                        className={classNames({
-                                            "p-invalid":
-                                                submitted &&
-                                                !editedQuestion.question_name,
-                                        })}
-                                    />
-                                    <label
-                                        htmlFor="question_name"
-                                        className="font-bold"
-                                    >
-                                        Question Name
-                                    </label>
-                                </span>
-                                {submitted && !editedQuestion.question_name && (
-                                    <small className="p-error">
-                                        Question Name is required.
-                                    </small>
-                                )}
-                            </div>
-
-                            <div
-                                className="field"
-                                style={{ marginBottom: "35px" }}
-                            >
-                                <span className="p-float-label">
-                                    <InputText
-                                        id="question_key"
-                                        value={editedQuestion.question_key}
-                                        onChange={(e) =>
-                                            onInputChange(e, "question_key")
-                                        }
-                                        required
-                                        className={classNames({
-                                            "p-invalid":
-                                                submitted &&
-                                                !editedQuestion.question_key,
-                                        })}
-                                    />
-                                    <label
-                                        htmlFor="question_key"
-                                        className="font-bold"
-                                    >
-                                        Question Key
-                                    </label>
-                                </span>
-                                {submitted && !editedQuestion.question_key && (
-                                    <small className="p-error">
-                                        Question Key is required.
-                                    </small>
-                                )}
-                            </div>
-                            <div
-                                className="field mb-3 mt-3"
-                                style={{ marginBottom: "35px" }}
-                            >
-                                <FloatLabel
-                                    className={classNames("w-full md:w-14rem", {
-                                        "p-invalid":
-                                            isSubmitted &&
-                                            !editedQuestion.question_type,
-                                    })}
-                                >
-                                    <Dropdown
-                                        inputId="question_type"
-                                        value={editedQuestion.question_type}
-                                        options={questionTypes}
-                                        onChange={(e) =>
-                                            onInputChange(e, "question_type")
-                                        }
-                                        optionLabel="label"
-                                        required
-                                        className={classNames({
-                                            "p-invalid":
-                                                isSubmitted &&
-                                                !editedQuestion.question_type,
-                                        })}
-                                    />
-                                    <label
-                                        htmlFor="question_type"
-                                        className="font-bold"
-                                    >
-                                        Question Type
-                                    </label>
-                                </FloatLabel>
-                                {isSubmitted &&
-                                    !editedQuestion.question_type && (
-                                        <small className="p-error">
-                                            Question type is required.
-                                        </small>
-                                    )}
-                            </div>
-
-                            <div
-                                className="formgrid grid"
-                                style={{ marginTop: "35px" }}
-                            >
-                                <div className="field col">
-                                    <span className="p-float-label">
-                                        <InputNumber
-                                            id="sequence"
-                                            name="sequence"
-                                            value={editedQuestion.sequence}
-                                            required
-                                            className={classNames({
-                                                "p-invalid":
-                                                    submitted &&
-                                                    !editedQuestion.sequence,
-                                            })}
-                                            onValueChange={(e) =>
-                                                onInputNumberChange(
-                                                    e,
-                                                    "sequence"
-                                                )
-                                            }
-                                        />
-                                        <label
-                                            htmlFor="sequence"
-                                            className="font-bold"
-                                        >
-                                            Sequence
-                                        </label>
-                                    </span>
-                                    {submitted && !editedQuestion.sequence && (
-                                        <small className="p-error">
-                                            Sequence is required.
-                                        </small>
-                                    )}
-                                </div>
-                                <div
-                                    className="field col"
-                                    style={{
-                                        marginTop: "35px",
-                                        marginBottom: "35px",
-                                    }}
-                                >
-                                    <span className="p-float-label">
-                                        <InputNumber
-                                            id="data_status"
-                                            value={editedQuestion.data_status}
-                                            required
-                                            className={classNames({
-                                                "p-invalid":
-                                                    submitted &&
-                                                    !editedQuestion.data_status,
-                                            })}
-                                            onValueChange={(e) =>
-                                                onInputNumberChange(
-                                                    e,
-                                                    "data_status"
-                                                )
-                                            }
-                                        />
-                                        <label
-                                            htmlFor="data_status"
-                                            className="font-bold"
-                                        >
-                                            Status
-                                        </label>
-                                    </span>
-                                    {submitted &&
-                                        !editedQuestion.data_status && (
-                                            <small className="p-error">
-                                                Status is required.
-                                            </small>
-                                        )}
-                                </div>
-                                <div
-                                    className="field"
-                                    style={{
-                                        marginBottom: "35px",
-                                        minWidth: "12rem",
-                                        marginTop: "40px",
-                                    }}
-                                >
-                                    <span className="p-float-label">
-                                        <InputText
-                                            id="survey_name"
-                                            style={{
-                                                minWidth: "20rem",
-                                            }}
-                                            value={editedQuestion.survey_name}
-                                            readOnly={true}
-                                        />
-                                        <label
-                                            htmlFor="survey_name"
-                                            className="font-bold"
-                                        >
-                                            Survey Name
-                                        </label>
-                                    </span>
-                                </div>
-                                <div
-                                    className="field"
-                                    style={{
-                                        marginBottom: "35px",
-                                        minWidth: "12rem",
-                                    }}
-                                >
-                                    <span className="p-float-label">
-                                        <InputText
-                                            id="question_group_name"
-                                            style={{ minWidth: "20rem" }}
-                                            value={
-                                                editedQuestion.question_group_name
-                                            }
-                                            readOnly={true}
-                                        />
-                                        <label
-                                            htmlFor="question_group_name"
-                                            className="font-bold"
-                                        >
-                                            Question Group Name
-                                        </label>
-                                    </span>
-                                </div>
-                                <div
-                                    className="field"
-                                    style={{
-                                        marginBottom: "35px",
-                                    }}
-                                >
-                                    <span className="p-float-label">
-                                        <InputText
-                                            id="question_group_id"
-                                            value={
-                                                editedQuestion.question_group_id
-                                            }
-                                            readOnly={true}
-                                            className={classNames({
-                                                "p-invalid":
-                                                    submitted &&
-                                                    !editedQuestion.question_group_id,
-                                            })}
-                                        />
-                                        <label
-                                            htmlFor="question_group_id"
-                                            className="font-bold"
-                                        >
-                                            Question Group ID
-                                        </label>
-                                    </span>
-                                    {submitted &&
-                                        !editedQuestion.question_group_id && (
-                                            <small className="p-error">
-                                                Question Group ID is required.
-                                            </small>
-                                        )}
-                                </div>
-                            </div>
-                        </Dialog>
+                            response={response}
+                            onInputChange={onInputChange}
+                            onInputNumberChange={onInputNumberChange}
+                            questionTypes={questionTypes}
+                            saveQuestionFooter={saveQuestionFooter}
+                            hideDialog={hideDialog}
+                            submitted={submitted}
+                            isSubmitted={isSubmitted}
+                        />
 
                         {/* Delete Question Dialog */}
                         <Dialog

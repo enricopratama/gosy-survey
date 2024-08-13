@@ -25,10 +25,10 @@ export default function HomeCopy() {
             });
     }, []);
     return (
-        <div className="">
+        <>
+            <BreadcrumbComponent />
             <div className="d-flex flex-row justify-content-between bg-white rounded flex-wrap-reverse align-items-center">
                 <div className="d-flex flex-column m-4 m-md-5">
-                    <BreadcrumbComponent pageName="Home" />
                     <div className="text-muted">Welcome Back,</div>
 
                     {user ? (
@@ -65,6 +65,6 @@ export default function HomeCopy() {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

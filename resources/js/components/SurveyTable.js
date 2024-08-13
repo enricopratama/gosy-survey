@@ -13,6 +13,8 @@ import { InputIcon } from "primereact/inputicon";
 import { IconField } from "primereact/iconfield";
 import { classNames } from "primereact/utils";
 import { Button } from "primereact/button";
+import LeftToolbar from "./LeftToolbar";
+import RightToolbar from "./RightToolbar";
 
 export default function SurveyTable() {
     const [questions, setQuestions] = useState([]);
@@ -264,37 +266,16 @@ export default function SurveyTable() {
 
     const leftToolbarTemplate = () => {
         return (
-            <div className="d-flex flex-wrap gap-2">
-                <Button
-                    label="New"
-                    icon="pi pi-plus"
-                    iconPos="left"
-                    onClick={openNew}
-                    className="rounded"
-                />
-                <Button
-                    label="Delete"
-                    icon="pi pi-trash"
-                    iconPos="left"
-                    severity="danger"
-                    onClick={confirmDeleteSelected}
-                    disabled={!selectedQuestions || !selectedQuestions.length}
-                    className="rounded"
-                />
-            </div>
+            <LeftToolbar
+                openNew={openNew}
+                confirmDeleteSelected={confirmDeleteSelected}
+                selectedQuestions={selectedQuestions}
+            />
         );
     };
 
     const rightToolbarTemplate = () => {
-        return (
-            <Button
-                label="Export"
-                icon="pi pi-upload"
-                iconPos="left"
-                onClick={exportCSV}
-                className="rounded"
-            />
-        );
+        return <RightToolbar exportCSV={exportCSV} />;
     };
 
     const paginatorLeft = (
@@ -512,12 +493,12 @@ export default function SurveyTable() {
                 </DataTable>
             </div>
 
-            {/* Question Dialog */}
+            {/* Add Question Dialog */}
             <Dialog
                 visible={questionDialog}
                 style={{ width: "32rem", maxHeight: "90vh" }}
                 breakpoints={{ "960px": "75vw", "641px": "90vw" }}
-                header="Question Details"
+                header="Add Question"
                 modal
                 className="p-fluid"
                 footer={questionDialogFooter}

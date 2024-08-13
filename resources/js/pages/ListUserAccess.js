@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import UserAccessTable from "../components/UserAccessTable";
 import BreadcrumbComponent from "../components/BreadcrumbComponent";
-// import UserAccessTableCompany from "../components/UserAccessTableCompany";
 import SkeletonUser from "../components/SkeletonUser";
 
 export default function ListUserAccess() {
@@ -16,7 +15,7 @@ export default function ListUserAccess() {
     return (
         <div>
             <BreadcrumbComponent />
-            <div className="d-flex p-2 justify-content-between bg-white rounded flex-wrap pt-4 pb-4">
+            <div className="d-flex p-2 justify-content-between bg-white rounded flex-wrap pt-4 pb-4 ">
                 <SkeletonUser />
                 <div>
                     Time : {date.toLocaleTimeString()}, Date :{" "}

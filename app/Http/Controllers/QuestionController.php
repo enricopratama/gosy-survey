@@ -6,6 +6,7 @@ use App\Models\Question;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 
 class QuestionController extends Controller
@@ -116,7 +117,6 @@ class QuestionController extends Controller
                 'question_key' => $request->question_key,
                 'question_type' => $request->question_type,
                 'sequence' => $request->sequence,
-                'status' => $request->status,
                 'data_status' => $request->data_status,
             ]);
 
@@ -149,7 +149,7 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $question_id)
     {
         $validator = Validator::make($request->all(), [
             'question_group_id' => 'required|integer',
@@ -181,11 +181,13 @@ class QuestionController extends Controller
                     'message' => implode(' | ', $messages),
                     'data' => $errors,
                 ],
-                200
+                500
             );
         }
 
-        $question = Question::find($id);
+        Log::info('Request data for validation:', $request->all());
+
+        $question = Question::find($question_id);
         if (!$question) {
             return response()->json(['message' => 'Question not found'], 404);
         }
@@ -194,20 +196,21 @@ class QuestionController extends Controller
         $question->update($request->all());
 
         return response()->json(
-            ['message' => 'Question updated successfully'],
+            ['message' => 'Question updated successfully', 'data' => $question],
             200
         );
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $question_id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($question_id)
     {
-        $question = Question::find($id);
+        $question = Question::find($question_id);
         if (!$question) {
             return response()->json(['message' => 'Question not found'], 404);
         }
