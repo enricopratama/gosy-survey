@@ -27,7 +27,6 @@ Route::get('/api/user', function () {
 
 // Questions:
 Route::post('/addQuestion', [QuestionController::class, 'store']);
-// Route::put('/editQuestion/{question_id}', [QuestionController::class, 'update']);
 Route::post('/editQuestion/{question_id}', [QuestionController::class, 'update']);
 Route::delete('/deleteQuestion/{question_id}', [QuestionController::class, 'destroy']);
 

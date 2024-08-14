@@ -104,7 +104,7 @@ class QuestionController extends Controller
                     'message' => implode(' | ', $messages),
                     'data' => $errors,
                 ],
-                200
+                00
             );
         }
 

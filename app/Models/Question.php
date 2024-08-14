@@ -12,7 +12,7 @@ class Question extends Model
     use HasApiTokens, HasFactory, Notifiable;
 
     // table of questions
-    protected $table = 'mst_question_ori'; 
+    protected $table = 'mst_question_ori';
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +20,6 @@ class Question extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'question_no',
         'question_key',
         'question_group_id',
         'sequence',
@@ -54,7 +53,7 @@ class Question extends Model
         'options_size',
     ];
 
-    protected $primaryKey = 'question_id';
+    protected $primaryKey = 'question_id'; // auto increment
 
     /**
      * The attributes that should be hidden for serialization.

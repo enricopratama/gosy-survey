@@ -12,16 +12,12 @@ import { Toast } from "primereact/toast";
 import { Column } from "primereact/column";
 import { FilterMatchMode } from "primereact/api";
 import { Toolbar } from "primereact/toolbar";
-import { InputNumber } from "primereact/inputnumber";
-import { FloatLabel } from "primereact/floatlabel";
 import { InputIcon } from "primereact/inputicon";
 import { IconField } from "primereact/iconfield";
-import { Dropdown } from "primereact/dropdown";
 import axios from "axios";
 import "../../css/app.css";
 import "../../css/NewQuestion.css";
 import BreadcrumbComponent from "../components/BreadcrumbComponent";
-import ExportJsonButton from "../handlers/ExportJsonButton";
 import LeftToolbar from "../components/LeftToolbar";
 import RightToolbar from "../components/RightToolbar";
 import AddEditQuestionDialog from "./AddEditQuestionDialog";
@@ -53,6 +49,7 @@ export default function NewQuestion() {
     const dt = useRef(null);
     const [mapGrpId, setMapGrpId] = useState(null);
     const [response, setResponse] = useState({
+        question_id: null,
         survey_name: null,
         question_group_name: "",
         question_group_id: mapGrpId,
@@ -101,8 +98,6 @@ export default function NewQuestion() {
         try {
             const response = await axios.get("/api/questions");
             setQuestions(response.data);
-            // console.log("response:", response);
-            // console.log("questions:", questions);
         } catch (error) {
             console.error("There was an error fetching the questions!", error);
         } finally {
@@ -179,29 +174,30 @@ export default function NewQuestion() {
         getQuestions();
         getSurveys();
         getSurveyQuestionGroups();
-    }, response);
+    }, response); // might need to change
 
-    const filterQuestionsByGroupName = () => {
-        getQuestions();
-        if (response.question_group_name) {
-            const filteredQuestions = questions.filter((question) => {
-                return (
-                    question.question_group_name &&
-                    question.question_group_name.includes(
-                        response.question_group_name
-                    )
-                );
-            });
-            setFilteredQuestions(filteredQuestions);
-        } else {
-            setFilteredQuestions([]);
-        }
+    const filterQuestionsByGroupName = async () => {
+        await getQuestions(); // Wait for the questions to be fetched
+
+        const filteredQuestions = questions.filter((question) => {
+            return (
+                question.question_group_name &&
+                question.question_group_name.includes(
+                    response.question_group_name
+                )
+            );
+        });
+
+        // console.log("Questions in filter...", questions);
+        setFilteredQuestions(filteredQuestions);
+        // console.log("Filtered Q's", filteredQuestions);
     };
 
     useEffect(() => {
         filterQuestionsByGroupName();
-    }, [response.question_group_name]);
+    }, [response]);
 
+    // Page 1
     const handleSurveyClick = (survey) => {
         setResponse((prevResponse) => ({
             ...prevResponse,
@@ -209,6 +205,7 @@ export default function NewQuestion() {
         }));
     };
 
+    // Page 2
     const handleQuestionGroupClick = (group) => {
         setResponse((prevResponse) => ({
             ...prevResponse,
@@ -222,35 +219,6 @@ export default function NewQuestion() {
             handleSurveyClick({ survey_name: customSurvey });
         }
         setQuestionDialog(false);
-    };
-
-    const confirmEditQuestion = async (rowData) => {
-        const url = `/editQuestion/${rowData.question_id}`;
-        const data = { ...rowData };
-
-        setLoading(true);
-
-        try {
-            const response = await axios.put(url, data);
-
-            console.log("Question updated successfully:", response.data);
-            toast.current.show({
-                severity: "success",
-                summary: "Success",
-                detail: "Question updated successfully.",
-                life: 3000,
-            });
-
-            fetchQuestions();
-        } catch (error) {
-            console.error("Error updating question:", error);
-            toast.current.show({
-                severity: "error",
-                summary: "Error",
-                detail: "Failed to update question.",
-                life: 3000,
-            });
-        }
     };
 
     /**
@@ -272,94 +240,94 @@ export default function NewQuestion() {
         return index;
     };
 
+    //TODO: Adding questions doesn't update UI
     const saveQuestion = async () => {
         setSubmitted(true);
 
-        let _questions = [...questions];
-        let _response = { ...response };
+        if (
+            response.question_name.trim() &&
+            response.question_key.trim() &&
+            response.question_type.trim() &&
+            response.sequence &&
+            response.data_status
+        ) {
+            let _questions = [...questions];
+            let _response = { ...response };
 
-        console.log("Response Consoled:", _response);
+            var formData = new FormData();
+            formData.append("question_group_id", _response.question_group_id);
+            formData.append("question_name", _response.question_name);
+            formData.append("question_key", _response.question_key);
+            formData.append("question_type", _response.question_type);
+            formData.append("sequence", _response.sequence);
+            formData.append("data_status", _response.data_status);
 
-        var formData = new FormData();
-        formData.append("question_group_id", _response.question_group_id);
-        formData.append("question_name", _response.question_name);
-        formData.append("question_key", _response.question_key);
-        formData.append("question_type", _response.question_type);
-        formData.append("sequence", _response.sequence);
-        formData.append("data_status", _response.data_status);
+            const index = findIndexByID(_response.question_id);
 
-        console.log("Form Data INFO (edited):");
-        for (var pair of formData.entries()) {
-            console.log(pair[0] + ", " + pair[1]);
-        }
+            try {
+                let result;
+                if (index >= 0 && editState) {
+                    // Update existing question
+                    result = await axios.post(
+                        `/editQuestion/${_response.question_id}`,
+                        formData
+                    );
 
-        console.log("Response Q ID:", _response.question_id);
-        const index = findIndexByID(_response.question_id);
-        console.log("Index here:", index);
+                    if (result.status === 200) {
+                        _questions[index] = _response;
+                        toast.current.show({
+                            severity: "success",
+                            summary: "Successful",
+                            detail: `Question ${_response.question_id} Updated`,
+                            life: 2000,
+                        });
+                    }
+                } else {
+                    // New Question
+                    result = await axios.post("/addQuestion", formData);
 
-        try {
-            let result;
-            if (index >= 0) {
-                // Find the index of the existing question
-                console.log("Updating question at index", index);
+                    if (result.status === 200) {
+                        const newQuestion = result.data.data;
+                        _questions.push(newQuestion); // Push the new question into the array
+                        console.log("Updated Questions Array:", _questions);
+                        setQuestions(_questions);
 
-                // Update existing question
-                result = await axios.post(
-                    `/editQuestion/${_response.question_id}`,
-                    formData
-                );
+                        toast.current.show({
+                            severity: "success",
+                            summary: "Successful",
+                            detail: `Question ${newQuestion.question_id} Created`,
+                            life: 2000,
+                        });
 
-                console.log("'Result' of editing", result);
-
-                if (result.status === 200) {
-                    _questions[index] = result.data.data;
-                    toast.current.show({
-                        severity: "success",
-                        summary: "Successful",
-                        detail: "Question Updated",
-                        life: 2000,
-                    });
+                        // setResponse((prevResponse) => ({
+                        //     ...prevResponse,
+                        //     question_id: newQuestion.question_id,
+                        //     question_key: "",
+                        //     question_type: "",
+                        //     question_name: "",
+                        //     sequence: null,
+                        //     data_status: null,
+                        // }));
+                    }
                 }
-            } else {
-                // Create new question
-                console.log("Creating new question");
-
-                result = await axios.post("/addQuestion", formData);
-
-                if (result.status === 200) {
-                    _questions.push(result.data.data);
-                    toast.current.show({
-                        severity: "success",
-                        summary: "Successful",
-                        detail: "Question Created",
-                        life: 2000,
-                    });
-                }
+            } catch (error) {
+                console.error("There was an error saving the question!", error);
+                toast.current.show({
+                    severity: "error",
+                    summary: "Error",
+                    detail: `Failed Saving Question ${_response.question_id}`,
+                    life: 2000,
+                });
             }
+            // Always set the state after the operations
+            // setQuestions(_questions);
+            console.log("_questions", _questions);
+            console.log("Questions after", questions);
 
-            // Update the questions state
-            setQuestions(_questions);
-        } catch (error) {
-            console.error("There was an error saving the question!", error);
-            toast.current.show({
-                severity: "error",
-                summary: "Error",
-                detail: "Failed to save question",
-                life: 2000,
-            });
-        } finally {
-            // Reset the form and close the dialog
             setQuestionDialog(false);
-            setResponse((prevResponse) => ({
-                ...prevResponse,
-                question_key: "",
-                question_type: "",
-                question_name: "",
-                sequence: null,
-                data_status: null,
-            }));
             setEditState(false);
-            getQuestions(); // Refresh the questions list
+            // console.log("Filtered Q's", filteredQuestions);
+            filterQuestionsByGroupName(); // If you need to filter after saving
         }
     };
 
@@ -383,12 +351,13 @@ export default function NewQuestion() {
         setSubmitted(false);
         setQuestionDialog(false);
         setEditState(false);
-        getQuestions();
+        filterQuestionsByGroupName();
     };
 
     const hideDeleteQuestionDialog = () => {
         setDeleteQuestionDialog(false);
         setEditState(false);
+        filterQuestionsByGroupName();
     };
 
     const hideDeleteQuestionsDialog = () => {
@@ -440,35 +409,63 @@ export default function NewQuestion() {
     const confirmDeleteSelected = () => {
         setDeleteQuestionsDialog(true);
         setEditState(false);
+        filterQuestionsByGroupName();
     };
 
-    const deleteQuestion = () => {
-        let _questions = questions.filter(
-            (val) => val.question_id !== question.question_id
-        );
+    const deleteQuestion = async () => {
+        let _questions = [...questions];
+        let _response = { ...response };
+        const url = `/deleteQuestion/${_response.question_id}`;
 
-        setQuestions(_questions);
-        setDeleteQuestionDialog(false);
-        setQuestion(initialEmptyQuestion);
-        setEditState(false);
-        toast.current.show({
-            severity: "success",
-            summary: "Successful",
-            detail: "Question Deleted",
-            life: 2000,
-        });
+        try {
+            const result = await axios.delete(url);
+            if (result.status === 200) {
+                // Update the UI after successful deletion
+                _questions = _questions.filter(
+                    (val) => val.question_id !== _response.question_id
+                );
+                toast.current.show({
+                    severity: "success",
+                    summary: "Successful",
+                    detail: `Question ${_response.question_id} Deleted`,
+                    life: 2000,
+                });
+            }
+            setQuestions(_questions);
+            filterQuestionsByGroupName();
+        } catch (error) {
+            console.error("Error deleting question", error);
+            toast.current.show({
+                severity: "error",
+                summary: "Error",
+                detail: `Failed Saving Question ${_response.question_id}`,
+                life: 2000,
+            });
+            setQuestions(_questions);
+        } finally {
+            // let _questions = questions.filter(
+            //     (val) => val.question_id !== response.question_id
+            // );
+            // setQuestions(_questions);
+            setDeleteQuestionDialog(false);
+            setQuestion(initialEmptyQuestion);
+            setEditState(false);
+            getQuestions();
+            filterQuestionsByGroupName(); // Re-filter the questions
+        }
     };
 
-    const editQuestion = async (question) => {
+    const editQuestion = (question) => {
         setResponse({ ...question }); // Put the rowData as question
         setQuestionDialog(true);
         setEditState(true);
     };
 
     const confirmDeleteQuestion = (question) => {
-        setQuestion(question);
+        setResponse({ ...question }); // Put the rowData as question
         setDeleteQuestionDialog(true);
-        setEditState(false);
+        filterQuestionsByGroupName();
+        // setEditState(false);
     };
 
     const actionBodyTemplate = (rowData) => {
@@ -619,6 +616,7 @@ export default function NewQuestion() {
 
     const openNew = () => {
         // console.log("Custom Survey:", customSurvey);
+        // console.log("Response Details", response);
         setResponse((prevResponse) => ({
             ...prevResponse,
             ...initialEmptyQuestion,
@@ -636,7 +634,7 @@ export default function NewQuestion() {
             type="button"
             icon="pi pi-refresh"
             text
-            onClick={getQuestions}
+            onClick={filterQuestionsByGroupName}
         />
     );
     const paginatorRight = (
@@ -1089,6 +1087,9 @@ export default function NewQuestion() {
                             filters={filters}
                             stripedRows
                             header={header}
+                            rowsPerPageOptions={[5, 10, 25]}
+                            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown showGridlines"
+                            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} questions"
                         >
                             <Column
                                 selectionMode="multiple"
