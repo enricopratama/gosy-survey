@@ -13719,7 +13719,7 @@ var AddEditQuestionDialog = function AddEditQuestionDialog(_ref) {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "field col",
       style: {
-        marginTop: "15px",
+        marginTop: "19px",
         marginBottom: "30px"
       },
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
@@ -13771,32 +13771,6 @@ var AddEditQuestionDialog = function AddEditQuestionDialog(_ref) {
       }), submitted && !response.question_name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("small", {
         className: "p-error",
         children: "Question Name is required."
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "field",
-      style: {
-        marginBottom: "35px"
-      },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
-        className: "p-float-label",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_5__.InputText, {
-          id: "question_key",
-          value: response.question_key || "",
-          onChange: function onChange(e) {
-            return onInputChange(e, "question_key");
-          },
-          required: true,
-          className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_4__.classNames)({
-            "p-invalid": submitted && !response.question_key
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-          htmlFor: "question_key",
-          className: "font-bold",
-          children: "Question Key"
-        })]
-      }), submitted && !response.question_key && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("small", {
-        className: "p-error",
-        children: "Question Key is required."
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "field mb-3 mt-3",
@@ -13860,6 +13834,11 @@ var AddEditQuestionDialog = function AddEditQuestionDialog(_ref) {
           className: "p-error",
           children: "Status is required."
         })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("hr", {
+        style: {
+          width: "100%",
+          margin: "20px 0"
+        }
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         className: "field",
         style: {
@@ -14602,8 +14581,6 @@ function NewQuestion() {
     }
     return index;
   };
-
-  //TODO: fix add question update UI!
   var saveQuestion = /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
       var _questions, _response, formData, index, result, newQuestion;
@@ -14611,8 +14588,8 @@ function NewQuestion() {
         while (1) switch (_context6.prev = _context6.next) {
           case 0:
             setSubmitted(true);
-            if (!(response.question_name.trim() && response.question_key.trim() && response.question_type.trim() && response.sequence && response.data_status)) {
-              _context6.next = 36;
+            if (!(response.question_name.trim() && response.question_type.trim() && response.sequence && response.data_status)) {
+              _context6.next = 34;
               break;
             }
             _questions = _toConsumableArray(questions);
@@ -14645,7 +14622,7 @@ function NewQuestion() {
               setResponse(function (prevResponse) {
                 return _objectSpread(_objectSpread({}, prevResponse), {}, {
                   question_id: result.data.data.question_id,
-                  question_key: "",
+                  question_key: result.data.data.question_key,
                   question_type: "",
                   question_name: "",
                   sequence: null,
@@ -14672,7 +14649,7 @@ function NewQuestion() {
               setResponse(function (prevResponse) {
                 return _objectSpread(_objectSpread({}, prevResponse), {}, {
                   question_id: result.data.data.question_id,
-                  question_key: "",
+                  question_key: result.data.data.question_key,
                   question_type: "",
                   question_name: "",
                   sequence: null,
@@ -14694,14 +14671,11 @@ function NewQuestion() {
               life: 2000
             });
           case 30:
-            // Always set the state after the operations
             setQuestions(_questions);
-            console.log("Questions after", question);
             setQuestionDialog(false);
             setEditState(false);
-            console.log("Filtered Q's", filteredQuestions);
-            filterQuestionsByGroupName(); // If you need to filter after saving
-          case 36:
+            filterQuestionsByGroupName();
+          case 34:
           case "end":
             return _context6.stop();
         }
@@ -14867,6 +14841,8 @@ function NewQuestion() {
       onClick: deleteQuestion
     })]
   });
+
+  // might need fixing
   var deleteSelectedQuestions = /*#__PURE__*/function () {
     var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
       var selectedQuestionsID, _questions, i, _i, question_id, url, result;
@@ -15063,8 +15039,6 @@ function NewQuestion() {
     })]
   });
   var openNew = function openNew() {
-    // console.log("Custom Survey:", customSurvey);
-    // console.log("Response Details", response);
     setResponse(function (prevResponse) {
       return _objectSpread(_objectSpread({}, prevResponse), initialEmptyQuestion);
     });
@@ -15104,6 +15078,7 @@ function NewQuestion() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
       className: "card d-flex justify-content-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(primereact_stepper__WEBPACK_IMPORTED_MODULE_15__.Stepper, {
+        linear: true,
         ref: stepperRef,
         style: {
           marginTop: "2rem"

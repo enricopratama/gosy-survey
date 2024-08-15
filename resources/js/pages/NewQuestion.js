@@ -239,13 +239,11 @@ export default function NewQuestion() {
         return index;
     };
 
-    //TODO: fix add question update UI!
     const saveQuestion = async () => {
         setSubmitted(true);
 
         if (
             response.question_name.trim() &&
-            response.question_key.trim() &&
             response.question_type.trim() &&
             response.sequence &&
             response.data_status
@@ -283,7 +281,7 @@ export default function NewQuestion() {
                         setResponse((prevResponse) => ({
                             ...prevResponse,
                             question_id: result.data.data.question_id,
-                            question_key: "",
+                            question_key: result.data.data.question_key,
                             question_type: "",
                             question_name: "",
                             sequence: null,
@@ -307,7 +305,7 @@ export default function NewQuestion() {
                         setResponse((prevResponse) => ({
                             ...prevResponse,
                             question_id: result.data.data.question_id,
-                            question_key: "",
+                            question_key: result.data.data.question_key,
                             question_type: "",
                             question_name: "",
                             sequence: null,
@@ -324,14 +322,10 @@ export default function NewQuestion() {
                     life: 2000,
                 });
             }
-            // Always set the state after the operations
             setQuestions(_questions);
-            console.log("Questions after", question);
-
             setQuestionDialog(false);
             setEditState(false);
-            console.log("Filtered Q's", filteredQuestions);
-            filterQuestionsByGroupName(); // If you need to filter after saving
+            filterQuestionsByGroupName();
         }
     };
 
@@ -478,6 +472,7 @@ export default function NewQuestion() {
         </React.Fragment>
     );
 
+    // might need fixing
     const deleteSelectedQuestions = async () => {
         var selectedQuestionsID = [];
         let _questions = [...questions];
@@ -662,8 +657,6 @@ export default function NewQuestion() {
     );
 
     const openNew = () => {
-        // console.log("Custom Survey:", customSurvey);
-        // console.log("Response Details", response);
         setResponse((prevResponse) => ({
             ...prevResponse,
             ...initialEmptyQuestion,
@@ -707,7 +700,7 @@ export default function NewQuestion() {
             <BreadcrumbComponent />
             <Toast ref={toast} />
             <div className="card d-flex justify-content-center">
-                <Stepper ref={stepperRef} style={{ marginTop: "2rem" }}>
+                <Stepper linear ref={stepperRef} style={{ marginTop: "2rem" }}>
                     {/* Step 1 - Survey Type */}
                     <StepperPanel header="Survey Type">
                         <div className="d-flex flex-column">

@@ -31,7 +31,7 @@ const AddEditQuestionDialog = ({
         >
             <div
                 className="field col"
-                style={{ marginTop: "15px", marginBottom: "30px" }}
+                style={{ marginTop: "19px", marginBottom: "30px" }}
             >
                 <span className="p-float-label">
                     <InputNumber
@@ -80,11 +80,11 @@ const AddEditQuestionDialog = ({
                 )}
             </div>
 
-            <div className="field" style={{ marginBottom: "35px" }}>
+            {/* <div className="field" style={{ marginBottom: "35px" }}>
                 <span className="p-float-label">
                     <InputText
                         id="question_key"
-                        value={response.question_key || ""}
+                        value={response.question_key}
                         onChange={(e) => onInputChange(e, "question_key")}
                         required
                         className={classNames({
@@ -98,7 +98,7 @@ const AddEditQuestionDialog = ({
                 {submitted && !response.question_key && (
                     <small className="p-error">Question Key is required.</small>
                 )}
-            </div>
+            </div> */}
 
             <div className="field mb-3 mt-3" style={{ marginBottom: "35px" }}>
                 <FloatLabel
@@ -153,6 +153,9 @@ const AddEditQuestionDialog = ({
                         <small className="p-error">Status is required.</small>
                     )}
                 </div>
+
+                {/* Add horizontal line after Status */}
+                <hr style={{ width: "100%", margin: "20px 0" }} />
 
                 <div
                     className="field"

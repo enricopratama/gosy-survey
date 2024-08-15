@@ -72,12 +72,80 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // public function store(Request $request)
+    // {
+    //     $validator = Validator::make($request->all(), [
+    //         'question_group_id' => 'required|integer',
+    //         'question_name' => 'required|string|max:255',
+    //         'question_key' => 'required|string|max:255',
+    //         'question_type' => [
+    //             'required',
+    //             Rule::in([
+    //                 'Text',
+    //                 'Paragraph',
+    //                 'Choice',
+    //                 'Checkboxes',
+    //                 'Dropdown',
+    //             ]),
+    //         ],
+    //         'sequence' => 'required|integer',
+    //         'data_status' => 'required|integer',
+    //     ]);
+
+    //     if ($validator->fails()) {
+    //         $errors = $validator->errors();
+    //         $messages = ['Validation Error!'];
+    //         foreach ($errors->all() as $error) {
+    //             $messages[] = $error;
+    //         }
+    //         return response()->json(
+    //             [
+    //                 'status' => 0,
+    //                 'message' => implode(' | ', $messages),
+    //                 'data' => $errors,
+    //             ],
+    //             200
+    //         );
+    //     }
+
+    //     // Insert into database
+    //     DB::beginTransaction();
+    //     try {
+    //         $new = Question::create([
+    //             'question_group_id' => $request->question_group_id,
+    //             'question_name' => $request->question_name,
+    //             'question_key' => $request->question_key,
+    //             'question_type' => $request->question_type,
+    //             'sequence' => $request->sequence,
+    //             'data_status' => $request->data_status,
+    //         ]);
+
+    //         DB::commit();
+    //         return response()->json(
+    //             [
+    //                 'status' => 1,
+    //                 'message' => "Successfully Saved",
+    //                 'data' => $new,
+    //             ],
+    //             200
+    //         );
+    //     } catch (\Exception $e) {
+    //         DB::rollBack();
+    //         return response()->json(
+    //             [
+    //                 'status' => 0,
+    //                 'message' => 'Failed to Save',
+    //                 'error' => $e->getMessage(),
+    //             ],
+    //             500
+    //         );
+    //     }
+    // }
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'question_group_id' => 'required|integer',
             'question_name' => 'required|string|max:255',
-            'question_key' => 'required|string|max:255',
             'question_type' => [
                 'required',
                 Rule::in([
@@ -104,17 +172,18 @@ class QuestionController extends Controller
                     'message' => implode(' | ', $messages),
                     'data' => $errors,
                 ],
-                00
+                200
             );
         }
 
+        $question_key = $request->question_group_id . '#' . $request->sequence;
         // Insert into database
         DB::beginTransaction();
         try {
             $new = Question::create([
                 'question_group_id' => $request->question_group_id,
                 'question_name' => $request->question_name,
-                'question_key' => $request->question_key,
+                'question_key' => $question_key,
                 'question_type' => $request->question_type,
                 'sequence' => $request->sequence,
                 'data_status' => $request->data_status,
