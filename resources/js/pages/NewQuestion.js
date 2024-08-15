@@ -36,10 +36,9 @@ export default function NewQuestion() {
     const [customQuestionGroup, setCustomQuestionGroup] = useState("");
     const [submitted, setSubmitted] = useState(false);
     const [submittedQuestion, setSubmittedQuestion] = useState(false);
-    const [selectedQuestions, setSelectedQuestions] = useState(null);
+    const [selectedQuestions, setSelectedQuestions] = useState([]);
     const [hoveredSurveyType, setHoveredSurveyType] = useState(null);
     const [questionDialog, setQuestionDialog] = useState(false);
-    const [editQuestionDialog, setEditQuestionDialog] = useState(false);
     const [questionGroupDialog, setQuestionGroupDialog] = useState(false);
     const [globalFilterValue, setGlobalFilterValue] = useState("");
     const [editState, setEditState] = useState(false);
@@ -190,7 +189,7 @@ export default function NewQuestion() {
 
         // console.log("Questions in filter...", questions);
         setFilteredQuestions(filteredQuestions);
-        // console.log("Filtered Q's", filteredQuestions);
+        console.log("Filtered Q's", filteredQuestions);
     };
 
     useEffect(() => {
@@ -240,7 +239,7 @@ export default function NewQuestion() {
         return index;
     };
 
-    //TODO: Adding questions doesn't update UI
+    //TODO: fix add question update UI!
     const saveQuestion = async () => {
         setSubmitted(true);
 
@@ -281,6 +280,15 @@ export default function NewQuestion() {
                             detail: `Question ${_response.question_id} Updated`,
                             life: 2000,
                         });
+                        setResponse((prevResponse) => ({
+                            ...prevResponse,
+                            question_id: result.data.data.question_id,
+                            question_key: "",
+                            question_type: "",
+                            question_name: "",
+                            sequence: null,
+                            data_status: null,
+                        }));
                     }
                 } else {
                     // New Question
@@ -288,10 +296,7 @@ export default function NewQuestion() {
 
                     if (result.status === 200) {
                         const newQuestion = result.data.data;
-                        _questions.push(newQuestion); // Push the new question into the array
-                        console.log("Updated Questions Array:", _questions);
-                        setQuestions(_questions);
-
+                        _questions.push(_response);
                         toast.current.show({
                             severity: "success",
                             summary: "Successful",
@@ -299,15 +304,15 @@ export default function NewQuestion() {
                             life: 2000,
                         });
 
-                        // setResponse((prevResponse) => ({
-                        //     ...prevResponse,
-                        //     question_id: newQuestion.question_id,
-                        //     question_key: "",
-                        //     question_type: "",
-                        //     question_name: "",
-                        //     sequence: null,
-                        //     data_status: null,
-                        // }));
+                        setResponse((prevResponse) => ({
+                            ...prevResponse,
+                            question_id: result.data.data.question_id,
+                            question_key: "",
+                            question_type: "",
+                            question_name: "",
+                            sequence: null,
+                            data_status: null,
+                        }));
                     }
                 }
             } catch (error) {
@@ -320,13 +325,12 @@ export default function NewQuestion() {
                 });
             }
             // Always set the state after the operations
-            // setQuestions(_questions);
-            console.log("_questions", _questions);
-            console.log("Questions after", questions);
+            setQuestions(_questions);
+            console.log("Questions after", question);
 
             setQuestionDialog(false);
             setEditState(false);
-            // console.log("Filtered Q's", filteredQuestions);
+            console.log("Filtered Q's", filteredQuestions);
             filterQuestionsByGroupName(); // If you need to filter after saving
         }
     };
@@ -406,12 +410,6 @@ export default function NewQuestion() {
         </div>
     );
 
-    const confirmDeleteSelected = () => {
-        setDeleteQuestionsDialog(true);
-        setEditState(false);
-        filterQuestionsByGroupName();
-    };
-
     const deleteQuestion = async () => {
         let _questions = [...questions];
         let _response = { ...response };
@@ -432,40 +430,147 @@ export default function NewQuestion() {
                 });
             }
             setQuestions(_questions);
+            setResponse((prevResponse) => ({
+                ...prevResponse,
+                question_key: "",
+                question_type: "",
+                question_name: "",
+                sequence: null,
+                data_status: null,
+            }));
             filterQuestionsByGroupName();
         } catch (error) {
             console.error("Error deleting question", error);
             toast.current.show({
                 severity: "error",
                 summary: "Error",
-                detail: `Failed Saving Question ${_response.question_id}`,
+                detail: `Failed Deleting Question ${_response.question_id}`,
                 life: 2000,
             });
             setQuestions(_questions);
         } finally {
-            // let _questions = questions.filter(
-            //     (val) => val.question_id !== response.question_id
-            // );
-            // setQuestions(_questions);
             setDeleteQuestionDialog(false);
             setQuestion(initialEmptyQuestion);
             setEditState(false);
             getQuestions();
-            filterQuestionsByGroupName(); // Re-filter the questions
+            filterQuestionsByGroupName();
         }
     };
 
+    const deleteQuestionDialogFooter = (
+        <React.Fragment>
+            <Button
+                label="No"
+                icon="pi pi-times"
+                iconPos="left"
+                className="ms-2"
+                outlined
+                onClick={hideDeleteQuestionDialog}
+            />
+            <Button
+                label="Yes"
+                icon="pi pi-check"
+                iconPos="left"
+                severity="danger"
+                className="ms-2"
+                onClick={deleteQuestion}
+            />
+        </React.Fragment>
+    );
+
+    const deleteSelectedQuestions = async () => {
+        var selectedQuestionsID = [];
+        let _questions = [...questions];
+        if (selectedQuestions) {
+            for (let i = 0; i < selectedQuestions.length; i++) {
+                selectedQuestionsID.push(selectedQuestions[i].question_id);
+            }
+        }
+
+        try {
+            for (let i = 0; i < selectedQuestionsID.length; i++) {
+                const question_id = selectedQuestionsID[i];
+                const url = `/deleteQuestion/${question_id}`;
+                const result = await axios.delete(url);
+
+                if (result.status === 200) {
+                    _questions = questions.filter(
+                        (val) => !selectedQuestionsID.includes(val.question_id)
+                    );
+                }
+                setQuestions(_questions);
+                setResponse((prevResponse) => ({
+                    ...prevResponse,
+                    question_key: "",
+                    question_type: "",
+                    question_name: "",
+                    sequence: null,
+                    data_status: null,
+                }));
+                filterQuestionsByGroupName();
+            }
+            toast.current.show({
+                severity: "success",
+                summary: "Successful",
+                detail: "Selected Questions Deleted",
+                life: 2000,
+            });
+        } catch (error) {
+            console.error("Error deleting questions", error);
+            toast.current.show({
+                severity: "error",
+                summary: "Error",
+                detail: `Failed Deleting Selected Questions`,
+                life: 2000,
+            });
+            setQuestions(_questions);
+        } finally {
+            setQuestions(_questions);
+            setDeleteQuestionsDialog(false);
+            setSelectedQuestions(null);
+            setEditState(false);
+            getQuestions();
+            filterQuestionsByGroupName();
+        }
+    };
+
+    const deleteQuestionsDialogFooter = (
+        <React.Fragment>
+            <Button
+                label="No"
+                icon="pi pi-times"
+                iconPos="left"
+                outlined
+                onClick={hideDeleteQuestionsDialog}
+            />
+            <Button
+                label="Yes"
+                icon="pi pi-check"
+                className="ms-2"
+                iconPos="left"
+                severity="danger"
+                onClick={deleteSelectedQuestions}
+            />
+        </React.Fragment>
+    );
+
     const editQuestion = (question) => {
-        setResponse({ ...question }); // Put the rowData as question
+        setResponse({ ...question });
         setQuestionDialog(true);
         setEditState(true);
     };
 
+    // Do Delete A Question
     const confirmDeleteQuestion = (question) => {
-        setResponse({ ...question }); // Put the rowData as question
+        setResponse({ ...question });
         setDeleteQuestionDialog(true);
         filterQuestionsByGroupName();
-        // setEditState(false);
+    };
+
+    // Do Delete Questions
+    const confirmDeleteSelected = () => {
+        setDeleteQuestionsDialog(true);
+        filterQuestionsByGroupName();
     };
 
     const actionBodyTemplate = (rowData) => {
@@ -556,64 +661,6 @@ export default function NewQuestion() {
         </React.Fragment>
     );
 
-    const deleteQuestionDialogFooter = (
-        <React.Fragment>
-            <Button
-                label="No"
-                icon="pi pi-times"
-                iconPos="left"
-                className="ms-2"
-                outlined
-                onClick={hideDeleteQuestionDialog}
-            />
-            <Button
-                label="Yes"
-                icon="pi pi-check"
-                iconPos="left"
-                severity="danger"
-                className="ms-2"
-                onClick={deleteQuestion}
-            />
-        </React.Fragment>
-    );
-
-    const deleteSelectedQuestions = () => {
-        let _questions = questions.filter(
-            (val) => !selectedQuestions.includes(val)
-        );
-
-        setQuestions(_questions);
-        setDeleteQuestionsDialog(false);
-        setSelectedQuestions(null);
-        setEditState(false);
-        toast.current.show({
-            severity: "success",
-            summary: "Successful",
-            detail: "Questions Deleted",
-            life: 2000,
-        });
-    };
-
-    const deleteQuestionsDialogFooter = (
-        <React.Fragment>
-            <Button
-                label="No"
-                icon="pi pi-times"
-                iconPos="left"
-                outlined
-                onClick={hideDeleteQuestionsDialog}
-            />
-            <Button
-                label="Yes"
-                icon="pi pi-check"
-                className="ms-2"
-                iconPos="left"
-                severity="danger"
-                onClick={deleteSelectedQuestions}
-            />
-        </React.Fragment>
-    );
-
     const openNew = () => {
         // console.log("Custom Survey:", customSurvey);
         // console.log("Response Details", response);
@@ -640,6 +687,7 @@ export default function NewQuestion() {
     const paginatorRight = (
         <Button type="button" icon="pi pi-download" text onClick={exportCSV} />
     );
+
     const leftToolbarTemplate = () => {
         return (
             <LeftToolbar
@@ -1084,6 +1132,8 @@ export default function NewQuestion() {
                             paginatorLeft={paginatorLeft}
                             paginatorRight={paginatorRight}
                             rows={5}
+                            sortField="sequence"
+                            sortOrder={11}
                             filters={filters}
                             stripedRows
                             header={header}
@@ -1095,7 +1145,12 @@ export default function NewQuestion() {
                                 selectionMode="multiple"
                                 exportable={false}
                             />
-                            <Column field="question_id" header="ID" sortable />
+                            {/* <Column field="question_id" header="ID" sortable /> */}
+                            <Column
+                                field="sequence"
+                                header="Sequence"
+                                sortable
+                            />
                             <Column
                                 field="question_name"
                                 header="Name"
@@ -1115,11 +1170,6 @@ export default function NewQuestion() {
                             <Column
                                 field="question_group_id"
                                 header="Question Group ID"
-                                sortable
-                            />
-                            <Column
-                                field="sequence"
-                                header="Sequence"
                                 sortable
                             />
                             <Column

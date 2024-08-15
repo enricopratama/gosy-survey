@@ -1,7 +1,6 @@
 import React from "react";
 import { Button } from "primereact/button";
 
-// New and Delete (selected) buttons
 const LeftToolbar = ({ openNew, confirmDeleteSelected, selectedQuestions }) => {
     return (
         <div className="d-flex flex-wrap gap-2">

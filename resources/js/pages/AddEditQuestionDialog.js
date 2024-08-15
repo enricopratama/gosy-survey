@@ -30,6 +30,31 @@ const AddEditQuestionDialog = ({
             onHide={hideDialog}
         >
             <div
+                className="field col"
+                style={{ marginTop: "15px", marginBottom: "30px" }}
+            >
+                <span className="p-float-label">
+                    <InputNumber
+                        id="sequence"
+                        name="sequence"
+                        value={response.sequence}
+                        required
+                        className={classNames({
+                            "p-invalid": submitted && !response.sequence,
+                        })}
+                        onValueChange={(e) =>
+                            onInputNumberChange(e, "sequence")
+                        }
+                    />
+                    <label htmlFor="sequence" className="font-bold">
+                        Sequence
+                    </label>
+                </span>
+                {submitted && !response.sequence && (
+                    <small className="p-error">Sequence is required.</small>
+                )}
+            </div>
+            <div
                 className="field"
                 style={{ marginBottom: "35px", marginTop: "20px" }}
             >
@@ -104,28 +129,6 @@ const AddEditQuestionDialog = ({
             </div>
 
             <div className="formgrid grid" style={{ marginTop: "35px" }}>
-                <div className="field col">
-                    <span className="p-float-label">
-                        <InputNumber
-                            id="sequence"
-                            name="sequence"
-                            value={response.sequence || 0}
-                            required
-                            className={classNames({
-                                "p-invalid": submitted && !response.sequence,
-                            })}
-                            onValueChange={(e) =>
-                                onInputNumberChange(e, "sequence")
-                            }
-                        />
-                        <label htmlFor="sequence" className="font-bold">
-                            Sequence
-                        </label>
-                    </span>
-                    {submitted && !response.sequence && (
-                        <small className="p-error">Sequence is required.</small>
-                    )}
-                </div>
                 <div
                     className="field col"
                     style={{ marginTop: "35px", marginBottom: "35px" }}
@@ -150,6 +153,7 @@ const AddEditQuestionDialog = ({
                         <small className="p-error">Status is required.</small>
                     )}
                 </div>
+
                 <div
                     className="field"
                     style={{
