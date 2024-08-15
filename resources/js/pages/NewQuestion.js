@@ -21,31 +21,47 @@ import BreadcrumbComponent from "../components/BreadcrumbComponent";
 import LeftToolbar from "../components/LeftToolbar";
 import RightToolbar from "../components/RightToolbar";
 import AddEditQuestionDialog from "./AddEditQuestionDialog";
+import OptionsDialog from "../components/OptionsDialog";
 
 export default function NewQuestion() {
     const op = useRef(null);
     const stepperRef = useRef(null);
+    const dt = useRef(null);
+
+    // Questions
     const [questions, setQuestions] = useState([]);
     const [question, setQuestion] = useState([]);
-    const toast = useRef(null);
     const [filteredQuestions, setFilteredQuestions] = useState([]);
-    const [surveys, setSurveys] = useState([]);
-    const [surveyQuestionGroups, setSurveyQuestionGroups] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [customSurvey, setCustomSurvey] = useState("");
-    const [customQuestionGroup, setCustomQuestionGroup] = useState("");
-    const [submitted, setSubmitted] = useState(false);
-    const [submittedQuestion, setSubmittedQuestion] = useState(false);
     const [selectedQuestions, setSelectedQuestions] = useState([]);
-    const [hoveredSurveyType, setHoveredSurveyType] = useState(null);
     const [questionDialog, setQuestionDialog] = useState(false);
     const [questionGroupDialog, setQuestionGroupDialog] = useState(false);
-    const [globalFilterValue, setGlobalFilterValue] = useState("");
-    const [editState, setEditState] = useState(false);
+    const [customQuestionGroup, setCustomQuestionGroup] = useState("");
+
+    const toast = useRef(null);
+
+    // Surveys
+    const [surveys, setSurveys] = useState([]);
+    const [surveyQuestionGroups, setSurveyQuestionGroups] = useState([]);
+    const [customSurvey, setCustomSurvey] = useState("");
+    const [hoveredSurveyType, setHoveredSurveyType] = useState(null);
+
+    const [loading, setLoading] = useState(true);
+
+    // Submitted
+    const [submitted, setSubmitted] = useState(false);
+    const [submittedQuestion, setSubmittedQuestion] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+
+    const [editState, setEditState] = useState(false);
+
+    // Delete Question
     const [deleteQuestionDialog, setDeleteQuestionDialog] = useState(false);
     const [deleteQuestionsDialog, setDeleteQuestionsDialog] = useState(false);
-    const dt = useRef(null);
+
+    // Options
+    const [dialogVisible, setDialogVisible] = useState(false);
+    const [selectedOptions, setSelectedOptions] = useState({});
+
     const [mapGrpId, setMapGrpId] = useState(null);
     const [response, setResponse] = useState({
         question_id: null,
@@ -58,7 +74,29 @@ export default function NewQuestion() {
         sequence: null,
         data_status: null,
         is_parent: null,
+        is_mandatory: null,
+        option_1: null,
+        option_1_flow: null,
+        option_2: null,
+        option_2_flow: null,
+        option_3: null,
+        option_3_flow: null,
+        option_4: null,
+        option_4_flow: null,
+        option_5: null,
+        option_5_flow: null,
+        option_6: null,
+        option_6_flow: null,
+        option_7: null,
+        option_7_flow: null,
+        option_8: null,
+        option_8_flow: null,
+        option_9: null,
+        option_9_flow: null,
     });
+
+    // Filters
+    const [globalFilterValue, setGlobalFilterValue] = useState("");
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         question_id: { value: null, matchMode: FilterMatchMode.EQUALS },
@@ -267,6 +305,7 @@ export default function NewQuestion() {
             formData.append("sequence", _response.sequence);
             formData.append("data_status", _response.data_status);
             formData.append("is_parent", _response.is_parent);
+            formData.append("is_mandatory", _response.is_mandatory);
 
             const index = findIndexByID(_response.question_id);
 
@@ -301,14 +340,14 @@ export default function NewQuestion() {
                 } else {
                     // New Question
                     result = await axios.post("/addQuestion", formData);
-
+                    //TODO (BUG): Fix seqence when add first time
                     if (result.status === 200) {
                         const newQuestion = result.data.data || result.data;
                         _questions.push(_response);
                         toast.current.show({
                             severity: "success",
                             summary: "Successful",
-                            detail: `Question ${newQuestion.sequence} Created`, //TODO: Fix seqence when add first time
+                            detail: `Question ${newQuestion.sequence} Created`,
                             life: 2000,
                         });
 
@@ -477,16 +516,17 @@ export default function NewQuestion() {
                 label="No"
                 icon="pi pi-times"
                 iconPos="left"
-                className="ms-2"
+                className="ms-2 rounded"
                 outlined
                 onClick={hideDeleteQuestionDialog}
             />
             <Button
                 label="Yes"
                 icon="pi pi-check"
+                rounded
                 iconPos="left"
                 severity="danger"
-                className="ms-2"
+                className="ms-2 rounded"
                 onClick={deleteQuestion}
             />
         </React.Fragment>
@@ -554,6 +594,8 @@ export default function NewQuestion() {
             <Button
                 label="No"
                 icon="pi pi-times"
+                rounded
+                className="ms-2 rounded"
                 iconPos="left"
                 outlined
                 onClick={hideDeleteQuestionsDialog}
@@ -561,7 +603,8 @@ export default function NewQuestion() {
             <Button
                 label="Yes"
                 icon="pi pi-check"
-                className="ms-2"
+                rounded
+                className="ms-2 rounded"
                 iconPos="left"
                 severity="danger"
                 onClick={deleteSelectedQuestions}
@@ -612,6 +655,21 @@ export default function NewQuestion() {
         );
     };
 
+    const optionsBodyTemplate = (rowData) => {
+        return (
+            <Button
+                className="rounded-circle"
+                icon="pi pi-external-link"
+                rounded
+                text
+                onClick={() => {
+                    setSelectedOptions(rowData);
+                    setDialogVisible(true);
+                }}
+            />
+        );
+    };
+
     // Footer for: Step 1 (Add Survey Type/Name)
     const questionDialogFooter = (
         <React.Fragment>
@@ -658,21 +716,23 @@ export default function NewQuestion() {
 
     const saveQuestionFooter = (
         <React.Fragment>
-            <Button
-                label="Cancel"
-                icon="pi pi-times"
-                iconPos="left"
-                className="ms-2 rounded"
-                outlined
-                onClick={hideDialog}
-            />
-            <Button
-                label="Save"
-                icon="pi pi-check"
-                className="ms-2 rounded"
-                iconPos="left"
-                onClick={saveQuestion}
-            />
+            <div className="mt-2">
+                <Button
+                    label="Cancel"
+                    icon="pi pi-times"
+                    iconPos="left"
+                    className="ms-2 rounded"
+                    outlined
+                    onClick={hideDialog}
+                />
+                <Button
+                    label="Save"
+                    icon="pi pi-check"
+                    className="ms-2 rounded"
+                    iconPos="left"
+                    onClick={saveQuestion}
+                />
+            </div>
         </React.Fragment>
     );
 
@@ -722,6 +782,26 @@ export default function NewQuestion() {
             {
                 "pi-check text-success": isParent,
                 "pi-minus text-danger": !isParent,
+            }
+        );
+
+        return (
+            <div
+                className="d-inline-flex align-items-center justify-content-center"
+                style={{ width: "2rem", height: "2rem" }}
+            >
+                <i className={iconClassName} style={{ fontSize: "20px" }}></i>
+            </div>
+        );
+    };
+
+    const isMandatoryBodyTemplate = (rowData) => {
+        const isMandatory = rowData.is_mandatory === 1;
+        const iconClassName = classNames(
+            "pi", // PrimeIcons base class
+            {
+                "pi-check text-success": isMandatory, // Green check icon for mandatory
+                "pi-minus text-danger": !isMandatory, // Red minus icon for non-mandatory
             }
         );
 
@@ -1178,47 +1258,51 @@ export default function NewQuestion() {
                             <Column
                                 selectionMode="multiple"
                                 exportable={false}
+                                style={{ width: "4rem" }}
                             />
-                            {/* <Column field="question_id" header="ID" sortable /> */}
                             <Column
                                 field="sequence"
                                 header="Sequence"
+                                style={{ width: "2rem" }}
                                 sortable
                             />
                             <Column
                                 field="question_name"
                                 header="Name"
-                                style={{ minWidth: "18rem" }}
+                                style={{ width: "20rem" }}
                                 sortable
                             />
-                            {/* <Column
-                                field="question_key"
-                                header="Key"
-                                sortable
-                            /> */}
                             <Column
                                 field="question_type"
                                 header="Type"
+                                style={{ width: "4rem" }}
                                 sortable
                             />
-                            {/* <Column
-                                field="question_group_id"
-                                header="Question Group ID"
-                                sortable
-                            /> */}
                             <Column
                                 field="is_parent"
                                 header="Parent?"
                                 sortable
+                                style={{ width: "4rem" }}
                                 body={isParentBodyTemplate}
+                            />
+                            <Column
+                                field="is_mandatory"
+                                header="Mandatory?"
+                                sortable
+                                style={{ width: "4rem" }}
+                                body={isMandatoryBodyTemplate}
+                            />
+                            <Column
+                                body={optionsBodyTemplate}
+                                header="Options"
+                                exportable={false}
+                                style={{ width: "12rem" }}
                             />
                             <Column
                                 body={actionBodyTemplate}
                                 exportable={false}
                                 style={{ minWidth: "12rem" }}
-                                frozen
-                                alignFrozen="right"
-                            ></Column>
+                            />
                         </DataTable>
 
                         {/* Add and Edit Questions Dialog */}
@@ -1234,7 +1318,6 @@ export default function NewQuestion() {
                             isSubmitted={isSubmitted}
                             onCheckboxChange={onCheckboxChange}
                         />
-
                         {/* Delete Question Dialog */}
                         <Dialog
                             visible={deleteQuestionDialog}
@@ -1258,7 +1341,6 @@ export default function NewQuestion() {
                                 )}
                             </div>
                         </Dialog>
-
                         {/* Delete Questions Dialog */}
                         <Dialog
                             visible={deleteQuestionsDialog}
@@ -1285,6 +1367,13 @@ export default function NewQuestion() {
                             </div>
                         </Dialog>
 
+                        <OptionsDialog
+                            visible={dialogVisible}
+                            onHide={() => setDialogVisible(false)}
+                            selectedOptions={selectedOptions}
+                        />
+
+                        {/* Page Control Buttons */}
                         <div className="d-flex pt-4 justify-content-between mx-5">
                             <Button
                                 label="Back"

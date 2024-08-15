@@ -159,6 +159,7 @@ class QuestionController extends Controller
             'sequence' => 'required|integer',
             'data_status' => 'required|integer',
             'is_parent' => 'required|integer',
+            'is_mandatory' => 'required|integer',
         ]);
 
         if ($validator->fails()) {
@@ -189,6 +190,7 @@ class QuestionController extends Controller
                 'sequence' => $request->sequence,
                 'data_status' => $request->data_status,
                 'is_parent' => $request->is_parent,
+                'is_mandatory' => $request->is_mandatory,
             ]);
 
             DB::commit();
@@ -239,6 +241,7 @@ class QuestionController extends Controller
             'sequence' => 'required|integer',
             'data_status' => 'required|integer',
             'is_parent' => 'required|integer',
+            'is_mandatory' => 'required|integer',
         ]);
 
         if ($validator->fails()) {

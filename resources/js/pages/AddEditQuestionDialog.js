@@ -83,17 +83,30 @@ const AddEditQuestionDialog = ({
             </div>
 
             <div
-                className="field-checkbox d-flex align-items-center"
+                className="d-flex flex-wrap align-items-center"
                 style={{ marginTop: "20px", marginBottom: "20px" }}
             >
-                <Checkbox
-                    inputId="is_parent"
-                    onChange={(e) => onCheckboxChange(e, "is_parent")}
-                    checked={response.is_parent === 1}
-                />
-                <label htmlFor="is_parent" className="ms-2 mb-0">
-                    Parent Question?
-                </label>
+                <div className="field-checkbox d-flex align-items-center me-4">
+                    <Checkbox
+                        inputId="is_parent"
+                        onChange={(e) => onCheckboxChange(e, "is_parent")}
+                        checked={response.is_parent === 1}
+                    />
+                    <label htmlFor="is_parent" className="ms-2 mb-0">
+                        Parent Question?
+                    </label>
+                </div>
+
+                <div className="field-checkbox d-flex align-items-center">
+                    <Checkbox
+                        inputId="is_mandatory"
+                        onChange={(e) => onCheckboxChange(e, "is_mandatory")}
+                        checked={response.is_mandatory === 1}
+                    />
+                    <label htmlFor="is_mandatory" className="ms-2 mb-0">
+                        Mandatory Question?
+                    </label>
+                </div>
             </div>
 
             <div
