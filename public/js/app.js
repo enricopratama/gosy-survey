@@ -13666,12 +13666,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var primereact_dialog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primereact/dialog */ "./node_modules/primereact/dialog/dialog.esm.js");
-/* harmony import */ var primereact_inputtext__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! primereact/inputtext */ "./node_modules/primereact/inputtext/inputtext.esm.js");
-/* harmony import */ var primereact_inputnumber__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primereact/inputnumber */ "./node_modules/primereact/inputnumber/inputnumber.esm.js");
-/* harmony import */ var primereact_dropdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primereact/dropdown */ "./node_modules/primereact/dropdown/dropdown.esm.js");
+/* harmony import */ var primereact_inputtext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primereact/inputtext */ "./node_modules/primereact/inputtext/inputtext.esm.js");
+/* harmony import */ var primereact_inputnumber__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! primereact/inputnumber */ "./node_modules/primereact/inputnumber/inputnumber.esm.js");
+/* harmony import */ var primereact_dropdown__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primereact/dropdown */ "./node_modules/primereact/dropdown/dropdown.esm.js");
 /* harmony import */ var primereact_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! primereact/utils */ "./node_modules/primereact/utils/utils.esm.js");
-/* harmony import */ var primereact_floatlabel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primereact/floatlabel */ "./node_modules/primereact/floatlabel/floatlabel.esm.js");
-/* harmony import */ var primereact_checkbox__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primereact/checkbox */ "./node_modules/primereact/checkbox/checkbox.esm.js");
+/* harmony import */ var primereact_floatlabel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primereact/floatlabel */ "./node_modules/primereact/floatlabel/floatlabel.esm.js");
+/* harmony import */ var primereact_checkbox__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primereact/checkbox */ "./node_modules/primereact/checkbox/checkbox.esm.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -13719,34 +13719,6 @@ var AddEditQuestionDialog = function AddEditQuestionDialog(_ref) {
     footer: saveQuestionFooter,
     onHide: hideDialog,
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "field col",
-      style: {
-        marginTop: "19px",
-        marginBottom: "30px"
-      },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
-        className: "p-float-label",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputnumber__WEBPACK_IMPORTED_MODULE_3__.InputNumber, {
-          id: "sequence",
-          name: "sequence",
-          value: response.sequence,
-          required: true,
-          className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_4__.classNames)({
-            "p-invalid": submitted && !response.sequence
-          }),
-          onValueChange: function onValueChange(e) {
-            return onInputNumberChange(e, "sequence");
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-          htmlFor: "sequence",
-          className: "font-bold",
-          children: "Sequence"
-        })]
-      }), submitted && !response.sequence && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("small", {
-        className: "p-error",
-        children: "Sequence is required."
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "field",
       style: {
         marginBottom: "35px",
@@ -13754,7 +13726,7 @@ var AddEditQuestionDialog = function AddEditQuestionDialog(_ref) {
       },
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
         className: "p-float-label",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_5__.InputText, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_3__.InputText, {
           id: "question_name",
           value: response.question_name || "",
           onChange: function onChange(e) {
@@ -13775,15 +13747,61 @@ var AddEditQuestionDialog = function AddEditQuestionDialog(_ref) {
         children: "Question Name is required."
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "field mb-3 mt-3",
+      className: "field col",
       style: {
-        marginBottom: "35px"
+        marginTop: "19px",
+        marginBottom: "30px"
       },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(primereact_floatlabel__WEBPACK_IMPORTED_MODULE_6__.FloatLabel, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+        className: "p-float-label",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputnumber__WEBPACK_IMPORTED_MODULE_5__.InputNumber, {
+          id: "sequence",
+          name: "sequence",
+          value: response.sequence,
+          required: true,
+          className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_4__.classNames)({
+            "p-invalid": submitted && !response.sequence
+          }),
+          onValueChange: function onValueChange(e) {
+            return onInputNumberChange(e, "sequence");
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+          htmlFor: "sequence",
+          className: "font-bold",
+          children: "Sequence"
+        })]
+      }), submitted && !response.sequence && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("small", {
+        className: "p-error",
+        children: "Sequence is required."
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "field-checkbox d-flex align-items-center",
+      style: {
+        marginTop: "20px",
+        marginBottom: "20px"
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_checkbox__WEBPACK_IMPORTED_MODULE_6__.Checkbox, {
+        inputId: "is_parent",
+        onChange: function onChange(e) {
+          return onCheckboxChange(e, "is_parent");
+        },
+        checked: response.is_parent === 1
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+        htmlFor: "is_parent",
+        className: "ms-2 mb-0",
+        children: "Parent Question?"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "field mb-3 mt-5",
+      style: {
+        marginBottom: "35px",
+        marginTop: "35px"
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(primereact_floatlabel__WEBPACK_IMPORTED_MODULE_7__.FloatLabel, {
         className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_4__.classNames)("w-full md:w-14rem", {
           "p-invalid": isSubmitted && !response.question_type
         }),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_dropdown__WEBPACK_IMPORTED_MODULE_7__.Dropdown, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_dropdown__WEBPACK_IMPORTED_MODULE_8__.Dropdown, {
           inputId: "question_type",
           value: response.question_type || "",
           options: questionTypes,
@@ -13817,7 +13835,7 @@ var AddEditQuestionDialog = function AddEditQuestionDialog(_ref) {
         },
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
           className: "p-float-label",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputnumber__WEBPACK_IMPORTED_MODULE_3__.InputNumber, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputnumber__WEBPACK_IMPORTED_MODULE_5__.InputNumber, {
             id: "data_status",
             value: response.data_status || 0,
             required: true,
@@ -13836,22 +13854,6 @@ var AddEditQuestionDialog = function AddEditQuestionDialog(_ref) {
           className: "p-error",
           children: "Status is required."
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: "field-checkbox",
-        style: {
-          marginTop: "20px"
-        },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_checkbox__WEBPACK_IMPORTED_MODULE_8__.Checkbox, {
-          inputId: "is_parent",
-          onChange: function onChange(e) {
-            return onCheckboxChange(e, "is_parent");
-          },
-          checked: response.is_parent === 1
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-          htmlFor: "is_parent",
-          className: "p-checkbox-label",
-          children: "Is Parent?"
-        })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("hr", {
         style: {
           width: "100%",
@@ -13866,7 +13868,7 @@ var AddEditQuestionDialog = function AddEditQuestionDialog(_ref) {
         },
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
           className: "p-float-label",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_5__.InputText, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_3__.InputText, {
             id: "question_group_id",
             value: response.question_group_id || "",
             onChange: function onChange(e) {
@@ -13891,7 +13893,7 @@ var AddEditQuestionDialog = function AddEditQuestionDialog(_ref) {
         },
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
           className: "p-float-label",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_5__.InputText, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_3__.InputText, {
             id: "survey_name",
             style: {
               minWidth: "20rem"
@@ -13912,7 +13914,7 @@ var AddEditQuestionDialog = function AddEditQuestionDialog(_ref) {
         },
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
           className: "p-float-label",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_5__.InputText, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_3__.InputText, {
             id: "question_group_name",
             style: {
               minWidth: "20rem"
@@ -14642,7 +14644,7 @@ function NewQuestion() {
               toast.current.show({
                 severity: "success",
                 summary: "Successful",
-                detail: "Question ".concat(_response.question_id, " Updated"),
+                detail: "Question ".concat(_response.sequence, " Updated"),
                 life: 2000
               });
               setResponse(function (prevResponse) {
@@ -14665,12 +14667,13 @@ function NewQuestion() {
           case 24:
             _result = _context6.sent;
             if (_result.status === 200) {
-              newQuestion = _result.data.data;
+              newQuestion = _result.data.data || _result.data;
               _questions.push(_response);
               toast.current.show({
                 severity: "success",
                 summary: "Successful",
-                detail: "Question ".concat(newQuestion.question_id, " Created"),
+                detail: "Question ".concat(newQuestion.sequence, " Created"),
+                //TODO: Fix seqence when add first time
                 life: 2000
               });
               setResponse(function (prevResponse) {
@@ -14695,7 +14698,7 @@ function NewQuestion() {
             toast.current.show({
               severity: "error",
               summary: "Error",
-              detail: "Failed Saving Question ".concat(_response.question_id),
+              detail: "Failed Saving Question ".concat(_response.sequence),
               life: 2000
             });
           case 32:
@@ -14816,7 +14819,7 @@ function NewQuestion() {
               toast.current.show({
                 severity: "success",
                 summary: "Successful",
-                detail: "Question ".concat(_response.question_id, " Deleted"),
+                detail: "Question ".concat(_response.sequence, " Deleted"),
                 life: 2000
               });
             }
@@ -14840,7 +14843,7 @@ function NewQuestion() {
             toast.current.show({
               severity: "error",
               summary: "Error",
-              detail: "Failed Deleting Question ".concat(_response.question_id),
+              detail: "Failed Deleting Question ".concat(_response.sequence),
               life: 2000
             });
             setQuestions(_questions);
@@ -15132,15 +15135,6 @@ function NewQuestion() {
       })
     });
   };
-
-  // In your DataTable component
-  // <Column
-  //     field="is_parent"
-  //     header="Parent?"
-  //     sortable
-  //     body={isParentBodyTemplate}
-  // />;
-
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_BreadcrumbComponent__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_toast__WEBPACK_IMPORTED_MODULE_15__.Toast, {
       ref: toast
@@ -15447,7 +15441,8 @@ function NewQuestion() {
             stripedRows: true,
             header: header,
             rowsPerPageOptions: [5, 10, 25],
-            paginatorTemplate: "FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown showGridlines",
+            showGridlines: true,
+            paginatorTemplate: "FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown",
             currentPageReportTemplate: "{first} to {last} of {totalRecords} questions",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_23__.Column, {
               selectionMode: "multiple",

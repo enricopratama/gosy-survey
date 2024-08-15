@@ -31,6 +31,32 @@ const AddEditQuestionDialog = ({
             onHide={hideDialog}
         >
             <div
+                className="field"
+                style={{ marginBottom: "35px", marginTop: "20px" }}
+            >
+                <span className="p-float-label">
+                    <InputText
+                        id="question_name"
+                        value={response.question_name || ""}
+                        onChange={(e) => onInputChange(e, "question_name")}
+                        required
+                        autoFocus
+                        className={classNames({
+                            "p-invalid": submitted && !response.question_name,
+                        })}
+                    />
+                    <label htmlFor="question_name" className="font-bold">
+                        Question Name
+                    </label>
+                </span>
+                {submitted && !response.question_name && (
+                    <small className="p-error">
+                        Question Name is required.
+                    </small>
+                )}
+            </div>
+
+            <div
                 className="field col"
                 style={{ marginTop: "19px", marginBottom: "30px" }}
             >
@@ -57,32 +83,23 @@ const AddEditQuestionDialog = ({
             </div>
 
             <div
-                className="field"
-                style={{ marginBottom: "35px", marginTop: "20px" }}
+                className="field-checkbox d-flex align-items-center"
+                style={{ marginTop: "20px", marginBottom: "20px" }}
             >
-                <span className="p-float-label">
-                    <InputText
-                        id="question_name"
-                        value={response.question_name || ""}
-                        onChange={(e) => onInputChange(e, "question_name")}
-                        required
-                        autoFocus
-                        className={classNames({
-                            "p-invalid": submitted && !response.question_name,
-                        })}
-                    />
-                    <label htmlFor="question_name" className="font-bold">
-                        Question Name
-                    </label>
-                </span>
-                {submitted && !response.question_name && (
-                    <small className="p-error">
-                        Question Name is required.
-                    </small>
-                )}
+                <Checkbox
+                    inputId="is_parent"
+                    onChange={(e) => onCheckboxChange(e, "is_parent")}
+                    checked={response.is_parent === 1}
+                />
+                <label htmlFor="is_parent" className="ms-2 mb-0">
+                    Parent Question?
+                </label>
             </div>
 
-            <div className="field mb-3 mt-3" style={{ marginBottom: "35px" }}>
+            <div
+                className="field mb-3 mt-5"
+                style={{ marginBottom: "35px", marginTop: "35px" }}
+            >
                 <FloatLabel
                     className={classNames("w-full md:w-14rem", {
                         "p-invalid": isSubmitted && !response.question_type,
@@ -134,17 +151,6 @@ const AddEditQuestionDialog = ({
                     {submitted && !response.data_status && (
                         <small className="p-error">Status is required.</small>
                     )}
-                </div>
-
-                <div className="field-checkbox" style={{ marginTop: "20px" }}>
-                    <Checkbox
-                        inputId="is_parent"
-                        onChange={(e) => onCheckboxChange(e, "is_parent")}
-                        checked={response.is_parent === 1}
-                    />
-                    <label htmlFor="is_parent" className="p-checkbox-label">
-                        Is Parent?
-                    </label>
                 </div>
 
                 <hr style={{ width: "100%", margin: "20px 0" }} />

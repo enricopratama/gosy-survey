@@ -284,7 +284,7 @@ export default function NewQuestion() {
                         toast.current.show({
                             severity: "success",
                             summary: "Successful",
-                            detail: `Question ${_response.question_id} Updated`,
+                            detail: `Question ${_response.sequence} Updated`,
                             life: 2000,
                         });
                         setResponse((prevResponse) => ({
@@ -303,12 +303,12 @@ export default function NewQuestion() {
                     result = await axios.post("/addQuestion", formData);
 
                     if (result.status === 200) {
-                        const newQuestion = result.data.data;
+                        const newQuestion = result.data.data || result.data;
                         _questions.push(_response);
                         toast.current.show({
                             severity: "success",
                             summary: "Successful",
-                            detail: `Question ${newQuestion.question_id} Created`,
+                            detail: `Question ${newQuestion.sequence} Created`, //TODO: Fix seqence when add first time
                             life: 2000,
                         });
 
@@ -329,7 +329,7 @@ export default function NewQuestion() {
                 toast.current.show({
                     severity: "error",
                     summary: "Error",
-                    detail: `Failed Saving Question ${_response.question_id}`,
+                    detail: `Failed Saving Question ${_response.sequence}`,
                     life: 2000,
                 });
             }
@@ -439,7 +439,7 @@ export default function NewQuestion() {
                 toast.current.show({
                     severity: "success",
                     summary: "Successful",
-                    detail: `Question ${_response.question_id} Deleted`,
+                    detail: `Question ${_response.sequence} Deleted`,
                     life: 2000,
                 });
             }
@@ -458,7 +458,7 @@ export default function NewQuestion() {
             toast.current.show({
                 severity: "error",
                 summary: "Error",
-                detail: `Failed Deleting Question ${_response.question_id}`,
+                detail: `Failed Deleting Question ${_response.sequence}`,
                 life: 2000,
             });
             setQuestions(_questions);
@@ -734,14 +734,6 @@ export default function NewQuestion() {
             </div>
         );
     };
-
-    // In your DataTable component
-    // <Column
-    //     field="is_parent"
-    //     header="Parent?"
-    //     sortable
-    //     body={isParentBodyTemplate}
-    // />;
 
     return (
         <>
@@ -1179,7 +1171,8 @@ export default function NewQuestion() {
                             stripedRows
                             header={header}
                             rowsPerPageOptions={[5, 10, 25]}
-                            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown showGridlines"
+                            showGridlines
+                            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                             currentPageReportTemplate="{first} to {last} of {totalRecords} questions"
                         >
                             <Column
