@@ -27,6 +27,7 @@ export default function NewQuestion() {
     const op = useRef(null);
     const stepperRef = useRef(null);
     const dt = useRef(null);
+    const toast = useRef(null);
 
     // Questions
     const [questions, setQuestions] = useState([]);
@@ -36,8 +37,6 @@ export default function NewQuestion() {
     const [questionDialog, setQuestionDialog] = useState(false);
     const [questionGroupDialog, setQuestionGroupDialog] = useState(false);
     const [customQuestionGroup, setCustomQuestionGroup] = useState("");
-
-    const toast = useRef(null);
 
     // Surveys
     const [surveys, setSurveys] = useState([]);
@@ -73,8 +72,8 @@ export default function NewQuestion() {
         question_name: "",
         sequence: null,
         data_status: null,
-        is_parent: null,
-        is_mandatory: null,
+        is_parent: 0,
+        is_mandatory: 0,
         option_1: null,
         option_1_flow: null,
         option_2: null,
@@ -134,7 +133,7 @@ export default function NewQuestion() {
         question_name: "",
         question_type: "",
         data_status: null,
-        is_parent: null,
+        is_parent: 0,
     };
 
     /**
@@ -291,7 +290,8 @@ export default function NewQuestion() {
             response.question_name.trim() &&
             response.question_type.trim() &&
             response.sequence &&
-            response.data_status
+            response.data_status &&
+            response.question_group_id
         ) {
             let _questions = [...questions];
             let _response = { ...response };
@@ -334,7 +334,7 @@ export default function NewQuestion() {
                             question_name: "",
                             sequence: null,
                             data_status: null,
-                            is_parent: null,
+                            is_parent: 0,
                         }));
                     }
                 } else {
@@ -359,7 +359,7 @@ export default function NewQuestion() {
                             question_name: "",
                             sequence: null,
                             data_status: null,
-                            is_parent: null,
+                            is_parent: 0,
                         }));
                     }
                 }
@@ -383,7 +383,7 @@ export default function NewQuestion() {
                 question_name: "",
                 sequence: null,
                 data_status: null,
-                is_parent: null,
+                is_parent: 0,
             }));
         }
     };
@@ -776,7 +776,7 @@ export default function NewQuestion() {
     };
 
     const isParentBodyTemplate = (rowData) => {
-        const isParent = rowData.is_parent === 1;
+        const isParent = rowData.is_parent === 1 ? 1 : 0;
         const iconClassName = classNames(
             "pi", // PrimeIcons base class
             {
@@ -796,7 +796,7 @@ export default function NewQuestion() {
     };
 
     const isMandatoryBodyTemplate = (rowData) => {
-        const isMandatory = rowData.is_mandatory === 1;
+        const isMandatory = rowData.is_mandatory === 1 ? 1 : 0;
         const iconClassName = classNames(
             "pi", // PrimeIcons base class
             {
@@ -1318,6 +1318,7 @@ export default function NewQuestion() {
                             isSubmitted={isSubmitted}
                             onCheckboxChange={onCheckboxChange}
                         />
+
                         {/* Delete Question Dialog */}
                         <Dialog
                             visible={deleteQuestionDialog}
@@ -1341,6 +1342,7 @@ export default function NewQuestion() {
                                 )}
                             </div>
                         </Dialog>
+
                         {/* Delete Questions Dialog */}
                         <Dialog
                             visible={deleteQuestionsDialog}

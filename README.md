@@ -1,8 +1,8 @@
-<p align="center">
+<!-- <p align="center">
     <a href="https://laravel.com" target="_blank">
         <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400">
     </a>
-</p>
+</p> -->
 
 # GONUSA SURVEY GENERATOR SYSTEM
 This repository is for a web application built with Laravel as the backend framework and React.js for the frontend. The project aims to provide a robust foundation for developing modern web applications with a clear separation of concerns and an efficient development workflow.

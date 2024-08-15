@@ -14316,6 +14316,7 @@ function NewQuestion() {
   var op = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var stepperRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var dt = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var toast = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
 
   // Questions
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
@@ -14346,7 +14347,6 @@ function NewQuestion() {
     _useState14 = _slicedToArray(_useState13, 2),
     customQuestionGroup = _useState14[0],
     setCustomQuestionGroup = _useState14[1];
-  var toast = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
 
   // Surveys
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
@@ -14421,8 +14421,8 @@ function NewQuestion() {
       question_name: "",
       sequence: null,
       data_status: null,
-      is_parent: null,
-      is_mandatory: null,
+      is_parent: 0,
+      is_mandatory: 0,
       option_1: null,
       option_1_flow: null,
       option_2: null,
@@ -14493,7 +14493,7 @@ function NewQuestion() {
     question_name: "",
     question_type: "",
     data_status: null,
-    is_parent: null
+    is_parent: 0
   };
 
   /**
@@ -14738,7 +14738,7 @@ function NewQuestion() {
         while (1) switch (_context6.prev = _context6.next) {
           case 0:
             setSubmitted(true);
-            if (!(response.question_name.trim() && response.question_type.trim() && response.sequence && response.data_status)) {
+            if (!(response.question_name.trim() && response.question_type.trim() && response.sequence && response.data_status && response.question_group_id)) {
               _context6.next = 37;
               break;
             }
@@ -14780,7 +14780,7 @@ function NewQuestion() {
                   question_name: "",
                   sequence: null,
                   data_status: null,
-                  is_parent: null
+                  is_parent: 0
                 });
               });
             }
@@ -14809,7 +14809,7 @@ function NewQuestion() {
                   question_name: "",
                   sequence: null,
                   data_status: null,
-                  is_parent: null
+                  is_parent: 0
                 });
               });
             }
@@ -14838,7 +14838,7 @@ function NewQuestion() {
                 question_name: "",
                 sequence: null,
                 data_status: null,
-                is_parent: null
+                is_parent: 0
               });
             });
           case 37:
@@ -15258,7 +15258,7 @@ function NewQuestion() {
     });
   };
   var isParentBodyTemplate = function isParentBodyTemplate(rowData) {
-    var isParent = rowData.is_parent === 1;
+    var isParent = rowData.is_parent === 1 ? 1 : 0;
     var iconClassName = (0,primereact_utils__WEBPACK_IMPORTED_MODULE_15__.classNames)("pi",
     // PrimeIcons base class
     {
@@ -15280,7 +15280,7 @@ function NewQuestion() {
     });
   };
   var isMandatoryBodyTemplate = function isMandatoryBodyTemplate(rowData) {
-    var isMandatory = rowData.is_mandatory === 1;
+    var isMandatory = rowData.is_mandatory === 1 ? 1 : 0;
     var iconClassName = (0,primereact_utils__WEBPACK_IMPORTED_MODULE_15__.classNames)("pi",
     // PrimeIcons base class
     {
