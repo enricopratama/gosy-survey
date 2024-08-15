@@ -158,6 +158,7 @@ class QuestionController extends Controller
             ],
             'sequence' => 'required|integer',
             'data_status' => 'required|integer',
+            'is_parent' => 'required|integer',
         ]);
 
         if ($validator->fails()) {
@@ -187,6 +188,7 @@ class QuestionController extends Controller
                 'question_type' => $request->question_type,
                 'sequence' => $request->sequence,
                 'data_status' => $request->data_status,
+                'is_parent' => $request->is_parent,
             ]);
 
             DB::commit();
@@ -236,6 +238,7 @@ class QuestionController extends Controller
             ],
             'sequence' => 'required|integer',
             'data_status' => 'required|integer',
+            'is_parent' => 'required|integer',
         ]);
 
         if ($validator->fails()) {
@@ -254,7 +257,7 @@ class QuestionController extends Controller
             );
         }
 
-        Log::info('Request data for validation:', $request->all());
+        // Log::info('Request data for validation:', $request->all());
 
         $question = Question::find($question_id);
         if (!$question) {

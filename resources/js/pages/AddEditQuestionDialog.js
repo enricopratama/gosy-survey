@@ -5,8 +5,8 @@ import { InputNumber } from "primereact/inputnumber";
 import { Dropdown } from "primereact/dropdown";
 import { classNames } from "primereact/utils";
 import { FloatLabel } from "primereact/floatlabel";
+import { Checkbox } from "primereact/checkbox";
 
-// Tentatively Configured for NewQuestion.js
 const AddEditQuestionDialog = ({
     visible = false,
     response = {},
@@ -17,6 +17,7 @@ const AddEditQuestionDialog = ({
     hideDialog = () => {},
     submitted = false,
     isSubmitted = false,
+    onCheckboxChange = () => {},
 }) => {
     return (
         <Dialog
@@ -54,6 +55,7 @@ const AddEditQuestionDialog = ({
                     <small className="p-error">Sequence is required.</small>
                 )}
             </div>
+
             <div
                 className="field"
                 style={{ marginBottom: "35px", marginTop: "20px" }}
@@ -79,26 +81,6 @@ const AddEditQuestionDialog = ({
                     </small>
                 )}
             </div>
-
-            {/* <div className="field" style={{ marginBottom: "35px" }}>
-                <span className="p-float-label">
-                    <InputText
-                        id="question_key"
-                        value={response.question_key}
-                        onChange={(e) => onInputChange(e, "question_key")}
-                        required
-                        className={classNames({
-                            "p-invalid": submitted && !response.question_key,
-                        })}
-                    />
-                    <label htmlFor="question_key" className="font-bold">
-                        Question Key
-                    </label>
-                </span>
-                {submitted && !response.question_key && (
-                    <small className="p-error">Question Key is required.</small>
-                )}
-            </div> */}
 
             <div className="field mb-3 mt-3" style={{ marginBottom: "35px" }}>
                 <FloatLabel
@@ -154,7 +136,17 @@ const AddEditQuestionDialog = ({
                     )}
                 </div>
 
-                {/* Add horizontal line after Status */}
+                <div className="field-checkbox" style={{ marginTop: "20px" }}>
+                    <Checkbox
+                        inputId="is_parent"
+                        onChange={(e) => onCheckboxChange(e, "is_parent")}
+                        checked={response.is_parent === 1}
+                    />
+                    <label htmlFor="is_parent" className="p-checkbox-label">
+                        Is Parent?
+                    </label>
+                </div>
+
                 <hr style={{ width: "100%", margin: "20px 0" }} />
 
                 <div
@@ -163,48 +155,6 @@ const AddEditQuestionDialog = ({
                         marginBottom: "35px",
                         minWidth: "12rem",
                         marginTop: "40px",
-                    }}
-                >
-                    <span className="p-float-label">
-                        <InputText
-                            id="survey_name"
-                            style={{
-                                minWidth: "20rem",
-                            }}
-                            value={response.survey_name || ""}
-                            readOnly={true}
-                        />
-                        <label htmlFor="survey_name" className="font-bold">
-                            Survey Name
-                        </label>
-                    </span>
-                </div>
-                <div
-                    className="field"
-                    style={{
-                        marginBottom: "35px",
-                        minWidth: "12rem",
-                    }}
-                >
-                    <span className="p-float-label">
-                        <InputText
-                            id="question_group_name"
-                            style={{ minWidth: "20rem" }}
-                            value={response.question_group_name || ""}
-                            readOnly={true}
-                        />
-                        <label
-                            htmlFor="question_group_name"
-                            className="font-bold"
-                        >
-                            Question Group Name
-                        </label>
-                    </span>
-                </div>
-                <div
-                    className="field"
-                    style={{
-                        marginBottom: "35px",
                     }}
                 >
                     <span className="p-float-label">
@@ -231,6 +181,40 @@ const AddEditQuestionDialog = ({
                             Question Group ID is required.
                         </small>
                     )}
+                </div>
+
+                <div className="field" style={{ marginBottom: "35px" }}>
+                    <span className="p-float-label">
+                        <InputText
+                            id="survey_name"
+                            style={{ minWidth: "20rem" }}
+                            value={response.survey_name || ""}
+                            readOnly={true}
+                        />
+                        <label htmlFor="survey_name" className="font-bold">
+                            Survey Name
+                        </label>
+                    </span>
+                </div>
+
+                <div
+                    className="field"
+                    style={{ marginBottom: "35px", minWidth: "12rem" }}
+                >
+                    <span className="p-float-label">
+                        <InputText
+                            id="question_group_name"
+                            style={{ minWidth: "20rem" }}
+                            value={response.question_group_name || ""}
+                            readOnly={true}
+                        />
+                        <label
+                            htmlFor="question_group_name"
+                            className="font-bold"
+                        >
+                            Question Group Name
+                        </label>
+                    </span>
                 </div>
             </div>
         </Dialog>

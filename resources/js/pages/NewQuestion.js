@@ -57,6 +57,7 @@ export default function NewQuestion() {
         question_name: "",
         sequence: null,
         data_status: null,
+        is_parent: null,
     });
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -77,6 +78,13 @@ export default function NewQuestion() {
         setResponse(_response);
     };
 
+    const onCheckboxChange = (e, name) => {
+        const val = e.checked ? 1 : 0;
+        let _response = { ...response };
+        _response[`${name}`] = val;
+        setResponse(_response);
+    };
+
     const questionTypes = ["Text", "Choice", "Checkboxes", "Dropdown"];
 
     /**
@@ -88,6 +96,7 @@ export default function NewQuestion() {
         question_name: "",
         question_type: "",
         data_status: null,
+        is_parent: null,
     };
 
     /**
@@ -176,7 +185,7 @@ export default function NewQuestion() {
     }, response); // might need to change
 
     const filterQuestionsByGroupName = async () => {
-        await getQuestions(); // Wait for the questions to be fetched
+        await getQuestions();
 
         const filteredQuestions = questions.filter((question) => {
             return (
@@ -187,9 +196,7 @@ export default function NewQuestion() {
             );
         });
 
-        // console.log("Questions in filter...", questions);
         setFilteredQuestions(filteredQuestions);
-        console.log("Filtered Q's", filteredQuestions);
     };
 
     useEffect(() => {
@@ -250,6 +257,7 @@ export default function NewQuestion() {
         ) {
             let _questions = [...questions];
             let _response = { ...response };
+            let result = null;
 
             var formData = new FormData();
             formData.append("question_group_id", _response.question_group_id);
@@ -258,6 +266,7 @@ export default function NewQuestion() {
             formData.append("question_type", _response.question_type);
             formData.append("sequence", _response.sequence);
             formData.append("data_status", _response.data_status);
+            formData.append("is_parent", _response.is_parent);
 
             const index = findIndexByID(_response.question_id);
 
@@ -280,12 +289,13 @@ export default function NewQuestion() {
                         });
                         setResponse((prevResponse) => ({
                             ...prevResponse,
-                            question_id: result.data.data.question_id,
-                            question_key: result.data.data.question_key,
+                            // question_id: result.data.data.question_id,
+                            // question_key: result.data.data.question_key,
                             question_type: "",
                             question_name: "",
                             sequence: null,
                             data_status: null,
+                            is_parent: null,
                         }));
                     }
                 } else {
@@ -304,12 +314,13 @@ export default function NewQuestion() {
 
                         setResponse((prevResponse) => ({
                             ...prevResponse,
-                            question_id: result.data.data.question_id,
-                            question_key: result.data.data.question_key,
+                            // question_id: result.data.data.question_id,
+                            // question_key: result.data.data.question_key,
                             question_type: "",
                             question_name: "",
                             sequence: null,
                             data_status: null,
+                            is_parent: null,
                         }));
                     }
                 }
@@ -325,7 +336,16 @@ export default function NewQuestion() {
             setQuestions(_questions);
             setQuestionDialog(false);
             setEditState(false);
-            filterQuestionsByGroupName();
+            setResponse((prevResponse) => ({
+                ...prevResponse,
+                // question_id: result.data.data.question_id,
+                // question_key: result.data.data.question_key,
+                question_type: "",
+                question_name: "",
+                sequence: null,
+                data_status: null,
+                is_parent: null,
+            }));
         }
     };
 
@@ -694,6 +714,34 @@ export default function NewQuestion() {
     const rightToolbarTemplate = () => {
         return <RightToolbar exportCSV={exportCSV} />;
     };
+
+    const isParentBodyTemplate = (rowData) => {
+        const isParent = rowData.is_parent === 1;
+        const iconClassName = classNames(
+            "pi", // PrimeIcons base class
+            {
+                "pi-check text-success": isParent,
+                "pi-minus text-danger": !isParent,
+            }
+        );
+
+        return (
+            <div
+                className="d-inline-flex align-items-center justify-content-center"
+                style={{ width: "2rem", height: "2rem" }}
+            >
+                <i className={iconClassName} style={{ fontSize: "20px" }}></i>
+            </div>
+        );
+    };
+
+    // In your DataTable component
+    // <Column
+    //     field="is_parent"
+    //     header="Parent?"
+    //     sortable
+    //     body={isParentBodyTemplate}
+    // />;
 
     return (
         <>
@@ -1132,7 +1180,7 @@ export default function NewQuestion() {
                             header={header}
                             rowsPerPageOptions={[5, 10, 25]}
                             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown showGridlines"
-                            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} questions"
+                            currentPageReportTemplate="{first} to {last} of {totalRecords} questions"
                         >
                             <Column
                                 selectionMode="multiple"
@@ -1150,20 +1198,26 @@ export default function NewQuestion() {
                                 style={{ minWidth: "18rem" }}
                                 sortable
                             />
-                            <Column
+                            {/* <Column
                                 field="question_key"
                                 header="Key"
                                 sortable
-                            />
+                            /> */}
                             <Column
                                 field="question_type"
                                 header="Type"
                                 sortable
                             />
-                            <Column
+                            {/* <Column
                                 field="question_group_id"
                                 header="Question Group ID"
                                 sortable
+                            /> */}
+                            <Column
+                                field="is_parent"
+                                header="Parent?"
+                                sortable
+                                body={isParentBodyTemplate}
                             />
                             <Column
                                 body={actionBodyTemplate}
@@ -1185,6 +1239,7 @@ export default function NewQuestion() {
                             hideDialog={hideDialog}
                             submitted={submitted}
                             isSubmitted={isSubmitted}
+                            onCheckboxChange={onCheckboxChange}
                         />
 
                         {/* Delete Question Dialog */}

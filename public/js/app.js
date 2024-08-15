@@ -13671,6 +13671,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primereact_dropdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primereact/dropdown */ "./node_modules/primereact/dropdown/dropdown.esm.js");
 /* harmony import */ var primereact_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! primereact/utils */ "./node_modules/primereact/utils/utils.esm.js");
 /* harmony import */ var primereact_floatlabel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primereact/floatlabel */ "./node_modules/primereact/floatlabel/floatlabel.esm.js");
+/* harmony import */ var primereact_checkbox__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primereact/checkbox */ "./node_modules/primereact/checkbox/checkbox.esm.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -13680,7 +13681,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// Tentatively Configured for NewQuestion.js
 
 var AddEditQuestionDialog = function AddEditQuestionDialog(_ref) {
   var _ref$visible = _ref.visible,
@@ -13700,7 +13700,9 @@ var AddEditQuestionDialog = function AddEditQuestionDialog(_ref) {
     _ref$submitted = _ref.submitted,
     submitted = _ref$submitted === void 0 ? false : _ref$submitted,
     _ref$isSubmitted = _ref.isSubmitted,
-    isSubmitted = _ref$isSubmitted === void 0 ? false : _ref$isSubmitted;
+    isSubmitted = _ref$isSubmitted === void 0 ? false : _ref$isSubmitted,
+    _ref$onCheckboxChange = _ref.onCheckboxChange,
+    onCheckboxChange = _ref$onCheckboxChange === void 0 ? function () {} : _ref$onCheckboxChange;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(primereact_dialog__WEBPACK_IMPORTED_MODULE_2__.Dialog, {
     visible: visible,
     style: {
@@ -13834,17 +13836,58 @@ var AddEditQuestionDialog = function AddEditQuestionDialog(_ref) {
           className: "p-error",
           children: "Status is required."
         })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "field-checkbox",
+        style: {
+          marginTop: "20px"
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_checkbox__WEBPACK_IMPORTED_MODULE_8__.Checkbox, {
+          inputId: "is_parent",
+          onChange: function onChange(e) {
+            return onCheckboxChange(e, "is_parent");
+          },
+          checked: response.is_parent === 1
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+          htmlFor: "is_parent",
+          className: "p-checkbox-label",
+          children: "Is Parent?"
+        })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("hr", {
         style: {
           width: "100%",
           margin: "20px 0"
         }
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "field",
         style: {
           marginBottom: "35px",
           minWidth: "12rem",
           marginTop: "40px"
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+          className: "p-float-label",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_5__.InputText, {
+            id: "question_group_id",
+            value: response.question_group_id || "",
+            onChange: function onChange(e) {
+              return onInputChange(e, "question_group_id");
+            },
+            className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_4__.classNames)({
+              "p-invalid": submitted && !response.question_group_id
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+            htmlFor: "question_group_id",
+            className: "font-bold",
+            children: "Question Group ID"
+          })]
+        }), submitted && !response.question_group_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("small", {
+          className: "p-error",
+          children: "Question Group ID is required."
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "field",
+        style: {
+          marginBottom: "35px"
         },
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
           className: "p-float-label",
@@ -13882,31 +13925,6 @@ var AddEditQuestionDialog = function AddEditQuestionDialog(_ref) {
             children: "Question Group Name"
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: "field",
-        style: {
-          marginBottom: "35px"
-        },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
-          className: "p-float-label",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_5__.InputText, {
-            id: "question_group_id",
-            value: response.question_group_id || "",
-            onChange: function onChange(e) {
-              return onInputChange(e, "question_group_id");
-            },
-            className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_4__.classNames)({
-              "p-invalid": submitted && !response.question_group_id
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-            htmlFor: "question_group_id",
-            className: "font-bold",
-            children: "Question Group ID"
-          })]
-        }), submitted && !response.question_group_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("small", {
-          className: "p-error",
-          children: "Question Group ID is required."
-        })]
       })]
     })]
   });
@@ -14140,16 +14158,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var primereact_stepper__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! primereact/stepper */ "./node_modules/primereact/stepper/stepper.esm.js");
-/* harmony import */ var primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! primereact/stepperpanel */ "./node_modules/primereact/stepperpanel/stepperpanel.esm.js");
+/* harmony import */ var primereact_stepper__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! primereact/stepper */ "./node_modules/primereact/stepper/stepper.esm.js");
+/* harmony import */ var primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! primereact/stepperpanel */ "./node_modules/primereact/stepperpanel/stepperpanel.esm.js");
 /* harmony import */ var primereact_button__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! primereact/button */ "./node_modules/primereact/button/button.esm.js");
 /* harmony import */ var primereact_inputtext__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! primereact/inputtext */ "./node_modules/primereact/inputtext/inputtext.esm.js");
-/* harmony import */ var primereact_dialog__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! primereact/dialog */ "./node_modules/primereact/dialog/dialog.esm.js");
-/* harmony import */ var primereact_utils__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! primereact/utils */ "./node_modules/primereact/utils/utils.esm.js");
+/* harmony import */ var primereact_dialog__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! primereact/dialog */ "./node_modules/primereact/dialog/dialog.esm.js");
+/* harmony import */ var primereact_utils__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! primereact/utils */ "./node_modules/primereact/utils/utils.esm.js");
 /* harmony import */ var primereact_message__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! primereact/message */ "./node_modules/primereact/message/message.esm.js");
-/* harmony import */ var primereact_overlaypanel__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! primereact/overlaypanel */ "./node_modules/primereact/overlaypanel/overlaypanel.esm.js");
+/* harmony import */ var primereact_overlaypanel__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! primereact/overlaypanel */ "./node_modules/primereact/overlaypanel/overlaypanel.esm.js");
 /* harmony import */ var primereact_datatable__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! primereact/datatable */ "./node_modules/primereact/datatable/datatable.esm.js");
-/* harmony import */ var primereact_toast__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! primereact/toast */ "./node_modules/primereact/toast/toast.esm.js");
+/* harmony import */ var primereact_toast__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! primereact/toast */ "./node_modules/primereact/toast/toast.esm.js");
 /* harmony import */ var primereact_column__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! primereact/column */ "./node_modules/primereact/column/column.esm.js");
 /* harmony import */ var primereact_api__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! primereact/api */ "./node_modules/primereact/api/api.esm.js");
 /* harmony import */ var primereact_toolbar__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! primereact/toolbar */ "./node_modules/primereact/toolbar/toolbar.esm.js");
@@ -14301,7 +14319,8 @@ function NewQuestion() {
       question_type: "",
       question_name: "",
       sequence: null,
-      data_status: null
+      data_status: null,
+      is_parent: null
     }),
     _useState42 = _slicedToArray(_useState41, 2),
     response = _useState42[0],
@@ -14331,6 +14350,12 @@ function NewQuestion() {
     _response["".concat(name)] = val;
     setResponse(_response);
   };
+  var onCheckboxChange = function onCheckboxChange(e, name) {
+    var val = e.checked ? 1 : 0;
+    var _response = _objectSpread({}, response);
+    _response["".concat(name)] = val;
+    setResponse(_response);
+  };
   var questionTypes = ["Text", "Choice", "Checkboxes", "Dropdown"];
 
   /**
@@ -14341,7 +14366,8 @@ function NewQuestion() {
     sequence: null,
     question_name: "",
     question_type: "",
-    data_status: null
+    data_status: null,
+    is_parent: null
   };
 
   /**
@@ -14518,13 +14544,11 @@ function NewQuestion() {
             _context5.next = 2;
             return getQuestions();
           case 2:
-            // Wait for the questions to be fetched
             filteredQuestions = questions.filter(function (question) {
               return question.question_group_name && question.question_group_name.includes(response.question_group_name);
-            }); // console.log("Questions in filter...", questions);
+            });
             setFilteredQuestions(filteredQuestions);
-            console.log("Filtered Q's", filteredQuestions);
-          case 5:
+          case 4:
           case "end":
             return _context5.stop();
         }
@@ -14583,17 +14607,18 @@ function NewQuestion() {
   };
   var saveQuestion = /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
-      var _questions, _response, formData, index, result, newQuestion;
+      var _questions, _response, result, formData, index, _result, newQuestion;
       return _regeneratorRuntime().wrap(function _callee6$(_context6) {
         while (1) switch (_context6.prev = _context6.next) {
           case 0:
             setSubmitted(true);
             if (!(response.question_name.trim() && response.question_type.trim() && response.sequence && response.data_status)) {
-              _context6.next = 34;
+              _context6.next = 36;
               break;
             }
             _questions = _toConsumableArray(questions);
             _response = _objectSpread({}, response);
+            result = null;
             formData = new FormData();
             formData.append("question_group_id", _response.question_group_id);
             formData.append("question_name", _response.question_name);
@@ -14601,17 +14626,18 @@ function NewQuestion() {
             formData.append("question_type", _response.question_type);
             formData.append("sequence", _response.sequence);
             formData.append("data_status", _response.data_status);
+            formData.append("is_parent", _response.is_parent);
             index = findIndexByID(_response.question_id);
-            _context6.prev = 12;
+            _context6.prev = 14;
             if (!(index >= 0 && editState)) {
-              _context6.next = 20;
+              _context6.next = 22;
               break;
             }
-            _context6.next = 16;
+            _context6.next = 18;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/editQuestion/".concat(_response.question_id), formData);
-          case 16:
-            result = _context6.sent;
-            if (result.status === 200) {
+          case 18:
+            _result = _context6.sent;
+            if (_result.status === 200) {
               _questions[index] = _response;
               toast.current.show({
                 severity: "success",
@@ -14621,24 +14647,25 @@ function NewQuestion() {
               });
               setResponse(function (prevResponse) {
                 return _objectSpread(_objectSpread({}, prevResponse), {}, {
-                  question_id: result.data.data.question_id,
-                  question_key: result.data.data.question_key,
+                  // question_id: result.data.data.question_id,
+                  // question_key: result.data.data.question_key,
                   question_type: "",
                   question_name: "",
                   sequence: null,
-                  data_status: null
+                  data_status: null,
+                  is_parent: null
                 });
               });
             }
-            _context6.next = 24;
+            _context6.next = 26;
             break;
-          case 20:
-            _context6.next = 22;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/addQuestion", formData);
           case 22:
-            result = _context6.sent;
-            if (result.status === 200) {
-              newQuestion = result.data.data;
+            _context6.next = 24;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/addQuestion", formData);
+          case 24:
+            _result = _context6.sent;
+            if (_result.status === 200) {
+              newQuestion = _result.data.data;
               _questions.push(_response);
               toast.current.show({
                 severity: "success",
@@ -14648,21 +14675,22 @@ function NewQuestion() {
               });
               setResponse(function (prevResponse) {
                 return _objectSpread(_objectSpread({}, prevResponse), {}, {
-                  question_id: result.data.data.question_id,
-                  question_key: result.data.data.question_key,
+                  // question_id: result.data.data.question_id,
+                  // question_key: result.data.data.question_key,
                   question_type: "",
                   question_name: "",
                   sequence: null,
-                  data_status: null
+                  data_status: null,
+                  is_parent: null
                 });
               });
             }
-          case 24:
-            _context6.next = 30;
-            break;
           case 26:
-            _context6.prev = 26;
-            _context6.t0 = _context6["catch"](12);
+            _context6.next = 32;
+            break;
+          case 28:
+            _context6.prev = 28;
+            _context6.t0 = _context6["catch"](14);
             console.error("There was an error saving the question!", _context6.t0);
             toast.current.show({
               severity: "error",
@@ -14670,16 +14698,26 @@ function NewQuestion() {
               detail: "Failed Saving Question ".concat(_response.question_id),
               life: 2000
             });
-          case 30:
+          case 32:
             setQuestions(_questions);
             setQuestionDialog(false);
             setEditState(false);
-            filterQuestionsByGroupName();
-          case 34:
+            setResponse(function (prevResponse) {
+              return _objectSpread(_objectSpread({}, prevResponse), {}, {
+                // question_id: result.data.data.question_id,
+                // question_key: result.data.data.question_key,
+                question_type: "",
+                question_name: "",
+                sequence: null,
+                data_status: null,
+                is_parent: null
+              });
+            });
+          case 36:
           case "end":
             return _context6.stop();
         }
-      }, _callee6, null, [[12, 26]]);
+      }, _callee6, null, [[14, 28]]);
     }));
     return function saveQuestion() {
       return _ref6.apply(this, arguments);
@@ -15072,18 +15110,49 @@ function NewQuestion() {
       exportCSV: exportCSV
     });
   };
+  var isParentBodyTemplate = function isParentBodyTemplate(rowData) {
+    var isParent = rowData.is_parent === 1;
+    var iconClassName = (0,primereact_utils__WEBPACK_IMPORTED_MODULE_14__.classNames)("pi",
+    // PrimeIcons base class
+    {
+      "pi-check text-success": isParent,
+      "pi-minus text-danger": !isParent
+    });
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+      className: "d-inline-flex align-items-center justify-content-center",
+      style: {
+        width: "2rem",
+        height: "2rem"
+      },
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("i", {
+        className: iconClassName,
+        style: {
+          fontSize: "20px"
+        }
+      })
+    });
+  };
+
+  // In your DataTable component
+  // <Column
+  //     field="is_parent"
+  //     header="Parent?"
+  //     sortable
+  //     body={isParentBodyTemplate}
+  // />;
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_BreadcrumbComponent__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_toast__WEBPACK_IMPORTED_MODULE_14__.Toast, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_BreadcrumbComponent__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_toast__WEBPACK_IMPORTED_MODULE_15__.Toast, {
       ref: toast
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
       className: "card d-flex justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(primereact_stepper__WEBPACK_IMPORTED_MODULE_15__.Stepper, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(primereact_stepper__WEBPACK_IMPORTED_MODULE_16__.Stepper, {
         linear: true,
         ref: stepperRef,
         style: {
           marginTop: "2rem"
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_16__.StepperPanel, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_17__.StepperPanel, {
           header: "Survey Type",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
             className: "d-flex flex-column",
@@ -15127,7 +15196,7 @@ function NewQuestion() {
                           borderRadius: "30px"
                         },
                         children: survey.survey_name
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_overlaypanel__WEBPACK_IMPORTED_MODULE_17__.OverlayPanel, {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_overlaypanel__WEBPACK_IMPORTED_MODULE_18__.OverlayPanel, {
                         ref: op,
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h5", {
@@ -15169,7 +15238,7 @@ function NewQuestion() {
                           className: "pi pi-plus me-2"
                         }), "Tambah Tipe Survey"]
                       }) : response.survey_name
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_18__.Dialog, {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_19__.Dialog, {
                       visible: questionDialog,
                       style: {
                         width: "32rem",
@@ -15199,7 +15268,7 @@ function NewQuestion() {
                           onChange: onSurveyInputChange,
                           required: true,
                           placeholder: "Survey [survey name]",
-                          className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_19__.classNames)({
+                          className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_14__.classNames)({
                             "p-invalid": submitted && !customSurvey
                           })
                         }), submitted && !response.survey_name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
@@ -15230,7 +15299,7 @@ function NewQuestion() {
               })
             })]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_16__.StepperPanel, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_17__.StepperPanel, {
           header: "Question Group Name",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
             className: "d-flex flex-column",
@@ -15291,7 +15360,7 @@ function NewQuestion() {
                           className: "pi pi-plus me-2"
                         }), "Tambah Question Group"]
                       }) : response.question_group_name.substring(response.question_group_name.indexOf("-") + 1).trim()
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_18__.Dialog, {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_19__.Dialog, {
                       visible: questionGroupDialog,
                       style: {
                         width: "32rem",
@@ -15321,7 +15390,7 @@ function NewQuestion() {
                           placeholder: "".concat(response.survey_name, " - "),
                           onChange: onQuestionGroupInputChange,
                           required: true,
-                          className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_19__.classNames)({
+                          className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_14__.classNames)({
                             "p-invalid": submittedQuestion && !customQuestionGroup
                           })
                         }), submittedQuestion && !customQuestionGroup && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("small", {
@@ -15355,7 +15424,7 @@ function NewQuestion() {
               })]
             })]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_16__.StepperPanel, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_17__.StepperPanel, {
           header: "Add Question",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_toolbar__WEBPACK_IMPORTED_MODULE_21__.Toolbar, {
             className: "mb-4",
@@ -15379,7 +15448,7 @@ function NewQuestion() {
             header: header,
             rowsPerPageOptions: [5, 10, 25],
             paginatorTemplate: "FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown showGridlines",
-            currentPageReportTemplate: "Showing {first} to {last} of {totalRecords} questions",
+            currentPageReportTemplate: "{first} to {last} of {totalRecords} questions",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_23__.Column, {
               selectionMode: "multiple",
               exportable: false
@@ -15395,17 +15464,14 @@ function NewQuestion() {
               },
               sortable: true
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_23__.Column, {
-              field: "question_key",
-              header: "Key",
-              sortable: true
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_23__.Column, {
               field: "question_type",
               header: "Type",
               sortable: true
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_23__.Column, {
-              field: "question_group_id",
-              header: "Question Group ID",
-              sortable: true
+              field: "is_parent",
+              header: "Parent?",
+              sortable: true,
+              body: isParentBodyTemplate
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_23__.Column, {
               body: actionBodyTemplate,
               exportable: false,
@@ -15424,8 +15490,9 @@ function NewQuestion() {
             saveQuestionFooter: saveQuestionFooter,
             hideDialog: hideDialog,
             submitted: submitted,
-            isSubmitted: isSubmitted
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_18__.Dialog, {
+            isSubmitted: isSubmitted,
+            onCheckboxChange: onCheckboxChange
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_19__.Dialog, {
             visible: deleteQuestionDialog,
             style: {
               width: "32rem"
@@ -15451,7 +15518,7 @@ function NewQuestion() {
                 }), "?"]
               })]
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_18__.Dialog, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_19__.Dialog, {
             visible: deleteQuestionsDialog,
             style: {
               width: "32rem"
@@ -20128,6 +20195,370 @@ var Button = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo( /*#__PURE__*/
   }, props.tooltipOptions)));
 }));
 Button.displayName = 'Button';
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/primereact/checkbox/checkbox.esm.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/primereact/checkbox/checkbox.esm.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Checkbox: () => (/* binding */ Checkbox)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var primereact_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! primereact/api */ "./node_modules/primereact/api/api.esm.js");
+/* harmony import */ var primereact_componentbase__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primereact/componentbase */ "./node_modules/primereact/componentbase/componentbase.esm.js");
+/* harmony import */ var primereact_hooks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primereact/hooks */ "./node_modules/primereact/hooks/hooks.esm.js");
+/* harmony import */ var primereact_icons_check__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! primereact/icons/check */ "./node_modules/primereact/icons/check/index.esm.js");
+/* harmony import */ var primereact_tooltip__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primereact/tooltip */ "./node_modules/primereact/tooltip/tooltip.esm.js");
+/* harmony import */ var primereact_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primereact/utils */ "./node_modules/primereact/utils/utils.esm.js");
+'use client';
+
+
+
+
+
+
+
+
+function _extends() {
+  _extends = Object.assign ? Object.assign.bind() : function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
+  return _extends.apply(this, arguments);
+}
+
+function _typeof(o) {
+  "@babel/helpers - typeof";
+
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+    return typeof o;
+  } : function (o) {
+    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+  }, _typeof(o);
+}
+
+function _toPrimitive(input, hint) {
+  if (_typeof(input) !== "object" || input === null) return input;
+  var prim = input[Symbol.toPrimitive];
+  if (prim !== undefined) {
+    var res = prim.call(input, hint || "default");
+    if (_typeof(res) !== "object") return res;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return (hint === "string" ? String : Number)(input);
+}
+
+function _toPropertyKey(arg) {
+  var key = _toPrimitive(arg, "string");
+  return _typeof(key) === "symbol" ? key : String(key);
+}
+
+function _defineProperty(obj, key, value) {
+  key = _toPropertyKey(key);
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+function _iterableToArrayLimit(r, l) {
+  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+  if (null != t) {
+    var e,
+      n,
+      i,
+      u,
+      a = [],
+      f = !0,
+      o = !1;
+    try {
+      if (i = (t = t.call(r)).next, 0 === l) {
+        if (Object(t) !== t) return;
+        f = !1;
+      } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
+    } catch (r) {
+      o = !0, n = r;
+    } finally {
+      try {
+        if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return;
+      } finally {
+        if (o) throw n;
+      }
+    }
+    return a;
+  }
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+  return arr2;
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+
+var classes = {
+  box: 'p-checkbox-box',
+  input: 'p-checkbox-input',
+  icon: 'p-checkbox-icon',
+  root: function root(_ref) {
+    var props = _ref.props,
+      checked = _ref.checked,
+      context = _ref.context;
+    return (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)('p-checkbox p-component', {
+      'p-highlight': checked,
+      'p-disabled': props.disabled,
+      'p-invalid': props.invalid,
+      'p-variant-filled': props.variant ? props.variant === 'filled' : context && context.inputStyle === 'filled'
+    });
+  }
+};
+var CheckboxBase = primereact_componentbase__WEBPACK_IMPORTED_MODULE_2__.ComponentBase.extend({
+  defaultProps: {
+    __TYPE: 'Checkbox',
+    autoFocus: false,
+    checked: false,
+    className: null,
+    disabled: false,
+    falseValue: false,
+    icon: null,
+    id: null,
+    inputId: null,
+    inputRef: null,
+    invalid: false,
+    variant: null,
+    name: null,
+    onChange: null,
+    onContextMenu: null,
+    onMouseDown: null,
+    readOnly: false,
+    required: false,
+    style: null,
+    tabIndex: null,
+    tooltip: null,
+    tooltipOptions: null,
+    trueValue: true,
+    value: null,
+    children: undefined
+  },
+  css: {
+    classes: classes
+  }
+});
+
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var Checkbox = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function (inProps, ref) {
+  var mergeProps = (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_3__.useMergeProps)();
+  var context = react__WEBPACK_IMPORTED_MODULE_0__.useContext(primereact_api__WEBPACK_IMPORTED_MODULE_4__.PrimeReactContext);
+  var props = CheckboxBase.getProps(inProps, context);
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(false),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    focusedState = _React$useState2[0],
+    setFocusedState = _React$useState2[1];
+  var _CheckboxBase$setMeta = CheckboxBase.setMetaData({
+      props: props,
+      state: {
+        focused: focusedState
+      },
+      context: {
+        checked: props.checked === props.trueValue,
+        disabled: props.disabled
+      }
+    }),
+    ptm = _CheckboxBase$setMeta.ptm,
+    cx = _CheckboxBase$setMeta.cx,
+    isUnstyled = _CheckboxBase$setMeta.isUnstyled;
+  (0,primereact_componentbase__WEBPACK_IMPORTED_MODULE_2__.useHandleStyle)(CheckboxBase.css.styles, isUnstyled, {
+    name: 'checkbox'
+  });
+  var elementRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+  var inputRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(props.inputRef);
+  var isChecked = function isChecked() {
+    return props.checked === props.trueValue;
+  };
+  var _onChange = function onChange(event) {
+    if (props.disabled || props.readonly) {
+      return;
+    }
+    if (props.onChange) {
+      var _props$onChange;
+      var _checked = isChecked();
+      var value = _checked ? props.falseValue : props.trueValue;
+      var eventData = {
+        originalEvent: event,
+        value: props.value,
+        checked: value,
+        stopPropagation: function stopPropagation() {
+          event === null || event === void 0 || event.stopPropagation();
+        },
+        preventDefault: function preventDefault() {
+          event === null || event === void 0 || event.preventDefault();
+        },
+        target: {
+          type: 'checkbox',
+          name: props.name,
+          id: props.id,
+          value: props.value,
+          checked: value
+        }
+      };
+      props === null || props === void 0 || (_props$onChange = props.onChange) === null || _props$onChange === void 0 || _props$onChange.call(props, eventData);
+
+      // do not continue if the user defined click wants to prevent
+      if (event.defaultPrevented) {
+        return;
+      }
+      primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.focus(inputRef.current);
+    }
+  };
+  var _onFocus = function onFocus() {
+    var _props$onFocus;
+    setFocusedState(true);
+    props === null || props === void 0 || (_props$onFocus = props.onFocus) === null || _props$onFocus === void 0 || _props$onFocus.call(props);
+  };
+  var _onBlur = function onBlur() {
+    var _props$onBlur;
+    setFocusedState(false);
+    props === null || props === void 0 || (_props$onBlur = props.onBlur) === null || _props$onBlur === void 0 || _props$onBlur.call(props);
+  };
+  react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle(ref, function () {
+    return {
+      props: props,
+      focus: function focus() {
+        return primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.focus(inputRef.current);
+      },
+      getElement: function getElement() {
+        return elementRef.current;
+      },
+      getInput: function getInput() {
+        return inputRef.current;
+      }
+    };
+  });
+  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {
+    primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.combinedRefs(inputRef, props.inputRef);
+  }, [inputRef, props.inputRef]);
+  (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_3__.useUpdateEffect)(function () {
+    inputRef.current.checked = isChecked();
+  }, [props.checked, props.trueValue]);
+  (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_3__.useMountEffect)(function () {
+    if (props.autoFocus) {
+      primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.focus(inputRef.current, props.autoFocus);
+    }
+  });
+  var checked = isChecked();
+  var hasTooltip = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.isNotEmpty(props.tooltip);
+  var otherProps = CheckboxBase.getOtherProps(props);
+  var rootProps = mergeProps({
+    id: props.id,
+    className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)(props.className, cx('root', {
+      checked: checked,
+      context: context
+    })),
+    style: props.style,
+    'data-p-highlight': checked,
+    'data-p-disabled': props.disabled,
+    onContextMenu: props.onContextMenu,
+    onMouseDown: props.onMouseDown
+  }, otherProps, ptm('root'));
+  var createInputElement = function createInputElement() {
+    var ariaProps = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.reduceKeys(otherProps, primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.ARIA_PROPS);
+    var inputProps = mergeProps(_objectSpread({
+      id: props.inputId,
+      type: 'checkbox',
+      className: cx('input'),
+      name: props.name,
+      tabIndex: props.tabIndex,
+      onFocus: function onFocus(e) {
+        return _onFocus();
+      },
+      onBlur: function onBlur(e) {
+        return _onBlur();
+      },
+      onChange: function onChange(e) {
+        return _onChange(e);
+      },
+      disabled: props.disabled,
+      readOnly: props.readOnly,
+      required: props.required,
+      'aria-invalid': props.invalid,
+      checked: checked
+    }, ariaProps), ptm('input'));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", _extends({
+      ref: inputRef
+    }, inputProps));
+  };
+  var createBoxElement = function createBoxElement() {
+    var iconProps = mergeProps({
+      className: cx('icon')
+    }, ptm('icon'));
+    var boxProps = mergeProps({
+      className: cx('box', {
+        checked: checked
+      }),
+      'data-p-highlight': checked,
+      'data-p-disabled': props.disabled
+    }, ptm('box'));
+    var icon = checked ? props.icon || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(primereact_icons_check__WEBPACK_IMPORTED_MODULE_5__.CheckIcon, iconProps) : null;
+    var checkboxIcon = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.IconUtils.getJSXIcon(icon, _objectSpread({}, iconProps), {
+      props: props,
+      checked: checked
+    });
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", boxProps, checkboxIcon);
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", _extends({
+    ref: elementRef
+  }, rootProps), createInputElement(), createBoxElement()), hasTooltip && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(primereact_tooltip__WEBPACK_IMPORTED_MODULE_6__.Tooltip, _extends({
+    target: elementRef,
+    content: props.tooltip,
+    pt: ptm('tooltip')
+  }, props.tooltipOptions)));
+}));
+Checkbox.displayName = 'Checkbox';
 
 
 
