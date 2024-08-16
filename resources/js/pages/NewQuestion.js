@@ -376,16 +376,6 @@ export default function NewQuestion() {
             setQuestions(_questions);
             setQuestionDialog(false);
             setEditState(false);
-            setResponse((prevResponse) => ({
-                ...prevResponse,
-                // question_id: result.data.data.question_id,
-                // question_key: result.data.data.question_key,
-                question_type: "",
-                question_name: "",
-                sequence: null,
-                data_status: null,
-                is_parent: 0,
-            }));
         }
     };
 
@@ -816,14 +806,10 @@ export default function NewQuestion() {
         );
     };
 
-    // const updateResponseOptions = (updatedOptions) => {
-    //     setResponse((prevState) => ({
-    //         ...prevState,
-    //         ...updatedOptions,
-    //     }));
-    // };
-
     const updateResponseOptions = async (updatedOptions) => {
+        let _questions = [...questions];
+        const index = findIndexByID(updatedOptions.question_id);
+
         try {
             const result = await axios.post(
                 `/editQuestion/${updatedOptions.question_id}`,
@@ -831,10 +817,12 @@ export default function NewQuestion() {
             );
 
             if (result.status === 200) {
-                setResponse((prevState) => ({
-                    ...prevState,
-                    ...updatedOptions, // Merge only the updated options
-                }));
+                _questions[index] = {
+                    ..._questions[index],
+                    ...updatedOptions, // Merge the updated options into the existing question
+                };
+
+                setQuestions(_questions); // Update the local state with the modified questions
 
                 toast.current.show({
                     severity: "success",
@@ -842,6 +830,35 @@ export default function NewQuestion() {
                     detail: `Options for Question ${updatedOptions.sequence} Updated`,
                     life: 2000,
                 });
+
+                // Optionally reset the response state to its initial values
+                setResponse((prevResponse) => ({
+                    ...prevResponse,
+                    question_type: "",
+                    question_name: "",
+                    sequence: null,
+                    data_status: null,
+                    is_parent: 0,
+                    is_mandatory: 0,
+                    option_1: null,
+                    option_1_flow: null,
+                    option_2: null,
+                    option_2_flow: null,
+                    option_3: null,
+                    option_3_flow: null,
+                    option_4: null,
+                    option_4_flow: null,
+                    option_5: null,
+                    option_5_flow: null,
+                    option_6: null,
+                    option_6_flow: null,
+                    option_7: null,
+                    option_7_flow: null,
+                    option_8: null,
+                    option_8_flow: null,
+                    option_9: null,
+                    option_9_flow: null,
+                }));
             }
         } catch (error) {
             console.error("Error updating options:", error);
@@ -852,17 +869,36 @@ export default function NewQuestion() {
                 detail: "Failed to update options",
                 life: 3000,
             });
+        } finally {
+            // Ensure that the response is reset regardless of success or failure
+            setResponse((prevResponse) => ({
+                ...prevResponse,
+                question_type: "",
+                question_name: "",
+                sequence: null,
+                data_status: null,
+                is_parent: 0,
+                is_mandatory: 0,
+                option_1: null,
+                option_1_flow: null,
+                option_2: null,
+                option_2_flow: null,
+                option_3: null,
+                option_3_flow: null,
+                option_4: null,
+                option_4_flow: null,
+                option_5: null,
+                option_5_flow: null,
+                option_6: null,
+                option_6_flow: null,
+                option_7: null,
+                option_7_flow: null,
+                option_8: null,
+                option_8_flow: null,
+                option_9: null,
+                option_9_flow: null,
+            }));
         }
-        setResponse((prevResponse) => ({
-            ...prevResponse,
-            // question_id: result.data.data.question_id,
-            // question_key: result.data.data.question_key,
-            question_type: "",
-            question_name: "",
-            sequence: null,
-            data_status: null,
-            is_parent: 0,
-        }));
     };
 
     return (

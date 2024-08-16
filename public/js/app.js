@@ -11528,7 +11528,7 @@ function OptionsDialog(_ref) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "mt-2",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_3__.Button, {
-        label: "Save",
+        label: "Done",
         className: "rounded me-2",
         icon: "pi pi-check",
         onClick: handleSave
@@ -14857,7 +14857,7 @@ function NewQuestion() {
           case 0:
             setSubmitted(true);
             if (!(response.question_name.trim() && response.question_type.trim() && response.sequence && response.data_status && response.question_group_id)) {
-              _context6.next = 36;
+              _context6.next = 35;
               break;
             }
             _questions = _toConsumableArray(questions);
@@ -14947,18 +14947,7 @@ function NewQuestion() {
             setQuestions(_questions);
             setQuestionDialog(false);
             setEditState(false);
-            setResponse(function (prevResponse) {
-              return _objectSpread(_objectSpread({}, prevResponse), {}, {
-                // question_id: result.data.data.question_id,
-                // question_key: result.data.data.question_key,
-                question_type: "",
-                question_name: "",
-                sequence: null,
-                data_status: null,
-                is_parent: 0
-              });
-            });
-          case 36:
+          case 35:
           case "end":
             return _context6.stop();
         }
@@ -15417,41 +15406,65 @@ function NewQuestion() {
       })
     });
   };
-
-  // const updateResponseOptions = (updatedOptions) => {
-  //     setResponse((prevState) => ({
-  //         ...prevState,
-  //         ...updatedOptions,
-  //     }));
-  // };
-
   var updateResponseOptions = /*#__PURE__*/function () {
     var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(updatedOptions) {
-      var result;
+      var _questions, index, result;
       return _regeneratorRuntime().wrap(function _callee9$(_context9) {
         while (1) switch (_context9.prev = _context9.next) {
           case 0:
-            _context9.prev = 0;
-            _context9.next = 3;
+            _questions = _toConsumableArray(questions);
+            index = findIndexByID(updatedOptions.question_id);
+            _context9.prev = 2;
+            _context9.next = 5;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/editQuestion/".concat(updatedOptions.question_id), updatedOptions);
-          case 3:
+          case 5:
             result = _context9.sent;
             if (result.status === 200) {
-              setResponse(function (prevState) {
-                return _objectSpread(_objectSpread({}, prevState), updatedOptions);
-              });
+              _questions[index] = _objectSpread(_objectSpread({}, _questions[index]), updatedOptions);
+              setQuestions(_questions); // Update the local state with the modified questions
+
               toast.current.show({
                 severity: "success",
                 summary: "Successful",
                 detail: "Options for Question ".concat(updatedOptions.sequence, " Updated"),
                 life: 2000
               });
+
+              // Optionally reset the response state to its initial values
+              setResponse(function (prevResponse) {
+                return _objectSpread(_objectSpread({}, prevResponse), {}, {
+                  question_type: "",
+                  question_name: "",
+                  sequence: null,
+                  data_status: null,
+                  is_parent: 0,
+                  is_mandatory: 0,
+                  option_1: null,
+                  option_1_flow: null,
+                  option_2: null,
+                  option_2_flow: null,
+                  option_3: null,
+                  option_3_flow: null,
+                  option_4: null,
+                  option_4_flow: null,
+                  option_5: null,
+                  option_5_flow: null,
+                  option_6: null,
+                  option_6_flow: null,
+                  option_7: null,
+                  option_7_flow: null,
+                  option_8: null,
+                  option_8_flow: null,
+                  option_9: null,
+                  option_9_flow: null
+                });
+              });
             }
-            _context9.next = 11;
+            _context9.next = 13;
             break;
-          case 7:
-            _context9.prev = 7;
-            _context9.t0 = _context9["catch"](0);
+          case 9:
+            _context9.prev = 9;
+            _context9.t0 = _context9["catch"](2);
             console.error("Error updating options:", _context9.t0);
             toast.current.show({
               severity: "error",
@@ -15459,23 +15472,43 @@ function NewQuestion() {
               detail: "Failed to update options",
               life: 3000
             });
-          case 11:
+          case 13:
+            _context9.prev = 13;
+            // Ensure that the response is reset regardless of success or failure
             setResponse(function (prevResponse) {
               return _objectSpread(_objectSpread({}, prevResponse), {}, {
-                // question_id: result.data.data.question_id,
-                // question_key: result.data.data.question_key,
                 question_type: "",
                 question_name: "",
                 sequence: null,
                 data_status: null,
-                is_parent: 0
+                is_parent: 0,
+                is_mandatory: 0,
+                option_1: null,
+                option_1_flow: null,
+                option_2: null,
+                option_2_flow: null,
+                option_3: null,
+                option_3_flow: null,
+                option_4: null,
+                option_4_flow: null,
+                option_5: null,
+                option_5_flow: null,
+                option_6: null,
+                option_6_flow: null,
+                option_7: null,
+                option_7_flow: null,
+                option_8: null,
+                option_8_flow: null,
+                option_9: null,
+                option_9_flow: null
               });
             });
-          case 12:
+            return _context9.finish(13);
+          case 16:
           case "end":
             return _context9.stop();
         }
-      }, _callee9, null, [[0, 7]]);
+      }, _callee9, null, [[2, 9, 13, 16]]);
     }));
     return function updateResponseOptions(_x2) {
       return _ref9.apply(this, arguments);

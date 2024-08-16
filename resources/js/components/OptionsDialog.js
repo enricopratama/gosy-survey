@@ -69,7 +69,7 @@ export default function OptionsDialog({
     const dialogFooterTemplate = () => (
         <div className="mt-2">
             <Button
-                label="Save"
+                label="Done"
                 className="rounded me-2"
                 icon="pi pi-check"
                 onClick={handleSave}
