@@ -83,7 +83,7 @@ class QuestionController extends Controller
             return response()->json($questions);
         } catch (\Exception $e) {
             // Log the error for further analysis
-            \Log::error('Failed to retrieve questions: ' . $e->getMessage());
+            // \Log::error('Failed to retrieve questions: ' . $e->getMessage());
 
             // Return a JSON response with a 500 status code
             return response()->json([

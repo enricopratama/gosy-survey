@@ -9,27 +9,31 @@ export default function OptionsDialog({
     visible,
     onHide,
     selectedRow,
-    updateResponse,
+    updateResponse, // contains the updated response
 }) {
     const [optionsData, setOptionsData] = useState([]);
 
-    useEffect(() => {
-        if (selectedRow) {
-            // Extract the options data from the selectedRow (current question row)
-            const extractedOptions = [];
+    // Function to extract options data from selectedRow
+    const extractOptionsData = (row) => {
+        const extractedOptions = [];
 
+        if (row) {
             for (let i = 1; i <= 9; i++) {
-                if (selectedRow[`option_${i}`]) {
-                    extractedOptions.push({
-                        option_num: `option_${i}`,
-                        option_data: selectedRow[`option_${i}`],
-                        option_flow: selectedRow[`option_${i}_flow`],
-                    });
-                }
+                extractedOptions.push({
+                    option_num: `option_${i}`,
+                    option_data: row[`option_${i}`] || "", // Leave empty if null
+                    option_flow: row[`option_${i}_flow`] || "",
+                });
             }
-
-            setOptionsData(extractedOptions);
         }
+
+        return extractedOptions;
+    };
+
+    useEffect(() => {
+        // Call the extractOptionsData function and set the state
+        const options = extractOptionsData(selectedRow);
+        setOptionsData(options);
     }, [selectedRow]);
 
     const onRowEditComplete = (e) => {
@@ -39,49 +43,49 @@ export default function OptionsDialog({
         _optionsData[index] = newData;
 
         setOptionsData(_optionsData);
+    };
 
-        // Update the selectedRow in parent component
+    const handleSave = () => {
         const updatedResponse = { ...selectedRow };
-        _optionsData.forEach((data) => {
-            updatedResponse[data.option_num] = data.option_data;
-            updatedResponse[`${data.option_num}_flow`] = data.option_flow;
+        optionsData.forEach((data) => {
+            updatedResponse[data.option_num] =
+                data.option_data !== "" ? data.option_data : null;
+            updatedResponse[`${data.option_num}_flow`] =
+                data.option_flow !== "" ? data.option_flow : null;
         });
 
-        updateResponse(updatedResponse);
+        updateResponse(updatedResponse); // Trigger the update response and POST request
+        onHide(); // Close the dialog
     };
 
-    const textEditor = (options) => {
-        return (
-            <InputText
-                type="text"
-                value={options.value}
-                onChange={(e) => options.editorCallback(e.target.value)}
+    const textEditor = (options) => (
+        <InputText
+            type="text"
+            value={options.value || ""} // Leave empty if null
+            onChange={(e) => options.editorCallback(e.target.value)}
+        />
+    );
+
+    const dialogFooterTemplate = () => (
+        <div className="mt-2">
+            <Button
+                label="Save"
+                className="rounded me-2"
+                icon="pi pi-check"
+                onClick={handleSave}
             />
-        );
-    };
-
-    const dialogFooterTemplate = () => {
-        return (
-            <div className="mt-2">
-                <Button
-                    label="Done"
-                    className="rounded me-2"
-                    icon="pi pi-check"
-                    onClick={onHide}
-                />
-            </div>
-        );
-    };
+        </div>
+    );
 
     return (
         <Dialog
-            header="Question Options"
+            header="Manage Options"
             visible={visible}
             style={{ width: "50vw" }}
             maximizable
             modal
-            contentStyle={{ height: "200px" }}
-            onHide={onHide} // setOptionDialogVisible(false)
+            contentStyle={{ height: "80vh" }}
+            onHide={onHide}
             footer={dialogFooterTemplate()}
         >
             <div className="card p-fluid">
@@ -89,29 +93,35 @@ export default function OptionsDialog({
                     value={optionsData}
                     editMode="row"
                     onRowEditComplete={onRowEditComplete}
-                    tableStyle={{ minWidth: "50rem" }}
+                    tableStyle={{ minWidth: "10rem" }}
+                    stripedRows
+                    showGridlines
                 >
                     <Column
                         field="option_num"
-                        header="Option Number"
-                        style={{ width: "20%" }}
+                        style={{ width: "5%" }}
+                        body={(rowData) => (
+                            <strong>{rowData.option_num}</strong>
+                        )}
                     />
                     <Column
                         field="option_data"
                         header="Option Data"
                         editor={(options) => textEditor(options)}
-                        style={{ width: "40%" }}
+                        style={{ width: "5%" }}
+                        bodyStyle={{ textAlign: "center" }}
                     />
                     <Column
                         field="option_flow"
                         header="Option Flow"
                         editor={(options) => textEditor(options)}
-                        style={{ width: "40%" }}
+                        style={{ width: "5%" }}
+                        bodyStyle={{ textAlign: "center" }}
                     />
                     <Column
                         rowEditor={true}
-                        headerStyle={{ width: "10%", minWidth: "2rem" }}
-                        bodyStyle={{ textAlign: "center" }}
+                        headerStyle={{ width: "10%" }}
+                        bodyStyle={{ textAlign: "right" }}
                     />
                 </DataTable>
             </div>

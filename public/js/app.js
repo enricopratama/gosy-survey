@@ -11477,21 +11477,26 @@ function OptionsDialog(_ref) {
     _useState2 = _slicedToArray(_useState, 2),
     optionsData = _useState2[0],
     setOptionsData = _useState2[1];
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (selectedRow) {
-      // Extract the options data from the selectedRow (current question row)
-      var extractedOptions = [];
+
+  // Function to extract options data from selectedRow
+  var extractOptionsData = function extractOptionsData(row) {
+    var extractedOptions = [];
+    if (row) {
       for (var i = 1; i <= 9; i++) {
-        if (selectedRow["option_".concat(i)]) {
-          extractedOptions.push({
-            option_num: "option_".concat(i),
-            option_data: selectedRow["option_".concat(i)],
-            option_flow: selectedRow["option_".concat(i, "_flow")]
-          });
-        }
+        extractedOptions.push({
+          option_num: "option_".concat(i),
+          option_data: row["option_".concat(i)] || "",
+          // Leave empty if null
+          option_flow: row["option_".concat(i, "_flow")] || ""
+        });
       }
-      setOptionsData(extractedOptions);
     }
+    return extractedOptions;
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // Call the extractOptionsData function and set the state
+    var options = extractOptionsData(selectedRow);
+    setOptionsData(options);
   }, [selectedRow]);
   var onRowEditComplete = function onRowEditComplete(e) {
     var _optionsData = _toConsumableArray(optionsData);
@@ -11499,19 +11504,21 @@ function OptionsDialog(_ref) {
       index = e.index;
     _optionsData[index] = newData;
     setOptionsData(_optionsData);
-
-    // Update the selectedRow in parent component
+  };
+  var handleSave = function handleSave() {
     var updatedResponse = _objectSpread({}, selectedRow);
-    _optionsData.forEach(function (data) {
-      updatedResponse[data.option_num] = data.option_data;
-      updatedResponse["".concat(data.option_num, "_flow")] = data.option_flow;
+    optionsData.forEach(function (data) {
+      updatedResponse[data.option_num] = data.option_data !== "" ? data.option_data : null;
+      updatedResponse["".concat(data.option_num, "_flow")] = data.option_flow !== "" ? data.option_flow : null;
     });
-    updateResponse(updatedResponse);
+    updateResponse(updatedResponse); // Trigger the update response and POST request
+    onHide(); // Close the dialog
   };
   var textEditor = function textEditor(options) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_2__.InputText, {
       type: "text",
-      value: options.value,
+      value: options.value || "" // Leave empty if null
+      ,
       onChange: function onChange(e) {
         return options.editorCallback(e.target.value);
       }
@@ -11521,15 +11528,15 @@ function OptionsDialog(_ref) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "mt-2",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_3__.Button, {
-        label: "Done",
+        label: "Save",
         className: "rounded me-2",
         icon: "pi pi-check",
-        onClick: onHide
+        onClick: handleSave
       })
     });
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_4__.Dialog, {
-    header: "Question Options",
+    header: "Manage Options",
     visible: visible,
     style: {
       width: "50vw"
@@ -11537,10 +11544,9 @@ function OptionsDialog(_ref) {
     maximizable: true,
     modal: true,
     contentStyle: {
-      height: "200px"
+      height: "80vh"
     },
-    onHide: onHide // setOptionDialogVisible(false)
-    ,
+    onHide: onHide,
     footer: dialogFooterTemplate(),
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "card p-fluid",
@@ -11549,13 +11555,19 @@ function OptionsDialog(_ref) {
         editMode: "row",
         onRowEditComplete: onRowEditComplete,
         tableStyle: {
-          minWidth: "50rem"
+          minWidth: "10rem"
         },
+        stripedRows: true,
+        showGridlines: true,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_6__.Column, {
           field: "option_num",
-          header: "Option Number",
           style: {
-            width: "20%"
+            width: "5%"
+          },
+          body: function body(rowData) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
+              children: rowData.option_num
+            });
           }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_6__.Column, {
           field: "option_data",
@@ -11564,7 +11576,10 @@ function OptionsDialog(_ref) {
             return textEditor(options);
           },
           style: {
-            width: "40%"
+            width: "5%"
+          },
+          bodyStyle: {
+            textAlign: "center"
           }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_6__.Column, {
           field: "option_flow",
@@ -11573,16 +11588,18 @@ function OptionsDialog(_ref) {
             return textEditor(options);
           },
           style: {
-            width: "40%"
+            width: "5%"
+          },
+          bodyStyle: {
+            textAlign: "center"
           }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_6__.Column, {
           rowEditor: true,
           headerStyle: {
-            width: "10%",
-            minWidth: "2rem"
+            width: "10%"
           },
           bodyStyle: {
-            textAlign: "center"
+            textAlign: "right"
           }
         })]
       })
@@ -14507,6 +14524,7 @@ function NewQuestion() {
     selectedRow = _useState40[0],
     setSelectedRow = _useState40[1]; // Current Question (Row) to get Options Data
 
+  // Mapping between question and question group id
   var _useState41 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState42 = _slicedToArray(_useState41, 2),
     mapGrpId = _useState42[0],
@@ -14833,18 +14851,17 @@ function NewQuestion() {
   };
   var saveQuestion = /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
-      var _questions, _response, result, formData, index, _result, newQuestion;
+      var _questions, _response, formData, index, result, newQuestion;
       return _regeneratorRuntime().wrap(function _callee6$(_context6) {
         while (1) switch (_context6.prev = _context6.next) {
           case 0:
             setSubmitted(true);
             if (!(response.question_name.trim() && response.question_type.trim() && response.sequence && response.data_status && response.question_group_id)) {
-              _context6.next = 37;
+              _context6.next = 36;
               break;
             }
             _questions = _toConsumableArray(questions);
-            _response = _objectSpread({}, response);
-            result = null;
+            _response = _objectSpread({}, response); // let result = null;
             formData = new FormData();
             formData.append("question_group_id", _response.question_group_id);
             formData.append("question_name", _response.question_name);
@@ -14855,16 +14872,16 @@ function NewQuestion() {
             formData.append("is_parent", _response.is_parent);
             formData.append("is_mandatory", _response.is_mandatory);
             index = findIndexByID(_response.question_id);
-            _context6.prev = 15;
+            _context6.prev = 14;
             if (!(index >= 0 && editState)) {
-              _context6.next = 23;
+              _context6.next = 22;
               break;
             }
-            _context6.next = 19;
+            _context6.next = 18;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/editQuestion/".concat(_response.question_id), formData);
-          case 19:
-            _result = _context6.sent;
-            if (_result.status === 200) {
+          case 18:
+            result = _context6.sent;
+            if (result.status === 200) {
               _questions[index] = _response;
               toast.current.show({
                 severity: "success",
@@ -14884,16 +14901,16 @@ function NewQuestion() {
                 });
               });
             }
-            _context6.next = 27;
+            _context6.next = 26;
             break;
-          case 23:
-            _context6.next = 25;
+          case 22:
+            _context6.next = 24;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/addQuestion", formData);
-          case 25:
-            _result = _context6.sent;
+          case 24:
+            result = _context6.sent;
             //TODO (minor BUG): Fix seqence when add first time
-            if (_result.status === 200) {
-              newQuestion = _result.data.data || _result.data;
+            if (result.status === 200) {
+              newQuestion = result.data.data || result.data;
               _questions.push(_response);
               toast.current.show({
                 severity: "success",
@@ -14913,12 +14930,12 @@ function NewQuestion() {
                 });
               });
             }
-          case 27:
-            _context6.next = 33;
+          case 26:
+            _context6.next = 32;
             break;
-          case 29:
-            _context6.prev = 29;
-            _context6.t0 = _context6["catch"](15);
+          case 28:
+            _context6.prev = 28;
+            _context6.t0 = _context6["catch"](14);
             console.error("There was an error saving the question!", _context6.t0);
             toast.current.show({
               severity: "error",
@@ -14926,7 +14943,7 @@ function NewQuestion() {
               detail: "Failed Saving Question ".concat(_response.sequence),
               life: 2000
             });
-          case 33:
+          case 32:
             setQuestions(_questions);
             setQuestionDialog(false);
             setEditState(false);
@@ -14941,11 +14958,11 @@ function NewQuestion() {
                 is_parent: 0
               });
             });
-          case 37:
+          case 36:
           case "end":
             return _context6.stop();
         }
-      }, _callee6, null, [[15, 29]]);
+      }, _callee6, null, [[14, 28]]);
     }));
     return function saveQuestion() {
       return _ref6.apply(this, arguments);
@@ -15108,8 +15125,6 @@ function NewQuestion() {
       onClick: deleteQuestion
     })]
   });
-
-  // might need fixing
   var deleteSelectedQuestions = /*#__PURE__*/function () {
     var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
       var selectedQuestionsID, _questions, i, _i, question_id, url, result;
@@ -15261,10 +15276,8 @@ function NewQuestion() {
       rounded: true,
       text: true,
       onClick: function onClick() {
-        setSelectedRow(rowData); // Set the current row as selected questions to extract its questions
+        setSelectedRow(rowData);
         setOptionDialogVisible(true);
-        console.log("Button clicked", rowData); // Check if this logs
-        console.log("Option Dialog Visible State", optionDialogVisible); // Check if this logs
       }
     });
   };
@@ -15405,12 +15418,69 @@ function NewQuestion() {
     });
   };
 
-  // Update response from Modal Datatable
-  var updateResponseOptions = function updateResponseOptions(updatedOptions) {
-    setResponse(function (prevState) {
-      return _objectSpread(_objectSpread({}, prevState), updatedOptions);
-    });
-  };
+  // const updateResponseOptions = (updatedOptions) => {
+  //     setResponse((prevState) => ({
+  //         ...prevState,
+  //         ...updatedOptions,
+  //     }));
+  // };
+
+  var updateResponseOptions = /*#__PURE__*/function () {
+    var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(updatedOptions) {
+      var result;
+      return _regeneratorRuntime().wrap(function _callee9$(_context9) {
+        while (1) switch (_context9.prev = _context9.next) {
+          case 0:
+            _context9.prev = 0;
+            _context9.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/editQuestion/".concat(updatedOptions.question_id), updatedOptions);
+          case 3:
+            result = _context9.sent;
+            if (result.status === 200) {
+              setResponse(function (prevState) {
+                return _objectSpread(_objectSpread({}, prevState), updatedOptions);
+              });
+              toast.current.show({
+                severity: "success",
+                summary: "Successful",
+                detail: "Options for Question ".concat(updatedOptions.sequence, " Updated"),
+                life: 2000
+              });
+            }
+            _context9.next = 11;
+            break;
+          case 7:
+            _context9.prev = 7;
+            _context9.t0 = _context9["catch"](0);
+            console.error("Error updating options:", _context9.t0);
+            toast.current.show({
+              severity: "error",
+              summary: "Error",
+              detail: "Failed to update options",
+              life: 3000
+            });
+          case 11:
+            setResponse(function (prevResponse) {
+              return _objectSpread(_objectSpread({}, prevResponse), {}, {
+                // question_id: result.data.data.question_id,
+                // question_key: result.data.data.question_key,
+                question_type: "",
+                question_name: "",
+                sequence: null,
+                data_status: null,
+                is_parent: 0
+              });
+            });
+          case 12:
+          case "end":
+            return _context9.stop();
+        }
+      }, _callee9, null, [[0, 7]]);
+    }));
+    return function updateResponseOptions(_x2) {
+      return _ref9.apply(this, arguments);
+    };
+  }();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_BreadcrumbComponent__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(primereact_toast__WEBPACK_IMPORTED_MODULE_16__.Toast, {
       ref: toast
@@ -15712,12 +15782,11 @@ function NewQuestion() {
             paginatorRight: paginatorRight,
             rows: 5,
             sortField: "sequence",
-            sortOrder: 11,
+            sortOrder: 1,
             filters: filters,
             stripedRows: true,
             header: header,
             rowsPerPageOptions: [5, 10, 25],
-            showGridlines: true,
             paginatorTemplate: "FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown",
             currentPageReportTemplate: "{first} to {last} of {totalRecords} questions",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_24__.Column, {
@@ -15725,6 +15794,9 @@ function NewQuestion() {
               exportable: false,
               style: {
                 width: "4rem"
+              },
+              bodyStyle: {
+                textAlign: "center"
               }
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_24__.Column, {
               field: "sequence",
@@ -15732,7 +15804,10 @@ function NewQuestion() {
               style: {
                 width: "2rem"
               },
-              sortable: true
+              sortable: true,
+              bodyStyle: {
+                textAlign: "center"
+              }
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_24__.Column, {
               field: "question_name",
               header: "Name",
@@ -15746,7 +15821,10 @@ function NewQuestion() {
               style: {
                 width: "4rem"
               },
-              sortable: true
+              sortable: true,
+              bodyStyle: {
+                textAlign: "center"
+              }
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_24__.Column, {
               field: "is_parent",
               header: "Parent?",
@@ -15754,7 +15832,10 @@ function NewQuestion() {
               style: {
                 width: "4rem"
               },
-              body: isParentBodyTemplate
+              body: isParentBodyTemplate,
+              bodyStyle: {
+                textAlign: "center"
+              }
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_24__.Column, {
               field: "is_mandatory",
               header: "Mandatory?",
@@ -15762,20 +15843,28 @@ function NewQuestion() {
               style: {
                 width: "4rem"
               },
-              body: isMandatoryBodyTemplate
+              body: isMandatoryBodyTemplate,
+              bodyStyle: {
+                textAlign: "center"
+              }
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_24__.Column, {
               body: optionsBodyTemplate,
               header: "Options",
               exportable: false,
               style: {
                 width: "4rem"
+              },
+              bodyStyle: {
+                textAlign: "center"
               }
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_24__.Column, {
               body: actionBodyTemplate,
-              header: "Actions",
               exportable: false,
               style: {
                 minWidth: "12rem"
+              },
+              bodyStyle: {
+                textAlign: "center"
               }
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_AddEditQuestionDialog__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -15846,10 +15935,10 @@ function NewQuestion() {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_OptionsDialog__WEBPACK_IMPORTED_MODULE_8__["default"], {
             visible: optionDialogVisible,
             onHide: function onHide() {
-              return setOptionDialogVisible(false);
+              setOptionDialogVisible(false);
             },
             selectedRow: selectedRow,
-            updateResponse: updateResponseOptions
+            updateResponse: updateResponseOptions // already contains updated response
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
             className: "d-flex pt-4 justify-content-between mx-5",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_14__.Button, {

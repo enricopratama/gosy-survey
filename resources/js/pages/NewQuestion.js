@@ -61,6 +61,7 @@ export default function NewQuestion() {
     const [optionDialogVisible, setOptionDialogVisible] = useState(false);
     const [selectedRow, setSelectedRow] = useState({}); // Current Question (Row) to get Options Data
 
+    // Mapping between question and question group id
     const [mapGrpId, setMapGrpId] = useState(null);
     const [response, setResponse] = useState({
         question_id: null,
@@ -295,7 +296,7 @@ export default function NewQuestion() {
         ) {
             let _questions = [...questions];
             let _response = { ...response };
-            let result = null;
+            // let result = null;
 
             var formData = new FormData();
             formData.append("question_group_id", _response.question_group_id);
@@ -532,7 +533,6 @@ export default function NewQuestion() {
         </React.Fragment>
     );
 
-    // might need fixing
     const deleteSelectedQuestions = async () => {
         var selectedQuestionsID = [];
         let _questions = [...questions];
@@ -663,13 +663,8 @@ export default function NewQuestion() {
                 rounded
                 text
                 onClick={() => {
-                    setSelectedRow(rowData); // Set the current row as selected questions to extract its questions
+                    setSelectedRow(rowData);
                     setOptionDialogVisible(true);
-                    console.log("Button clicked", rowData); // Check if this logs
-                    console.log(
-                        "Option Dialog Visible State",
-                        optionDialogVisible
-                    ); // Check if this logs
                 }}
             />
         );
@@ -821,11 +816,52 @@ export default function NewQuestion() {
         );
     };
 
-    // Update response from Modal Datatable
-    const updateResponseOptions = (updatedOptions) => {
-        setResponse((prevState) => ({
-            ...prevState,
-            ...updatedOptions,
+    // const updateResponseOptions = (updatedOptions) => {
+    //     setResponse((prevState) => ({
+    //         ...prevState,
+    //         ...updatedOptions,
+    //     }));
+    // };
+
+    const updateResponseOptions = async (updatedOptions) => {
+        try {
+            const result = await axios.post(
+                `/editQuestion/${updatedOptions.question_id}`,
+                updatedOptions
+            );
+
+            if (result.status === 200) {
+                setResponse((prevState) => ({
+                    ...prevState,
+                    ...updatedOptions, // Merge only the updated options
+                }));
+
+                toast.current.show({
+                    severity: "success",
+                    summary: "Successful",
+                    detail: `Options for Question ${updatedOptions.sequence} Updated`,
+                    life: 2000,
+                });
+            }
+        } catch (error) {
+            console.error("Error updating options:", error);
+
+            toast.current.show({
+                severity: "error",
+                summary: "Error",
+                detail: "Failed to update options",
+                life: 3000,
+            });
+        }
+        setResponse((prevResponse) => ({
+            ...prevResponse,
+            // question_id: result.data.data.question_id,
+            // question_key: result.data.data.question_key,
+            question_type: "",
+            question_name: "",
+            sequence: null,
+            data_status: null,
+            is_parent: 0,
         }));
     };
 
@@ -1260,12 +1296,11 @@ export default function NewQuestion() {
                             paginatorRight={paginatorRight}
                             rows={5}
                             sortField="sequence"
-                            sortOrder={11}
+                            sortOrder={1}
                             filters={filters}
                             stripedRows
                             header={header}
                             rowsPerPageOptions={[5, 10, 25]}
-                            showGridlines
                             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                             currentPageReportTemplate="{first} to {last} of {totalRecords} questions"
                         >
@@ -1273,12 +1308,14 @@ export default function NewQuestion() {
                                 selectionMode="multiple"
                                 exportable={false}
                                 style={{ width: "4rem" }}
+                                bodyStyle={{ textAlign: "center" }}
                             />
                             <Column
                                 field="sequence"
                                 header="Sequence"
                                 style={{ width: "2rem" }}
                                 sortable
+                                bodyStyle={{ textAlign: "center" }}
                             />
                             <Column
                                 field="question_name"
@@ -1291,6 +1328,7 @@ export default function NewQuestion() {
                                 header="Type"
                                 style={{ width: "4rem" }}
                                 sortable
+                                bodyStyle={{ textAlign: "center" }}
                             />
                             <Column
                                 field="is_parent"
@@ -1298,6 +1336,7 @@ export default function NewQuestion() {
                                 sortable
                                 style={{ width: "4rem" }}
                                 body={isParentBodyTemplate}
+                                bodyStyle={{ textAlign: "center" }}
                             />
                             <Column
                                 field="is_mandatory"
@@ -1305,18 +1344,20 @@ export default function NewQuestion() {
                                 sortable
                                 style={{ width: "4rem" }}
                                 body={isMandatoryBodyTemplate}
+                                bodyStyle={{ textAlign: "center" }}
                             />
                             <Column
                                 body={optionsBodyTemplate}
                                 header="Options"
                                 exportable={false}
                                 style={{ width: "4rem" }}
+                                bodyStyle={{ textAlign: "center" }}
                             />
                             <Column
                                 body={actionBodyTemplate}
-                                header="Actions"
                                 exportable={false}
                                 style={{ minWidth: "12rem" }}
+                                bodyStyle={{ textAlign: "center" }}
                             />
                         </DataTable>
 
@@ -1386,9 +1427,11 @@ export default function NewQuestion() {
                         {/* View Options Dialog */}
                         <OptionsDialog
                             visible={optionDialogVisible}
-                            onHide={() => setOptionDialogVisible(false)}
+                            onHide={() => {
+                                setOptionDialogVisible(false);
+                            }}
                             selectedRow={selectedRow}
-                            updateResponse={updateResponseOptions}
+                            updateResponse={updateResponseOptions} // already contains updated response
                         />
 
                         {/* Page Control Buttons */}

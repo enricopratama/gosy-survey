@@ -108,7 +108,7 @@ export default function RowEditingDemo() {
                 editMode="row"
                 dataKey="id"
                 onRowEditComplete={onRowEditComplete}
-                tableStyle={{ minWidth: "50rem" }}
+                tableStyle={{ minWidth: "80vw", minHeight: "80vh" }}
             >
                 <Column
                     field="code"
