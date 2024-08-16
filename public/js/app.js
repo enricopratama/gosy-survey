@@ -11435,25 +11435,92 @@ var LeftToolbar = function LeftToolbar(_ref) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ OptionsDialog)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var primereact_dialog__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primereact/dialog */ "./node_modules/primereact/dialog/dialog.esm.js");
-/* harmony import */ var primereact_button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primereact/button */ "./node_modules/primereact/button/button.esm.js");
+/* harmony import */ var primereact_datatable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! primereact/datatable */ "./node_modules/primereact/datatable/datatable.esm.js");
+/* harmony import */ var primereact_column__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primereact/column */ "./node_modules/primereact/column/column.esm.js");
+/* harmony import */ var primereact_inputtext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primereact/inputtext */ "./node_modules/primereact/inputtext/inputtext.esm.js");
+/* harmony import */ var primereact_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primereact/button */ "./node_modules/primereact/button/button.esm.js");
+/* harmony import */ var primereact_dialog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! primereact/dialog */ "./node_modules/primereact/dialog/dialog.esm.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
 
-var OptionsDialog = function OptionsDialog(_ref) {
+
+
+
+function OptionsDialog(_ref) {
   var visible = _ref.visible,
     onHide = _ref.onHide,
-    selectedOptions = _ref.selectedOptions;
+    selectedRow = _ref.selectedRow,
+    updateResponse = _ref.updateResponse;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    optionsData = _useState2[0],
+    setOptionsData = _useState2[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (selectedRow) {
+      // Extract the options data from the selectedRow (current question row)
+      var extractedOptions = [];
+      for (var i = 1; i <= 9; i++) {
+        if (selectedRow["option_".concat(i)]) {
+          extractedOptions.push({
+            option_num: "option_".concat(i),
+            option_data: selectedRow["option_".concat(i)],
+            option_flow: selectedRow["option_".concat(i, "_flow")]
+          });
+        }
+      }
+      setOptionsData(extractedOptions);
+    }
+  }, [selectedRow]);
+  var onRowEditComplete = function onRowEditComplete(e) {
+    var _optionsData = _toConsumableArray(optionsData);
+    var newData = e.newData,
+      index = e.index;
+    _optionsData[index] = newData;
+    setOptionsData(_optionsData);
+
+    // Update the selectedRow in parent component
+    var updatedResponse = _objectSpread({}, selectedRow);
+    _optionsData.forEach(function (data) {
+      updatedResponse[data.option_num] = data.option_data;
+      updatedResponse["".concat(data.option_num, "_flow")] = data.option_flow;
+    });
+    updateResponse(updatedResponse);
+  };
+  var textEditor = function textEditor(options) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_2__.InputText, {
+      type: "text",
+      value: options.value,
+      onChange: function onChange(e) {
+        return options.editorCallback(e.target.value);
+      }
+    });
+  };
   var dialogFooterTemplate = function dialogFooterTemplate() {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "mt-2",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_3__.Button, {
         label: "Done",
         className: "rounded me-2",
         icon: "pi pi-check",
@@ -11461,7 +11528,7 @@ var OptionsDialog = function OptionsDialog(_ref) {
       })
     });
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_3__.Dialog, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_4__.Dialog, {
     header: "Question Options",
     visible: visible,
     style: {
@@ -11472,24 +11539,56 @@ var OptionsDialog = function OptionsDialog(_ref) {
     contentStyle: {
       height: "200px"
     },
-    onHide: onHide,
+    onHide: onHide // setOptionDialogVisible(false)
+    ,
     footer: dialogFooterTemplate(),
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
-        children: selectedOptions.question_name
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("ul", {
-        children: Object.keys(selectedOptions).filter(function (key) {
-          return key.startsWith("option_");
-        }).map(function (optionKey, index) {
-          return selectedOptions[optionKey] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
-            children: "Option ".concat(index + 1, ": ").concat(selectedOptions[optionKey], " (Flow: ").concat(selectedOptions["".concat(optionKey, "_flow")] || "None", ")")
-          }, index);
-        })
-      })]
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "card p-fluid",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(primereact_datatable__WEBPACK_IMPORTED_MODULE_5__.DataTable, {
+        value: optionsData,
+        editMode: "row",
+        onRowEditComplete: onRowEditComplete,
+        tableStyle: {
+          minWidth: "50rem"
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_6__.Column, {
+          field: "option_num",
+          header: "Option Number",
+          style: {
+            width: "20%"
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_6__.Column, {
+          field: "option_data",
+          header: "Option Data",
+          editor: function editor(options) {
+            return textEditor(options);
+          },
+          style: {
+            width: "40%"
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_6__.Column, {
+          field: "option_flow",
+          header: "Option Flow",
+          editor: function editor(options) {
+            return textEditor(options);
+          },
+          style: {
+            width: "40%"
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_6__.Column, {
+          rowEditor: true,
+          headerStyle: {
+            width: "10%",
+            minWidth: "2rem"
+          },
+          bodyStyle: {
+            textAlign: "center"
+          }
+        })]
+      })
     })
   });
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OptionsDialog);
+}
 
 /***/ }),
 
@@ -14401,12 +14500,13 @@ function NewQuestion() {
   // Options
   var _useState37 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState38 = _slicedToArray(_useState37, 2),
-    dialogVisible = _useState38[0],
-    setDialogVisible = _useState38[1];
+    optionDialogVisible = _useState38[0],
+    setOptionDialogVisible = _useState38[1];
   var _useState39 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState40 = _slicedToArray(_useState39, 2),
-    selectedOptions = _useState40[0],
-    setSelectedOptions = _useState40[1];
+    selectedRow = _useState40[0],
+    setSelectedRow = _useState40[1]; // Current Question (Row) to get Options Data
+
   var _useState41 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState42 = _slicedToArray(_useState41, 2),
     mapGrpId = _useState42[0],
@@ -14791,7 +14891,7 @@ function NewQuestion() {
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/addQuestion", formData);
           case 25:
             _result = _context6.sent;
-            //TODO (BUG): Fix seqence when add first time
+            //TODO (minor BUG): Fix seqence when add first time
             if (_result.status === 200) {
               newQuestion = _result.data.data || _result.data;
               _questions.push(_response);
@@ -15161,8 +15261,10 @@ function NewQuestion() {
       rounded: true,
       text: true,
       onClick: function onClick() {
-        setSelectedOptions(rowData);
-        setDialogVisible(true);
+        setSelectedRow(rowData); // Set the current row as selected questions to extract its questions
+        setOptionDialogVisible(true);
+        console.log("Button clicked", rowData); // Check if this logs
+        console.log("Option Dialog Visible State", optionDialogVisible); // Check if this logs
       }
     });
   };
@@ -15300,6 +15402,13 @@ function NewQuestion() {
           fontSize: "20px"
         }
       })
+    });
+  };
+
+  // Update response from Modal Datatable
+  var updateResponseOptions = function updateResponseOptions(updatedOptions) {
+    setResponse(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), updatedOptions);
     });
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
@@ -15659,10 +15768,11 @@ function NewQuestion() {
               header: "Options",
               exportable: false,
               style: {
-                width: "12rem"
+                width: "4rem"
               }
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_24__.Column, {
               body: actionBodyTemplate,
+              header: "Actions",
               exportable: false,
               style: {
                 minWidth: "12rem"
@@ -15734,11 +15844,12 @@ function NewQuestion() {
               })
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_OptionsDialog__WEBPACK_IMPORTED_MODULE_8__["default"], {
-            visible: dialogVisible,
+            visible: optionDialogVisible,
             onHide: function onHide() {
-              return setDialogVisible(false);
+              return setOptionDialogVisible(false);
             },
-            selectedOptions: selectedOptions
+            selectedRow: selectedRow,
+            updateResponse: updateResponseOptions
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
             className: "d-flex pt-4 justify-content-between mx-5",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_14__.Button, {

@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
-import { Button } from "primereact/button";
-import { Dialog } from "primereact/dialog";
 
 export default function OptionsDialog({
     visible,
@@ -15,7 +13,7 @@ export default function OptionsDialog({
 
     useEffect(() => {
         if (selectedRow) {
-            // Extract the options data from the selectedRow (current question row)
+            // Extract the options data from the selectedRow
             const extractedOptions = [];
 
             for (let i = 1; i <= 9; i++) {
@@ -89,31 +87,32 @@ export default function OptionsDialog({
                     value={optionsData}
                     editMode="row"
                     onRowEditComplete={onRowEditComplete}
-                    tableStyle={{ minWidth: "50rem" }}
+                    tableStyle={{ minWidth: "20rem" }}
                 >
                     <Column
                         field="option_num"
                         header="Option Number"
                         style={{ width: "20%" }}
-                    />
+                    ></Column>
                     <Column
                         field="option_data"
                         header="Option Data"
                         editor={(options) => textEditor(options)}
                         style={{ width: "40%" }}
-                    />
+                    ></Column>
                     <Column
                         field="option_flow"
                         header="Option Flow"
                         editor={(options) => textEditor(options)}
                         style={{ width: "40%" }}
-                    />
+                    ></Column>
                     <Column
                         rowEditor={true}
                         headerStyle={{ width: "10%", minWidth: "2rem" }}
                         bodyStyle={{ textAlign: "center" }}
-                    />
+                    ></Column>
                 </DataTable>
+                <Button label="Done" className="mt-2" onClick={onHide} />
             </div>
         </Dialog>
     );

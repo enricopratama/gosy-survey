@@ -58,8 +58,8 @@ export default function NewQuestion() {
     const [deleteQuestionsDialog, setDeleteQuestionsDialog] = useState(false);
 
     // Options
-    const [dialogVisible, setDialogVisible] = useState(false);
-    const [selectedOptions, setSelectedOptions] = useState({});
+    const [optionDialogVisible, setOptionDialogVisible] = useState(false);
+    const [selectedRow, setSelectedRow] = useState({}); // Current Question (Row) to get Options Data
 
     const [mapGrpId, setMapGrpId] = useState(null);
     const [response, setResponse] = useState({
@@ -340,7 +340,7 @@ export default function NewQuestion() {
                 } else {
                     // New Question
                     result = await axios.post("/addQuestion", formData);
-                    //TODO (BUG): Fix seqence when add first time
+                    //TODO (minor BUG): Fix seqence when add first time
                     if (result.status === 200) {
                         const newQuestion = result.data.data || result.data;
                         _questions.push(_response);
@@ -663,8 +663,13 @@ export default function NewQuestion() {
                 rounded
                 text
                 onClick={() => {
-                    setSelectedOptions(rowData);
-                    setDialogVisible(true);
+                    setSelectedRow(rowData); // Set the current row as selected questions to extract its questions
+                    setOptionDialogVisible(true);
+                    console.log("Button clicked", rowData); // Check if this logs
+                    console.log(
+                        "Option Dialog Visible State",
+                        optionDialogVisible
+                    ); // Check if this logs
                 }}
             />
         );
@@ -757,6 +762,7 @@ export default function NewQuestion() {
             onClick={filterQuestionsByGroupName}
         />
     );
+
     const paginatorRight = (
         <Button type="button" icon="pi pi-download" text onClick={exportCSV} />
     );
@@ -813,6 +819,14 @@ export default function NewQuestion() {
                 <i className={iconClassName} style={{ fontSize: "20px" }}></i>
             </div>
         );
+    };
+
+    // Update response from Modal Datatable
+    const updateResponseOptions = (updatedOptions) => {
+        setResponse((prevState) => ({
+            ...prevState,
+            ...updatedOptions,
+        }));
     };
 
     return (
@@ -1296,10 +1310,11 @@ export default function NewQuestion() {
                                 body={optionsBodyTemplate}
                                 header="Options"
                                 exportable={false}
-                                style={{ width: "12rem" }}
+                                style={{ width: "4rem" }}
                             />
                             <Column
                                 body={actionBodyTemplate}
+                                header="Actions"
                                 exportable={false}
                                 style={{ minWidth: "12rem" }}
                             />
@@ -1318,7 +1333,6 @@ export default function NewQuestion() {
                             isSubmitted={isSubmitted}
                             onCheckboxChange={onCheckboxChange}
                         />
-
                         {/* Delete Question Dialog */}
                         <Dialog
                             visible={deleteQuestionDialog}
@@ -1369,10 +1383,12 @@ export default function NewQuestion() {
                             </div>
                         </Dialog>
 
+                        {/* View Options Dialog */}
                         <OptionsDialog
-                            visible={dialogVisible}
-                            onHide={() => setDialogVisible(false)}
-                            selectedOptions={selectedOptions}
+                            visible={optionDialogVisible}
+                            onHide={() => setOptionDialogVisible(false)}
+                            selectedRow={selectedRow}
+                            updateResponse={updateResponseOptions}
                         />
 
                         {/* Page Control Buttons */}
