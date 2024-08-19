@@ -6,6 +6,7 @@ import { Dropdown } from "primereact/dropdown";
 import { classNames } from "primereact/utils";
 import { FloatLabel } from "primereact/floatlabel";
 import { Checkbox } from "primereact/checkbox";
+import { Message } from "primereact/message";
 
 const AddEditQuestionDialog = ({
     visible = false,
@@ -16,7 +17,6 @@ const AddEditQuestionDialog = ({
     saveQuestionFooter = null,
     hideDialog = () => {},
     submitted = false,
-    isSubmitted = false,
     onCheckboxChange = () => {},
 }) => {
     return (
@@ -50,9 +50,12 @@ const AddEditQuestionDialog = ({
                     </label>
                 </span>
                 {submitted && !response.question_name && (
-                    <small className="p-error">
-                        Question Name is required.
-                    </small>
+                    <>
+                        <Message
+                            severity="error"
+                            text="Question Name is required"
+                        />
+                    </>
                 )}
             </div>
 
@@ -78,7 +81,9 @@ const AddEditQuestionDialog = ({
                     </label>
                 </span>
                 {submitted && !response.sequence && (
-                    <small className="p-error">Sequence is required.</small>
+                    <>
+                        <Message severity="error" text="Sequence is required" />
+                    </>
                 )}
             </div>
 
@@ -115,7 +120,7 @@ const AddEditQuestionDialog = ({
             >
                 <FloatLabel
                     className={classNames("w-full md:w-14rem", {
-                        "p-invalid": isSubmitted && !response.question_type,
+                        "p-invalid": submitted && !response.question_type,
                     })}
                 >
                     <Dropdown
@@ -126,17 +131,20 @@ const AddEditQuestionDialog = ({
                         optionLabel="label"
                         required
                         className={classNames({
-                            "p-invalid": isSubmitted && !response.question_type,
+                            "p-invalid": submitted && !response.question_type,
                         })}
                     />
                     <label htmlFor="question_type" className="font-bold">
                         Question Type
                     </label>
                 </FloatLabel>
-                {isSubmitted && !response.question_type && (
-                    <small className="p-error">
-                        Question type is required.
-                    </small>
+                {submitted && !response.question_type && (
+                    <>
+                        <Message
+                            severity="error"
+                            text="Question Type is required"
+                        />
+                    </>
                 )}
             </div>
 
@@ -162,7 +170,12 @@ const AddEditQuestionDialog = ({
                         </label>
                     </span>
                     {submitted && !response.data_status && (
-                        <small className="p-error">Status is required.</small>
+                        <>
+                            <Message
+                                severity="error"
+                                text="Status is required"
+                            />
+                        </>
                     )}
                 </div>
 
@@ -196,9 +209,12 @@ const AddEditQuestionDialog = ({
                         </label>
                     </span>
                     {submitted && !response.question_group_id && (
-                        <small className="p-error">
-                            Question Group ID is required.
-                        </small>
+                        <>
+                            <Message
+                                severity="error"
+                                text="Question Group ID is required"
+                            />
+                        </>
                     )}
                 </div>
 

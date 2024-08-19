@@ -5,7 +5,6 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Dialog } from "primereact/dialog";
 import { classNames } from "primereact/utils";
-import { Message } from "primereact/message";
 import { OverlayPanel } from "primereact/overlaypanel";
 import { DataTable } from "primereact/datatable";
 import { Toast } from "primereact/toast";
@@ -22,6 +21,8 @@ import LeftToolbar from "../components/LeftToolbar";
 import RightToolbar from "../components/RightToolbar";
 import AddEditQuestionDialog from "./AddEditQuestionDialog";
 import OptionsDialog from "../components/OptionsDialog";
+import { InputNumber } from "primereact/inputnumber";
+import SurveyDialog from "../components/SurveyDialog";
 
 export default function NewQuestion() {
     const op = useRef(null);
@@ -43,13 +44,13 @@ export default function NewQuestion() {
     const [surveyQuestionGroups, setSurveyQuestionGroups] = useState([]);
     const [customSurvey, setCustomSurvey] = useState("");
     const [hoveredSurveyType, setHoveredSurveyType] = useState(null);
+    const [customSurveyStatus, setCustomSurveyStatus] = useState(1); 
 
     const [loading, setLoading] = useState(true);
 
     // Submitted
     const [submitted, setSubmitted] = useState(false);
     const [submittedQuestion, setSubmittedQuestion] = useState(false);
-    const [isSubmitted, setIsSubmitted] = useState(false);
 
     const [editState, setEditState] = useState(false);
 
@@ -59,9 +60,9 @@ export default function NewQuestion() {
 
     // Options
     const [optionDialogVisible, setOptionDialogVisible] = useState(false);
-    const [selectedRow, setSelectedRow] = useState({}); // Current Question (Row) to get Options Data
+    const [selectedRow, setSelectedRow] = useState({}); 
 
-    // Mapping between question and question group id
+    // Mapping between question & question group id
     const [mapGrpId, setMapGrpId] = useState(null);
     const [response, setResponse] = useState({
         question_id: null,
@@ -257,14 +258,52 @@ export default function NewQuestion() {
         }));
     };
 
-    const handleCustomSurveySubmit = () => {
+    const handleCustomSurveySubmit = async () => {
         setSubmitted(true);
+    
         if (customSurvey.trim()) {
-            handleSurveyClick({ survey_name: customSurvey });
+            try {
+                const payload = {
+                    survey_name: customSurvey,
+                    data_status: customSurveyStatus, // data_status of added survey
+                };
+    
+                // Send a POST request to the backend to create a new survey
+                const result = await axios.post("/addSurvey", payload);
+    
+                if (result.status === 200 && result.data.status === 1) {
+                    const newSurvey = result.data.data;
+    
+                    // Update the surveys state with the new survey
+                    setSurveys((prevSurveys) => [...prevSurveys, newSurvey]);
+    
+                    // Set the newly created survey as the selected one
+                    handleSurveyClick(newSurvey);
+    
+                    toast.current.show({
+                        severity: "success",
+                        summary: "Successful",
+                        detail: `Survey ${newSurvey.survey_name} Created`,
+                        life: 2000,
+                    });
+    
+                    // Close the dialog
+                    setQuestionDialog(false);
+                } else {
+                    throw new Error(result.data.message || "Failed to create survey");
+                }
+            } catch (error) {
+                console.error("There was an error creating the survey!", error);
+                toast.current.show({
+                    severity: "error",
+                    summary: "Error",
+                    detail: error.response?.data?.message || "Failed to create survey",
+                    life: 3000,
+                });
+            }
         }
-        setQuestionDialog(false);
     };
-
+    
     /**
      * Function to check if question_id exists.
      * Returns the index of the found question_id if found, -1 otherwise.
@@ -368,8 +407,8 @@ export default function NewQuestion() {
                 toast.current.show({
                     severity: "error",
                     summary: "Error",
-                    detail: `Failed Saving Question ${_response.sequence}`,
-                    life: 2000,
+                    detail: error.response?.data?.message || "Failed to save question",
+                    life: 3000,
                 });
             }
             setQuestions(_questions);
@@ -676,7 +715,7 @@ export default function NewQuestion() {
                 className="ms-2 rounded"
                 iconPos="left"
                 onClick={handleCustomSurveySubmit}
-                disabled={!customSurvey.trim()}
+                // disabled={!customSurvey.trim()}
             />
         </React.Fragment>
     );
@@ -1031,64 +1070,17 @@ export default function NewQuestion() {
                                                 )}
                                             </button>
 
-                                            <Dialog
+                                            <SurveyDialog
                                                 visible={questionDialog}
-                                                style={{
-                                                    width: "32rem",
-                                                    maxHeight: "90vh",
-                                                }}
-                                                breakpoints={{
-                                                    "960px": "75vw",
-                                                    "641px": "90vw",
-                                                }}
-                                                header="Survey Details"
-                                                modal
-                                                className="p-fluid"
-                                                footer={questionDialogFooter}
                                                 onHide={hideDialog}
-                                            >
-                                                <div
-                                                    className="field"
-                                                    style={{
-                                                        marginBottom: "35px",
-                                                    }}
-                                                >
-                                                    <label
-                                                        htmlFor="survey_name"
-                                                        className="font-bold"
-                                                    >
-                                                        Survey Type/Name
-                                                    </label>
-                                                    <InputText
-                                                        id="survey_name"
-                                                        value={customSurvey}
-                                                        onChange={
-                                                            onSurveyInputChange
-                                                        }
-                                                        required
-                                                        placeholder="Survey [survey name]"
-                                                        className={classNames({
-                                                            "p-invalid":
-                                                                submitted &&
-                                                                !customSurvey,
-                                                        })}
-                                                    />
+                                                customSurvey={customSurvey}
+                                                customSurveyStatus={customSurveyStatus}
+                                                setCustomSurveyStatus={setCustomSurveyStatus}
+                                                submitted={submitted}
+                                                footer={questionDialogFooter}
+                                                onSurveyInputChange={onSurveyInputChange}
+                                            />
 
-                                                    {submitted &&
-                                                        !response.survey_name && (
-                                                            <>
-                                                                <small className="p-error">
-                                                                    Survey Type
-                                                                    is required
-                                                                </small>
-                                                                <Message
-                                                                    severity="error"
-                                                                    text="Survey Name is required"
-                                                                />
-                                                            </>
-                                                        )}
-                                                </div>
-                                            </Dialog>
                                         </div>
                                     </div>
                                 </div>
@@ -1379,7 +1371,6 @@ export default function NewQuestion() {
                             saveQuestionFooter={saveQuestionFooter}
                             hideDialog={hideDialog}
                             submitted={submitted}
-                            isSubmitted={isSubmitted}
                             onCheckboxChange={onCheckboxChange}
                         />
 

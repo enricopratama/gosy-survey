@@ -101,7 +101,7 @@ class QuestionController extends Controller
                     'Dropdown',
                 ]),
             ],
-            'sequence' => 'required|integer',
+            'sequence' => 'required|integer|unique:mst_question_ori,sequence',
             'data_status' => 'required|integer',
             'is_parent' => 'required|integer',
             'is_mandatory' => 'required|integer',
@@ -183,7 +183,9 @@ class QuestionController extends Controller
                     'Dropdown',
                 ]),
             ],
-            'sequence' => 'required|integer',
+            'sequence' =>
+                'required|integer|unique:mst_question_ori,sequence,' .
+                $question_id,
             'data_status' => 'required|integer',
             'is_parent' => 'required|integer',
             'is_mandatory' => 'required|integer',

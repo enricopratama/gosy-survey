@@ -39,7 +39,8 @@ class SurveyController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'survey_name' => 'required|string|max:50',
+            'survey_name' =>
+                'required|string|max:50|unique:mst_survey,survey_name',
             'data_status' => 'required|integer',
         ]);
 
@@ -97,7 +98,9 @@ class SurveyController extends Controller
     public function update(Request $request, $survey_id)
     {
         $validator = Validator::make($request->all(), [
-            'survey_name' => 'required|string|max:50',
+            'survey_name' =>
+                'required|string|max:50|unique:surveys,survey_name,' .
+                $survey_id,
             'data_status' => 'required|integer',
             'updated_by' => 'required|integer',
         ]);
