@@ -21,8 +21,8 @@ import LeftToolbar from "../components/LeftToolbar";
 import RightToolbar from "../components/RightToolbar";
 import AddEditQuestionDialog from "./AddEditQuestionDialog";
 import OptionsDialog from "../components/OptionsDialog";
-import { InputNumber } from "primereact/inputnumber";
 import SurveyDialog from "../components/SurveyDialog";
+import QuestionGroupDialog from "../components/QuestionGroupDialog";
 
 export default function NewQuestion() {
     const op = useRef(null);
@@ -36,8 +36,11 @@ export default function NewQuestion() {
     const [filteredQuestions, setFilteredQuestions] = useState([]);
     const [selectedQuestions, setSelectedQuestions] = useState([]);
     const [questionDialog, setQuestionDialog] = useState(false);
+
+    // Question Groups
     const [questionGroupDialog, setQuestionGroupDialog] = useState(false);
     const [customQuestionGroup, setCustomQuestionGroup] = useState("");
+    const [customQuestionGroupStatus, setCustomQuestionGroupStatus] = useState(1); 
 
     // Surveys
     const [surveys, setSurveys] = useState([]);
@@ -46,6 +49,7 @@ export default function NewQuestion() {
     const [hoveredSurveyType, setHoveredSurveyType] = useState(null);
     const [customSurveyStatus, setCustomSurveyStatus] = useState(1); 
 
+    // Loading
     const [loading, setLoading] = useState(true);
 
     // Submitted
@@ -143,7 +147,7 @@ export default function NewQuestion() {
      */
     const getQuestions = async () => {
         try {
-            const response = await axios.get("/api/questions");
+            const response = await axios.get("/questions");
             setQuestions(response.data);
         } catch (error) {
             console.error("There was an error fetching the questions!", error);
@@ -157,7 +161,7 @@ export default function NewQuestion() {
      */
     const getSurveyQuestionGroups = async () => {
         try {
-            const response = await axios.get("/api/questionGroups");
+            const response = await axios.get("/questionGroups");
             setSurveyQuestionGroups(response.data);
         } catch (error) {
             console.error(
@@ -257,6 +261,57 @@ export default function NewQuestion() {
             question_group_name: group.question_group_name,
         }));
     };
+
+    const handleCustomQuestionGroupSubmit = async () => {
+        setSubmittedQuestion(true);
+    
+        if (customQuestionGroup.trim()) {
+            const additionalString = `${response.survey_name} - `;
+            const totalString = additionalString + customQuestionGroup;
+    
+            try {
+                const payload = {
+                    question_group_name: totalString, 
+                    survey_name: response.survey_name,
+                    data_status: customQuestionGroupStatus,
+                };
+    
+                // Send a POST request to the backend to create a new question group
+                const result = await axios.post("/addQuestionGroup", payload);
+    
+                if (result.status === 200 && result.data.status === 1) {
+                    const newQuestionGroup = result.data.data;
+    
+                    // Update the survey question groups state with the new question group
+                    setSurveyQuestionGroups((prevGroups) => [...prevGroups, newQuestionGroup]);
+    
+                    // Set the newly created question group as the selected one
+                    handleQuestionGroupClick(newQuestionGroup);
+    
+                    toast.current.show({
+                        severity: "success",
+                        summary: "Successful",
+                        detail: `Question Group ${newQuestionGroup.question_group_name} Created`,
+                        life: 2000,
+                    });
+    
+                    // Close the dialog
+                    setQuestionGroupDialog(false);
+                } else {
+                    throw new Error(result.data.message || "Failed to create question group");
+                }
+            } catch (error) {
+                console.error("There was an error creating the question group!", error);
+                toast.current.show({
+                    severity: "error",
+                    summary: "Error",
+                    detail: error.response?.data?.message || "Failed to create question group",
+                    life: 3000,
+                });
+            }
+        }
+    };
+    
 
     const handleCustomSurveySubmit = async () => {
         setSubmitted(true);
@@ -417,17 +472,17 @@ export default function NewQuestion() {
         }
     };
 
-    const handleCustomQuestionGroupSubmit = () => {
-        setSubmittedQuestion(true);
-        const additionalString = `${response.survey_name} - `;
-        const totalString = additionalString + customQuestionGroup;
-        if (customQuestionGroup.trim()) {
-            handleQuestionGroupClick({
-                question_group_name: totalString,
-            });
-        }
-        setQuestionGroupDialog(false);
-    };
+    // const handleCustomQuestionGroupSubmit = () => {
+    //     setSubmittedQuestion(true);
+    //     const additionalString = `${response.survey_name} - `;
+    //     const totalString = additionalString + customQuestionGroup;
+    //     if (customQuestionGroup.trim()) {
+    //         handleQuestionGroupClick({
+    //             question_group_name: totalString,
+    //         });
+    //     }
+    //     setQuestionGroupDialog(false);
+    // };
 
     const showDialog = () => {
         setQuestionDialog(true);
@@ -1116,7 +1171,7 @@ export default function NewQuestion() {
                                         className="d-flex flex-row flex-wrap"
                                         style={{ gap: "25px" }}
                                     >
-                                        {/* Button Options  */}
+                                        {/* Button Options */}
                                         {surveyQuestionGroups
                                             .filter((group) =>
                                                 group.question_group_name.includes(
@@ -1195,58 +1250,19 @@ export default function NewQuestion() {
                                                         .trim()
                                                 )}
                                             </button>
-                                            <Dialog
+                                            
+                                            {/* Add Question Group Dialog */}
+                                            <QuestionGroupDialog
                                                 visible={questionGroupDialog}
-                                                style={{
-                                                    width: "32rem",
-                                                    maxHeight: "90vh",
-                                                }}
-                                                breakpoints={{
-                                                    "960px": "75vw",
-                                                    "641px": "90vw",
-                                                }}
-                                                header="Question Group Details"
-                                                modal
-                                                className="p-fluid"
-                                                footer={
-                                                    questionGroupDialogFooter
-                                                }
                                                 onHide={hideQuestionGroupDialog}
-                                            >
-                                                <div
-                                                    className="field"
-                                                    style={{
-                                                        marginBottom: "35px",
-                                                    }}
-                                                >
-                                                    <label htmlFor="question_group_name" className="font-bold">
-                                                        Question Group Name
-                                                    </label>
-                                                    <InputText
-                                                        id="question_group_name"
-                                                        value={
-                                                            customQuestionGroup
-                                                        }
-                                                        placeholder={`${response.survey_name} - `}
-                                                        onChange={
-                                                            onQuestionGroupInputChange
-                                                        }
-                                                        required
-                                                        className={classNames({
-                                                            "p-invalid":
-                                                                submittedQuestion &&
-                                                                !customQuestionGroup,
-                                                        })}
-                                                    />
-                                                    {submittedQuestion &&
-                                                        !customQuestionGroup && (
-                                                            <small className="p-error">
-                                                                Question Group
-                                                                Name is required
-                                                            </small>
-                                                        )}
-                                                </div>
-                                            </Dialog>
+                                                customQuestionGroup={customQuestionGroup}
+                                                setCustomQuestionGroup={setCustomQuestionGroup}
+                                                customQuestionGroupStatus={customQuestionGroupStatus}
+                                                setCustomQuestionGroupStatus={setCustomQuestionGroupStatus}
+                                                submitted={submittedQuestion}
+                                                footer={questionGroupDialogFooter}
+                                                onQuestionGroupInputChange={onQuestionGroupInputChange}
+                                            />
                                         </div>
                                     </div>
                                 </div>

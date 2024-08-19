@@ -193,6 +193,7 @@ const AddEditQuestionDialog = ({
                         <InputText
                             id="question_group_id"
                             value={response.question_group_id || ""}
+                            readOnly={true}
                             onChange={(e) =>
                                 onInputChange(e, "question_group_id")
                             }

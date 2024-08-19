@@ -43,13 +43,14 @@ class QuestionGroupController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'question_group_name' => 'required|string|max:1000',
+            'question_group_name' =>
+                'required|string|max:1000|unique:mst_question_group,question_group_name',
             'data_status' => 'required|integer',
         ]);
 
         if ($validator->fails()) {
             $errors = $validator->errors();
-            $messages = ['Validation Error!'];
+            $messages = ['Oops.. validation error.'];
             foreach ($errors->all() as $error) {
                 $messages[] = $error;
             }
@@ -107,7 +108,7 @@ class QuestionGroupController extends Controller
 
         if ($validator->fails()) {
             $errors = $validator->errors();
-            $messages = ['Validation Error!'];
+            $messages = ['Oops.. validation error.'];
             foreach ($errors->all() as $error) {
                 $messages[] = $error;
             }

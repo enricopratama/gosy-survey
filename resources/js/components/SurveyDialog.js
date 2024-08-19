@@ -35,7 +35,7 @@ export default function SurveyDialog({
                     value={customSurvey}
                     onChange={onSurveyInputChange}
                     required
-                    placeholder="Survey [survey name]"
+                    placeholder="Enter Survey Name"
                     className={classNames({
                         "p-invalid": submitted && !customSurvey,
                     })}

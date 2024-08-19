@@ -109,7 +109,7 @@ class QuestionController extends Controller
 
         if ($validator->fails()) {
             $errors = $validator->errors();
-            $messages = ['Validation Error!'];
+            $messages = ['Oops.. validation error.'];
             foreach ($errors->all() as $error) {
                 $messages[] = $error;
             }
@@ -193,7 +193,7 @@ class QuestionController extends Controller
 
         if ($validator->fails()) {
             $errors = $validator->errors();
-            $messages = ['Validation Error!'];
+            $messages = ['Oops.. validation error.'];
             foreach ($errors->all() as $error) {
                 $messages[] = $error;
             }
