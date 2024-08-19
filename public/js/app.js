@@ -14861,7 +14861,7 @@ function NewQuestion() {
               break;
             }
             _questions = _toConsumableArray(questions);
-            _response = _objectSpread({}, response); // let result = null;
+            _response = _objectSpread({}, response);
             formData = new FormData();
             formData.append("question_group_id", _response.question_group_id);
             formData.append("question_name", _response.question_name);
@@ -15363,9 +15363,7 @@ function NewQuestion() {
   };
   var isParentBodyTemplate = function isParentBodyTemplate(rowData) {
     var isParent = rowData.is_parent === 1 ? 1 : 0;
-    var iconClassName = (0,primereact_utils__WEBPACK_IMPORTED_MODULE_15__.classNames)("pi",
-    // PrimeIcons base class
-    {
+    var iconClassName = (0,primereact_utils__WEBPACK_IMPORTED_MODULE_15__.classNames)("pi", {
       "pi-check text-success": isParent,
       "pi-minus text-danger": !isParent
     });
@@ -15385,12 +15383,9 @@ function NewQuestion() {
   };
   var isMandatoryBodyTemplate = function isMandatoryBodyTemplate(rowData) {
     var isMandatory = rowData.is_mandatory === 1 ? 1 : 0;
-    var iconClassName = (0,primereact_utils__WEBPACK_IMPORTED_MODULE_15__.classNames)("pi",
-    // PrimeIcons base class
-    {
+    var iconClassName = (0,primereact_utils__WEBPACK_IMPORTED_MODULE_15__.classNames)("pi", {
       "pi-check text-success": isMandatory,
-      // Green check icon for mandatory
-      "pi-minus text-danger": !isMandatory // Red minus icon for non-mandatory
+      "pi-minus text-danger": !isMandatory
     });
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
       className: "d-inline-flex align-items-center justify-content-center",
@@ -15421,16 +15416,13 @@ function NewQuestion() {
             result = _context9.sent;
             if (result.status === 200) {
               _questions[index] = _objectSpread(_objectSpread({}, _questions[index]), updatedOptions);
-              setQuestions(_questions); // Update the local state with the modified questions
-
+              setQuestions(_questions);
               toast.current.show({
                 severity: "success",
                 summary: "Successful",
                 detail: "Options for Question ".concat(updatedOptions.sequence, " Updated"),
                 life: 2000
               });
-
-              // Optionally reset the response state to its initial values
               setResponse(function (prevResponse) {
                 return _objectSpread(_objectSpread({}, prevResponse), {}, {
                   question_type: "",
@@ -15474,7 +15466,6 @@ function NewQuestion() {
             });
           case 13:
             _context9.prev = 13;
-            // Ensure that the response is reset regardless of success or failure
             setResponse(function (prevResponse) {
               return _objectSpread(_objectSpread({}, prevResponse), {}, {
                 question_type: "",
@@ -15971,7 +15962,7 @@ function NewQuestion() {
               setOptionDialogVisible(false);
             },
             selectedRow: selectedRow,
-            updateResponse: updateResponseOptions // already contains updated response
+            updateResponse: updateResponseOptions
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
             className: "d-flex pt-4 justify-content-between mx-5",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_14__.Button, {

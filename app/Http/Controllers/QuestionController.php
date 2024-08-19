@@ -21,36 +21,6 @@ class QuestionController extends Controller
     /**
      * Gets all the questions alongside their headers (question or survey types)
      */
-    // public function getQuestions()
-    // {
-    //     $questions = Question::select(
-    //         'mst_question_ori.*',
-    //         'mst_question_group.*',
-    //         'mst_survey.*',
-    //         'mst_survey_question_group.*'
-    //     )
-    //         ->leftJoin(
-    //             'mst_survey_question_group',
-    //             'mst_question_ori.question_group_id',
-    //             '=',
-    //             'mst_survey_question_group.question_group_id'
-    //         )
-    //         ->leftJoin(
-    //             'mst_survey',
-    //             'mst_survey_question_group.survey_id',
-    //             '=',
-    //             'mst_survey.survey_id'
-    //         )
-    //         ->leftJoin(
-    //             'mst_question_group',
-    //             'mst_survey_question_group.question_group_id',
-    //             '=',
-    //             'mst_question_group.question_group_id'
-    //         )
-    //         ->get();
-
-    //     return response()->json($questions);
-    // }
     public function getQuestions()
     {
         try {
@@ -82,17 +52,18 @@ class QuestionController extends Controller
 
             return response()->json($questions);
         } catch (\Exception $e) {
-            // Log the error for further analysis
             // \Log::error('Failed to retrieve questions: ' . $e->getMessage());
 
             // Return a JSON response with a 500 status code
-            return response()->json([
-                'error' => 'Failed to retrieve questions.',
-                'message' => $e->getMessage()
-            ], 500);
+            return response()->json(
+                [
+                    'error' => 'Failed to retrieve questions.',
+                    'message' => $e->getMessage(),
+                ],
+                500
+            );
         }
     }
-
 
     public function getQuestionById($question_id)
     {
@@ -110,7 +81,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * Store the specified resource in storage.
+     * Store the question in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -153,7 +124,7 @@ class QuestionController extends Controller
         }
 
         $question_key = $request->question_group_id . '#' . $request->sequence;
-        // Insert into database
+
         DB::beginTransaction();
         try {
             $new = Question::create([
@@ -171,7 +142,7 @@ class QuestionController extends Controller
             return response()->json(
                 [
                     'status' => 1,
-                    'message' => "Successfully Saved",
+                    'message' => "Successfully Saved Question",
                     'data' => $new,
                 ],
                 200
@@ -181,7 +152,7 @@ class QuestionController extends Controller
             return response()->json(
                 [
                     'status' => 0,
-                    'message' => 'Failed to Save',
+                    'message' => 'Failed to Save Question',
                     'error' => $e->getMessage(),
                 ],
                 500
@@ -190,7 +161,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the question in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -250,9 +221,8 @@ class QuestionController extends Controller
         );
     }
 
-
     /**
-     * Remove the specified resource from storage.
+     * Remove the question from storage.
      *
      * @param  int  $question_id
      * @return \Illuminate\Http\Response

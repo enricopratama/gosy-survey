@@ -296,7 +296,6 @@ export default function NewQuestion() {
         ) {
             let _questions = [...questions];
             let _response = { ...response };
-            // let result = null;
 
             var formData = new FormData();
             formData.append("question_group_id", _response.question_group_id);
@@ -769,7 +768,7 @@ export default function NewQuestion() {
     const isParentBodyTemplate = (rowData) => {
         const isParent = rowData.is_parent === 1 ? 1 : 0;
         const iconClassName = classNames(
-            "pi", // PrimeIcons base class
+            "pi", 
             {
                 "pi-check text-success": isParent,
                 "pi-minus text-danger": !isParent,
@@ -789,10 +788,10 @@ export default function NewQuestion() {
     const isMandatoryBodyTemplate = (rowData) => {
         const isMandatory = rowData.is_mandatory === 1 ? 1 : 0;
         const iconClassName = classNames(
-            "pi", // PrimeIcons base class
+            "pi",
             {
-                "pi-check text-success": isMandatory, // Green check icon for mandatory
-                "pi-minus text-danger": !isMandatory, // Red minus icon for non-mandatory
+                "pi-check text-success": isMandatory, 
+                "pi-minus text-danger": !isMandatory, 
             }
         );
 
@@ -819,10 +818,10 @@ export default function NewQuestion() {
             if (result.status === 200) {
                 _questions[index] = {
                     ..._questions[index],
-                    ...updatedOptions, // Merge the updated options into the existing question
+                    ...updatedOptions,
                 };
 
-                setQuestions(_questions); // Update the local state with the modified questions
+                setQuestions(_questions);
 
                 toast.current.show({
                     severity: "success",
@@ -831,7 +830,6 @@ export default function NewQuestion() {
                     life: 2000,
                 });
 
-                // Optionally reset the response state to its initial values
                 setResponse((prevResponse) => ({
                     ...prevResponse,
                     question_type: "",
@@ -870,7 +868,6 @@ export default function NewQuestion() {
                 life: 3000,
             });
         } finally {
-            // Ensure that the response is reset regardless of success or failure
             setResponse((prevResponse) => ({
                 ...prevResponse,
                 question_type: "",
@@ -971,28 +968,14 @@ export default function NewQuestion() {
                                                                     hoveredSurveyType
                                                                 )
                                                             )
-                                                            .map(
-                                                                (
-                                                                    group,
-                                                                    index
-                                                                ) => {
+                                                            .map((group, index) => {
                                                                     const groupNameAfterDash = group.question_group_name
                                                                         .substring(
-                                                                            group.question_group_name.indexOf(
-                                                                                "-"
-                                                                            ) +
-                                                                                1
-                                                                        )
+                                                                            group.question_group_name.indexOf("-") + 1)
                                                                         .trim();
                                                                     return (
-                                                                        <div
-                                                                            key={
-                                                                                index
-                                                                            }
-                                                                        >
-                                                                            {
-                                                                                groupNameAfterDash
-                                                                            }
+                                                                        <div key={index}>
+                                                                            {groupNameAfterDash}
                                                                         </div>
                                                                     );
                                                                 }
@@ -1151,21 +1134,15 @@ export default function NewQuestion() {
                                             .map((group, index) => {
                                                 const groupNameAfterDash = group.question_group_name
                                                     .substring(
-                                                        group.question_group_name.indexOf(
-                                                            "-"
-                                                        ) + 1
+                                                        group.question_group_name.indexOf("-") + 1
                                                     )
                                                     .trim();
                                                 return (
                                                     <button
                                                         key={index}
                                                         onClick={() => {
-                                                            handleQuestionGroupClick(
-                                                                group
-                                                            );
-                                                            setSubmittedQuestion(
-                                                                false
-                                                            );
+                                                            handleQuestionGroupClick(group);
+                                                            setSubmittedQuestion(false);
                                                         }}
                                                         className={`btn btn-lg m-2 flex-fill ${
                                                             response.question_group_name ===
@@ -1221,9 +1198,7 @@ export default function NewQuestion() {
                                                 ) : (
                                                     response.question_group_name
                                                         .substring(
-                                                            response.question_group_name.indexOf(
-                                                                "-"
-                                                            ) + 1
+                                                            response.question_group_name.indexOf("-") + 1
                                                         )
                                                         .trim()
                                                 )}
@@ -1252,10 +1227,7 @@ export default function NewQuestion() {
                                                         marginBottom: "35px",
                                                     }}
                                                 >
-                                                    <label
-                                                        htmlFor="question_group_name"
-                                                        className="font-bold"
-                                                    >
+                                                    <label htmlFor="question_group_name" className="font-bold">
                                                         Question Group Name
                                                     </label>
                                                     <InputText
@@ -1410,7 +1382,8 @@ export default function NewQuestion() {
                             isSubmitted={isSubmitted}
                             onCheckboxChange={onCheckboxChange}
                         />
-                        {/* Delete Question Dialog */}
+
+                        {/* Delete 1 Question Dialog */}
                         <Dialog
                             visible={deleteQuestionDialog}
                             style={{ width: "32rem" }}
@@ -1467,7 +1440,7 @@ export default function NewQuestion() {
                                 setOptionDialogVisible(false);
                             }}
                             selectedRow={selectedRow}
-                            updateResponse={updateResponseOptions} // already contains updated response
+                            updateResponse={updateResponseOptions} 
                         />
 
                         {/* Page Control Buttons */}
