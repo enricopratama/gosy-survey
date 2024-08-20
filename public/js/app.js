@@ -11102,7 +11102,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
 /* harmony import */ var _components_Register__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Register */ "./resources/js/components/Register.js");
-/* harmony import */ var _pages_HomeCopy__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/HomeCopy */ "./resources/js/pages/HomeCopy.js");
+/* harmony import */ var _pages_Home__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/Home */ "./resources/js/pages/Home.js");
 /* harmony import */ var _pages_ListUserAccess__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/ListUserAccess */ "./resources/js/pages/ListUserAccess.js");
 /* harmony import */ var _pages_ListUserTokens__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/ListUserTokens */ "./resources/js/pages/ListUserTokens.js");
 /* harmony import */ var _pages_ViewAll__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/ViewAll */ "./resources/js/pages/ViewAll.js");
@@ -11149,7 +11149,7 @@ function App() {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
             exact: true,
             path: "/home",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_pages_HomeCopy__WEBPACK_IMPORTED_MODULE_6__["default"], {})
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_pages_Home__WEBPACK_IMPORTED_MODULE_6__["default"], {})
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
             exact: true,
             path: "/register",
@@ -12553,79 +12553,49 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 function SurveyTable() {
+  var toast = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var dt = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+
+  // Questions
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
-    questions = _useState2[0],
-    setQuestions = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    question = _useState2[0],
+    setQuestion = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState4 = _slicedToArray(_useState3, 2),
-    questionDialog = _useState4[0],
-    setQuestionDialog = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    questions = _useState4[0],
+    setQuestions = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState6 = _slicedToArray(_useState5, 2),
-    deleteQuestionDialog = _useState6[0],
-    setDeleteQuestionDialog = _useState6[1];
+    selectedQuestions = _useState6[0],
+    setSelectedQuestions = _useState6[1];
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState8 = _slicedToArray(_useState7, 2),
-    deleteQuestionsDialog = _useState8[0],
-    setDeleteQuestionsDialog = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    questionDialog = _useState8[0],
+    setQuestionDialog = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState10 = _slicedToArray(_useState9, 2),
-    question = _useState10[0],
-    setQuestion = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    deleteQuestionDialog = _useState10[0],
+    setDeleteQuestionDialog = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState12 = _slicedToArray(_useState11, 2),
-    loading = _useState12[0],
-    setLoading = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    deleteQuestionsDialog = _useState12[0],
+    setDeleteQuestionsDialog = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
     _useState14 = _slicedToArray(_useState13, 2),
-    selectedQuestions = _useState14[0],
-    setSelectedQuestions = _useState14[1];
+    loading = _useState14[0],
+    setLoading = _useState14[1];
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState16 = _slicedToArray(_useState15, 2),
     submitted = _useState16[0],
     setSubmitted = _useState16[1];
+
+  // Filters
   var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState18 = _slicedToArray(_useState17, 2),
     globalFilterValue = _useState18[0],
     setGlobalFilterValue = _useState18[1];
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState20 = _slicedToArray(_useState19, 2),
-    editState = _useState20[0],
-    setEditState = _useState20[1];
-  var toast = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var dt = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
-      label: "Small",
-      value: "small"
-    }, {
-      label: "Normal",
-      value: "normal"
-    }, {
-      label: "Large",
-      value: "large"
-    }]),
-    _useState22 = _slicedToArray(_useState21, 1),
-    sizeOptions = _useState22[0];
-  var initialSize = window.innerHeight > 640 && window.innerWidth > 540 ? sizeOptions[1].value // "Normal" for tablets and larger
-  : sizeOptions[0].value; // "Small" for mobile
-
-  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialSize),
-    _useState24 = _slicedToArray(_useState23, 2),
-    size = _useState24[0],
-    setSize = _useState24[1];
-
-  // Handle the change f Window Size
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var handleResize = function handleResize() {
-      setSize(window.innerHeight > 640 && window.innerWidth > 540 ? sizeOptions[1].value : sizeOptions[0].value);
-    };
-    window.addEventListener("resize", handleResize);
-    return function () {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       global: {
         value: null,
         matchMode: primereact_api__WEBPACK_IMPORTED_MODULE_5__.FilterMatchMode.CONTAINS
@@ -12635,9 +12605,44 @@ function SurveyTable() {
         matchMode: primereact_api__WEBPACK_IMPORTED_MODULE_5__.FilterMatchMode.EQUALS
       }
     }),
+    _useState20 = _slicedToArray(_useState19, 2),
+    filters = _useState20[0],
+    setFilters = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState22 = _slicedToArray(_useState21, 2),
+    editState = _useState22[0],
+    setEditState = _useState22[1];
+
+  // Table Sizing
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
+      label: "Small",
+      value: "small"
+    }, {
+      label: "Normal",
+      value: "normal"
+    }, {
+      label: "Large",
+      value: "large"
+    }]),
+    _useState24 = _slicedToArray(_useState23, 1),
+    sizeOptions = _useState24[0];
+  var initialSize = window.innerHeight > 640 && window.innerWidth > 540 ? sizeOptions[1].value // "Normal" for tablets and larger
+  : sizeOptions[0].value; // "Small" for mobile
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialSize),
     _useState26 = _slicedToArray(_useState25, 2),
-    filters = _useState26[0],
-    setFilters = _useState26[1];
+    size = _useState26[0],
+    setSize = _useState26[1];
+
+  // Handle changing window size
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var handleResize = function handleResize() {
+      setSize(window.innerHeight > 640 && window.innerWidth > 540 ? sizeOptions[1].value : sizeOptions[0].value);
+    };
+    window.addEventListener("resize", handleResize);
+    return function () {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   /**
    * Initialise an empty question
@@ -14357,10 +14362,10 @@ var AddEditQuestionDialog = function AddEditQuestionDialog(_ref) {
 
 /***/ }),
 
-/***/ "./resources/js/pages/HomeCopy.js":
-/*!****************************************!*\
-  !*** ./resources/js/pages/HomeCopy.js ***!
-  \****************************************/
+/***/ "./resources/js/pages/Home.js":
+/*!************************************!*\
+  !*** ./resources/js/pages/Home.js ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -14382,7 +14387,6 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-
 
 
 
@@ -14680,89 +14684,104 @@ function NewQuestion() {
     _useState10 = _slicedToArray(_useState9, 2),
     questionDialog = _useState10[0],
     setQuestionDialog = _useState10[1];
+  var questionTypes = ["Text", "Choice", "Checkboxes", "Dropdown"];
+  var initialEmptyQuestion = {
+    question_key: "",
+    sequence: null,
+    question_name: "",
+    question_type: "",
+    data_status: null,
+    is_parent: 0
+  };
 
-  // Question Groups
+  // Update UI toggler (call after CRUD)
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState12 = _slicedToArray(_useState11, 2),
-    questionGroupDialog = _useState12[0],
-    setQuestionGroupDialog = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    updateUI = _useState12[0],
+    setUpdateUI = _useState12[1];
+
+  // Question Groups
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState14 = _slicedToArray(_useState13, 2),
-    customQuestionGroup = _useState14[0],
-    setCustomQuestionGroup = _useState14[1];
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    questionGroupDialog = _useState14[0],
+    setQuestionGroupDialog = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState16 = _slicedToArray(_useState15, 2),
-    customQuestionGroupStatus = _useState16[0],
-    setCustomQuestionGroupStatus = _useState16[1];
+    customQuestionGroup = _useState16[0],
+    setCustomQuestionGroup = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState18 = _slicedToArray(_useState17, 2),
+    customQuestionGroupStatus = _useState18[0],
+    setCustomQuestionGroupStatus = _useState18[1];
 
   // Surveys
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-    _useState18 = _slicedToArray(_useState17, 2),
-    surveys = _useState18[0],
-    setSurveys = _useState18[1];
   var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState20 = _slicedToArray(_useState19, 2),
-    surveyQuestionGroups = _useState20[0],
-    setSurveyQuestionGroups = _useState20[1];
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    surveys = _useState20[0],
+    setSurveys = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState22 = _slicedToArray(_useState21, 2),
-    customSurvey = _useState22[0],
-    setCustomSurvey = _useState22[1];
-  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    surveyQuestionGroups = _useState22[0],
+    setSurveyQuestionGroups = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState24 = _slicedToArray(_useState23, 2),
-    hoveredSurveyType = _useState24[0],
-    setHoveredSurveyType = _useState24[1];
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    customSurvey = _useState24[0],
+    setCustomSurvey = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState26 = _slicedToArray(_useState25, 2),
-    customSurveyStatus = _useState26[0],
-    setCustomSurveyStatus = _useState26[1];
+    hoveredSurveyType = _useState26[0],
+    setHoveredSurveyType = _useState26[1];
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState28 = _slicedToArray(_useState27, 2),
+    customSurveyStatus = _useState28[0],
+    setCustomSurveyStatus = _useState28[1];
 
   // Loading
-  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
-    _useState28 = _slicedToArray(_useState27, 2),
-    loading = _useState28[0],
-    setLoading = _useState28[1];
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState30 = _slicedToArray(_useState29, 2),
+    loading = _useState30[0],
+    setLoading = _useState30[1];
 
   // Submitted
-  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState30 = _slicedToArray(_useState29, 2),
-    submitted = _useState30[0],
-    setSubmitted = _useState30[1];
   var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState32 = _slicedToArray(_useState31, 2),
-    submittedQuestion = _useState32[0],
-    setSubmittedQuestion = _useState32[1];
+    submitted = _useState32[0],
+    setSubmitted = _useState32[1];
   var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState34 = _slicedToArray(_useState33, 2),
-    editState = _useState34[0],
-    setEditState = _useState34[1];
-
-  // Delete Question
+    submittedQuestion = _useState34[0],
+    setSubmittedQuestion = _useState34[1];
   var _useState35 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState36 = _slicedToArray(_useState35, 2),
-    deleteQuestionDialog = _useState36[0],
-    setDeleteQuestionDialog = _useState36[1];
+    editState = _useState36[0],
+    setEditState = _useState36[1];
+
+  // Delete Question
   var _useState37 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState38 = _slicedToArray(_useState37, 2),
-    deleteQuestionsDialog = _useState38[0],
-    setDeleteQuestionsDialog = _useState38[1];
-
-  // Options
+    deleteQuestionDialog = _useState38[0],
+    setDeleteQuestionDialog = _useState38[1];
   var _useState39 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState40 = _slicedToArray(_useState39, 2),
-    optionDialogVisible = _useState40[0],
-    setOptionDialogVisible = _useState40[1];
-  var _useState41 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    deleteQuestionsDialog = _useState40[0],
+    setDeleteQuestionsDialog = _useState40[1];
+
+  // Options
+  var _useState41 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState42 = _slicedToArray(_useState41, 2),
-    selectedRow = _useState42[0],
-    setSelectedRow = _useState42[1];
+    optionDialogVisible = _useState42[0],
+    setOptionDialogVisible = _useState42[1];
+  var _useState43 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState44 = _slicedToArray(_useState43, 2),
+    selectedRow = _useState44[0],
+    setSelectedRow = _useState44[1];
 
   // Mapping between question & question group id
-  var _useState43 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState44 = _slicedToArray(_useState43, 2),
-    mapGrpId = _useState44[0],
-    setMapGrpId = _useState44[1];
-  var _useState45 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState45 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState46 = _slicedToArray(_useState45, 2),
+    mapGrpId = _useState46[0],
+    setMapGrpId = _useState46[1];
+  var _useState47 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       question_id: null,
       survey_name: null,
       question_group_name: "",
@@ -14773,7 +14792,7 @@ function NewQuestion() {
       sequence: null,
       data_status: null,
       is_parent: 0,
-      is_mandatory: 0,
+      is_mandatory: 1,
       option_1: null,
       option_1_flow: null,
       option_2: null,
@@ -14793,16 +14812,16 @@ function NewQuestion() {
       option_9: null,
       option_9_flow: null
     }),
-    _useState46 = _slicedToArray(_useState45, 2),
-    response = _useState46[0],
-    setResponse = _useState46[1];
+    _useState48 = _slicedToArray(_useState47, 2),
+    response = _useState48[0],
+    setResponse = _useState48[1];
 
   // Filters
-  var _useState47 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-    _useState48 = _slicedToArray(_useState47, 2),
-    globalFilterValue = _useState48[0],
-    setGlobalFilterValue = _useState48[1];
-  var _useState49 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState49 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState50 = _slicedToArray(_useState49, 2),
+    globalFilterValue = _useState50[0],
+    setGlobalFilterValue = _useState50[1];
+  var _useState51 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       global: {
         value: null,
         matchMode: primereact_api__WEBPACK_IMPORTED_MODULE_12__.FilterMatchMode.CONTAINS
@@ -14812,9 +14831,9 @@ function NewQuestion() {
         matchMode: primereact_api__WEBPACK_IMPORTED_MODULE_12__.FilterMatchMode.EQUALS
       }
     }),
-    _useState50 = _slicedToArray(_useState49, 2),
-    filters = _useState50[0],
-    setFilters = _useState50[1];
+    _useState52 = _slicedToArray(_useState51, 2),
+    filters = _useState52[0],
+    setFilters = _useState52[1];
   var onInputChange = function onInputChange(e, name) {
     var val = e.target && e.target.value || "";
     var _response = _objectSpread({}, response);
@@ -14832,19 +14851,6 @@ function NewQuestion() {
     var _response = _objectSpread({}, response);
     _response["".concat(name)] = val;
     setResponse(_response);
-  };
-  var questionTypes = ["Text", "Choice", "Checkboxes", "Dropdown"];
-
-  /**
-   * Initialise an empty question
-   */
-  var initialEmptyQuestion = {
-    question_key: "",
-    sequence: null,
-    question_name: "",
-    question_type: "",
-    data_status: null,
-    is_parent: 0
   };
 
   /**
@@ -15037,7 +15043,7 @@ function NewQuestion() {
   }();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     filterQuestionsByGroupName();
-  }, [response]);
+  }, [updateUI]);
 
   // Page 1
   var handleSurveyClick = function handleSurveyClick(survey) {
@@ -15074,7 +15080,7 @@ function NewQuestion() {
               question_group_name: totalString,
               survey_name: response.survey_name,
               data_status: customQuestionGroupStatus
-            }; // Send a POST request to the backend to create a new question group
+            };
             _context6.next = 8;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/addQuestionGroup", payload);
           case 8:
@@ -15083,12 +15089,10 @@ function NewQuestion() {
               _context6.next = 17;
               break;
             }
-            newQuestionGroup = result.data.data; // Update the survey question groups state with the new question group
+            newQuestionGroup = result.data.data;
             setSurveyQuestionGroups(function (prevGroups) {
               return [].concat(_toConsumableArray(prevGroups), [newQuestionGroup]);
             });
-
-            // Set the newly created question group as the selected one
             handleQuestionGroupClick(newQuestionGroup);
             toast.current.show({
               severity: "success",
@@ -15096,8 +15100,6 @@ function NewQuestion() {
               detail: "Question Group ".concat(newQuestionGroup.question_group_name, " Created"),
               life: 2000
             });
-
-            // Close the dialog
             setQuestionGroupDialog(false);
             _context6.next = 18;
             break;
@@ -15140,7 +15142,7 @@ function NewQuestion() {
             _context7.prev = 2;
             payload = {
               survey_name: customSurvey,
-              data_status: customSurveyStatus // data_status of added survey
+              data_status: customSurveyStatus
             }; // Send a POST request to the backend to create a new survey
             _context7.next = 6;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/addSurvey", payload);
@@ -15212,13 +15214,13 @@ function NewQuestion() {
   };
   var saveQuestion = /*#__PURE__*/function () {
     var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
-      var _questions, _response, formData, index, result, newQuestion, _error$response3;
+      var _questions, _response, formData, index, result, newQuestion, _newQuestion, mergedQuestion, _error$response3;
       return _regeneratorRuntime().wrap(function _callee8$(_context8) {
         while (1) switch (_context8.prev = _context8.next) {
           case 0:
             setSubmitted(true);
             if (!(response.question_name.trim() && response.question_type.trim() && response.sequence && response.data_status && response.question_group_id)) {
-              _context8.next = 35;
+              _context8.next = 39;
               break;
             }
             _questions = _toConsumableArray(questions);
@@ -15232,16 +15234,21 @@ function NewQuestion() {
             formData.append("data_status", _response.data_status);
             formData.append("is_parent", _response.is_parent);
             formData.append("is_mandatory", _response.is_mandatory);
+            formData.forEach(function (value, key) {
+              console.log("".concat(key, ": ").concat(value));
+            });
             index = findIndexByID(_response.question_id);
-            _context8.prev = 14;
+            _context8.prev = 15;
             if (!(index >= 0 && editState)) {
-              _context8.next = 22;
+              _context8.next = 25;
               break;
             }
-            _context8.next = 18;
+            _context8.next = 19;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/editQuestion/".concat(_response.question_id), formData);
-          case 18:
+          case 19:
             result = _context8.sent;
+            console.log("edited question:", result.data);
+            newQuestion = result.data.data || result.data;
             if (result.status === 200) {
               _questions[index] = _response;
               toast.current.show({
@@ -15252,8 +15259,6 @@ function NewQuestion() {
               });
               setResponse(function (prevResponse) {
                 return _objectSpread(_objectSpread({}, prevResponse), {}, {
-                  // question_id: result.data.data.question_id,
-                  // question_key: result.data.data.question_key,
                   question_type: "",
                   question_name: "",
                   sequence: null,
@@ -15261,28 +15266,43 @@ function NewQuestion() {
                   is_parent: 0
                 });
               });
+              setQuestionDialog(false);
+              setUpdateUI(function (prev) {
+                return !prev;
+              });
+              getQuestions();
+              filterQuestionsByGroupName();
             }
-            _context8.next = 26;
+            _context8.next = 30;
             break;
-          case 22:
-            _context8.next = 24;
+          case 25:
+            _context8.next = 27;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/addQuestion", formData);
-          case 24:
+          case 27:
             result = _context8.sent;
-            //TODO (minor BUG): Fix seqence when add first time
+            console.log("new question", result.data);
             if (result.status === 200) {
-              newQuestion = result.data.data || result.data;
-              _questions.push(_response);
+              // This worked in updating UI
+              // _questions.push(_response); 
+              // New Approach:
+              _newQuestion = result.data.data || result.data;
+              mergedQuestion = _objectSpread(_objectSpread({}, _response), {}, {
+                question_id: _newQuestion.question_id,
+                question_key: _newQuestion.question_key
+              });
+              _questions.push(mergedQuestion);
               toast.current.show({
                 severity: "success",
                 summary: "Successful",
-                detail: "Question ".concat(newQuestion.sequence, " Created"),
+                detail: "Question ".concat(_newQuestion.sequence, " Created"),
                 life: 2000
               });
+              setUpdateUI(function (prev) {
+                return !prev;
+              }); // Trigger UI update
+
               setResponse(function (prevResponse) {
                 return _objectSpread(_objectSpread({}, prevResponse), {}, {
-                  // question_id: result.data.data.question_id,
-                  // question_key: result.data.data.question_key,
                   question_type: "",
                   question_name: "",
                   sequence: null,
@@ -15290,13 +15310,16 @@ function NewQuestion() {
                   is_parent: 0
                 });
               });
+              setQuestionDialog(false);
+              getQuestions();
+              filterQuestionsByGroupName();
             }
-          case 26:
-            _context8.next = 32;
+          case 30:
+            _context8.next = 36;
             break;
-          case 28:
-            _context8.prev = 28;
-            _context8.t0 = _context8["catch"](14);
+          case 32:
+            _context8.prev = 32;
+            _context8.t0 = _context8["catch"](15);
             console.error("There was an error saving the question!", _context8.t0);
             toast.current.show({
               severity: "error",
@@ -15304,33 +15327,22 @@ function NewQuestion() {
               detail: ((_error$response3 = _context8.t0.response) === null || _error$response3 === void 0 || (_error$response3 = _error$response3.data) === null || _error$response3 === void 0 ? void 0 : _error$response3.message) || "Failed to save question",
               life: 3000
             });
-          case 32:
+          case 36:
             setQuestions(_questions);
-            setQuestionDialog(false);
             setEditState(false);
-          case 35:
+            setUpdateUI(function (prev) {
+              return !prev;
+            }); // Trigger UI update
+          case 39:
           case "end":
             return _context8.stop();
         }
-      }, _callee8, null, [[14, 28]]);
+      }, _callee8, null, [[15, 32]]);
     }));
     return function saveQuestion() {
       return _ref8.apply(this, arguments);
     };
   }();
-
-  // const handleCustomQuestionGroupSubmit = () => {
-  //     setSubmittedQuestion(true);
-  //     const additionalString = `${response.survey_name} - `;
-  //     const totalString = additionalString + customQuestionGroup;
-  //     if (customQuestionGroup.trim()) {
-  //         handleQuestionGroupClick({
-  //             question_group_name: totalString,
-  //         });
-  //     }
-  //     setQuestionGroupDialog(false);
-  // };
-
   var showDialog = function showDialog() {
     setQuestionDialog(true);
   };
@@ -15427,7 +15439,11 @@ function NewQuestion() {
                 data_status: null
               });
             });
-            filterQuestionsByGroupName();
+            // getQuestions();
+            // filterQuestionsByGroupName();
+            setUpdateUI(function (prev) {
+              return !prev;
+            }); // Trigger UI update
             _context9.next = 18;
             break;
           case 13:
@@ -15494,7 +15510,7 @@ function NewQuestion() {
             _i = 0;
           case 5:
             if (!(_i < selectedQuestionsID.length)) {
-              _context10.next = 18;
+              _context10.next = 17;
               break;
             }
             question_id = selectedQuestionsID[_i];
@@ -15518,17 +15534,21 @@ function NewQuestion() {
                 data_status: null
               });
             });
-            filterQuestionsByGroupName();
-          case 15:
+            // getQuestions();
+            // filterQuestionsByGroupName();
+          case 14:
             _i++;
             _context10.next = 5;
             break;
-          case 18:
+          case 17:
             toast.current.show({
               severity: "success",
               summary: "Successful",
               detail: "Selected Questions Deleted",
               life: 2000
+            });
+            setUpdateUI(function (prev) {
+              return !prev;
             });
             _context10.next = 26;
             break;
@@ -15589,9 +15609,10 @@ function NewQuestion() {
 
   // Do Delete A Question
   var confirmDeleteQuestion = function confirmDeleteQuestion(question) {
+    getQuestions();
+    filterQuestionsByGroupName();
     setResponse(_objectSpread({}, question));
     setDeleteQuestionDialog(true);
-    filterQuestionsByGroupName();
   };
 
   // Do Delete Questions
@@ -15686,7 +15707,22 @@ function NewQuestion() {
         icon: "pi pi-check",
         className: "ms-2 rounded",
         iconPos: "left",
-        onClick: saveQuestion
+        onClick: /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
+          return _regeneratorRuntime().wrap(function _callee11$(_context11) {
+            while (1) switch (_context11.prev = _context11.next) {
+              case 0:
+                _context11.next = 2;
+                return saveQuestion();
+              case 2:
+                setUpdateUI(function (prev) {
+                  return !prev;
+                }); // Trigger UI update after saving the question
+              case 3:
+              case "end":
+                return _context11.stop();
+            }
+          }, _callee11);
+        }))
       })]
     })
   });
@@ -15765,18 +15801,18 @@ function NewQuestion() {
     });
   };
   var updateResponseOptions = /*#__PURE__*/function () {
-    var _ref11 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11(updatedOptions) {
+    var _ref12 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12(updatedOptions) {
       var _questions, index, result;
-      return _regeneratorRuntime().wrap(function _callee11$(_context11) {
-        while (1) switch (_context11.prev = _context11.next) {
+      return _regeneratorRuntime().wrap(function _callee12$(_context12) {
+        while (1) switch (_context12.prev = _context12.next) {
           case 0:
             _questions = _toConsumableArray(questions);
             index = findIndexByID(updatedOptions.question_id);
-            _context11.prev = 2;
-            _context11.next = 5;
+            _context12.prev = 2;
+            _context12.next = 5;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/editQuestion/".concat(updatedOptions.question_id), updatedOptions);
           case 5:
-            result = _context11.sent;
+            result = _context12.sent;
             if (result.status === 200) {
               _questions[index] = _objectSpread(_objectSpread({}, _questions[index]), updatedOptions);
               setQuestions(_questions);
@@ -15793,34 +15829,16 @@ function NewQuestion() {
                   sequence: null,
                   data_status: null,
                   is_parent: 0,
-                  is_mandatory: 0,
-                  option_1: null,
-                  option_1_flow: null,
-                  option_2: null,
-                  option_2_flow: null,
-                  option_3: null,
-                  option_3_flow: null,
-                  option_4: null,
-                  option_4_flow: null,
-                  option_5: null,
-                  option_5_flow: null,
-                  option_6: null,
-                  option_6_flow: null,
-                  option_7: null,
-                  option_7_flow: null,
-                  option_8: null,
-                  option_8_flow: null,
-                  option_9: null,
-                  option_9_flow: null
+                  is_mandatory: 0
                 });
               });
             }
-            _context11.next = 13;
+            _context12.next = 13;
             break;
           case 9:
-            _context11.prev = 9;
-            _context11.t0 = _context11["catch"](2);
-            console.error("Error updating options:", _context11.t0);
+            _context12.prev = 9;
+            _context12.t0 = _context12["catch"](2);
+            console.error("Error updating options:", _context12.t0);
             toast.current.show({
               severity: "error",
               summary: "Error",
@@ -15828,7 +15846,7 @@ function NewQuestion() {
               life: 3000
             });
           case 13:
-            _context11.prev = 13;
+            _context12.prev = 13;
             setResponse(function (prevResponse) {
               return _objectSpread(_objectSpread({}, prevResponse), {}, {
                 question_type: "",
@@ -15836,36 +15854,18 @@ function NewQuestion() {
                 sequence: null,
                 data_status: null,
                 is_parent: 0,
-                is_mandatory: 0,
-                option_1: null,
-                option_1_flow: null,
-                option_2: null,
-                option_2_flow: null,
-                option_3: null,
-                option_3_flow: null,
-                option_4: null,
-                option_4_flow: null,
-                option_5: null,
-                option_5_flow: null,
-                option_6: null,
-                option_6_flow: null,
-                option_7: null,
-                option_7_flow: null,
-                option_8: null,
-                option_8_flow: null,
-                option_9: null,
-                option_9_flow: null
+                is_mandatory: 0
               });
             });
-            return _context11.finish(13);
+            return _context12.finish(13);
           case 16:
           case "end":
-            return _context11.stop();
+            return _context12.stop();
         }
-      }, _callee11, null, [[2, 9, 13, 16]]);
+      }, _callee12, null, [[2, 9, 13, 16]]);
     }));
     return function updateResponseOptions(_x2) {
-      return _ref11.apply(this, arguments);
+      return _ref12.apply(this, arguments);
     };
   }();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.Fragment, {
@@ -16084,7 +16084,11 @@ function NewQuestion() {
                 iconPos: "right",
                 disabled: response.question_group_name === null,
                 onClick: function onClick() {
-                  return stepperRef.current.nextCallback();
+                  // Optionally, you can update UI again before moving to the next step
+                  setUpdateUI(function (prev) {
+                    return !prev;
+                  });
+                  stepperRef.current.nextCallback();
                 }
               })]
             })]
@@ -16126,6 +16130,16 @@ function NewQuestion() {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_24__.Column, {
               field: "sequence",
               header: "Sequence",
+              style: {
+                width: "2rem"
+              },
+              sortable: true,
+              bodyStyle: {
+                textAlign: "center"
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_24__.Column, {
+              field: "question_id",
+              header: "ID",
               style: {
                 width: "2rem"
               },

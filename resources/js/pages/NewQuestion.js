@@ -36,6 +36,18 @@ export default function NewQuestion() {
     const [filteredQuestions, setFilteredQuestions] = useState([]);
     const [selectedQuestions, setSelectedQuestions] = useState([]);
     const [questionDialog, setQuestionDialog] = useState(false);
+    const questionTypes = ["Text", "Choice", "Checkboxes", "Dropdown"];
+    const initialEmptyQuestion = {
+        question_key: "",
+        sequence: null,
+        question_name: "",
+        question_type: "",
+        data_status: null,
+        is_parent: 0,
+    };
+
+    // Update UI toggler (call after CRUD)
+    const [updateUI, setUpdateUI] = useState(false);
 
     // Question Groups
     const [questionGroupDialog, setQuestionGroupDialog] = useState(false);
@@ -79,7 +91,7 @@ export default function NewQuestion() {
         sequence: null,
         data_status: null,
         is_parent: 0,
-        is_mandatory: 0,
+        is_mandatory: 1,
         option_1: null,
         option_1_flow: null,
         option_2: null,
@@ -126,20 +138,6 @@ export default function NewQuestion() {
         let _response = { ...response };
         _response[`${name}`] = val;
         setResponse(_response);
-    };
-
-    const questionTypes = ["Text", "Choice", "Checkboxes", "Dropdown"];
-
-    /**
-     * Initialise an empty question
-     */
-    const initialEmptyQuestion = {
-        question_key: "",
-        sequence: null,
-        question_name: "",
-        question_type: "",
-        data_status: null,
-        is_parent: 0,
     };
 
     /**
@@ -244,7 +242,7 @@ export default function NewQuestion() {
 
     useEffect(() => {
         filterQuestionsByGroupName();
-    }, [response]);
+    }, [updateUI]);
 
     // Page 1
     const handleSurveyClick = (survey) => {
@@ -276,16 +274,12 @@ export default function NewQuestion() {
                     data_status: customQuestionGroupStatus,
                 };
     
-                // Send a POST request to the backend to create a new question group
                 const result = await axios.post("/addQuestionGroup", payload);
     
                 if (result.status === 200 && result.data.status === 1) {
                     const newQuestionGroup = result.data.data;
     
-                    // Update the survey question groups state with the new question group
                     setSurveyQuestionGroups((prevGroups) => [...prevGroups, newQuestionGroup]);
-    
-                    // Set the newly created question group as the selected one
                     handleQuestionGroupClick(newQuestionGroup);
     
                     toast.current.show({
@@ -295,7 +289,6 @@ export default function NewQuestion() {
                         life: 2000,
                     });
     
-                    // Close the dialog
                     setQuestionGroupDialog(false);
                 } else {
                     throw new Error(result.data.message || "Failed to create question group");
@@ -311,7 +304,6 @@ export default function NewQuestion() {
             }
         }
     };
-    
 
     const handleCustomSurveySubmit = async () => {
         setSubmitted(true);
@@ -320,7 +312,7 @@ export default function NewQuestion() {
             try {
                 const payload = {
                     survey_name: customSurvey,
-                    data_status: customSurveyStatus, // data_status of added survey
+                    data_status: customSurveyStatus, 
                 };
     
                 // Send a POST request to the backend to create a new survey
@@ -401,6 +393,10 @@ export default function NewQuestion() {
             formData.append("is_parent", _response.is_parent);
             formData.append("is_mandatory", _response.is_mandatory);
 
+            formData.forEach((value, key) => {
+                console.log(`${key}: ${value}`);
+            });
+
             const index = findIndexByID(_response.question_id);
 
             try {
@@ -412,6 +408,9 @@ export default function NewQuestion() {
                         formData
                     );
 
+                    console.log("edited question:", result.data);
+                    const newQuestion = result.data.data || result.data;
+
                     if (result.status === 200) {
                         _questions[index] = _response;
                         toast.current.show({
@@ -422,22 +421,29 @@ export default function NewQuestion() {
                         });
                         setResponse((prevResponse) => ({
                             ...prevResponse,
-                            // question_id: result.data.data.question_id,
-                            // question_key: result.data.data.question_key,
                             question_type: "",
                             question_name: "",
                             sequence: null,
                             data_status: null,
                             is_parent: 0,
                         }));
+                        setQuestionDialog(false);
+                        setUpdateUI((prev) => !prev); 
+                        getQuestions();
+                        filterQuestionsByGroupName();
                     }
                 } else {
                     // New Question
                     result = await axios.post("/addQuestion", formData);
-                    //TODO (minor BUG): Fix seqence when add first time
+                    console.log("new question", result.data);
                     if (result.status === 200) {
+                        // This worked in updating UI
+                        // _questions.push(_response); 
+
+                        // New Approach:
                         const newQuestion = result.data.data || result.data;
-                        _questions.push(_response);
+                        const mergedQuestion = { ..._response, question_id: newQuestion.question_id, question_key: newQuestion.question_key };
+                        _questions.push(mergedQuestion);
                         toast.current.show({
                             severity: "success",
                             summary: "Successful",
@@ -445,16 +451,19 @@ export default function NewQuestion() {
                             life: 2000,
                         });
 
+                        setUpdateUI((prev) => !prev); // Trigger UI update
+
                         setResponse((prevResponse) => ({
                             ...prevResponse,
-                            // question_id: result.data.data.question_id,
-                            // question_key: result.data.data.question_key,
                             question_type: "",
                             question_name: "",
                             sequence: null,
                             data_status: null,
                             is_parent: 0,
                         }));
+                        setQuestionDialog(false);
+                        getQuestions();
+                        filterQuestionsByGroupName();
                     }
                 }
             } catch (error) {
@@ -467,22 +476,10 @@ export default function NewQuestion() {
                 });
             }
             setQuestions(_questions);
-            setQuestionDialog(false);
             setEditState(false);
+            setUpdateUI((prev) => !prev); // Trigger UI update
         }
     };
-
-    // const handleCustomQuestionGroupSubmit = () => {
-    //     setSubmittedQuestion(true);
-    //     const additionalString = `${response.survey_name} - `;
-    //     const totalString = additionalString + customQuestionGroup;
-    //     if (customQuestionGroup.trim()) {
-    //         handleQuestionGroupClick({
-    //             question_group_name: totalString,
-    //         });
-    //     }
-    //     setQuestionGroupDialog(false);
-    // };
 
     const showDialog = () => {
         setQuestionDialog(true);
@@ -575,7 +572,9 @@ export default function NewQuestion() {
                 sequence: null,
                 data_status: null,
             }));
-            filterQuestionsByGroupName();
+            // getQuestions();
+            // filterQuestionsByGroupName();
+            setUpdateUI((prev) => !prev); // Trigger UI update
         } catch (error) {
             console.error("Error deleting question", error);
             toast.current.show({
@@ -616,6 +615,7 @@ export default function NewQuestion() {
         </React.Fragment>
     );
 
+    
     const deleteSelectedQuestions = async () => {
         var selectedQuestionsID = [];
         let _questions = [...questions];
@@ -645,7 +645,8 @@ export default function NewQuestion() {
                     sequence: null,
                     data_status: null,
                 }));
-                filterQuestionsByGroupName();
+                // getQuestions();
+                // filterQuestionsByGroupName();
             }
             toast.current.show({
                 severity: "success",
@@ -653,6 +654,7 @@ export default function NewQuestion() {
                 detail: "Selected Questions Deleted",
                 life: 2000,
             });
+            setUpdateUI((prev) => !prev);
         } catch (error) {
             console.error("Error deleting questions", error);
             toast.current.show({
@@ -703,9 +705,10 @@ export default function NewQuestion() {
 
     // Do Delete A Question
     const confirmDeleteQuestion = (question) => {
+        getQuestions();
+        filterQuestionsByGroupName();
         setResponse({ ...question });
         setDeleteQuestionDialog(true);
-        filterQuestionsByGroupName();
     };
 
     // Do Delete Questions
@@ -813,7 +816,10 @@ export default function NewQuestion() {
                     icon="pi pi-check"
                     className="ms-2 rounded"
                     iconPos="left"
-                    onClick={saveQuestion}
+                    onClick={async () => {
+                        await saveQuestion();
+                        setUpdateUI(prev => !prev); // Trigger UI update after saving the question
+                    }}
                 />
             </div>
         </React.Fragment>
@@ -932,24 +938,6 @@ export default function NewQuestion() {
                     data_status: null,
                     is_parent: 0,
                     is_mandatory: 0,
-                    option_1: null,
-                    option_1_flow: null,
-                    option_2: null,
-                    option_2_flow: null,
-                    option_3: null,
-                    option_3_flow: null,
-                    option_4: null,
-                    option_4_flow: null,
-                    option_5: null,
-                    option_5_flow: null,
-                    option_6: null,
-                    option_6_flow: null,
-                    option_7: null,
-                    option_7_flow: null,
-                    option_8: null,
-                    option_8_flow: null,
-                    option_9: null,
-                    option_9_flow: null,
                 }));
             }
         } catch (error) {
@@ -970,24 +958,6 @@ export default function NewQuestion() {
                 data_status: null,
                 is_parent: 0,
                 is_mandatory: 0,
-                option_1: null,
-                option_1_flow: null,
-                option_2: null,
-                option_2_flow: null,
-                option_3: null,
-                option_3_flow: null,
-                option_4: null,
-                option_4_flow: null,
-                option_5: null,
-                option_5_flow: null,
-                option_6: null,
-                option_6_flow: null,
-                option_7: null,
-                option_7_flow: null,
-                option_8: null,
-                option_8_flow: null,
-                option_9: null,
-                option_9_flow: null,
             }));
         }
     };
@@ -1098,8 +1068,7 @@ export default function NewQuestion() {
                                                     !submitted ||
                                                     surveys.some(
                                                         (survey) =>
-                                                            survey.survey_name ===
-                                                            customSurvey
+                                                            survey.survey_name === customSurvey
                                                     )
                                                         ? "btn-outline-primary"
                                                         : "btn-primary"
@@ -1285,9 +1254,11 @@ export default function NewQuestion() {
                                     disabled={
                                         response.question_group_name === null
                                     }
-                                    onClick={() =>
-                                        stepperRef.current.nextCallback()
-                                    }
+                                    onClick={() => {
+                                        // Optionally, you can update UI again before moving to the next step
+                                        setUpdateUI(prev => !prev);
+                                        stepperRef.current.nextCallback();
+                                    }}
                                 />
                             </div>
                         </div>
@@ -1329,6 +1300,13 @@ export default function NewQuestion() {
                             <Column
                                 field="sequence"
                                 header="Sequence"
+                                style={{ width: "2rem" }}
+                                sortable
+                                bodyStyle={{ textAlign: "center" }}
+                            />
+                            <Column
+                                field="question_id"
+                                header="ID"
                                 style={{ width: "2rem" }}
                                 sortable
                                 bodyStyle={{ textAlign: "center" }}
@@ -1390,7 +1368,7 @@ export default function NewQuestion() {
                             onCheckboxChange={onCheckboxChange}
                         />
 
-                        {/* Delete 1 Question Dialog */}
+                        {/* Delete a Question Dialog */}
                         <Dialog
                             visible={deleteQuestionDialog}
                             style={{ width: "32rem" }}

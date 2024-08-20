@@ -17,19 +17,31 @@ import LeftToolbar from "./LeftToolbar";
 import RightToolbar from "./RightToolbar";
 
 export default function SurveyTable() {
-    const [questions, setQuestions] = useState([]);
-    const [questionDialog, setQuestionDialog] = useState(false);
-    const [deleteQuestionDialog, setDeleteQuestionDialog] = useState(false);
-    const [deleteQuestionsDialog, setDeleteQuestionsDialog] = useState(false);
-    const [question, setQuestion] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [selectedQuestions, setSelectedQuestions] = useState(null);
-    const [submitted, setSubmitted] = useState(false);
-    const [globalFilterValue, setGlobalFilterValue] = useState("");
-    const [editState, setEditState] = useState(false);
     const toast = useRef(null);
     const dt = useRef(null);
 
+    // Questions
+    const [question, setQuestion] = useState([]);
+    const [questions, setQuestions] = useState([]);
+    const [selectedQuestions, setSelectedQuestions] = useState(null);
+    const [questionDialog, setQuestionDialog] = useState(false);
+    const [deleteQuestionDialog, setDeleteQuestionDialog] = useState(false);
+    const [deleteQuestionsDialog, setDeleteQuestionsDialog] = useState(false);
+
+    const [loading, setLoading] = useState(true);
+
+    const [submitted, setSubmitted] = useState(false);
+
+    // Filters
+    const [globalFilterValue, setGlobalFilterValue] = useState("");
+    const [filters, setFilters] = useState({
+        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        question_id: { value: null, matchMode: FilterMatchMode.EQUALS },
+    });
+
+    const [editState, setEditState] = useState(false);
+
+    // Table Sizing
     const [sizeOptions] = useState([
         { label: "Small", value: "small" },
         { label: "Normal", value: "normal" },
@@ -39,10 +51,9 @@ export default function SurveyTable() {
         window.innerHeight > 640 && window.innerWidth > 540
             ? sizeOptions[1].value // "Normal" for tablets and larger
             : sizeOptions[0].value; // "Small" for mobile
-
     const [size, setSize] = useState(initialSize);
 
-    // Handle the change f Window Size
+    // Handle changing window size
     useEffect(() => {
         const handleResize = () => {
             setSize(
@@ -58,11 +69,6 @@ export default function SurveyTable() {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
-
-    const [filters, setFilters] = useState({
-        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        question_id: { value: null, matchMode: FilterMatchMode.EQUALS },
-    });
 
     /**
      * Initialise an empty question

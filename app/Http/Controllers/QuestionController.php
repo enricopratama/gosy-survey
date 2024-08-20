@@ -101,7 +101,7 @@ class QuestionController extends Controller
                     'Dropdown',
                 ]),
             ],
-            'sequence' => 'required|integer|unique:mst_question_ori,sequence',
+            'sequence' => 'required|integer',
             'data_status' => 'required|integer',
             'is_parent' => 'required|integer',
             'is_mandatory' => 'required|integer',
@@ -109,7 +109,7 @@ class QuestionController extends Controller
 
         if ($validator->fails()) {
             $errors = $validator->errors();
-            $messages = ['Oops.. validation error.'];
+            $messages = ['Oops.. validation error'];
             foreach ($errors->all() as $error) {
                 $messages[] = $error;
             }
@@ -183,9 +183,7 @@ class QuestionController extends Controller
                     'Dropdown',
                 ]),
             ],
-            'sequence' =>
-                'required|integer|unique:mst_question_ori,sequence,' .
-                $question_id,
+            'sequence' => 'required|integer',
             'data_status' => 'required|integer',
             'is_parent' => 'required|integer',
             'is_mandatory' => 'required|integer',
@@ -193,7 +191,7 @@ class QuestionController extends Controller
 
         if ($validator->fails()) {
             $errors = $validator->errors();
-            $messages = ['Oops.. validation error.'];
+            $messages = ['Oops.. validation error'];
             foreach ($errors->all() as $error) {
                 $messages[] = $error;
             }
