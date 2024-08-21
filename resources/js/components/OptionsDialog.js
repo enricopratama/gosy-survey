@@ -4,14 +4,34 @@ import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
+import { Dropdown } from "primereact/dropdown";
 
 export default function OptionsDialog({
     visible,
     onHide,
     selectedRow,
     updateResponse,
+    questions,
 }) {
     const [optionsData, setOptionsData] = useState([]);
+
+    // Extract question keys from the questions prop
+    const questionKeys = ["0", ...questions.map((q) => q.question_key)].sort(
+        (a, b) => {
+            const partsA = a
+                .split(/(\d+)/)
+                .map((part) => (isNaN(part) ? part : parseInt(part, 10)));
+            const partsB = b
+                .split(/(\d+)/)
+                .map((part) => (isNaN(part) ? part : parseInt(part, 10)));
+
+            for (let i = 0; i < Math.max(partsA.length, partsB.length); i++) {
+                if (partsA[i] < partsB[i]) return -1;
+                if (partsA[i] > partsB[i]) return 1;
+            }
+            return 0;
+        }
+    );
 
     // Function to reformat options data from selectedRow
     const extractOptionsData = (row) => {
@@ -65,6 +85,20 @@ export default function OptionsDialog({
         />
     );
 
+    const optionFlowsEditor = (options) => {
+        return (
+            <Dropdown
+                value={options.value || ""}
+                options={questionKeys}
+                onChange={(e) => options.editorCallback(e.value)}
+                placeholder="Select a Question Key"
+                panelStyle={{ maxHeight: "600px" }}
+                editable
+                filter
+            />
+        );
+    };
+
     const dialogFooterTemplate = () => (
         <div className="mt-2">
             <Button
@@ -109,14 +143,12 @@ export default function OptionsDialog({
                         header="Option Data"
                         editor={(options) => textEditor(options)}
                         style={{ width: "5%" }}
-                        bodyStyle={{ textAlign: "center" }}
                     />
                     <Column
                         field="option_flow"
                         header="Option Flow"
-                        editor={(options) => textEditor(options)}
+                        editor={(options) => optionFlowsEditor(options)}
                         style={{ width: "5%" }}
-                        bodyStyle={{ textAlign: "center" }}
                     />
                     <Column
                         rowEditor={true}

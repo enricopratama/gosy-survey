@@ -44,7 +44,7 @@ export default function NewQuestion() {
         sequence: null,
         question_name: "",
         question_type: "",
-        data_status: 0,
+        data_status: 1,
         is_parent: 0,
         is_mandatory: 1,
     };
@@ -52,7 +52,7 @@ export default function NewQuestion() {
     // Data Table Size
     const [size, setSize] = useState("normal"); // Default size is normal
 
-    // Update UI toggler (call after CRUD)
+    // Update UI toggle (call after CRUD)
     const [updateUI, setUpdateUI] = useState(false);
 
     // Question Groups
@@ -410,7 +410,6 @@ export default function NewQuestion() {
         ) {
             let _questions = [...questions];
             let _response = { ...response };
-            console.log("_response", _response);
 
             var formData = new FormData();
             formData.append("question_group_id", _response.question_group_id);
@@ -438,39 +437,11 @@ export default function NewQuestion() {
                         formData
                     );
 
-                    console.log("edited question:", result.data);
                     const newQuestion = result.data.data || result.data;
 
                     if (result.status === 200) {
                         // Works when updating UI
                         _questions[index] = _response;
-                        console.log(
-                            "New Question Data Status",
-                            newQuestion.data_status
-                        );
-                        console.log(
-                            "Response Data Status",
-                            _response.data_status
-                        );
-
-                        console.log(
-                            "New Question Data Status:",
-                            newQuestion.data_status,
-                            "Type:",
-                            typeof parseInt(newQuestion.data_status, 10)
-                        );
-                        console.log(
-                            "Response Data Status:",
-                            _response.data_status,
-                            "Type:",
-                            typeof _response.data_status
-                        );
-
-                        // New Approach
-                        // _questions[index] = {
-                        //     ..._response,
-                        //     data_status: parseInt(newQuestion.data_status, 10), // Ensure it's an integer
-                        // };
                         toast.current.show({
                             severity: "success",
                             summary: "Successful",
@@ -526,7 +497,6 @@ export default function NewQuestion() {
                             option_8_flow: newQuestion.option_8_flow,
                             option_9: newQuestion.option_9,
                             option_9_flow: newQuestion.option_9_flow,
-                            data_status: parseInt(newQuestion.data_status, 10),
                         };
 
                         _questions.push(mergedQuestion);
@@ -661,8 +631,6 @@ export default function NewQuestion() {
                 sequence: null,
                 data_status: 0,
             }));
-            // getQuestions();
-            // filterQuestionsByGroupName();
             setUpdateUI((prev) => !prev); // Trigger UI update
         } catch (error) {
             console.error("Error deleting question", error);
@@ -675,7 +643,6 @@ export default function NewQuestion() {
             setQuestions(_questions);
         } finally {
             setDeleteQuestionDialog(false);
-            // setQuestion(initialEmptyQuestion);
             setEditState(false);
             getQuestions();
             filterQuestionsByGroupName();
@@ -1394,7 +1361,6 @@ export default function NewQuestion() {
                                         response.question_group_name === null
                                     }
                                     onClick={() => {
-                                        // Optionally, you can update UI again before moving to the next step
                                         setUpdateUI((prev) => !prev);
                                         stepperRef.current.nextCallback();
                                     }}
@@ -1587,6 +1553,7 @@ export default function NewQuestion() {
                             }}
                             selectedRow={selectedRow}
                             updateResponse={updateResponseOptions}
+                            questions={questions}
                         />
 
                         {/* Page Control Buttons */}
