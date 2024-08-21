@@ -3,7 +3,7 @@ import "primereact/resources/primereact.css"; // core css
 import "primeicons/primeicons.css"; // icons
 import React, { useContext, useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import Register from "./components/Register";
+import Register from "./pages/Register";
 import HomeCopy from "./pages/Home";
 import ListUserAccess from "./pages/ListUserAccess";
 import ListUserTokens from "./pages/ListUserTokens";

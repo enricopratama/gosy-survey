@@ -13,9 +13,11 @@ import { FilterMatchMode } from "primereact/api";
 import { Toolbar } from "primereact/toolbar";
 import { InputIcon } from "primereact/inputicon";
 import { IconField } from "primereact/iconfield";
+import TableSizeSelector from "../handlers/TableSizeSelector";
 import axios from "axios";
 import "../../css/app.css";
 import "../../css/NewQuestion.css";
+import "../../css/DataTable.css";
 import BreadcrumbComponent from "../components/BreadcrumbComponent";
 import LeftToolbar from "../components/LeftToolbar";
 import RightToolbar from "../components/RightToolbar";
@@ -46,20 +48,25 @@ export default function NewQuestion() {
         is_parent: 0,
     };
 
+    // Data Table Size
+    const [size, setSize] = useState("normal"); // Default size is normal
+
     // Update UI toggler (call after CRUD)
     const [updateUI, setUpdateUI] = useState(false);
 
     // Question Groups
     const [questionGroupDialog, setQuestionGroupDialog] = useState(false);
     const [customQuestionGroup, setCustomQuestionGroup] = useState("");
-    const [customQuestionGroupStatus, setCustomQuestionGroupStatus] = useState(1); 
+    const [customQuestionGroupStatus, setCustomQuestionGroupStatus] = useState(
+        1
+    );
 
     // Surveys
     const [surveys, setSurveys] = useState([]);
     const [surveyQuestionGroups, setSurveyQuestionGroups] = useState([]);
     const [customSurvey, setCustomSurvey] = useState("");
     const [hoveredSurveyType, setHoveredSurveyType] = useState(null);
-    const [customSurveyStatus, setCustomSurveyStatus] = useState(1); 
+    const [customSurveyStatus, setCustomSurveyStatus] = useState(1);
 
     // Loading
     const [loading, setLoading] = useState(true);
@@ -76,7 +83,7 @@ export default function NewQuestion() {
 
     // Options
     const [optionDialogVisible, setOptionDialogVisible] = useState(false);
-    const [selectedRow, setSelectedRow] = useState({}); 
+    const [selectedRow, setSelectedRow] = useState({});
 
     // Mapping between question & question group id
     const [mapGrpId, setMapGrpId] = useState(null);
@@ -262,43 +269,53 @@ export default function NewQuestion() {
 
     const handleCustomQuestionGroupSubmit = async () => {
         setSubmittedQuestion(true);
-    
+
         if (customQuestionGroup.trim()) {
             const additionalString = `${response.survey_name} - `;
             const totalString = additionalString + customQuestionGroup;
-    
+
             try {
                 const payload = {
-                    question_group_name: totalString, 
+                    question_group_name: totalString,
                     survey_name: response.survey_name,
                     data_status: customQuestionGroupStatus,
                 };
-    
+
                 const result = await axios.post("/addQuestionGroup", payload);
-    
+
                 if (result.status === 200 && result.data.status === 1) {
                     const newQuestionGroup = result.data.data;
-    
-                    setSurveyQuestionGroups((prevGroups) => [...prevGroups, newQuestionGroup]);
+
+                    setSurveyQuestionGroups((prevGroups) => [
+                        ...prevGroups,
+                        newQuestionGroup,
+                    ]);
                     handleQuestionGroupClick(newQuestionGroup);
-    
+
                     toast.current.show({
                         severity: "success",
                         summary: "Successful",
                         detail: `Question Group ${newQuestionGroup.question_group_name} Created`,
                         life: 2000,
                     });
-    
+
                     setQuestionGroupDialog(false);
                 } else {
-                    throw new Error(result.data.message || "Failed to create question group");
+                    throw new Error(
+                        result.data.message || "Failed to create question group"
+                    );
                 }
             } catch (error) {
-                console.error("There was an error creating the question group!", error);
+                console.error(
+                    "There was an error creating the question group!",
+                    error
+                );
                 toast.current.show({
                     severity: "error",
                     summary: "Error",
-                    detail: error.response?.data?.message || "Failed to create question group",
+                    detail:
+                        error.response?.data?.message ||
+                        "Failed to create question group",
                     life: 3000,
                 });
             }
@@ -307,50 +324,54 @@ export default function NewQuestion() {
 
     const handleCustomSurveySubmit = async () => {
         setSubmitted(true);
-    
+
         if (customSurvey.trim()) {
             try {
                 const payload = {
                     survey_name: customSurvey,
-                    data_status: customSurveyStatus, 
+                    data_status: customSurveyStatus,
                 };
-    
+
                 // Send a POST request to the backend to create a new survey
                 const result = await axios.post("/addSurvey", payload);
-    
+
                 if (result.status === 200 && result.data.status === 1) {
                     const newSurvey = result.data.data;
-    
+
                     // Update the surveys state with the new survey
                     setSurveys((prevSurveys) => [...prevSurveys, newSurvey]);
-    
+
                     // Set the newly created survey as the selected one
                     handleSurveyClick(newSurvey);
-    
+
                     toast.current.show({
                         severity: "success",
                         summary: "Successful",
                         detail: `Survey ${newSurvey.survey_name} Created`,
                         life: 2000,
                     });
-    
+
                     // Close the dialog
                     setQuestionDialog(false);
                 } else {
-                    throw new Error(result.data.message || "Failed to create survey");
+                    throw new Error(
+                        result.data.message || "Failed to create survey"
+                    );
                 }
             } catch (error) {
                 console.error("There was an error creating the survey!", error);
                 toast.current.show({
                     severity: "error",
                     summary: "Error",
-                    detail: error.response?.data?.message || "Failed to create survey",
+                    detail:
+                        error.response?.data?.message ||
+                        "Failed to create survey",
                     life: 3000,
                 });
             }
         }
     };
-    
+
     /**
      * Function to check if question_id exists.
      * Returns the index of the found question_id if found, -1 otherwise.
@@ -428,7 +449,7 @@ export default function NewQuestion() {
                             is_parent: 0,
                         }));
                         setQuestionDialog(false);
-                        setUpdateUI((prev) => !prev); 
+                        setUpdateUI((prev) => !prev);
                         getQuestions();
                         filterQuestionsByGroupName();
                     }
@@ -438,11 +459,34 @@ export default function NewQuestion() {
                     console.log("new question", result.data);
                     if (result.status === 200) {
                         // This worked in updating UI
-                        // _questions.push(_response); 
+                        // _questions.push(_response);
 
                         // New Approach:
                         const newQuestion = result.data.data || result.data;
-                        const mergedQuestion = { ..._response, question_id: newQuestion.question_id, question_key: newQuestion.question_key };
+                        const mergedQuestion = {
+                            ..._response,
+                            question_id: newQuestion.question_id,
+                            question_key: newQuestion.question_key,
+                            option_1: newQuestion.option_1,
+                            option_1_flow: newQuestion.option_1_flow,
+                            option_2: newQuestion.option_2,
+                            option_2_flow: newQuestion.option_2_flow,
+                            option_3: newQuestion.option_3,
+                            option_3_flow: newQuestion.option_3_flow,
+                            option_4: newQuestion.option_4,
+                            option_4_flow: newQuestion.option_4_flow,
+                            option_5: newQuestion.option_5,
+                            option_5_flow: newQuestion.option_5_flow,
+                            option_6: newQuestion.option_6,
+                            option_6_flow: newQuestion.option_6_flow,
+                            option_7: newQuestion.option_7,
+                            option_7_flow: newQuestion.option_7_flow,
+                            option_8: newQuestion.option_8,
+                            option_8_flow: newQuestion.option_8_flow,
+                            option_9: newQuestion.option_9,
+                            option_9_flow: newQuestion.option_9_flow,
+                        };
+
                         _questions.push(mergedQuestion);
                         toast.current.show({
                             severity: "success",
@@ -471,7 +515,9 @@ export default function NewQuestion() {
                 toast.current.show({
                     severity: "error",
                     summary: "Error",
-                    detail: error.response?.data?.message || "Failed to save question",
+                    detail:
+                        error.response?.data?.message ||
+                        "Failed to save question",
                     life: 3000,
                 });
             }
@@ -615,7 +661,6 @@ export default function NewQuestion() {
         </React.Fragment>
     );
 
-    
     const deleteSelectedQuestions = async () => {
         var selectedQuestionsID = [];
         let _questions = [...questions];
@@ -818,7 +863,7 @@ export default function NewQuestion() {
                     iconPos="left"
                     onClick={async () => {
                         await saveQuestion();
-                        setUpdateUI(prev => !prev); // Trigger UI update after saving the question
+                        setUpdateUI((prev) => !prev); // Trigger UI update after saving the question
                     }}
                 />
             </div>
@@ -867,13 +912,10 @@ export default function NewQuestion() {
 
     const isParentBodyTemplate = (rowData) => {
         const isParent = rowData.is_parent === 1 ? 1 : 0;
-        const iconClassName = classNames(
-            "pi", 
-            {
-                "pi-check text-success": isParent,
-                "pi-minus text-danger": !isParent,
-            }
-        );
+        const iconClassName = classNames("pi", {
+            "pi-check text-success": isParent,
+            "pi-minus text-danger": !isParent,
+        });
 
         return (
             <div
@@ -887,13 +929,10 @@ export default function NewQuestion() {
 
     const isMandatoryBodyTemplate = (rowData) => {
         const isMandatory = rowData.is_mandatory === 1 ? 1 : 0;
-        const iconClassName = classNames(
-            "pi",
-            {
-                "pi-check text-success": isMandatory, 
-                "pi-minus text-danger": !isMandatory, 
-            }
-        );
+        const iconClassName = classNames("pi", {
+            "pi-check text-success": isMandatory,
+            "pi-minus text-danger": !isMandatory,
+        });
 
         return (
             <div
@@ -1019,7 +1058,6 @@ export default function NewQuestion() {
                                                 >
                                                     {survey.survey_name}
                                                 </button>
-
                                                 {/* Popover Over Button */}
                                                 <OverlayPanel ref={op}>
                                                     <div>
@@ -1032,14 +1070,28 @@ export default function NewQuestion() {
                                                                     hoveredSurveyType
                                                                 )
                                                             )
-                                                            .map((group, index) => {
+                                                            .map(
+                                                                (
+                                                                    group,
+                                                                    index
+                                                                ) => {
                                                                     const groupNameAfterDash = group.question_group_name
                                                                         .substring(
-                                                                            group.question_group_name.indexOf("-") + 1)
+                                                                            group.question_group_name.indexOf(
+                                                                                "-"
+                                                                            ) +
+                                                                                1
+                                                                        )
                                                                         .trim();
                                                                     return (
-                                                                        <div key={index}>
-                                                                            {groupNameAfterDash}
+                                                                        <div
+                                                                            key={
+                                                                                index
+                                                                            }
+                                                                        >
+                                                                            {
+                                                                                groupNameAfterDash
+                                                                            }
                                                                         </div>
                                                                     );
                                                                 }
@@ -1068,7 +1120,8 @@ export default function NewQuestion() {
                                                     !submitted ||
                                                     surveys.some(
                                                         (survey) =>
-                                                            survey.survey_name === customSurvey
+                                                            survey.survey_name ===
+                                                            customSurvey
                                                     )
                                                         ? "btn-outline-primary"
                                                         : "btn-primary"
@@ -1098,13 +1151,18 @@ export default function NewQuestion() {
                                                 visible={questionDialog}
                                                 onHide={hideDialog}
                                                 customSurvey={customSurvey}
-                                                customSurveyStatus={customSurveyStatus}
-                                                setCustomSurveyStatus={setCustomSurveyStatus}
+                                                customSurveyStatus={
+                                                    customSurveyStatus
+                                                }
+                                                setCustomSurveyStatus={
+                                                    setCustomSurveyStatus
+                                                }
                                                 submitted={submitted}
                                                 footer={questionDialogFooter}
-                                                onSurveyInputChange={onSurveyInputChange}
+                                                onSurveyInputChange={
+                                                    onSurveyInputChange
+                                                }
                                             />
-
                                         </div>
                                     </div>
                                 </div>
@@ -1150,15 +1208,21 @@ export default function NewQuestion() {
                                             .map((group, index) => {
                                                 const groupNameAfterDash = group.question_group_name
                                                     .substring(
-                                                        group.question_group_name.indexOf("-") + 1
+                                                        group.question_group_name.indexOf(
+                                                            "-"
+                                                        ) + 1
                                                     )
                                                     .trim();
                                                 return (
                                                     <button
                                                         key={index}
                                                         onClick={() => {
-                                                            handleQuestionGroupClick(group);
-                                                            setSubmittedQuestion(false);
+                                                            handleQuestionGroupClick(
+                                                                group
+                                                            );
+                                                            setSubmittedQuestion(
+                                                                false
+                                                            );
                                                         }}
                                                         className={`btn btn-lg m-2 flex-fill ${
                                                             response.question_group_name ===
@@ -1214,23 +1278,37 @@ export default function NewQuestion() {
                                                 ) : (
                                                     response.question_group_name
                                                         .substring(
-                                                            response.question_group_name.indexOf("-") + 1
+                                                            response.question_group_name.indexOf(
+                                                                "-"
+                                                            ) + 1
                                                         )
                                                         .trim()
                                                 )}
                                             </button>
-                                            
+
                                             {/* Add Question Group Dialog */}
                                             <QuestionGroupDialog
                                                 visible={questionGroupDialog}
                                                 onHide={hideQuestionGroupDialog}
-                                                customQuestionGroup={customQuestionGroup}
-                                                setCustomQuestionGroup={setCustomQuestionGroup}
-                                                customQuestionGroupStatus={customQuestionGroupStatus}
-                                                setCustomQuestionGroupStatus={setCustomQuestionGroupStatus}
+                                                customQuestionGroup={
+                                                    customQuestionGroup
+                                                }
+                                                setCustomQuestionGroup={
+                                                    setCustomQuestionGroup
+                                                }
+                                                customQuestionGroupStatus={
+                                                    customQuestionGroupStatus
+                                                }
+                                                setCustomQuestionGroupStatus={
+                                                    setCustomQuestionGroupStatus
+                                                }
                                                 submitted={submittedQuestion}
-                                                footer={questionGroupDialogFooter}
-                                                onQuestionGroupInputChange={onQuestionGroupInputChange}
+                                                footer={
+                                                    questionGroupDialogFooter
+                                                }
+                                                onQuestionGroupInputChange={
+                                                    onQuestionGroupInputChange
+                                                }
                                             />
                                         </div>
                                     </div>
@@ -1256,7 +1334,7 @@ export default function NewQuestion() {
                                     }
                                     onClick={() => {
                                         // Optionally, you can update UI again before moving to the next step
-                                        setUpdateUI(prev => !prev);
+                                        setUpdateUI((prev) => !prev);
                                         stepperRef.current.nextCallback();
                                     }}
                                 />
@@ -1271,9 +1349,15 @@ export default function NewQuestion() {
                             left={leftToolbarTemplate}
                             right={rightToolbarTemplate}
                         ></Toolbar>
+                        <TableSizeSelector
+                            initialSize={size}
+                            onSizeChange={(newSize) => setSize(newSize)}
+                        />
+
                         <DataTable
                             ref={dt}
                             value={filteredQuestions}
+                            size={size}
                             selection={selectedQuestions}
                             onSelectionChange={(e) =>
                                 setSelectedQuestions(e.value)
@@ -1290,31 +1374,33 @@ export default function NewQuestion() {
                             rowsPerPageOptions={[5, 10, 25]}
                             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                             currentPageReportTemplate="{first} to {last} of {totalRecords} questions"
+                            className="p-datatable-gridlines"
                         >
                             <Column
                                 selectionMode="multiple"
                                 exportable={false}
                                 style={{ width: "4rem" }}
-                                bodyStyle={{ textAlign: "center" }}
+                                className="border-left border-right"
                             />
                             <Column
                                 field="sequence"
                                 header="Sequence"
                                 style={{ width: "2rem" }}
                                 sortable
-                                bodyStyle={{ textAlign: "center" }}
+                                className="border-left border-right"
                             />
                             <Column
                                 field="question_id"
                                 header="ID"
                                 style={{ width: "2rem" }}
                                 sortable
-                                bodyStyle={{ textAlign: "center" }}
+                                className="border-left border-right"
                             />
                             <Column
                                 field="question_name"
                                 header="Name"
                                 style={{ width: "20rem" }}
+                                className="border-left border-right"
                                 sortable
                             />
                             <Column
@@ -1322,7 +1408,7 @@ export default function NewQuestion() {
                                 header="Type"
                                 style={{ width: "4rem" }}
                                 sortable
-                                bodyStyle={{ textAlign: "center" }}
+                                className="border-left border-right"
                             />
                             <Column
                                 field="is_parent"
@@ -1331,6 +1417,7 @@ export default function NewQuestion() {
                                 style={{ width: "4rem" }}
                                 body={isParentBodyTemplate}
                                 bodyStyle={{ textAlign: "center" }}
+                                className="border-left border-right"
                             />
                             <Column
                                 field="is_mandatory"
@@ -1339,6 +1426,7 @@ export default function NewQuestion() {
                                 style={{ width: "4rem" }}
                                 body={isMandatoryBodyTemplate}
                                 bodyStyle={{ textAlign: "center" }}
+                                className="border-left border-right"
                             />
                             <Column
                                 body={optionsBodyTemplate}
@@ -1346,12 +1434,14 @@ export default function NewQuestion() {
                                 exportable={false}
                                 style={{ width: "4rem" }}
                                 bodyStyle={{ textAlign: "center" }}
+                                className="border-left border-right"
                             />
                             <Column
                                 body={actionBodyTemplate}
                                 exportable={false}
                                 style={{ minWidth: "12rem" }}
                                 bodyStyle={{ textAlign: "center" }}
+                                className="border-left border-right"
                             />
                         </DataTable>
 
@@ -1425,7 +1515,7 @@ export default function NewQuestion() {
                                 setOptionDialogVisible(false);
                             }}
                             selectedRow={selectedRow}
-                            updateResponse={updateResponseOptions} 
+                            updateResponse={updateResponseOptions}
                         />
 
                         {/* Page Control Buttons */}

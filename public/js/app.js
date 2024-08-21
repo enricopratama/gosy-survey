@@ -11101,7 +11101,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
-/* harmony import */ var _components_Register__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Register */ "./resources/js/components/Register.js");
+/* harmony import */ var _pages_Register__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/Register */ "./resources/js/pages/Register.js");
 /* harmony import */ var _pages_Home__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/Home */ "./resources/js/pages/Home.js");
 /* harmony import */ var _pages_ListUserAccess__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/ListUserAccess */ "./resources/js/pages/ListUserAccess.js");
 /* harmony import */ var _pages_ListUserTokens__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/ListUserTokens */ "./resources/js/pages/ListUserTokens.js");
@@ -11153,7 +11153,7 @@ function App() {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
             exact: true,
             path: "/register",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_components_Register__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_pages_Register__WEBPACK_IMPORTED_MODULE_5__["default"], {})
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
             exact: true,
             path: "/configs/user-access",
@@ -11703,149 +11703,6 @@ function QuestionGroupDialog(_ref) {
         children: "Status is required"
       })]
     })]
-  });
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Register.js":
-/*!*********************************************!*\
-  !*** ./resources/js/components/Register.js ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Register)
-/* harmony export */ });
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
-function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
-function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
-function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
-function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
-function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-
-
-
-function Register() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-    _useState2 = _slicedToArray(_useState, 2),
-    name = _useState2[0],
-    setName = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-    _useState4 = _slicedToArray(_useState3, 2),
-    email = _useState4[0],
-    setEmail = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-    _useState6 = _slicedToArray(_useState5, 2),
-    password = _useState6[0],
-    setPassword = _useState6[1];
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useNavigate)();
-  var debugging = false;
-  function signUp() {
-    return _signUp.apply(this, arguments);
-  }
-  function _signUp() {
-    _signUp = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var item, result;
-      return _regeneratorRuntime().wrap(function _callee$(_context) {
-        while (1) switch (_context.prev = _context.next) {
-          case 0:
-            item = {
-              name: name,
-              email: email,
-              password: password
-            };
-            if (debugging) {
-              console.warn(item);
-            }
-            _context.next = 4;
-            return fetch("/api/register", {
-              method: "POST",
-              body: JSON.stringify(item),
-              headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-              }
-            });
-          case 4:
-            result = _context.sent;
-            if (result.ok) {
-              _context.next = 8;
-              break;
-            }
-            console.warn("Error:", result.statusText);
-            return _context.abrupt("return");
-          case 8:
-            _context.next = 10;
-            return result.json();
-          case 10:
-            result = _context.sent;
-            if (debugging) {
-              console.warn("result", result);
-            }
-            localStorage.setItem("user-info", JSON.stringify(result));
-            navigate("/");
-          case 14:
-          case "end":
-            return _context.stop();
-        }
-      }, _callee);
-    }));
-    return _signUp.apply(this, arguments);
-  }
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    className: "container",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "row justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: "col-sm-6",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
-          className: "text-center",
-          children: "Registration Page"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-          type: "text",
-          value: name,
-          onChange: function onChange(e) {
-            return setName(e.target.value);
-          },
-          className: "form-control",
-          placeholder: "Name"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-          type: "text",
-          value: email,
-          onChange: function onChange(e) {
-            return setEmail(e.target.value);
-          },
-          className: "form-control",
-          placeholder: "Email"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-          type: "password",
-          value: password,
-          onChange: function onChange(e) {
-            return setPassword(e.target.value);
-          },
-          className: "form-control",
-          placeholder: "Password"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: "d-flex justify-content-center",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-            onClick: signUp,
-            className: "btn btn-primary",
-            children: "Sign Up"
-          })
-        })]
-      })
-    })
   });
 }
 
@@ -12499,23 +12356,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var primereact_column__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! primereact/column */ "./node_modules/primereact/column/column.esm.js");
-/* harmony import */ var primereact_inputtext__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! primereact/inputtext */ "./node_modules/primereact/inputtext/inputtext.esm.js");
-/* harmony import */ var primereact_api__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! primereact/api */ "./node_modules/primereact/api/api.esm.js");
-/* harmony import */ var primereact_selectbutton__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! primereact/selectbutton */ "./node_modules/primereact/selectbutton/selectbutton.esm.js");
-/* harmony import */ var primereact_toolbar__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! primereact/toolbar */ "./node_modules/primereact/toolbar/toolbar.esm.js");
-/* harmony import */ var primereact_datatable__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! primereact/datatable */ "./node_modules/primereact/datatable/datatable.esm.js");
-/* harmony import */ var primereact_dialog__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! primereact/dialog */ "./node_modules/primereact/dialog/dialog.esm.js");
-/* harmony import */ var primereact_toast__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! primereact/toast */ "./node_modules/primereact/toast/toast.esm.js");
-/* harmony import */ var primereact_inputnumber__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! primereact/inputnumber */ "./node_modules/primereact/inputnumber/inputnumber.esm.js");
-/* harmony import */ var primereact_inputicon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primereact/inputicon */ "./node_modules/primereact/inputicon/inputicon.esm.js");
-/* harmony import */ var primereact_iconfield__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primereact/iconfield */ "./node_modules/primereact/iconfield/iconfield.esm.js");
-/* harmony import */ var primereact_utils__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! primereact/utils */ "./node_modules/primereact/utils/utils.esm.js");
-/* harmony import */ var primereact_button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primereact/button */ "./node_modules/primereact/button/button.esm.js");
+/* harmony import */ var primereact_column__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! primereact/column */ "./node_modules/primereact/column/column.esm.js");
+/* harmony import */ var primereact_inputtext__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! primereact/inputtext */ "./node_modules/primereact/inputtext/inputtext.esm.js");
+/* harmony import */ var primereact_api__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primereact/api */ "./node_modules/primereact/api/api.esm.js");
+/* harmony import */ var primereact_datatable__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! primereact/datatable */ "./node_modules/primereact/datatable/datatable.esm.js");
+/* harmony import */ var primereact_toast__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! primereact/toast */ "./node_modules/primereact/toast/toast.esm.js");
+/* harmony import */ var primereact_inputicon__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! primereact/inputicon */ "./node_modules/primereact/inputicon/inputicon.esm.js");
+/* harmony import */ var primereact_iconfield__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! primereact/iconfield */ "./node_modules/primereact/iconfield/iconfield.esm.js");
+/* harmony import */ var primereact_button__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! primereact/button */ "./node_modules/primereact/button/button.esm.js");
 /* harmony import */ var _LeftToolbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LeftToolbar */ "./resources/js/components/LeftToolbar.js");
 /* harmony import */ var _RightToolbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RightToolbar */ "./resources/js/components/RightToolbar.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _handlers_TableSizeSelector__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../handlers/TableSizeSelector */ "./resources/js/handlers/TableSizeSelector.js");
+/* harmony import */ var _css_DataTable_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../css/DataTable.css */ "./resources/css/DataTable.css");
+/* harmony import */ var primereact_multiselect__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primereact/multiselect */ "./node_modules/primereact/multiselect/multiselect.esm.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
@@ -12534,6 +12390,7 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
 
 
 
@@ -12581,72 +12438,126 @@ function SurveyTable() {
     _useState12 = _slicedToArray(_useState11, 2),
     deleteQuestionsDialog = _useState12[0],
     setDeleteQuestionsDialog = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+  var columns = [{
+    field: "sequence",
+    header: "Sequence"
+  }, {
+    field: "question_id",
+    header: "ID"
+  }, {
+    field: "question_name",
+    header: "Question Name"
+  }, {
+    field: "question_key",
+    header: "Question Key"
+  }, {
+    field: "question_group_id",
+    header: "Question Group ID"
+  }, {
+    field: "data_status",
+    header: "Status"
+  }, {
+    field: "question_type",
+    header: "Question Type"
+  }, {
+    field: "option_1",
+    header: "Option 1"
+  }, {
+    field: "option_1_flow",
+    header: "Option 1 Flow"
+  }, {
+    field: "option_2",
+    header: "Option 2"
+  }, {
+    field: "option_2_flow",
+    header: "Option 2 Flow"
+  }, {
+    field: "option_3",
+    header: "Option 3"
+  }, {
+    field: "option_3_flow",
+    header: "Option 3 Flow"
+  }, {
+    field: "option_4",
+    header: "Option 4"
+  }, {
+    field: "option_4_flow",
+    header: "Option 4 Flow"
+  }, {
+    field: "option_5",
+    header: "Option 5"
+  }, {
+    field: "option_5_flow",
+    header: "Option 5 Flow"
+  }, {
+    field: "option_6",
+    header: "Option 6"
+  }, {
+    field: "option_6_flow",
+    header: "Option 6 Flow"
+  }, {
+    field: "option_7",
+    header: "Option 7"
+  }, {
+    field: "option_7_flow",
+    header: "Option 7 Flow"
+  }, {
+    field: "option_8",
+    header: "Option 8"
+  }, {
+    field: "option_8_flow",
+    header: "Option 8 Flow"
+  }, {
+    field: "option_9",
+    header: "Option 9"
+  }, {
+    field: "option_9_flow",
+    header: "Option 9 Flow"
+  }];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(columns),
     _useState14 = _slicedToArray(_useState13, 2),
-    loading = _useState14[0],
-    setLoading = _useState14[1];
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    visibleColumns = _useState14[0],
+    setVisibleColumns = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState16 = _slicedToArray(_useState15, 2),
-    submitted = _useState16[0],
-    setSubmitted = _useState16[1];
+    expandedRows = _useState16[0],
+    setExpandedRows = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState18 = _slicedToArray(_useState17, 2),
+    loading = _useState18[0],
+    setLoading = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState20 = _slicedToArray(_useState19, 2),
+    submitted = _useState20[0],
+    setSubmitted = _useState20[1];
 
   // Filters
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-    _useState18 = _slicedToArray(_useState17, 2),
-    globalFilterValue = _useState18[0],
-    setGlobalFilterValue = _useState18[1];
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState22 = _slicedToArray(_useState21, 2),
+    globalFilterValue = _useState22[0],
+    setGlobalFilterValue = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       global: {
         value: null,
-        matchMode: primereact_api__WEBPACK_IMPORTED_MODULE_5__.FilterMatchMode.CONTAINS
+        matchMode: primereact_api__WEBPACK_IMPORTED_MODULE_7__.FilterMatchMode.CONTAINS
       },
       question_id: {
         value: null,
-        matchMode: primereact_api__WEBPACK_IMPORTED_MODULE_5__.FilterMatchMode.EQUALS
+        matchMode: primereact_api__WEBPACK_IMPORTED_MODULE_7__.FilterMatchMode.EQUALS
       }
     }),
-    _useState20 = _slicedToArray(_useState19, 2),
-    filters = _useState20[0],
-    setFilters = _useState20[1];
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState22 = _slicedToArray(_useState21, 2),
-    editState = _useState22[0],
-    setEditState = _useState22[1];
-
-  // Table Sizing
-  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
-      label: "Small",
-      value: "small"
-    }, {
-      label: "Normal",
-      value: "normal"
-    }, {
-      label: "Large",
-      value: "large"
-    }]),
-    _useState24 = _slicedToArray(_useState23, 1),
-    sizeOptions = _useState24[0];
-  var initialSize = window.innerHeight > 640 && window.innerWidth > 540 ? sizeOptions[1].value // "Normal" for tablets and larger
-  : sizeOptions[0].value; // "Small" for mobile
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialSize),
+    _useState24 = _slicedToArray(_useState23, 2),
+    filters = _useState24[0],
+    setFilters = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState26 = _slicedToArray(_useState25, 2),
-    size = _useState26[0],
-    setSize = _useState26[1];
+    editState = _useState26[0],
+    setEditState = _useState26[1];
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("normal"),
+    _useState28 = _slicedToArray(_useState27, 2),
+    size = _useState28[0],
+    setSize = _useState28[1]; // Default size is normal
 
-  // Handle changing window size
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var handleResize = function handleResize() {
-      setSize(window.innerHeight > 640 && window.innerWidth > 540 ? sizeOptions[1].value : sizeOptions[0].value);
-    };
-    window.addEventListener("resize", handleResize);
-    return function () {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  /**
-   * Initialise an empty question
-   */
   var initialEmptyQuestion = {
     question_key: "",
     question_group_id: null,
@@ -12655,10 +12566,6 @@ function SurveyTable() {
     question_type: "",
     data_status: null
   };
-
-  /**
-   * Fetch Questions API and POST Max ID
-   */
   var getQuestions = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var response;
@@ -12757,7 +12664,7 @@ function SurveyTable() {
                 });
               }
             }
-            formData = new FormData(); // JS built in FormData
+            formData = new FormData();
             formData.append("question_group_id", _question.question_group_id);
             formData.append("question_name", _question.question_name);
             formData.append("question_key", _question.question_key);
@@ -12791,16 +12698,6 @@ function SurveyTable() {
       return _ref2.apply(this, arguments);
     };
   }();
-  var editQuestion = function editQuestion(question) {
-    setQuestion(_objectSpread({}, question));
-    setQuestionDialog(true);
-    setEditState(true);
-  };
-  var confirmDeleteQuestion = function confirmDeleteQuestion(question) {
-    setQuestion(question);
-    setDeleteQuestionDialog(true);
-    setEditState(false);
-  };
   var deleteQuestion = function deleteQuestion() {
     var _questions = questions.filter(function (val) {
       return val.question_id !== question.question_id;
@@ -12861,62 +12758,57 @@ function SurveyTable() {
     setQuestion(_question);
   };
   var leftToolbarTemplate = function leftToolbarTemplate() {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_LeftToolbar__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_LeftToolbar__WEBPACK_IMPORTED_MODULE_2__["default"], {
       openNew: openNew,
       confirmDeleteSelected: confirmDeleteSelected,
       selectedQuestions: selectedQuestions
     });
   };
   var rightToolbarTemplate = function rightToolbarTemplate() {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_RightToolbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_RightToolbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
       exportCSV: exportCSV
     });
   };
-  var paginatorLeft = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
-    type: "button",
-    icon: "pi pi-refresh",
-    text: true,
-    onClick: getQuestions
-  });
-  var paginatorRight = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
-    type: "button",
-    icon: "pi pi-download",
-    text: true,
-    onClick: exportCSV
-  });
-  var actionBodyTemplate = function actionBodyTemplate(rowData) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
-        icon: "pi pi-pencil",
-        className: "me-2 rounded-pill",
-        outlined: true,
-        onClick: function onClick() {
-          setEditState(true);
-          editQuestion(rowData);
-        }
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
-        icon: "pi pi-trash",
-        rounded: true,
-        outlined: true,
-        severity: "danger",
-        className: "rounded-pill",
-        onClick: function onClick() {
-          return confirmDeleteQuestion(rowData);
-        }
-      })]
+  var headerTemplate = function headerTemplate(data) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        className: "vertical-align-middle ml-2 font-bold line-height-3",
+        children: data.question_group_name
+      })
     });
   };
-  var header = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+  var onColumnToggle = function onColumnToggle(event) {
+    var selectedColumns = event.value;
+    var orderedSelectedColumns = columns.filter(function (col) {
+      return selectedColumns.some(function (sCol) {
+        return sCol.field === col.field;
+      });
+    });
+    setVisibleColumns(orderedSelectedColumns);
+  };
+  var header = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     className: "d-flex gap-2 justify-content-between align-items-center flex-wrap",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
       className: "m-0",
       children: "Manage Questions"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(primereact_iconfield__WEBPACK_IMPORTED_MODULE_7__.IconField, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(primereact_multiselect__WEBPACK_IMPORTED_MODULE_8__.MultiSelect, {
+      value: visibleColumns,
+      options: columns,
+      optionLabel: "header",
+      onChange: onColumnToggle,
+      style: {
+        width: "100%",
+        maxWidth: "20rem"
+      },
+      display: "chip",
+      filter: true,
+      placeholder: "Select Columns"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(primereact_iconfield__WEBPACK_IMPORTED_MODULE_9__.IconField, {
       iconPosition: "left",
       className: "me-3",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_inputicon__WEBPACK_IMPORTED_MODULE_8__.InputIcon, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(primereact_inputicon__WEBPACK_IMPORTED_MODULE_10__.InputIcon, {
         className: "pi pi-search"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_9__.InputText, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_11__.InputText, {
         value: globalFilterValue,
         type: "search",
         onChange: onGlobalFilterChange,
@@ -12924,15 +12816,15 @@ function SurveyTable() {
       })]
     })]
   });
-  var questionDialogFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
+  var questionDialogFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_12__.Button, {
       label: "Cancel",
       icon: "pi pi-times",
       iconPos: "left",
       className: "ms-2 rounded",
       outlined: true,
       onClick: hideDialog
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_12__.Button, {
       label: "Save",
       icon: "pi pi-check",
       className: "ms-2 rounded",
@@ -12940,15 +12832,15 @@ function SurveyTable() {
       onClick: saveQuestion
     })]
   });
-  var deleteQuestionDialogFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
+  var deleteQuestionDialogFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_12__.Button, {
       label: "No",
       icon: "pi pi-times",
       iconPos: "left",
       className: "ms-2",
       outlined: true,
       onClick: hideDeleteQuestionDialog
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_12__.Button, {
       label: "Yes",
       icon: "pi pi-check",
       iconPos: "left",
@@ -12957,14 +12849,14 @@ function SurveyTable() {
       onClick: deleteQuestion
     })]
   });
-  var deleteQuestionsDialogFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
+  var deleteQuestionsDialogFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_12__.Button, {
       label: "No",
       icon: "pi pi-times",
       iconPos: "left",
       outlined: true,
       onClick: hideDeleteQuestionsDialog
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_12__.Button, {
       label: "Yes",
       icon: "pi pi-check",
       className: "ms-2",
@@ -12973,360 +12865,100 @@ function SurveyTable() {
       onClick: deleteSelectedQuestions
     })]
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_toast__WEBPACK_IMPORTED_MODULE_10__.Toast, {
-      ref: toast
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-      className: "card",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        className: "d-flex justify-content-center mb-4 mt-4",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_selectbutton__WEBPACK_IMPORTED_MODULE_11__.SelectButton, {
-          value: size,
-          onChange: function onChange(e) {
-            return setSize(e.value);
-          },
-          options: sizeOptions
+  var footerTemplate = function footerTemplate(data) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+        colSpan: 5,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          className: "flex justify-content-end font-bold w-full",
+          children: ["Total Questions:", " ", calculateQuestionTotal(data.question_group_name)]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_toolbar__WEBPACK_IMPORTED_MODULE_12__.Toolbar, {
-        className: "mb-4",
-        left: leftToolbarTemplate,
-        right: rightToolbarTemplate
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(primereact_datatable__WEBPACK_IMPORTED_MODULE_13__.DataTable, {
+      })
+    });
+  };
+  var calculateQuestionTotal = function calculateQuestionTotal(surveyName) {
+    var total = 0;
+    if (questions) {
+      var _iterator = _createForOfIteratorHelper(questions),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var _question2 = _step.value;
+          if (_question2.question_group_name === surveyName) {
+            total++;
+          }
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    }
+    return total;
+  };
+  var onRowReorder = function onRowReorder(e) {
+    var reorderedQuestions = e.value;
+
+    // Iterate through the reorderedQuestions to log the sequence
+    reorderedQuestions.forEach(function (question, index) {
+      console.log("Question ID: ".concat(question.question_id, ", New Sequence: ").concat(index + 1));
+      // question.sequence = index + 1; // Update the sequence if needed
+    });
+    setQuestions(reorderedQuestions);
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(primereact_toast__WEBPACK_IMPORTED_MODULE_13__.Toast, {
+      ref: toast
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      className: "card",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_handlers_TableSizeSelector__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        initialSize: size,
+        onSizeChange: function onSizeChange(newSize) {
+          return setSize(newSize);
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(primereact_datatable__WEBPACK_IMPORTED_MODULE_14__.DataTable, {
         ref: dt,
         value: questions,
-        selection: selectedQuestions,
-        onSelectionChange: function onSelectionChange(e) {
-          return setSelectedQuestions(e.value);
-        },
         dataKey: "question_id",
-        paginator: true,
         size: size,
-        removableSort: true,
-        paginatorLeft: paginatorLeft,
-        paginatorRight: paginatorRight,
-        rows: 5,
-        rowsPerPageOptions: [5, 10, 25],
-        paginatorTemplate: "FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown showGridlines",
-        currentPageReportTemplate: "Showing {first} to {last} of {totalRecords} questions",
         filters: filters,
+        showGridlines: true,
         header: header,
-        stripedRows: true,
-        sortField: "question_id",
+        rowGroupHeaderTemplate: headerTemplate,
+        rowGroupMode: "subheader",
+        groupRowsBy: "question_group_name",
+        sortField: "question_group_name",
         sortOrder: 1,
-        dragSelection: true,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_14__.Column, {
-          selectionMode: "multiple",
-          exportable: false
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_14__.Column, {
-          header: "No.",
-          headerStyle: {
+        expandableRowGroups: true,
+        expandedRows: expandedRows,
+        onRowToggle: function onRowToggle(e) {
+          return setExpandedRows(e.data);
+        },
+        rowGroupFooterTemplate: footerTemplate,
+        tableStyle: {
+          minWidth: "50rem"
+        },
+        stripedRows: true,
+        reorderableRows: true,
+        onRowReorder: onRowReorder,
+        className: "text-large",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_15__.Column, {
+          rowReorder: true,
+          style: {
             width: "3rem"
-          },
-          body: function body(data, options) {
-            return options.rowIndex + 1;
-          },
-          exportable: false
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_14__.Column, {
-          field: "question_id",
-          header: "Question ID",
-          sortable: true,
-          style: {
-            width: "2rem"
           }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_14__.Column, {
-          field: "question_name",
-          header: "Question Name",
-          sortable: true,
-          style: {
-            minWidth: "20rem"
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_14__.Column, {
-          field: "question_key",
-          header: "Question Key",
-          sortable: true,
-          style: {
-            width: "2rem"
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_14__.Column, {
-          field: "question_group_id",
-          header: "Question Group ID",
-          sortable: true,
-          style: {
-            width: "2rem"
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_14__.Column, {
-          field: "sequence",
-          header: "Sequence",
-          sortable: true,
-          style: {
-            width: "4rem"
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_14__.Column, {
-          field: "data_status",
-          header: "Status",
-          sortable: true,
-          style: {
-            width: "12rem"
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_14__.Column, {
-          field: "question_type",
-          header: "Question Type",
-          sortable: true,
-          style: {
-            width: "8rem"
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_14__.Column, {
-          body: actionBodyTemplate,
-          field: "Edit",
-          exportable: false,
-          style: {
-            minWidth: "12rem"
-          },
-          frozen: true,
-          alignFrozen: "right"
-        })]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(primereact_dialog__WEBPACK_IMPORTED_MODULE_15__.Dialog, {
-      visible: questionDialog,
-      style: {
-        width: "32rem",
-        maxHeight: "90vh"
-      },
-      breakpoints: {
-        "960px": "75vw",
-        "641px": "90vw"
-      },
-      header: "Add Question",
-      modal: true,
-      className: "p-fluid",
-      footer: questionDialogFooter,
-      onHide: hideDialog,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "field",
-        style: {
-          marginBottom: "35px",
-          marginTop: "20px"
-        },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
-          className: "p-float-label",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_9__.InputText, {
-            id: "question_group_id",
-            value: question.question_group_id,
-            onChange: function onChange(e) {
-              return onInputChange(e, "question_group_id");
-            },
-            required: true,
-            autoFocus: true,
-            className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_16__.classNames)({
-              "p-invalid": submitted && !question.question_group_id
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-            htmlFor: "question_group_id",
-            className: "font-bold",
-            children: "Question Group ID"
-          })]
-        }), submitted && !question.question_group_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
-          className: "p-error",
-          children: "Question Group ID is required."
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "field",
-        style: {
-          marginBottom: "35px"
-        },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
-          className: "p-float-label",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_9__.InputText, {
-            id: "question_name",
-            value: question.question_name,
-            onChange: function onChange(e) {
-              return onInputChange(e, "question_name");
-            },
-            required: true,
-            className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_16__.classNames)({
-              "p-invalid": submitted && !question.question_name
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-            htmlFor: "question_name",
-            className: "font-bold",
-            children: "Question Name"
-          })]
-        }), submitted && !question.question_name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
-          className: "p-error",
-          children: "Question Name is required."
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "field",
-        style: {
-          marginBottom: "35px"
-        },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
-          className: "p-float-label",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_9__.InputText, {
-            id: "question_key",
-            value: question.question_key,
-            onChange: function onChange(e) {
-              return onInputChange(e, "question_key");
-            },
-            required: true,
-            className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_16__.classNames)({
-              "p-invalid": submitted && !question.question_key
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-            htmlFor: "question_key",
-            className: "font-bold",
-            children: "Question Key"
-          })]
-        }), submitted && !question.question_key && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
-          className: "p-error",
-          children: "Question Key is required."
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "field mb-3 mt-3",
-        style: {
-          marginBottom: "35px"
-        },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-          htmlFor: "question_type",
-          className: "font-bold",
-          children: "Question Type:"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("select", {
-          id: "question_type",
-          name: "question_type"
-          // value={question.question_type}
-          ,
-          onChange: function onChange(e) {
-            return onInputChange(e, "question_type");
-          },
-          required: true,
-          className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_16__.classNames)({
-            "p-invalid": submitted && !question.question_type
-          }),
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
-            value: "Choice",
-            children: "Choice"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
-            value: "Text",
-            children: "Text"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
-            value: "Paragraph",
-            children: "Paragraph"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
-            value: "Checkboxes",
-            children: "Checkboxes"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
-            value: "Dropdown",
-            children: "Dropdown"
-          })]
-        }), submitted && !question.question_type && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
-          className: "p-error",
-          children: "Question type is required."
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "formgrid grid",
-        style: {
-          marginTop: "35px"
-        },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "field col",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
-            className: "p-float-label",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_inputnumber__WEBPACK_IMPORTED_MODULE_17__.InputNumber, {
-              id: "sequence",
-              name: "sequence",
-              value: question.sequence,
-              required: true,
-              onValueChange: function onValueChange(e) {
-                return onInputNumberChange(e, "sequence");
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-              htmlFor: "sequence",
-              className: "font-bold",
-              children: "Sequence"
-            })]
-          }), submitted && !question.sequence && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
-            className: "p-error",
-            children: "Sequence is required."
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "field col",
-          style: {
-            marginTop: "35px"
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
-            className: "p-float-label",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_inputnumber__WEBPACK_IMPORTED_MODULE_17__.InputNumber, {
-              id: "data_status",
-              value: question.data_status,
-              required: true,
-              onValueChange: function onValueChange(e) {
-                return onInputNumberChange(e, "data_status");
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-              htmlFor: "data_status",
-              className: "font-bold",
-              children: "Status"
-            })]
-          }), submitted && !question.data_status && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
-            className: "p-error",
-            children: "Status is required."
-          })]
-        })]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_15__.Dialog, {
-      visible: deleteQuestionDialog,
-      style: {
-        width: "32rem"
-      },
-      breakpoints: {
-        "960px": "75vw",
-        "641px": "90vw"
-      },
-      header: "Confirm",
-      modal: true,
-      footer: deleteQuestionDialogFooter,
-      onHide: hideDeleteQuestionDialog,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "confirmation-content",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
-          className: "pi pi-exclamation-triangle me-3",
-          style: {
-            fontSize: "2rem"
-          }
-        }), question && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
-          children: ["Are you sure you want to delete", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
-            children: question.question_name
-          }), "?"]
-        })]
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_15__.Dialog, {
-      visible: deleteQuestionsDialog,
-      style: {
-        width: "32rem"
-      },
-      breakpoints: {
-        "960px": "75vw",
-        "641px": "90vw"
-      },
-      header: "Confirm",
-      modal: true,
-      footer: deleteQuestionsDialogFooter,
-      onHide: hideDeleteQuestionsDialog,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        className: "d-flex align-middle",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "confirmation-content",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
-            className: "pi pi-exclamation-triangle me-3",
+        }), visibleColumns.map(function (col) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_15__.Column, {
+            field: col.field,
+            header: col.header,
+            sortable: true,
             style: {
-              fontSize: "2rem"
-            }
-          }), question && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-            className: "",
-            children: "Are you sure you want to delete the selected questions?"
-          })]
-        })
-      })
+              minWidth: "8rem"
+            },
+            className: "border-left border-right"
+          }, col.field);
+        })]
+      })]
     })]
   });
 }
@@ -14052,6 +13684,83 @@ function UserTokensTable() {
 
 /***/ }),
 
+/***/ "./resources/js/handlers/TableSizeSelector.js":
+/*!****************************************************!*\
+  !*** ./resources/js/handlers/TableSizeSelector.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TableSizeSelector)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var primereact_selectbutton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primereact/selectbutton */ "./node_modules/primereact/selectbutton/selectbutton.esm.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+// Must set state, and put size field in DataTable as a prop
+/* <TableSizeSelector
+    initialSize={size}
+    onSizeChange={(newSize) => setSize(newSize)}
+/> */
+
+function TableSizeSelector(_ref) {
+  var initialSize = _ref.initialSize,
+    onSizeChange = _ref.onSizeChange;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
+      label: "Small",
+      value: "small"
+    }, {
+      label: "Normal",
+      value: "normal"
+    }, {
+      label: "Large",
+      value: "large"
+    }]),
+    _useState2 = _slicedToArray(_useState, 1),
+    sizeOptions = _useState2[0];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialSize),
+    _useState4 = _slicedToArray(_useState3, 2),
+    size = _useState4[0],
+    setSize = _useState4[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var handleResize = function handleResize() {
+      var newSize = window.innerHeight > 640 && window.innerWidth > 540 ? sizeOptions[1].value // "Normal" for tablets and larger
+      : sizeOptions[0].value; // "Small" for mobile
+      setSize(newSize);
+      onSizeChange(newSize);
+    };
+    window.addEventListener("resize", handleResize);
+    return function () {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [sizeOptions, onSizeChange]);
+  var handleSizeChange = function handleSizeChange(e) {
+    setSize(e.value);
+    onSizeChange(e.value);
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: "d-flex justify-content-center mb-4 mt-4",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_selectbutton__WEBPACK_IMPORTED_MODULE_2__.SelectButton, {
+      value: size,
+      onChange: handleSizeChange,
+      options: sizeOptions
+    })
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/pages/AddEditQuestionDialog.js":
 /*!*****************************************************!*\
   !*** ./resources/js/pages/AddEditQuestionDialog.js ***!
@@ -14586,32 +14295,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var primereact_stepper__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! primereact/stepper */ "./node_modules/primereact/stepper/stepper.esm.js");
-/* harmony import */ var primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! primereact/stepperpanel */ "./node_modules/primereact/stepperpanel/stepperpanel.esm.js");
-/* harmony import */ var primereact_button__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! primereact/button */ "./node_modules/primereact/button/button.esm.js");
-/* harmony import */ var primereact_inputtext__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! primereact/inputtext */ "./node_modules/primereact/inputtext/inputtext.esm.js");
-/* harmony import */ var primereact_dialog__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! primereact/dialog */ "./node_modules/primereact/dialog/dialog.esm.js");
-/* harmony import */ var primereact_utils__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! primereact/utils */ "./node_modules/primereact/utils/utils.esm.js");
-/* harmony import */ var primereact_overlaypanel__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! primereact/overlaypanel */ "./node_modules/primereact/overlaypanel/overlaypanel.esm.js");
-/* harmony import */ var primereact_datatable__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! primereact/datatable */ "./node_modules/primereact/datatable/datatable.esm.js");
-/* harmony import */ var primereact_toast__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! primereact/toast */ "./node_modules/primereact/toast/toast.esm.js");
-/* harmony import */ var primereact_column__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! primereact/column */ "./node_modules/primereact/column/column.esm.js");
-/* harmony import */ var primereact_api__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! primereact/api */ "./node_modules/primereact/api/api.esm.js");
-/* harmony import */ var primereact_toolbar__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! primereact/toolbar */ "./node_modules/primereact/toolbar/toolbar.esm.js");
-/* harmony import */ var primereact_inputicon__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! primereact/inputicon */ "./node_modules/primereact/inputicon/inputicon.esm.js");
-/* harmony import */ var primereact_iconfield__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! primereact/iconfield */ "./node_modules/primereact/iconfield/iconfield.esm.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _css_app_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../css/app.css */ "./resources/css/app.css");
-/* harmony import */ var _css_NewQuestion_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../css/NewQuestion.css */ "./resources/css/NewQuestion.css");
-/* harmony import */ var _components_BreadcrumbComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/BreadcrumbComponent */ "./resources/js/components/BreadcrumbComponent.js");
-/* harmony import */ var _components_LeftToolbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/LeftToolbar */ "./resources/js/components/LeftToolbar.js");
-/* harmony import */ var _components_RightToolbar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/RightToolbar */ "./resources/js/components/RightToolbar.js");
-/* harmony import */ var _AddEditQuestionDialog__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./AddEditQuestionDialog */ "./resources/js/pages/AddEditQuestionDialog.js");
-/* harmony import */ var _components_OptionsDialog__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/OptionsDialog */ "./resources/js/components/OptionsDialog.js");
-/* harmony import */ var _components_SurveyDialog__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/SurveyDialog */ "./resources/js/components/SurveyDialog.js");
-/* harmony import */ var _components_QuestionGroupDialog__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/QuestionGroupDialog */ "./resources/js/components/QuestionGroupDialog.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var primereact_stepper__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! primereact/stepper */ "./node_modules/primereact/stepper/stepper.esm.js");
+/* harmony import */ var primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! primereact/stepperpanel */ "./node_modules/primereact/stepperpanel/stepperpanel.esm.js");
+/* harmony import */ var primereact_button__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! primereact/button */ "./node_modules/primereact/button/button.esm.js");
+/* harmony import */ var primereact_inputtext__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! primereact/inputtext */ "./node_modules/primereact/inputtext/inputtext.esm.js");
+/* harmony import */ var primereact_dialog__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! primereact/dialog */ "./node_modules/primereact/dialog/dialog.esm.js");
+/* harmony import */ var primereact_utils__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! primereact/utils */ "./node_modules/primereact/utils/utils.esm.js");
+/* harmony import */ var primereact_overlaypanel__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! primereact/overlaypanel */ "./node_modules/primereact/overlaypanel/overlaypanel.esm.js");
+/* harmony import */ var primereact_datatable__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! primereact/datatable */ "./node_modules/primereact/datatable/datatable.esm.js");
+/* harmony import */ var primereact_toast__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! primereact/toast */ "./node_modules/primereact/toast/toast.esm.js");
+/* harmony import */ var primereact_column__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! primereact/column */ "./node_modules/primereact/column/column.esm.js");
+/* harmony import */ var primereact_api__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! primereact/api */ "./node_modules/primereact/api/api.esm.js");
+/* harmony import */ var primereact_toolbar__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! primereact/toolbar */ "./node_modules/primereact/toolbar/toolbar.esm.js");
+/* harmony import */ var primereact_inputicon__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! primereact/inputicon */ "./node_modules/primereact/inputicon/inputicon.esm.js");
+/* harmony import */ var primereact_iconfield__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! primereact/iconfield */ "./node_modules/primereact/iconfield/iconfield.esm.js");
+/* harmony import */ var _handlers_TableSizeSelector__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../handlers/TableSizeSelector */ "./resources/js/handlers/TableSizeSelector.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _css_app_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../css/app.css */ "./resources/css/app.css");
+/* harmony import */ var _css_NewQuestion_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../css/NewQuestion.css */ "./resources/css/NewQuestion.css");
+/* harmony import */ var _css_DataTable_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../css/DataTable.css */ "./resources/css/DataTable.css");
+/* harmony import */ var _components_BreadcrumbComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/BreadcrumbComponent */ "./resources/js/components/BreadcrumbComponent.js");
+/* harmony import */ var _components_LeftToolbar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/LeftToolbar */ "./resources/js/components/LeftToolbar.js");
+/* harmony import */ var _components_RightToolbar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/RightToolbar */ "./resources/js/components/RightToolbar.js");
+/* harmony import */ var _AddEditQuestionDialog__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./AddEditQuestionDialog */ "./resources/js/pages/AddEditQuestionDialog.js");
+/* harmony import */ var _components_OptionsDialog__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/OptionsDialog */ "./resources/js/components/OptionsDialog.js");
+/* harmony import */ var _components_SurveyDialog__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/SurveyDialog */ "./resources/js/components/SurveyDialog.js");
+/* harmony import */ var _components_QuestionGroupDialog__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/QuestionGroupDialog */ "./resources/js/components/QuestionGroupDialog.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -14631,6 +14342,8 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
 
 
 
@@ -14694,94 +14407,100 @@ function NewQuestion() {
     is_parent: 0
   };
 
-  // Update UI toggler (call after CRUD)
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  // Data Table Size
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("normal"),
     _useState12 = _slicedToArray(_useState11, 2),
-    updateUI = _useState12[0],
-    setUpdateUI = _useState12[1];
+    size = _useState12[0],
+    setSize = _useState12[1]; // Default size is normal
 
-  // Question Groups
+  // Update UI toggler (call after CRUD)
   var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState14 = _slicedToArray(_useState13, 2),
-    questionGroupDialog = _useState14[0],
-    setQuestionGroupDialog = _useState14[1];
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    updateUI = _useState14[0],
+    setUpdateUI = _useState14[1];
+
+  // Question Groups
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState16 = _slicedToArray(_useState15, 2),
-    customQuestionGroup = _useState16[0],
-    setCustomQuestionGroup = _useState16[1];
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    questionGroupDialog = _useState16[0],
+    setQuestionGroupDialog = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState18 = _slicedToArray(_useState17, 2),
-    customQuestionGroupStatus = _useState18[0],
-    setCustomQuestionGroupStatus = _useState18[1];
+    customQuestionGroup = _useState18[0],
+    setCustomQuestionGroup = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState20 = _slicedToArray(_useState19, 2),
+    customQuestionGroupStatus = _useState20[0],
+    setCustomQuestionGroupStatus = _useState20[1];
 
   // Surveys
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-    _useState20 = _slicedToArray(_useState19, 2),
-    surveys = _useState20[0],
-    setSurveys = _useState20[1];
   var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState22 = _slicedToArray(_useState21, 2),
-    surveyQuestionGroups = _useState22[0],
-    setSurveyQuestionGroups = _useState22[1];
-  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    surveys = _useState22[0],
+    setSurveys = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState24 = _slicedToArray(_useState23, 2),
-    customSurvey = _useState24[0],
-    setCustomSurvey = _useState24[1];
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    surveyQuestionGroups = _useState24[0],
+    setSurveyQuestionGroups = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState26 = _slicedToArray(_useState25, 2),
-    hoveredSurveyType = _useState26[0],
-    setHoveredSurveyType = _useState26[1];
-  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    customSurvey = _useState26[0],
+    setCustomSurvey = _useState26[1];
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState28 = _slicedToArray(_useState27, 2),
-    customSurveyStatus = _useState28[0],
-    setCustomSurveyStatus = _useState28[1];
+    hoveredSurveyType = _useState28[0],
+    setHoveredSurveyType = _useState28[1];
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState30 = _slicedToArray(_useState29, 2),
+    customSurveyStatus = _useState30[0],
+    setCustomSurveyStatus = _useState30[1];
 
   // Loading
-  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
-    _useState30 = _slicedToArray(_useState29, 2),
-    loading = _useState30[0],
-    setLoading = _useState30[1];
+  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState32 = _slicedToArray(_useState31, 2),
+    loading = _useState32[0],
+    setLoading = _useState32[1];
 
   // Submitted
-  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState32 = _slicedToArray(_useState31, 2),
-    submitted = _useState32[0],
-    setSubmitted = _useState32[1];
   var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState34 = _slicedToArray(_useState33, 2),
-    submittedQuestion = _useState34[0],
-    setSubmittedQuestion = _useState34[1];
+    submitted = _useState34[0],
+    setSubmitted = _useState34[1];
   var _useState35 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState36 = _slicedToArray(_useState35, 2),
-    editState = _useState36[0],
-    setEditState = _useState36[1];
-
-  // Delete Question
+    submittedQuestion = _useState36[0],
+    setSubmittedQuestion = _useState36[1];
   var _useState37 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState38 = _slicedToArray(_useState37, 2),
-    deleteQuestionDialog = _useState38[0],
-    setDeleteQuestionDialog = _useState38[1];
+    editState = _useState38[0],
+    setEditState = _useState38[1];
+
+  // Delete Question
   var _useState39 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState40 = _slicedToArray(_useState39, 2),
-    deleteQuestionsDialog = _useState40[0],
-    setDeleteQuestionsDialog = _useState40[1];
-
-  // Options
+    deleteQuestionDialog = _useState40[0],
+    setDeleteQuestionDialog = _useState40[1];
   var _useState41 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState42 = _slicedToArray(_useState41, 2),
-    optionDialogVisible = _useState42[0],
-    setOptionDialogVisible = _useState42[1];
-  var _useState43 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    deleteQuestionsDialog = _useState42[0],
+    setDeleteQuestionsDialog = _useState42[1];
+
+  // Options
+  var _useState43 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState44 = _slicedToArray(_useState43, 2),
-    selectedRow = _useState44[0],
-    setSelectedRow = _useState44[1];
+    optionDialogVisible = _useState44[0],
+    setOptionDialogVisible = _useState44[1];
+  var _useState45 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState46 = _slicedToArray(_useState45, 2),
+    selectedRow = _useState46[0],
+    setSelectedRow = _useState46[1];
 
   // Mapping between question & question group id
-  var _useState45 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState46 = _slicedToArray(_useState45, 2),
-    mapGrpId = _useState46[0],
-    setMapGrpId = _useState46[1];
-  var _useState47 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState47 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState48 = _slicedToArray(_useState47, 2),
+    mapGrpId = _useState48[0],
+    setMapGrpId = _useState48[1];
+  var _useState49 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       question_id: null,
       survey_name: null,
       question_group_name: "",
@@ -14812,28 +14531,28 @@ function NewQuestion() {
       option_9: null,
       option_9_flow: null
     }),
-    _useState48 = _slicedToArray(_useState47, 2),
-    response = _useState48[0],
-    setResponse = _useState48[1];
+    _useState50 = _slicedToArray(_useState49, 2),
+    response = _useState50[0],
+    setResponse = _useState50[1];
 
   // Filters
-  var _useState49 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-    _useState50 = _slicedToArray(_useState49, 2),
-    globalFilterValue = _useState50[0],
-    setGlobalFilterValue = _useState50[1];
-  var _useState51 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState51 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState52 = _slicedToArray(_useState51, 2),
+    globalFilterValue = _useState52[0],
+    setGlobalFilterValue = _useState52[1];
+  var _useState53 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       global: {
         value: null,
-        matchMode: primereact_api__WEBPACK_IMPORTED_MODULE_12__.FilterMatchMode.CONTAINS
+        matchMode: primereact_api__WEBPACK_IMPORTED_MODULE_14__.FilterMatchMode.CONTAINS
       },
       question_id: {
         value: null,
-        matchMode: primereact_api__WEBPACK_IMPORTED_MODULE_12__.FilterMatchMode.EQUALS
+        matchMode: primereact_api__WEBPACK_IMPORTED_MODULE_14__.FilterMatchMode.EQUALS
       }
     }),
-    _useState52 = _slicedToArray(_useState51, 2),
-    filters = _useState52[0],
-    setFilters = _useState52[1];
+    _useState54 = _slicedToArray(_useState53, 2),
+    filters = _useState54[0],
+    setFilters = _useState54[1];
   var onInputChange = function onInputChange(e, name) {
     var val = e.target && e.target.value || "";
     var _response = _objectSpread({}, response);
@@ -14864,7 +14583,7 @@ function NewQuestion() {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/questions");
+            return axios__WEBPACK_IMPORTED_MODULE_2___default().get("/questions");
           case 3:
             _response2 = _context.sent;
             setQuestions(_response2.data);
@@ -14900,7 +14619,7 @@ function NewQuestion() {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/questionGroups");
+            return axios__WEBPACK_IMPORTED_MODULE_2___default().get("/questionGroups");
           case 3:
             _response3 = _context2.sent;
             setSurveyQuestionGroups(_response3.data);
@@ -14936,7 +14655,7 @@ function NewQuestion() {
           case 0:
             _context3.prev = 0;
             _context3.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/survey");
+            return axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/survey");
           case 3:
             _response4 = _context3.sent;
             setSurveys(_response4.data);
@@ -14973,7 +14692,7 @@ function NewQuestion() {
             _context4.prev = 0;
             setLoading(true);
             _context4.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/questionGroups/".concat(question_group_name));
+            return axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/questionGroups/".concat(question_group_name));
           case 4:
             _response5 = _context4.sent;
             questionGroupId = _response5.data.question_group_id;
@@ -15082,7 +14801,7 @@ function NewQuestion() {
               data_status: customQuestionGroupStatus
             };
             _context6.next = 8;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/addQuestionGroup", payload);
+            return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/addQuestionGroup", payload);
           case 8:
             result = _context6.sent;
             if (!(result.status === 200 && result.data.status === 1)) {
@@ -15145,7 +14864,7 @@ function NewQuestion() {
               data_status: customSurveyStatus
             }; // Send a POST request to the backend to create a new survey
             _context7.next = 6;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/addSurvey", payload);
+            return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/addSurvey", payload);
           case 6:
             result = _context7.sent;
             if (!(result.status === 200 && result.data.status === 1)) {
@@ -15244,7 +14963,7 @@ function NewQuestion() {
               break;
             }
             _context8.next = 19;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/editQuestion/".concat(_response.question_id), formData);
+            return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/editQuestion/".concat(_response.question_id), formData);
           case 19:
             result = _context8.sent;
             console.log("edited question:", result.data);
@@ -15277,18 +14996,36 @@ function NewQuestion() {
             break;
           case 25:
             _context8.next = 27;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/addQuestion", formData);
+            return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/addQuestion", formData);
           case 27:
             result = _context8.sent;
             console.log("new question", result.data);
             if (result.status === 200) {
               // This worked in updating UI
-              // _questions.push(_response); 
+              // _questions.push(_response);
               // New Approach:
               _newQuestion = result.data.data || result.data;
               mergedQuestion = _objectSpread(_objectSpread({}, _response), {}, {
                 question_id: _newQuestion.question_id,
-                question_key: _newQuestion.question_key
+                question_key: _newQuestion.question_key,
+                option_1: _newQuestion.option_1,
+                option_1_flow: _newQuestion.option_1_flow,
+                option_2: _newQuestion.option_2,
+                option_2_flow: _newQuestion.option_2_flow,
+                option_3: _newQuestion.option_3,
+                option_3_flow: _newQuestion.option_3_flow,
+                option_4: _newQuestion.option_4,
+                option_4_flow: _newQuestion.option_4_flow,
+                option_5: _newQuestion.option_5,
+                option_5_flow: _newQuestion.option_5_flow,
+                option_6: _newQuestion.option_6,
+                option_6_flow: _newQuestion.option_6_flow,
+                option_7: _newQuestion.option_7,
+                option_7_flow: _newQuestion.option_7_flow,
+                option_8: _newQuestion.option_8,
+                option_8_flow: _newQuestion.option_8_flow,
+                option_9: _newQuestion.option_9,
+                option_9_flow: _newQuestion.option_9_flow
               });
               _questions.push(mergedQuestion);
               toast.current.show({
@@ -15385,17 +15122,17 @@ function NewQuestion() {
     });
     setGlobalFilterValue(value);
   };
-  var header = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+  var header = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
     className: "d-flex gap-2 justify-content-between align-items-center flex-wrap",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("h4", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("h4", {
       className: "m-0",
       children: "Manage Questions"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(primereact_iconfield__WEBPACK_IMPORTED_MODULE_13__.IconField, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(primereact_iconfield__WEBPACK_IMPORTED_MODULE_15__.IconField, {
       iconPosition: "left",
       className: "me-3",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_inputicon__WEBPACK_IMPORTED_MODULE_14__.InputIcon, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_inputicon__WEBPACK_IMPORTED_MODULE_16__.InputIcon, {
         className: "pi pi-search"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_15__.InputText, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_17__.InputText, {
         value: globalFilterValue,
         type: "search",
         onChange: onGlobalFilterChange,
@@ -15414,7 +15151,7 @@ function NewQuestion() {
             url = "/deleteQuestion/".concat(_response.question_id);
             _context9.prev = 3;
             _context9.next = 6;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"](url);
+            return axios__WEBPACK_IMPORTED_MODULE_2___default()["delete"](url);
           case 6:
             result = _context9.sent;
             if (result.status === 200) {
@@ -15475,15 +15212,15 @@ function NewQuestion() {
       return _ref9.apply(this, arguments);
     };
   }();
-  var deleteQuestionDialogFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_16__.Button, {
+  var deleteQuestionDialogFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_18__.Button, {
       label: "No",
       icon: "pi pi-times",
       iconPos: "left",
       className: "ms-2 rounded",
       outlined: true,
       onClick: hideDeleteQuestionDialog
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_16__.Button, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_18__.Button, {
       label: "Yes",
       icon: "pi pi-check",
       rounded: true,
@@ -15516,7 +15253,7 @@ function NewQuestion() {
             question_id = selectedQuestionsID[_i];
             url = "/deleteQuestion/".concat(question_id);
             _context10.next = 10;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"](url);
+            return axios__WEBPACK_IMPORTED_MODULE_2___default()["delete"](url);
           case 10:
             result = _context10.sent;
             if (result.status === 200) {
@@ -15582,8 +15319,8 @@ function NewQuestion() {
       return _ref10.apply(this, arguments);
     };
   }();
-  var deleteQuestionsDialogFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_16__.Button, {
+  var deleteQuestionsDialogFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_18__.Button, {
       label: "No",
       icon: "pi pi-times",
       rounded: true,
@@ -15591,7 +15328,7 @@ function NewQuestion() {
       iconPos: "left",
       outlined: true,
       onClick: hideDeleteQuestionsDialog
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_16__.Button, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_18__.Button, {
       label: "Yes",
       icon: "pi pi-check",
       rounded: true,
@@ -15621,8 +15358,8 @@ function NewQuestion() {
     filterQuestionsByGroupName();
   };
   var actionBodyTemplate = function actionBodyTemplate(rowData) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_16__.Button, {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_18__.Button, {
         icon: "pi pi-pencil",
         className: "me-2 rounded-pill",
         outlined: true,
@@ -15630,7 +15367,7 @@ function NewQuestion() {
           setEditState(true);
           editQuestion(rowData);
         }
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_16__.Button, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_18__.Button, {
         icon: "pi pi-trash",
         rounded: true,
         outlined: true,
@@ -15643,7 +15380,7 @@ function NewQuestion() {
     });
   };
   var optionsBodyTemplate = function optionsBodyTemplate(rowData) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_16__.Button, {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_18__.Button, {
       className: "rounded-circle",
       icon: "pi pi-external-link",
       rounded: true,
@@ -15656,15 +15393,15 @@ function NewQuestion() {
   };
 
   // Footer for: Step 1 (Add Survey Type/Name)
-  var questionDialogFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_16__.Button, {
+  var questionDialogFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_18__.Button, {
       label: "Cancel",
       icon: "pi pi-times",
       iconPos: "left",
       className: "ms-2 rounded",
       outlined: true,
       onClick: hideDialog
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_16__.Button, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_18__.Button, {
       label: "Save",
       icon: "pi pi-check",
       className: "ms-2 rounded",
@@ -15675,15 +15412,15 @@ function NewQuestion() {
   });
 
   // Footer for: Step 2 (Add Question Grp)
-  var questionGroupDialogFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_16__.Button, {
+  var questionGroupDialogFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_18__.Button, {
       label: "Cancel",
       icon: "pi pi-times",
       iconPos: "left",
       className: "ms-2 rounded",
       outlined: true,
       onClick: hideQuestionGroupDialog
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_16__.Button, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_18__.Button, {
       label: "Save",
       icon: "pi pi-check",
       className: "ms-2 rounded",
@@ -15692,17 +15429,17 @@ function NewQuestion() {
       disabled: !customQuestionGroup.trim()
     })]
   });
-  var saveQuestionFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+  var saveQuestionFooter = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
       className: "mt-2",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_16__.Button, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_18__.Button, {
         label: "Cancel",
         icon: "pi pi-times",
         iconPos: "left",
         className: "ms-2 rounded",
         outlined: true,
         onClick: hideDialog
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_16__.Button, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_18__.Button, {
         label: "Save",
         icon: "pi pi-check",
         className: "ms-2 rounded",
@@ -15736,43 +15473,43 @@ function NewQuestion() {
   var exportCSV = function exportCSV() {
     dt.current.exportCSV();
   };
-  var paginatorLeft = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_16__.Button, {
+  var paginatorLeft = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_18__.Button, {
     type: "button",
     icon: "pi pi-refresh",
     text: true,
     onClick: filterQuestionsByGroupName
   });
-  var paginatorRight = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_16__.Button, {
+  var paginatorRight = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_18__.Button, {
     type: "button",
     icon: "pi pi-download",
     text: true,
     onClick: exportCSV
   });
   var leftToolbarTemplate = function leftToolbarTemplate() {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_LeftToolbar__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_LeftToolbar__WEBPACK_IMPORTED_MODULE_7__["default"], {
       openNew: openNew,
       confirmDeleteSelected: confirmDeleteSelected,
       selectedQuestions: selectedQuestions
     });
   };
   var rightToolbarTemplate = function rightToolbarTemplate() {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_RightToolbar__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_RightToolbar__WEBPACK_IMPORTED_MODULE_8__["default"], {
       exportCSV: exportCSV
     });
   };
   var isParentBodyTemplate = function isParentBodyTemplate(rowData) {
     var isParent = rowData.is_parent === 1 ? 1 : 0;
-    var iconClassName = (0,primereact_utils__WEBPACK_IMPORTED_MODULE_17__.classNames)("pi", {
+    var iconClassName = (0,primereact_utils__WEBPACK_IMPORTED_MODULE_19__.classNames)("pi", {
       "pi-check text-success": isParent,
       "pi-minus text-danger": !isParent
     });
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
       className: "d-inline-flex align-items-center justify-content-center",
       style: {
         width: "2rem",
         height: "2rem"
       },
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("i", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("i", {
         className: iconClassName,
         style: {
           fontSize: "20px"
@@ -15782,17 +15519,17 @@ function NewQuestion() {
   };
   var isMandatoryBodyTemplate = function isMandatoryBodyTemplate(rowData) {
     var isMandatory = rowData.is_mandatory === 1 ? 1 : 0;
-    var iconClassName = (0,primereact_utils__WEBPACK_IMPORTED_MODULE_17__.classNames)("pi", {
+    var iconClassName = (0,primereact_utils__WEBPACK_IMPORTED_MODULE_19__.classNames)("pi", {
       "pi-check text-success": isMandatory,
       "pi-minus text-danger": !isMandatory
     });
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
       className: "d-inline-flex align-items-center justify-content-center",
       style: {
         width: "2rem",
         height: "2rem"
       },
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("i", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("i", {
         className: iconClassName,
         style: {
           fontSize: "20px"
@@ -15810,7 +15547,7 @@ function NewQuestion() {
             index = findIndexByID(updatedOptions.question_id);
             _context12.prev = 2;
             _context12.next = 5;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/editQuestion/".concat(updatedOptions.question_id), updatedOptions);
+            return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/editQuestion/".concat(updatedOptions.question_id), updatedOptions);
           case 5:
             result = _context12.sent;
             if (result.status === 200) {
@@ -15868,41 +15605,41 @@ function NewQuestion() {
       return _ref12.apply(this, arguments);
     };
   }();
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_BreadcrumbComponent__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_toast__WEBPACK_IMPORTED_MODULE_18__.Toast, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_BreadcrumbComponent__WEBPACK_IMPORTED_MODULE_6__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_toast__WEBPACK_IMPORTED_MODULE_20__.Toast, {
       ref: toast
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
       className: "card d-flex justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(primereact_stepper__WEBPACK_IMPORTED_MODULE_19__.Stepper, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(primereact_stepper__WEBPACK_IMPORTED_MODULE_21__.Stepper, {
         linear: true,
         ref: stepperRef,
         style: {
           marginTop: "2rem"
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_20__.StepperPanel, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_22__.StepperPanel, {
           header: "Survey Type",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
             className: "d-flex flex-column",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
               className: "rounded surface-ground flex-auto d-flex font-medium mx-5 h-small",
               style: {
                 overflow: "auto"
               },
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
                 className: "d-flex flex-column",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("h5", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("h5", {
                   className: "text-muted",
                   children: "Step 1"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("h1", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("h1", {
                   children: "Apa Nama Tipe Survey Anda?"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
                   className: "d-flex flex-row flex-wrap",
                   style: {
                     gap: "25px"
                   },
                   children: [surveys.map(function (survey, index) {
-                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("button", {
+                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("button", {
                         onClick: function onClick() {
                           handleSurveyClick(survey);
                           setSubmitted(false);
@@ -15923,29 +15660,29 @@ function NewQuestion() {
                           borderRadius: "30px"
                         },
                         children: survey.survey_name
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_overlaypanel__WEBPACK_IMPORTED_MODULE_21__.OverlayPanel, {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_overlaypanel__WEBPACK_IMPORTED_MODULE_23__.OverlayPanel, {
                         ref: op,
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("h5", {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("h5", {
                             children: "Question Groups:"
                           }), surveyQuestionGroups.filter(function (group) {
                             return group.question_group_name.includes(hoveredSurveyType);
                           }).map(function (group, index) {
                             var groupNameAfterDash = group.question_group_name.substring(group.question_group_name.indexOf("-") + 1).trim();
-                            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+                            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
                               children: groupNameAfterDash
                             }, index);
                           }), surveyQuestionGroups.filter(function (group) {
                             return group.question_group_name.includes(hoveredSurveyType);
-                          }).length === 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+                          }).length === 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
                             children: "None"
                           })]
                         })
                       })]
                     }, index);
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
                     className: "d-flex flex-column m-2 flex-fill",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("button", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("button", {
                       onClick: function onClick() {
                         showDialog();
                         setSubmitted(false);
@@ -15960,12 +15697,12 @@ function NewQuestion() {
                       },
                       children: !submitted || surveys.some(function (survey) {
                         return survey.survey_name === customSurvey;
-                      }) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("i", {
+                      }) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("i", {
                           className: "pi pi-plus me-2"
                         }), "Tambah Tipe Survey"]
                       }) : response.survey_name
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_SurveyDialog__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_SurveyDialog__WEBPACK_IMPORTED_MODULE_11__["default"], {
                       visible: questionDialog,
                       onHide: hideDialog,
                       customSurvey: customSurvey,
@@ -15978,9 +15715,9 @@ function NewQuestion() {
                   })]
                 })]
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
               className: "d-flex pt-4 justify-content-end mx-5",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_16__.Button, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_18__.Button, {
                 label: "Next",
                 className: "rounded",
                 icon: "pi pi-arrow-right",
@@ -15992,23 +15729,23 @@ function NewQuestion() {
               })
             })]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_20__.StepperPanel, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_22__.StepperPanel, {
           header: "Question Group Name",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
             className: "d-flex flex-column",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
               className: "rounded surface-ground flex-auto d-flex font-medium mx-5",
               style: {
                 overflow: "auto"
               },
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
                 className: "d-flex flex-column",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("h5", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("h5", {
                   className: "text-muted",
                   children: "Step 2"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("h1", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("h1", {
                   children: ["Apakah Grup ", response.survey_name, " Anda?"]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
                   className: "d-flex flex-row flex-wrap",
                   style: {
                     gap: "25px"
@@ -16017,7 +15754,7 @@ function NewQuestion() {
                     return group.question_group_name.includes(response.survey_name);
                   }).map(function (group, index) {
                     var groupNameAfterDash = group.question_group_name.substring(group.question_group_name.indexOf("-") + 1).trim();
-                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("button", {
+                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("button", {
                       onClick: function onClick() {
                         handleQuestionGroupClick(group);
                         setSubmittedQuestion(false);
@@ -16031,9 +15768,9 @@ function NewQuestion() {
                       },
                       children: groupNameAfterDash
                     }, index);
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
                     className: "d-flex flex-column m-2 flex-fill",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("button", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("button", {
                       onClick: function onClick() {
                         showQuestionGroupDialog();
                         setSubmittedQuestion(false);
@@ -16048,12 +15785,12 @@ function NewQuestion() {
                       },
                       children: !submittedQuestion || surveyQuestionGroups.some(function (group) {
                         return group.question_group_name === "".concat(response.survey_name, " - ").concat(customQuestionGroup);
-                      }) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("i", {
+                      }) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("i", {
                           className: "pi pi-plus me-2"
                         }), "Tambah Question Group"]
                       }) : response.question_group_name.substring(response.question_group_name.indexOf("-") + 1).trim()
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_QuestionGroupDialog__WEBPACK_IMPORTED_MODULE_10__["default"], {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_QuestionGroupDialog__WEBPACK_IMPORTED_MODULE_12__["default"], {
                       visible: questionGroupDialog,
                       onHide: hideQuestionGroupDialog,
                       customQuestionGroup: customQuestionGroup,
@@ -16067,9 +15804,9 @@ function NewQuestion() {
                   })]
                 })]
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
               className: "d-flex pt-4 justify-content-between mx-5",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_16__.Button, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_18__.Button, {
                 label: "Back",
                 className: "rounded",
                 icon: "pi pi-arrow-left",
@@ -16077,7 +15814,7 @@ function NewQuestion() {
                 onClick: function onClick() {
                   return stepperRef.current.prevCallback();
                 }
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_16__.Button, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_18__.Button, {
                 label: "Next",
                 className: "rounded",
                 icon: "pi pi-arrow-right",
@@ -16093,15 +15830,21 @@ function NewQuestion() {
               })]
             })]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_20__.StepperPanel, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(primereact_stepperpanel__WEBPACK_IMPORTED_MODULE_22__.StepperPanel, {
           header: "Add Question",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_toolbar__WEBPACK_IMPORTED_MODULE_22__.Toolbar, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_toolbar__WEBPACK_IMPORTED_MODULE_24__.Toolbar, {
             className: "mb-4",
             left: leftToolbarTemplate,
             right: rightToolbarTemplate
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(primereact_datatable__WEBPACK_IMPORTED_MODULE_23__.DataTable, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_handlers_TableSizeSelector__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            initialSize: size,
+            onSizeChange: function onSizeChange(newSize) {
+              return setSize(newSize);
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(primereact_datatable__WEBPACK_IMPORTED_MODULE_25__.DataTable, {
             ref: dt,
             value: filteredQuestions,
+            size: size,
             selection: selectedQuestions,
             onSelectionChange: function onSelectionChange(e) {
               return setSelectedQuestions(e.value);
@@ -16118,53 +15861,47 @@ function NewQuestion() {
             rowsPerPageOptions: [5, 10, 25],
             paginatorTemplate: "FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown",
             currentPageReportTemplate: "{first} to {last} of {totalRecords} questions",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_24__.Column, {
+            className: "p-datatable-gridlines",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_26__.Column, {
               selectionMode: "multiple",
               exportable: false,
               style: {
                 width: "4rem"
               },
-              bodyStyle: {
-                textAlign: "center"
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_24__.Column, {
+              className: "border-left border-right"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_26__.Column, {
               field: "sequence",
               header: "Sequence",
               style: {
                 width: "2rem"
               },
               sortable: true,
-              bodyStyle: {
-                textAlign: "center"
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_24__.Column, {
+              className: "border-left border-right"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_26__.Column, {
               field: "question_id",
               header: "ID",
               style: {
                 width: "2rem"
               },
               sortable: true,
-              bodyStyle: {
-                textAlign: "center"
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_24__.Column, {
+              className: "border-left border-right"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_26__.Column, {
               field: "question_name",
               header: "Name",
               style: {
                 width: "20rem"
               },
+              className: "border-left border-right",
               sortable: true
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_24__.Column, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_26__.Column, {
               field: "question_type",
               header: "Type",
               style: {
                 width: "4rem"
               },
               sortable: true,
-              bodyStyle: {
-                textAlign: "center"
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_24__.Column, {
+              className: "border-left border-right"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_26__.Column, {
               field: "is_parent",
               header: "Parent?",
               sortable: true,
@@ -16174,8 +15911,9 @@ function NewQuestion() {
               body: isParentBodyTemplate,
               bodyStyle: {
                 textAlign: "center"
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_24__.Column, {
+              },
+              className: "border-left border-right"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_26__.Column, {
               field: "is_mandatory",
               header: "Mandatory?",
               sortable: true,
@@ -16185,8 +15923,9 @@ function NewQuestion() {
               body: isMandatoryBodyTemplate,
               bodyStyle: {
                 textAlign: "center"
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_24__.Column, {
+              },
+              className: "border-left border-right"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_26__.Column, {
               body: optionsBodyTemplate,
               header: "Options",
               exportable: false,
@@ -16195,8 +15934,9 @@ function NewQuestion() {
               },
               bodyStyle: {
                 textAlign: "center"
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_24__.Column, {
+              },
+              className: "border-left border-right"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_26__.Column, {
               body: actionBodyTemplate,
               exportable: false,
               style: {
@@ -16204,9 +15944,10 @@ function NewQuestion() {
               },
               bodyStyle: {
                 textAlign: "center"
-              }
+              },
+              className: "border-left border-right"
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_AddEditQuestionDialog__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_AddEditQuestionDialog__WEBPACK_IMPORTED_MODULE_9__["default"], {
             visible: questionDialog,
             response: response,
             onInputChange: onInputChange,
@@ -16216,7 +15957,7 @@ function NewQuestion() {
             hideDialog: hideDialog,
             submitted: submitted,
             onCheckboxChange: onCheckboxChange
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_25__.Dialog, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_27__.Dialog, {
             visible: deleteQuestionDialog,
             style: {
               width: "32rem"
@@ -16229,20 +15970,20 @@ function NewQuestion() {
             modal: true,
             footer: deleteQuestionDialogFooter,
             onHide: hideDeleteQuestionDialog,
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
               className: "confirmation-content",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("i", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("i", {
                 className: "pi pi-exclamation-triangle me-3",
                 style: {
                   fontSize: "2rem"
                 }
-              }), question && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("span", {
-                children: ["Are you sure you want to delete", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
+              }), question && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("span", {
+                children: ["Are you sure you want to delete", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("b", {
                   children: question.question_name
                 }), "?"]
               })]
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_25__.Dialog, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_27__.Dialog, {
             visible: deleteQuestionsDialog,
             style: {
               width: "32rem"
@@ -16255,31 +15996,31 @@ function NewQuestion() {
             modal: true,
             footer: deleteQuestionsDialogFooter,
             onHide: hideDeleteQuestionsDialog,
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
               className: "d-flex align-middle",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
                 className: "confirmation-content",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("i", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("i", {
                   className: "pi pi-exclamation-triangle me-3",
                   style: {
                     fontSize: "2rem"
                   }
-                }), question && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("span", {
+                }), question && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
                   className: "",
                   children: "Are you sure you want to delete the selected questions?"
                 })]
               })
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_OptionsDialog__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_OptionsDialog__WEBPACK_IMPORTED_MODULE_10__["default"], {
             visible: optionDialogVisible,
             onHide: function onHide() {
               setOptionDialogVisible(false);
             },
             selectedRow: selectedRow,
             updateResponse: updateResponseOptions
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
             className: "d-flex pt-4 justify-content-between mx-5",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_16__.Button, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_18__.Button, {
               label: "Back",
               className: "rounded",
               icon: "pi pi-arrow-left",
@@ -16287,7 +16028,7 @@ function NewQuestion() {
               onClick: function onClick() {
                 return stepperRef.current.prevCallback();
               }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_16__.Button, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_18__.Button, {
               label: "Done",
               className: "rounded",
               icon: "pi pi-check",
@@ -16368,6 +16109,153 @@ function PreviewQuest() {
 
 /***/ }),
 
+/***/ "./resources/js/pages/Register.js":
+/*!****************************************!*\
+  !*** ./resources/js/pages/Register.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Register)
+/* harmony export */ });
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_BreadcrumbComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/BreadcrumbComponent */ "./resources/js/components/BreadcrumbComponent.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+
+function Register() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState2 = _slicedToArray(_useState, 2),
+    name = _useState2[0],
+    setName = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState4 = _slicedToArray(_useState3, 2),
+    email = _useState4[0],
+    setEmail = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState6 = _slicedToArray(_useState5, 2),
+    password = _useState6[0],
+    setPassword = _useState6[1];
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
+  var debugging = false;
+  function signUp() {
+    return _signUp.apply(this, arguments);
+  }
+  function _signUp() {
+    _signUp = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var item, result;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            item = {
+              name: name,
+              email: email,
+              password: password
+            };
+            if (debugging) {
+              console.warn(item);
+            }
+            _context.next = 4;
+            return fetch("/api/register", {
+              method: "POST",
+              body: JSON.stringify(item),
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+              }
+            });
+          case 4:
+            result = _context.sent;
+            if (result.ok) {
+              _context.next = 8;
+              break;
+            }
+            console.warn("Error:", result.statusText);
+            return _context.abrupt("return");
+          case 8:
+            _context.next = 10;
+            return result.json();
+          case 10:
+            result = _context.sent;
+            if (debugging) {
+              console.warn("result", result);
+            }
+            localStorage.setItem("user-info", JSON.stringify(result));
+            navigate("/");
+          case 14:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    }));
+    return _signUp.apply(this, arguments);
+  }
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_BreadcrumbComponent__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "container",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "row justify-content-center",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "col-sm-6",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+            className: "text-center",
+            children: "Registration Page"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            type: "text",
+            value: name,
+            onChange: function onChange(e) {
+              return setName(e.target.value);
+            },
+            className: "form-control",
+            placeholder: "Name"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            type: "text",
+            value: email,
+            onChange: function onChange(e) {
+              return setEmail(e.target.value);
+            },
+            className: "form-control",
+            placeholder: "Email"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            type: "password",
+            value: password,
+            onChange: function onChange(e) {
+              return setPassword(e.target.value);
+            },
+            className: "form-control",
+            placeholder: "Password"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "d-flex justify-content-center",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+              onClick: signUp,
+              className: "btn btn-primary",
+              children: "Sign Up"
+            })
+          })]
+        })
+      })
+    })]
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/pages/ViewAll.js":
 /*!***************************************!*\
   !*** ./resources/js/pages/ViewAll.js ***!
@@ -16382,15 +16270,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_SurveyTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/SurveyTable */ "./resources/js/components/SurveyTable.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _components_BreadcrumbComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/BreadcrumbComponent */ "./resources/js/components/BreadcrumbComponent.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
-// import "primeflex/primeflex.css";
+
 
 function ViewAll() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "mx-auto",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_SurveyTable__WEBPACK_IMPORTED_MODULE_1__["default"], {})
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_BreadcrumbComponent__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_SurveyTable__WEBPACK_IMPORTED_MODULE_1__["default"], {})]
   });
 }
 
@@ -16490,6 +16379,30 @@ var ___CSS_LOADER_URL_REPLACEMENT_0___ = _css_loader_dist_runtime_getUrl_js__WEB
 var ___CSS_LOADER_URL_REPLACEMENT_1___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_fonts_Inter_italic_var_woff2_v_3_19__WEBPACK_IMPORTED_MODULE_3__["default"]);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, ":root {\n  font-family: \"Inter var\", sans-serif;\n  font-feature-settings: \"cv02\", \"cv03\", \"cv04\", \"cv11\";\n  font-variation-settings: normal;\n  --font-family: \"Inter var\", sans-serif;\n  --font-feature-settings: \"cv02\", \"cv03\", \"cv04\", \"cv11\";\n  --surface-a: #ffffff;\n  --surface-b: #f9fafb;\n  --surface-c: #f3f4f6;\n  --surface-d: #e5e7eb;\n  --surface-e: #ffffff;\n  --surface-f: #ffffff;\n  --text-color: #4b5563;\n  --text-color-secondary: #6b7280;\n  --primary-color: #6366f1;\n  --primary-color-text: #ffffff;\n  --surface-0: #ffffff;\n  --surface-50: #f9fafb;\n  --surface-100: #f3f4f6;\n  --surface-200: #e5e7eb;\n  --surface-300: #d1d5db;\n  --surface-400: #9ca3af;\n  --surface-500: #6b7280;\n  --surface-600: #4b5563;\n  --surface-700: #374151;\n  --surface-800: #1f2937;\n  --surface-900: #111827;\n  --gray-50: #f9fafb;\n  --gray-100: #f3f4f6;\n  --gray-200: #e5e7eb;\n  --gray-300: #d1d5db;\n  --gray-400: #9ca3af;\n  --gray-500: #6b7280;\n  --gray-600: #4b5563;\n  --gray-700: #374151;\n  --gray-800: #1f2937;\n  --gray-900: #111827;\n  --content-padding: 1.25rem;\n  --inline-spacing: 0.5rem;\n  --border-radius: 6px;\n  --surface-ground: #f9fafb;\n  --surface-section: #ffffff;\n  --surface-card: #ffffff;\n  --surface-overlay: #ffffff;\n  --surface-border: #dfe7ef;\n  --surface-hover: #f6f9fc;\n  --focus-ring: 0 0 0 0.2rem #c7d2fe;\n  --maskbg: rgba(0, 0, 0, 0.4);\n  --highlight-bg: #eef2ff;\n  --highlight-text-color: #4338ca;\n  color-scheme: light;\n}\n\n@font-face {\n  font-family: \"Inter var\";\n  font-weight: 100 900;\n  font-display: swap;\n  font-style: normal;\n  font-named-instance: \"Regular\";\n  src: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") format(\"woff2\");\n}\n@font-face {\n  font-family: \"Inter var\";\n  font-weight: 100 900;\n  font-display: swap;\n  font-style: italic;\n  font-named-instance: \"Italic\";\n  src: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ") format(\"woff2\");\n}\n:root {\n  --blue-50:#f5f9ff;\n  --blue-100:#d0e1fd;\n  --blue-200:#abc9fb;\n  --blue-300:#85b2f9;\n  --blue-400:#609af8;\n  --blue-500:#3b82f6;\n  --blue-600:#326fd1;\n  --blue-700:#295bac;\n  --blue-800:#204887;\n  --blue-900:#183462;\n  --green-50:#f4fcf7;\n  --green-100:#caf1d8;\n  --green-200:#a0e6ba;\n  --green-300:#76db9b;\n  --green-400:#4cd07d;\n  --green-500:#22c55e;\n  --green-600:#1da750;\n  --green-700:#188a42;\n  --green-800:#136c34;\n  --green-900:#0e4f26;\n  --yellow-50:#fefbf3;\n  --yellow-100:#faedc4;\n  --yellow-200:#f6de95;\n  --yellow-300:#f2d066;\n  --yellow-400:#eec137;\n  --yellow-500:#eab308;\n  --yellow-600:#c79807;\n  --yellow-700:#a47d06;\n  --yellow-800:#816204;\n  --yellow-900:#5e4803;\n  --cyan-50:#f3fbfd;\n  --cyan-100:#c3edf5;\n  --cyan-200:#94e0ed;\n  --cyan-300:#65d2e4;\n  --cyan-400:#35c4dc;\n  --cyan-500:#06b6d4;\n  --cyan-600:#059bb4;\n  --cyan-700:#047f94;\n  --cyan-800:#036475;\n  --cyan-900:#024955;\n  --pink-50:#fef6fa;\n  --pink-100:#fad3e7;\n  --pink-200:#f7b0d3;\n  --pink-300:#f38ec0;\n  --pink-400:#f06bac;\n  --pink-500:#ec4899;\n  --pink-600:#c93d82;\n  --pink-700:#a5326b;\n  --pink-800:#822854;\n  --pink-900:#5e1d3d;\n  --indigo-50:#f7f7fe;\n  --indigo-100:#dadafc;\n  --indigo-200:#bcbdf9;\n  --indigo-300:#9ea0f6;\n  --indigo-400:#8183f4;\n  --indigo-500:#6366f1;\n  --indigo-600:#5457cd;\n  --indigo-700:#4547a9;\n  --indigo-800:#363885;\n  --indigo-900:#282960;\n  --teal-50:#f3fbfb;\n  --teal-100:#c7eeea;\n  --teal-200:#9ae0d9;\n  --teal-300:#6dd3c8;\n  --teal-400:#41c5b7;\n  --teal-500:#14b8a6;\n  --teal-600:#119c8d;\n  --teal-700:#0e8174;\n  --teal-800:#0b655b;\n  --teal-900:#084a42;\n  --orange-50:#fff8f3;\n  --orange-100:#feddc7;\n  --orange-200:#fcc39b;\n  --orange-300:#fba86f;\n  --orange-400:#fa8e42;\n  --orange-500:#f97316;\n  --orange-600:#d46213;\n  --orange-700:#ae510f;\n  --orange-800:#893f0c;\n  --orange-900:#642e09;\n  --bluegray-50:#f7f8f9;\n  --bluegray-100:#dadee3;\n  --bluegray-200:#bcc3cd;\n  --bluegray-300:#9fa9b7;\n  --bluegray-400:#818ea1;\n  --bluegray-500:#64748b;\n  --bluegray-600:#556376;\n  --bluegray-700:#465161;\n  --bluegray-800:#37404c;\n  --bluegray-900:#282e38;\n  --purple-50:#fbf7ff;\n  --purple-100:#ead6fd;\n  --purple-200:#dab6fc;\n  --purple-300:#c996fa;\n  --purple-400:#b975f9;\n  --purple-500:#a855f7;\n  --purple-600:#8f48d2;\n  --purple-700:#763cad;\n  --purple-800:#5c2f88;\n  --purple-900:#432263;\n  --red-50:#fff5f5;\n  --red-100:#ffd0ce;\n  --red-200:#ffaca7;\n  --red-300:#ff8780;\n  --red-400:#ff6259;\n  --red-500:#ff3d32;\n  --red-600:#d9342b;\n  --red-700:#b32b23;\n  --red-800:#8c221c;\n  --red-900:#661814;\n  --primary-50:#f7f7fe;\n  --primary-100:#dadafc;\n  --primary-200:#bcbdf9;\n  --primary-300:#9ea0f6;\n  --primary-400:#8183f4;\n  --primary-500:#6366f1;\n  --primary-600:#5457cd;\n  --primary-700:#4547a9;\n  --primary-800:#363885;\n  --primary-900:#282960;\n}\n\n.p-editor-container .p-editor-toolbar {\n  background: #f9fafb;\n  border-top-right-radius: 6px;\n  border-top-left-radius: 6px;\n}\n.p-editor-container .p-editor-toolbar.ql-snow {\n  border: 1px solid #e5e7eb;\n}\n.p-editor-container .p-editor-toolbar.ql-snow .ql-stroke {\n  stroke: #6b7280;\n}\n.p-editor-container .p-editor-toolbar.ql-snow .ql-fill {\n  fill: #6b7280;\n}\n.p-editor-container .p-editor-toolbar.ql-snow .ql-picker .ql-picker-label {\n  border: 0 none;\n  color: #6b7280;\n}\n.p-editor-container .p-editor-toolbar.ql-snow .ql-picker .ql-picker-label:hover {\n  color: #4b5563;\n}\n.p-editor-container .p-editor-toolbar.ql-snow .ql-picker .ql-picker-label:hover .ql-stroke {\n  stroke: #4b5563;\n}\n.p-editor-container .p-editor-toolbar.ql-snow .ql-picker .ql-picker-label:hover .ql-fill {\n  fill: #4b5563;\n}\n.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label {\n  color: #4b5563;\n}\n.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label .ql-stroke {\n  stroke: #4b5563;\n}\n.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label .ql-fill {\n  fill: #4b5563;\n}\n.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options {\n  background: #ffffff;\n  border: 0 none;\n  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  border-radius: 6px;\n  padding: 0.75rem 0;\n}\n.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options .ql-picker-item {\n  color: #4b5563;\n}\n.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options .ql-picker-item:hover {\n  color: #4b5563;\n  background: #f3f4f6;\n}\n.p-editor-container .p-editor-toolbar.ql-snow .ql-picker.ql-expanded:not(.ql-icon-picker) .ql-picker-item {\n  padding: 0.75rem 1.25rem;\n}\n.p-editor-container .p-editor-content {\n  border-bottom-right-radius: 6px;\n  border-bottom-left-radius: 6px;\n}\n.p-editor-container .p-editor-content.ql-snow {\n  border: 1px solid #e5e7eb;\n}\n.p-editor-container .p-editor-content .ql-editor {\n  background: #ffffff;\n  color: #4b5563;\n  border-bottom-right-radius: 6px;\n  border-bottom-left-radius: 6px;\n}\n.p-editor-container .ql-snow.ql-toolbar button:hover,\n.p-editor-container .ql-snow.ql-toolbar button:focus {\n  color: #4b5563;\n}\n.p-editor-container .ql-snow.ql-toolbar button:hover .ql-stroke,\n.p-editor-container .ql-snow.ql-toolbar button:focus .ql-stroke {\n  stroke: #4b5563;\n}\n.p-editor-container .ql-snow.ql-toolbar button:hover .ql-fill,\n.p-editor-container .ql-snow.ql-toolbar button:focus .ql-fill {\n  fill: #4b5563;\n}\n.p-editor-container .ql-snow.ql-toolbar button.ql-active,\n.p-editor-container .ql-snow.ql-toolbar .ql-picker-label.ql-active,\n.p-editor-container .ql-snow.ql-toolbar .ql-picker-item.ql-selected {\n  color: #6366f1;\n}\n.p-editor-container .ql-snow.ql-toolbar button.ql-active .ql-stroke,\n.p-editor-container .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke,\n.p-editor-container .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke {\n  stroke: #6366f1;\n}\n.p-editor-container .ql-snow.ql-toolbar button.ql-active .ql-fill,\n.p-editor-container .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-fill,\n.p-editor-container .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-fill {\n  fill: #6366f1;\n}\n.p-editor-container .ql-snow.ql-toolbar button.ql-active .ql-picker-label,\n.p-editor-container .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-picker-label,\n.p-editor-container .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-picker-label {\n  color: #6366f1;\n}\n\n@layer primereact {\n  * {\n    box-sizing: border-box;\n  }\n  .p-component {\n    font-family: var(--font-family);\n    font-feature-settings: var(--font-feature-settings, normal);\n    font-size: 1rem;\n    font-weight: normal;\n  }\n  .p-component-overlay {\n    background-color: rgba(0, 0, 0, 0.4);\n    transition-duration: 0.2s;\n  }\n  .p-disabled, .p-component:disabled {\n    opacity: 0.6;\n  }\n  .p-error {\n    color: #e24c4c;\n  }\n  .p-text-secondary {\n    color: #6b7280;\n  }\n  .pi {\n    font-size: 1rem;\n  }\n  .p-icon {\n    width: 1rem;\n    height: 1rem;\n  }\n  .p-link {\n    font-family: var(--font-family);\n    font-feature-settings: var(--font-feature-settings, normal);\n    font-size: 1rem;\n    border-radius: 6px;\n  }\n  .p-link:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-component-overlay-enter {\n    animation: p-component-overlay-enter-animation 150ms forwards;\n  }\n  .p-component-overlay-leave {\n    animation: p-component-overlay-leave-animation 150ms forwards;\n  }\n  @keyframes p-component-overlay-enter-animation {\n    from {\n      background-color: transparent;\n    }\n    to {\n      background-color: var(--maskbg);\n    }\n  }\n  @keyframes p-component-overlay-leave-animation {\n    from {\n      background-color: var(--maskbg);\n    }\n    to {\n      background-color: transparent;\n    }\n  }\n  .p-autocomplete .p-autocomplete-loader {\n    right: 0.75rem;\n  }\n  .p-autocomplete.p-autocomplete-dd .p-autocomplete-loader {\n    right: 3.75rem;\n  }\n  .p-autocomplete .p-autocomplete-multiple-container {\n    padding: 0.375rem 0.75rem;\n    gap: 0.5rem;\n  }\n  .p-autocomplete .p-autocomplete-multiple-container:not(.p-disabled):hover {\n    border-color: #6366f1;\n  }\n  .p-autocomplete .p-autocomplete-multiple-container:not(.p-disabled).p-focus {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n    border-color: #6366f1;\n  }\n  .p-autocomplete .p-autocomplete-multiple-container .p-autocomplete-input-token {\n    padding: 0.375rem 0;\n  }\n  .p-autocomplete .p-autocomplete-multiple-container .p-autocomplete-input-token input {\n    font-family: var(--font-family);\n    font-feature-settings: var(--font-feature-settings, normal);\n    font-size: 1rem;\n    color: #4b5563;\n    padding: 0;\n    margin: 0;\n  }\n  .p-autocomplete .p-autocomplete-multiple-container .p-autocomplete-token {\n    padding: 0.375rem 0.75rem;\n    margin-right: 0.5rem;\n    background: #eef2ff;\n    color: #4338ca;\n    border-radius: 6px;\n  }\n  .p-autocomplete .p-autocomplete-multiple-container .p-autocomplete-token .p-autocomplete-token-icon {\n    margin-left: 0.5rem;\n  }\n  .p-autocomplete.p-invalid.p-component > .p-inputtext {\n    border-color: #e24c4c;\n  }\n  .p-autocomplete-panel {\n    background: #ffffff;\n    color: #4b5563;\n    border: 0 none;\n    border-radius: 6px;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  }\n  .p-autocomplete-panel .p-autocomplete-items {\n    padding: 0.75rem 0;\n  }\n  .p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item {\n    margin: 0;\n    padding: 0.75rem 1.25rem;\n    border: 0 none;\n    color: #4b5563;\n    background: transparent;\n    transition: box-shadow 0.2s;\n    border-radius: 0;\n  }\n  .p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item:hover {\n    color: #4b5563;\n    background: #f3f4f6;\n  }\n  .p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item.p-highlight {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item-group {\n    margin: 0;\n    padding: 0.75rem 1.25rem;\n    color: #374151;\n    background: #ffffff;\n    font-weight: 700;\n  }\n  .p-calendar.p-invalid.p-component > .p-inputtext {\n    border-color: #e24c4c;\n  }\n  .p-calendar:not(.p-calendar-disabled).p-focus > .p-inputtext {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n    border-color: #6366f1;\n  }\n  .p-datepicker {\n    padding: 0.5rem;\n    background: #ffffff;\n    color: #4b5563;\n    border: 1px solid #d1d5db;\n    border-radius: 6px;\n  }\n  .p-datepicker:not(.p-datepicker-inline) {\n    background: #ffffff;\n    border: 0 none;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  }\n  .p-datepicker:not(.p-datepicker-inline) .p-datepicker-header {\n    background: #ffffff;\n  }\n  .p-datepicker .p-datepicker-header {\n    padding: 0.5rem;\n    color: #4b5563;\n    background: #ffffff;\n    font-weight: 600;\n    margin: 0;\n    border-bottom: 1px solid #e5e7eb;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n  }\n  .p-datepicker .p-datepicker-header .p-datepicker-prev,\n  .p-datepicker .p-datepicker-header .p-datepicker-next {\n    width: 2rem;\n    height: 2rem;\n    color: #6b7280;\n    border: 0 none;\n    background: transparent;\n    border-radius: 50%;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n  }\n  .p-datepicker .p-datepicker-header .p-datepicker-prev:enabled:hover,\n  .p-datepicker .p-datepicker-header .p-datepicker-next:enabled:hover {\n    color: #374151;\n    border-color: transparent;\n    background: #f3f4f6;\n  }\n  .p-datepicker .p-datepicker-header .p-datepicker-prev:focus-visible,\n  .p-datepicker .p-datepicker-header .p-datepicker-next:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-datepicker .p-datepicker-header .p-datepicker-title {\n    line-height: 2rem;\n  }\n  .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-year,\n  .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month {\n    color: #4b5563;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n    font-weight: 600;\n    padding: 0.5rem;\n  }\n  .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-year:enabled:hover,\n  .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month:enabled:hover {\n    color: #6366f1;\n  }\n  .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month {\n    margin-right: 0.5rem;\n  }\n  .p-datepicker table {\n    font-size: 1rem;\n    margin: 0.5rem 0;\n  }\n  .p-datepicker table th {\n    padding: 0.5rem;\n  }\n  .p-datepicker table th > span {\n    width: 2.5rem;\n    height: 2.5rem;\n  }\n  .p-datepicker table td {\n    padding: 0.5rem;\n  }\n  .p-datepicker table td > span {\n    width: 2.5rem;\n    height: 2.5rem;\n    border-radius: 50%;\n    transition: box-shadow 0.2s;\n    border: 1px solid transparent;\n  }\n  .p-datepicker table td > span.p-highlight {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-datepicker table td > span:focus {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-datepicker table td.p-datepicker-today > span {\n    background: #d1d5db;\n    color: #4b5563;\n    border-color: transparent;\n  }\n  .p-datepicker table td.p-datepicker-today > span.p-highlight {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-datepicker .p-datepicker-buttonbar {\n    padding: 1rem 0;\n    border-top: 1px solid #e5e7eb;\n  }\n  .p-datepicker .p-datepicker-buttonbar .p-button {\n    width: auto;\n  }\n  .p-datepicker .p-timepicker {\n    border-top: 1px solid #e5e7eb;\n    padding: 0.5rem;\n  }\n  .p-datepicker .p-timepicker button {\n    width: 2rem;\n    height: 2rem;\n    color: #6b7280;\n    border: 0 none;\n    background: transparent;\n    border-radius: 50%;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n  }\n  .p-datepicker .p-timepicker button:enabled:hover {\n    color: #374151;\n    border-color: transparent;\n    background: #f3f4f6;\n  }\n  .p-datepicker .p-timepicker button:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-datepicker .p-timepicker button:last-child {\n    margin-top: 0.2em;\n  }\n  .p-datepicker .p-timepicker span {\n    font-size: 1.25rem;\n  }\n  .p-datepicker .p-timepicker > div {\n    padding: 0 0.5rem;\n  }\n  .p-datepicker.p-datepicker-timeonly .p-timepicker {\n    border-top: 0 none;\n  }\n  .p-datepicker .p-monthpicker {\n    margin: 0.5rem 0;\n  }\n  .p-datepicker .p-monthpicker .p-monthpicker-month {\n    padding: 0.5rem;\n    transition: box-shadow 0.2s;\n    border-radius: 6px;\n  }\n  .p-datepicker .p-monthpicker .p-monthpicker-month.p-highlight {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-datepicker .p-yearpicker {\n    margin: 0.5rem 0;\n  }\n  .p-datepicker .p-yearpicker .p-yearpicker-year {\n    padding: 0.5rem;\n    transition: box-shadow 0.2s;\n    border-radius: 6px;\n  }\n  .p-datepicker .p-yearpicker .p-yearpicker-year.p-highlight {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-datepicker.p-datepicker-multiple-month .p-datepicker-group {\n    border-left: 1px solid #e5e7eb;\n    padding-right: 0.5rem;\n    padding-left: 0.5rem;\n    padding-top: 0;\n    padding-bottom: 0;\n  }\n  .p-datepicker.p-datepicker-multiple-month .p-datepicker-group:first-child {\n    padding-left: 0;\n    border-left: 0 none;\n  }\n  .p-datepicker.p-datepicker-multiple-month .p-datepicker-group:last-child {\n    padding-right: 0;\n  }\n  .p-datepicker:not(.p-disabled) table td span:not(.p-highlight):not(.p-disabled):hover {\n    background: #f3f4f6;\n  }\n  .p-datepicker:not(.p-disabled) table td span:not(.p-highlight):not(.p-disabled):focus {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-datepicker:not(.p-disabled) .p-monthpicker .p-monthpicker-month:not(.p-disabled):not(.p-highlight):hover {\n    background: #f3f4f6;\n  }\n  .p-datepicker:not(.p-disabled) .p-monthpicker .p-monthpicker-month:not(.p-disabled):focus {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-datepicker:not(.p-disabled) .p-yearpicker .p-yearpicker-year:not(.p-disabled):not(.p-highlight):hover {\n    background: #f3f4f6;\n  }\n  .p-datepicker:not(.p-disabled) .p-yearpicker .p-yearpicker-year:not(.p-disabled):focus {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  @media screen and (max-width: 769px) {\n    .p-datepicker table th,\n    .p-datepicker table td {\n      padding: 0;\n    }\n  }\n  .p-cascadeselect {\n    background: #ffffff;\n    border: 1px solid #d1d5db;\n    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;\n    border-radius: 6px;\n    outline-color: transparent;\n  }\n  .p-cascadeselect:not(.p-disabled):hover {\n    border-color: #6366f1;\n  }\n  .p-cascadeselect:not(.p-disabled).p-focus {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n    border-color: #6366f1;\n  }\n  .p-cascadeselect.p-variant-filled {\n    background-color: #f3f4f6;\n  }\n  .p-cascadeselect.p-variant-filled:enabled:hover {\n    background-color: #f3f4f6;\n  }\n  .p-cascadeselect.p-variant-filled:enabled:focus {\n    background-color: #ffffff;\n  }\n  .p-cascadeselect .p-cascadeselect-label {\n    background: transparent;\n    border: 0 none;\n    padding: 0.75rem 0.75rem;\n  }\n  .p-cascadeselect .p-cascadeselect-label.p-placeholder {\n    color: #6b7280;\n  }\n  .p-cascadeselect .p-cascadeselect-label:enabled:focus {\n    outline: 0 none;\n    box-shadow: none;\n  }\n  .p-cascadeselect .p-cascadeselect-trigger {\n    background: transparent;\n    color: #6b7280;\n    width: 3rem;\n    border-top-right-radius: 6px;\n    border-bottom-right-radius: 6px;\n  }\n  .p-cascadeselect.p-invalid.p-component {\n    border-color: #e24c4c;\n  }\n  .p-cascadeselect-panel {\n    background: #ffffff;\n    color: #4b5563;\n    border: 0 none;\n    border-radius: 6px;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  }\n  .p-cascadeselect-panel .p-cascadeselect-items {\n    padding: 0.75rem 0;\n  }\n  .p-cascadeselect-panel .p-cascadeselect-items .p-cascadeselect-item {\n    margin: 0;\n    border: 0 none;\n    color: #4b5563;\n    background: transparent;\n    transition: box-shadow 0.2s;\n    border-radius: 0;\n  }\n  .p-cascadeselect-panel .p-cascadeselect-items .p-cascadeselect-item:first-child {\n    margin-top: 0;\n  }\n  .p-cascadeselect-panel .p-cascadeselect-items .p-cascadeselect-item:last-child {\n    margin-bottom: 0;\n  }\n  .p-cascadeselect-panel .p-cascadeselect-items .p-cascadeselect-item.p-highlight {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-cascadeselect-panel .p-cascadeselect-items .p-cascadeselect-item.p-highlight.p-focus {\n    background: rgba(99, 102, 241, 0.24);\n  }\n  .p-cascadeselect-panel .p-cascadeselect-items .p-cascadeselect-item:not(.p-highlight):not(.p-disabled).p-focus {\n    color: #4b5563;\n    background: #f3f4f6;\n  }\n  .p-cascadeselect-panel .p-cascadeselect-items .p-cascadeselect-item .p-cascadeselect-item-content {\n    padding: 0.75rem 1.25rem;\n  }\n  .p-cascadeselect-panel .p-cascadeselect-items .p-cascadeselect-item .p-cascadeselect-group-icon {\n    font-size: 0.875rem;\n  }\n  .p-checkbox {\n    position: relative;\n    display: inline-flex;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n    vertical-align: bottom;\n  }\n  .p-checkbox-input {\n    -webkit-appearance: none;\n       -moz-appearance: none;\n            appearance: none;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    padding: 0;\n    margin: 0;\n    opacity: 0;\n    z-index: 1;\n    outline: 0 none;\n    cursor: pointer;\n  }\n  .p-checkbox-box {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n  }\n  .p-checkbox {\n    width: 22px;\n    height: 22px;\n  }\n  .p-checkbox .p-checkbox-input {\n    border: 2px solid #d1d5db;\n    border-radius: 6px;\n  }\n  .p-checkbox .p-checkbox-box {\n    border: 2px solid #d1d5db;\n    background: #ffffff;\n    width: 22px;\n    height: 22px;\n    color: #4b5563;\n    border-radius: 6px;\n    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;\n    outline-color: transparent;\n  }\n  .p-checkbox .p-checkbox-box .p-checkbox-icon {\n    transition-duration: 0.2s;\n    color: #ffffff;\n    font-size: 14px;\n  }\n  .p-checkbox .p-checkbox-box .p-checkbox-icon.p-icon {\n    width: 14px;\n    height: 14px;\n  }\n  .p-checkbox .p-checkbox-box {\n    border: 2px solid #d1d5db;\n    background: #ffffff;\n    width: 22px;\n    height: 22px;\n    color: #4b5563;\n    border-radius: 6px;\n    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;\n    outline-color: transparent;\n  }\n  .p-checkbox .p-checkbox-box .p-checkbox-icon {\n    transition-duration: 0.2s;\n    color: #ffffff;\n    font-size: 14px;\n  }\n  .p-checkbox .p-checkbox-box .p-checkbox-icon.p-icon {\n    width: 14px;\n    height: 14px;\n  }\n  .p-checkbox.p-highlight .p-checkbox-box {\n    border-color: #6366f1;\n    background: #6366f1;\n  }\n  .p-checkbox:not(.p-disabled):has(.p-checkbox-input:hover) .p-checkbox-box {\n    border-color: #6366f1;\n  }\n  .p-checkbox:not(.p-disabled):has(.p-checkbox-input:hover).p-highlight .p-checkbox-box {\n    border-color: #4338ca;\n    background: #4338ca;\n    color: #ffffff;\n  }\n  .p-checkbox:not(.p-disabled):has(.p-checkbox-input:focus-visible) .p-checkbox-box {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n    border-color: #6366f1;\n  }\n  .p-checkbox.p-invalid > .p-checkbox-box {\n    border-color: #e24c4c;\n  }\n  .p-checkbox.p-variant-filled .p-checkbox-box {\n    background-color: #f3f4f6;\n  }\n  .p-checkbox.p-variant-filled.p-highlight .p-checkbox-box {\n    background: #6366f1;\n  }\n  .p-checkbox.p-variant-filled:not(.p-disabled):has(.p-checkbox-input:hover) .p-checkbox-box {\n    background-color: #f3f4f6;\n  }\n  .p-checkbox.p-variant-filled:not(.p-disabled):has(.p-checkbox-input:hover).p-highlight .p-checkbox-box {\n    background: #4338ca;\n  }\n  .p-input-filled .p-checkbox .p-checkbox-box {\n    background-color: #f3f4f6;\n  }\n  .p-input-filled .p-checkbox.p-highlight .p-checkbox-box {\n    background: #6366f1;\n  }\n  .p-input-filled .p-checkbox:not(.p-disabled):has(.p-checkbox-input:hover) .p-checkbox-box {\n    background-color: #f3f4f6;\n  }\n  .p-input-filled .p-checkbox:not(.p-disabled):has(.p-checkbox-input:hover).p-highlight .p-checkbox-box {\n    background: #4338ca;\n  }\n  .p-checkbox {\n    position: relative;\n    display: inline-flex;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n    vertical-align: bottom;\n  }\n  .p-checkbox-input {\n    cursor: pointer;\n  }\n  .p-checkbox-box {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n  }\n  .p-tristatecheckbox.p-variant-filled .p-checkbox-box {\n    background-color: #f3f4f6;\n  }\n  .p-tristatecheckbox.p-variant-filled.p-highlight .p-checkbox-box {\n    background: #6366f1;\n  }\n  .p-tristatecheckbox.p-variant-filled:not(.p-disabled):has(.p-checkbox-input:hover) .p-checkbox-box {\n    background-color: #f3f4f6;\n  }\n  .p-tristatecheckbox.p-variant-filled:not(.p-disabled):has(.p-checkbox-input:hover).p-highlight .p-checkbox-box {\n    background: #4338ca;\n  }\n  .p-chips {\n    display: inline-flex;\n  }\n  .p-chips-multiple-container {\n    margin: 0;\n    padding: 0;\n    list-style-type: none;\n    cursor: text;\n    overflow: hidden;\n    display: flex;\n    align-items: center;\n    flex-wrap: wrap;\n  }\n  .p-chips-token {\n    cursor: default;\n    display: inline-flex;\n    align-items: center;\n    flex: 0 0 auto;\n  }\n  .p-chips-input-token {\n    flex: 1 1 auto;\n    display: inline-flex;\n  }\n  .p-chips-token-icon {\n    cursor: pointer;\n  }\n  .p-chips-input-token input {\n    border: 0 none;\n    outline: 0 none;\n    background-color: transparent;\n    margin: 0;\n    padding: 0;\n    box-shadow: none;\n    border-radius: 0;\n    width: 100%;\n  }\n  .p-fluid .p-chips {\n    display: flex;\n  }\n  .p-chips:not(.p-disabled):hover .p-chips-multiple-container {\n    border-color: #6366f1;\n  }\n  .p-chips:not(.p-disabled).p-focus .p-chips-multiple-container {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n    border-color: #6366f1;\n  }\n  .p-chips .p-chips-multiple-container {\n    padding: 0.375rem 0.75rem;\n    outline-color: transparent;\n  }\n  .p-chips .p-chips-multiple-container .p-chips-token {\n    padding: 0.375rem 0.75rem;\n    margin-right: 0.5rem;\n    background: #e5e7eb;\n    color: #4b5563;\n    border-radius: 16px;\n  }\n  .p-chips .p-chips-multiple-container .p-chips-token.p-focus {\n    background: #e5e7eb;\n    color: #4b5563;\n  }\n  .p-chips .p-chips-multiple-container .p-chips-token .p-chips-token-icon {\n    margin-left: 0.5rem;\n  }\n  .p-chips .p-chips-multiple-container .p-chips-input-token {\n    padding: 0.375rem 0;\n  }\n  .p-chips .p-chips-multiple-container .p-chips-input-token input {\n    font-family: var(--font-family);\n    font-feature-settings: var(--font-feature-settings, normal);\n    font-size: 1rem;\n    color: #4b5563;\n    padding: 0;\n    margin: 0;\n  }\n  .p-chips.p-invalid.p-component > .p-inputtext {\n    border-color: #e24c4c;\n  }\n  .p-colorpicker-preview {\n    width: 2rem;\n    height: 2rem;\n  }\n  .p-colorpicker-panel {\n    background: #323232;\n    border: 1px solid #191919;\n  }\n  .p-colorpicker-panel .p-colorpicker-color-handle,\n  .p-colorpicker-panel .p-colorpicker-hue-handle {\n    border-color: #ffffff;\n  }\n  .p-colorpicker-overlay-panel {\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  }\n  .p-dropdown {\n    display: inline-flex;\n    cursor: pointer;\n    position: relative;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n  }\n  .p-dropdown-clear-icon {\n    position: absolute;\n    top: 50%;\n    margin-top: -0.5rem;\n  }\n  .p-dropdown-trigger {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n  }\n  .p-dropdown-label {\n    display: block;\n    white-space: nowrap;\n    overflow: hidden;\n    flex: 1 1 auto;\n    width: 1%;\n    text-overflow: ellipsis;\n    cursor: pointer;\n  }\n  .p-dropdown-label-empty {\n    overflow: hidden;\n    opacity: 0;\n  }\n  input.p-dropdown-label {\n    cursor: default;\n  }\n  .p-dropdown .p-dropdown-panel {\n    min-width: 100%;\n  }\n  .p-dropdown-panel {\n    position: absolute;\n    top: 0;\n    left: 0;\n  }\n  .p-dropdown-items-wrapper {\n    overflow: auto;\n  }\n  .p-dropdown-item {\n    cursor: pointer;\n    font-weight: normal;\n    white-space: nowrap;\n    position: relative;\n    overflow: hidden;\n    display: flex;\n    align-items: center;\n  }\n  .p-dropdown-item-group {\n    cursor: auto;\n  }\n  .p-dropdown-items {\n    margin: 0;\n    padding: 0;\n    list-style-type: none;\n  }\n  .p-dropdown-filter {\n    width: 100%;\n  }\n  .p-dropdown-filter-container {\n    position: relative;\n  }\n  .p-dropdown-filter-icon {\n    position: absolute;\n    top: 50%;\n    margin-top: -0.5rem;\n  }\n  .p-fluid .p-dropdown {\n    display: flex;\n  }\n  .p-fluid .p-dropdown .p-dropdown-label {\n    width: 1%;\n  }\n  .p-dropdown {\n    background: #ffffff;\n    border: 1px solid #d1d5db;\n    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;\n    border-radius: 6px;\n    outline-color: transparent;\n  }\n  .p-dropdown:not(.p-disabled):hover {\n    border-color: #6366f1;\n  }\n  .p-dropdown:not(.p-disabled).p-focus {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n    border-color: #6366f1;\n  }\n  .p-dropdown.p-variant-filled {\n    background: #f3f4f6;\n  }\n  .p-dropdown.p-variant-filled:not(.p-disabled):hover {\n    background-color: #f3f4f6;\n  }\n  .p-dropdown.p-variant-filled:not(.p-disabled).p-focus {\n    background-color: #ffffff;\n  }\n  .p-dropdown.p-variant-filled:not(.p-disabled).p-focus .p-inputtext {\n    background-color: transparent;\n  }\n  .p-dropdown.p-dropdown-clearable .p-dropdown-label {\n    padding-right: 1.75rem;\n  }\n  .p-dropdown .p-dropdown-label {\n    background: transparent;\n    border: 0 none;\n  }\n  .p-dropdown .p-dropdown-label.p-placeholder {\n    color: #6b7280;\n  }\n  .p-dropdown .p-dropdown-label:focus, .p-dropdown .p-dropdown-label:enabled:focus {\n    outline: 0 none;\n    box-shadow: none;\n  }\n  .p-dropdown .p-dropdown-trigger {\n    background: transparent;\n    color: #6b7280;\n    width: 3rem;\n    border-top-right-radius: 6px;\n    border-bottom-right-radius: 6px;\n  }\n  .p-dropdown .p-dropdown-clear-icon {\n    color: #6b7280;\n    right: 3rem;\n  }\n  .p-dropdown.p-invalid.p-component {\n    border-color: #e24c4c;\n  }\n  .p-dropdown-panel {\n    background: #ffffff;\n    color: #4b5563;\n    border: 0 none;\n    border-radius: 6px;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  }\n  .p-dropdown-panel .p-dropdown-header {\n    padding: 0.75rem 1.25rem;\n    border-bottom: 1px solid #e5e7eb;\n    color: #374151;\n    background: #f9fafb;\n    margin: 0;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n  }\n  .p-dropdown-panel .p-dropdown-header .p-dropdown-filter {\n    padding-right: 1.75rem;\n    margin-right: -1.75rem;\n  }\n  .p-dropdown-panel .p-dropdown-header .p-dropdown-filter-icon {\n    right: 0.75rem;\n    color: #6b7280;\n  }\n  .p-dropdown-panel .p-dropdown-items {\n    padding: 0.75rem 0;\n  }\n  .p-dropdown-panel .p-dropdown-items .p-dropdown-item {\n    margin: 0;\n    padding: 0.75rem 1.25rem;\n    border: 0 none;\n    color: #4b5563;\n    background: transparent;\n    transition: box-shadow 0.2s;\n    border-radius: 0;\n  }\n  .p-dropdown-panel .p-dropdown-items .p-dropdown-item:first-child {\n    margin-top: 0;\n  }\n  .p-dropdown-panel .p-dropdown-items .p-dropdown-item:last-child {\n    margin-bottom: 0;\n  }\n  .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight.p-focus {\n    background: rgba(99, 102, 241, 0.24);\n  }\n  .p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled).p-focus {\n    color: #4b5563;\n    background: #f3f4f6;\n  }\n  .p-dropdown-panel .p-dropdown-items .p-dropdown-item .p-dropdown-check-icon {\n    position: relative;\n    margin-left: -0.5rem;\n    margin-right: 0.5rem;\n  }\n  .p-dropdown-panel .p-dropdown-items .p-dropdown-item-group {\n    margin: 0;\n    padding: 0.75rem 1.25rem;\n    color: #374151;\n    background: #ffffff;\n    font-weight: 700;\n  }\n  .p-dropdown-panel .p-dropdown-items .p-dropdown-empty-message {\n    padding: 0.75rem 1.25rem;\n    color: #4b5563;\n    background: transparent;\n  }\n  .p-inputgroup-addon {\n    background: #f3f4f6;\n    color: #6b7280;\n    border-top: 1px solid #d1d5db;\n    border-left: 1px solid #d1d5db;\n    border-bottom: 1px solid #d1d5db;\n    padding: 0.75rem 0.75rem;\n    min-width: 3rem;\n  }\n  .p-inputgroup-addon:last-child {\n    border-right: 1px solid #d1d5db;\n  }\n  .p-inputgroup > .p-component,\n  .p-inputgroup > .p-inputwrapper > .p-inputtext,\n  .p-inputgroup > .p-float-label > .p-component {\n    border-radius: 0;\n    margin: 0;\n  }\n  .p-inputgroup > .p-component + .p-inputgroup-addon,\n  .p-inputgroup > .p-inputwrapper > .p-inputtext + .p-inputgroup-addon,\n  .p-inputgroup > .p-float-label > .p-component + .p-inputgroup-addon {\n    border-left: 0 none;\n  }\n  .p-inputgroup > .p-component:focus,\n  .p-inputgroup > .p-inputwrapper > .p-inputtext:focus,\n  .p-inputgroup > .p-float-label > .p-component:focus {\n    z-index: 1;\n  }\n  .p-inputgroup > .p-component:focus ~ label,\n  .p-inputgroup > .p-inputwrapper > .p-inputtext:focus ~ label,\n  .p-inputgroup > .p-float-label > .p-component:focus ~ label {\n    z-index: 1;\n  }\n  .p-inputgroup-addon:first-child,\n  .p-inputgroup button:first-child,\n  .p-inputgroup input:first-child,\n  .p-inputgroup > .p-inputwrapper:first-child,\n  .p-inputgroup > .p-inputwrapper:first-child > .p-inputtext {\n    border-top-left-radius: 6px;\n    border-bottom-left-radius: 6px;\n  }\n  .p-inputgroup .p-float-label:first-child input {\n    border-top-left-radius: 6px;\n    border-bottom-left-radius: 6px;\n  }\n  .p-inputgroup-addon:last-child,\n  .p-inputgroup button:last-child,\n  .p-inputgroup input:last-child,\n  .p-inputgroup > .p-inputwrapper:last-child,\n  .p-inputgroup > .p-inputwrapper:last-child > .p-inputtext {\n    border-top-right-radius: 6px;\n    border-bottom-right-radius: 6px;\n  }\n  .p-inputgroup .p-float-label:last-child input {\n    border-top-right-radius: 6px;\n    border-bottom-right-radius: 6px;\n  }\n  .p-fluid .p-inputgroup .p-button {\n    width: auto;\n  }\n  .p-fluid .p-inputgroup .p-button.p-button-icon-only {\n    width: 3rem;\n  }\n  .p-inputnumber.p-invalid.p-component > .p-inputtext {\n    border-color: #e24c4c;\n  }\n  .p-inputswitch {\n    position: relative;\n    display: inline-block;\n  }\n  .p-inputswitch-input {\n    -webkit-appearance: none;\n       -moz-appearance: none;\n            appearance: none;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    padding: 0;\n    margin: 0;\n    opacity: 0;\n    z-index: 1;\n    outline: 0 none;\n    cursor: pointer;\n  }\n  .p-inputswitch-slider {\n    position: absolute;\n    cursor: pointer;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    border: 1px solid transparent;\n  }\n  .p-inputswitch-slider:before {\n    position: absolute;\n    content: \"\";\n    top: 50%;\n  }\n  .p-inputswitch {\n    width: 3rem;\n    height: 1.75rem;\n  }\n  .p-inputswitch .p-inputswitch-input {\n    border-radius: 30px;\n  }\n  .p-inputswitch .p-inputswitch-slider {\n    background: #d1d5db;\n    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;\n    border-radius: 30px;\n    outline-color: transparent;\n  }\n  .p-inputswitch .p-inputswitch-slider:before {\n    background: #ffffff;\n    width: 1.25rem;\n    height: 1.25rem;\n    left: 0.25rem;\n    margin-top: -0.625rem;\n    border-radius: 50%;\n    transition-duration: 0.2s;\n  }\n  .p-inputswitch.p-highlight .p-inputswitch-slider {\n    background: #6366f1;\n  }\n  .p-inputswitch.p-highlight .p-inputswitch-slider:before {\n    background: #ffffff;\n    transform: translateX(1.25rem);\n  }\n  .p-inputswitch:not(.p-disabled):has(.p-inputswitch-input:hover) .p-inputswitch-slider {\n    background: #b7bcc5;\n  }\n  .p-inputswitch:not(.p-disabled):has(.p-inputswitch-input:hover).p-highlight .p-inputswitch-slider {\n    background: #4f46e5;\n  }\n  .p-inputswitch:not(.p-disabled):has(.p-inputswitch-input:focus-visible) .p-inputswitch-slider {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-inputswitch.p-invalid > .p-inputswitch-slider {\n    border-color: #e24c4c;\n  }\n  .p-inputtext {\n    font-family: var(--font-family);\n    font-feature-settings: var(--font-feature-settings, normal);\n    font-size: 1rem;\n    color: #4b5563;\n    background: #ffffff;\n    padding: 0.75rem 0.75rem;\n    border: 1px solid #d1d5db;\n    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;\n    -webkit-appearance: none;\n       -moz-appearance: none;\n            appearance: none;\n    border-radius: 6px;\n    outline-color: transparent;\n  }\n  .p-inputtext:enabled:hover {\n    border-color: #6366f1;\n  }\n  .p-inputtext:enabled:focus {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n    border-color: #6366f1;\n  }\n  .p-inputtext.p-invalid.p-component {\n    border-color: #e24c4c;\n  }\n  .p-inputtext.p-variant-filled {\n    background-color: #f3f4f6;\n  }\n  .p-inputtext.p-variant-filled:enabled:hover {\n    background-color: #f3f4f6;\n  }\n  .p-inputtext.p-variant-filled:enabled:focus {\n    background-color: #ffffff;\n  }\n  .p-inputtext.p-inputtext-sm {\n    font-size: 0.875rem;\n    padding: 0.65625rem 0.65625rem;\n  }\n  .p-inputtext.p-inputtext-lg {\n    font-size: 1.25rem;\n    padding: 0.9375rem 0.9375rem;\n  }\n  .p-float-label > label {\n    left: 0.75rem;\n    color: #6b7280;\n    transition-duration: 0.2s;\n  }\n  .p-float-label > .p-invalid + label {\n    color: #e24c4c;\n  }\n  .p-icon-field-left > .p-inputtext {\n    padding-left: 2.5rem;\n  }\n  .p-icon-field-left.p-float-label > label {\n    left: 2.5rem;\n  }\n  .p-icon-field-right > .p-inputtext {\n    padding-right: 2.5rem;\n  }\n  ::-webkit-input-placeholder {\n    color: #6b7280;\n  }\n  :-moz-placeholder {\n    color: #6b7280;\n  }\n  ::-moz-placeholder {\n    color: #6b7280;\n  }\n  :-ms-input-placeholder {\n    color: #6b7280;\n  }\n  .p-input-filled .p-inputtext {\n    background-color: #f3f4f6;\n  }\n  .p-input-filled .p-inputtext:enabled:hover {\n    background-color: #f3f4f6;\n  }\n  .p-input-filled .p-inputtext:enabled:focus {\n    background-color: #ffffff;\n  }\n  .p-inputtext-sm .p-inputtext {\n    font-size: 0.875rem;\n    padding: 0.65625rem 0.65625rem;\n  }\n  .p-inputtext-lg .p-inputtext {\n    font-size: 1.25rem;\n    padding: 0.9375rem 0.9375rem;\n  }\n  .p-icon-field {\n    position: relative;\n  }\n  .p-icon-field > .p-input-icon {\n    position: absolute;\n    top: 50%;\n    margin-top: -0.5rem;\n  }\n  .p-fluid .p-icon-field-left,\n  .p-fluid .p-icon-field-right {\n    width: 100%;\n  }\n  .p-icon-field-left > .p-input-icon:first-of-type {\n    left: 0.75rem;\n    color: #6b7280;\n  }\n  .p-icon-field-right > .p-input-icon:last-of-type {\n    right: 0.75rem;\n    color: #6b7280;\n  }\n  .p-inputotp {\n    display: flex;\n    align-items: center;\n    gap: 0.5rem;\n  }\n  .p-inputotp-input {\n    text-align: center;\n    width: 2.5rem;\n  }\n  .p-listbox-list-wrapper {\n    overflow: auto;\n  }\n  .p-listbox-list {\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n  }\n  .p-listbox-item {\n    cursor: pointer;\n    position: relative;\n    overflow: hidden;\n  }\n  .p-listbox-item-group {\n    cursor: auto;\n  }\n  .p-listbox-filter-container {\n    position: relative;\n  }\n  .p-listbox-filter-icon {\n    position: absolute;\n    top: 50%;\n    margin-top: -0.5rem;\n  }\n  .p-listbox-filter {\n    width: 100%;\n  }\n  .p-listbox {\n    background: #ffffff;\n    color: #4b5563;\n    border: 1px solid #d1d5db;\n    border-radius: 6px;\n    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;\n    outline-color: transparent;\n  }\n  .p-listbox .p-listbox-header {\n    padding: 0.75rem 1.25rem;\n    border-bottom: 1px solid #e5e7eb;\n    color: #374151;\n    background: #f9fafb;\n    margin: 0;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n  }\n  .p-listbox .p-listbox-header .p-listbox-filter {\n    padding-right: 1.75rem;\n  }\n  .p-listbox .p-listbox-header .p-listbox-filter-icon {\n    right: 0.75rem;\n    color: #6b7280;\n  }\n  .p-listbox .p-listbox-list {\n    padding: 0.75rem 0;\n    outline: 0 none;\n  }\n  .p-listbox .p-listbox-list .p-listbox-item {\n    margin: 0;\n    padding: 0.75rem 1.25rem;\n    border: 0 none;\n    color: #4b5563;\n    transition: box-shadow 0.2s;\n    border-radius: 0;\n  }\n  .p-listbox .p-listbox-list .p-listbox-item:first-child {\n    margin-top: 0;\n  }\n  .p-listbox .p-listbox-list .p-listbox-item:last-child {\n    margin-bottom: 0;\n  }\n  .p-listbox .p-listbox-list .p-listbox-item.p-highlight {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-listbox .p-listbox-list .p-listbox-item-group {\n    margin: 0;\n    padding: 0.75rem 1.25rem;\n    color: #374151;\n    background: #ffffff;\n    font-weight: 700;\n  }\n  .p-listbox .p-listbox-list .p-listbox-empty-message {\n    padding: 0.75rem 1.25rem;\n    color: #4b5563;\n    background: transparent;\n  }\n  .p-listbox:not(.p-disabled) .p-listbox-item.p-highlight.p-focus {\n    background: rgba(99, 102, 241, 0.24);\n  }\n  .p-listbox:not(.p-disabled) .p-listbox-item:not(.p-highlight):not(.p-disabled).p-focus {\n    color: #4b5563;\n    background: #f3f4f6;\n  }\n  .p-listbox:not(.p-disabled) .p-listbox-item:not(.p-highlight):not(.p-disabled):hover {\n    color: #4b5563;\n    background: #f3f4f6;\n  }\n  .p-listbox:not(.p-disabled) .p-listbox-item:not(.p-highlight):not(.p-disabled):hover.p-focus {\n    color: #4b5563;\n    background: #f3f4f6;\n  }\n  .p-listbox.p-focus {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n    border-color: #6366f1;\n  }\n  .p-listbox.p-invalid {\n    border-color: #e24c4c;\n  }\n  .p-mention-panel {\n    background: #ffffff;\n    color: #4b5563;\n    border: 0 none;\n    border-radius: 6px;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  }\n  .p-mention-panel .p-mention-items {\n    padding: 0.75rem 0;\n  }\n  .p-mention-panel .p-mention-items .p-mention-item {\n    margin: 0;\n    padding: 0.75rem 1.25rem;\n    border: 0 none;\n    color: #4b5563;\n    background: transparent;\n    transition: box-shadow 0.2s;\n    border-radius: 0;\n  }\n  .p-mention-panel .p-mention-items .p-mention-item:hover {\n    color: #4b5563;\n    background: #f3f4f6;\n  }\n  .p-mention-panel .p-mention-items .p-mention-item.p-highlight {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-multiselect {\n    display: inline-flex;\n    cursor: pointer;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n  }\n  .p-multiselect-trigger {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n  }\n  .p-multiselect-label-container {\n    overflow: hidden;\n    flex: 1 1 auto;\n    cursor: pointer;\n  }\n  .p-multiselect-label {\n    display: block;\n    white-space: nowrap;\n    cursor: pointer;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n  .p-multiselect-label-empty {\n    overflow: hidden;\n    visibility: hidden;\n  }\n  .p-multiselect-token {\n    cursor: default;\n    display: inline-flex;\n    align-items: center;\n    flex: 0 0 auto;\n  }\n  .p-multiselect-token-icon {\n    cursor: pointer;\n  }\n  .p-multiselect .p-multiselect-panel {\n    min-width: 100%;\n  }\n  .p-multiselect-items-wrapper {\n    overflow: auto;\n  }\n  .p-multiselect-items {\n    margin: 0;\n    padding: 0;\n    list-style-type: none;\n  }\n  .p-multiselect-item {\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    font-weight: normal;\n    white-space: nowrap;\n    position: relative;\n    overflow: hidden;\n  }\n  .p-multiselect-item-group {\n    cursor: auto;\n  }\n  .p-multiselect-header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n  }\n  .p-multiselect-filter-container {\n    position: relative;\n    flex: 1 1 auto;\n  }\n  .p-multiselect-filter-icon {\n    position: absolute;\n    top: 50%;\n    margin-top: -0.5rem;\n  }\n  .p-multiselect-filter-container .p-inputtext {\n    width: 100%;\n  }\n  .p-multiselect-close {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n    overflow: hidden;\n    position: relative;\n    margin-left: auto;\n  }\n  .p-fluid .p-multiselect {\n    display: flex;\n  }\n  .p-multiselect {\n    background: #ffffff;\n    border: 1px solid #d1d5db;\n    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;\n    border-radius: 6px;\n    outline-color: transparent;\n  }\n  .p-multiselect:not(.p-disabled):hover {\n    border-color: #6366f1;\n  }\n  .p-multiselect:not(.p-disabled).p-focus {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n    border-color: #6366f1;\n  }\n  .p-multiselect.p-variant-filled {\n    background: #f3f4f6;\n  }\n  .p-multiselect.p-variant-filled:not(.p-disabled):hover {\n    background-color: #f3f4f6;\n  }\n  .p-multiselect.p-variant-filled:not(.p-disabled).p-focus {\n    background-color: #ffffff;\n  }\n  .p-multiselect .p-multiselect-label {\n    padding: 0.75rem 0.75rem;\n    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;\n  }\n  .p-multiselect .p-multiselect-label.p-placeholder {\n    color: #6b7280;\n  }\n  .p-multiselect.p-multiselect-chip .p-multiselect-token {\n    padding: 0.375rem 0.75rem;\n    margin-right: 0.5rem;\n    background: #e5e7eb;\n    color: #4b5563;\n    border-radius: 16px;\n  }\n  .p-multiselect.p-multiselect-chip .p-multiselect-token .p-multiselect-token-icon {\n    margin-left: 0.5rem;\n  }\n  .p-multiselect .p-multiselect-trigger {\n    background: transparent;\n    color: #6b7280;\n    width: 3rem;\n    border-top-right-radius: 6px;\n    border-bottom-right-radius: 6px;\n  }\n  .p-multiselect.p-invalid.p-component {\n    border-color: #e24c4c;\n  }\n  .p-inputwrapper-filled.p-multiselect.p-multiselect-chip .p-multiselect-label {\n    padding: 0.375rem 0.75rem;\n  }\n  .p-multiselect-panel {\n    background: #ffffff;\n    color: #4b5563;\n    border: 0 none;\n    border-radius: 6px;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  }\n  .p-multiselect-panel .p-multiselect-header {\n    padding: 0.75rem 1.25rem;\n    border-bottom: 1px solid #e5e7eb;\n    color: #374151;\n    background: #f9fafb;\n    margin: 0;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n  }\n  .p-multiselect-panel .p-multiselect-header .p-multiselect-filter-container .p-inputtext {\n    padding-right: 1.75rem;\n  }\n  .p-multiselect-panel .p-multiselect-header .p-multiselect-filter-container .p-multiselect-filter-icon {\n    right: 0.75rem;\n    color: #6b7280;\n  }\n  .p-multiselect-panel .p-multiselect-header .p-checkbox {\n    margin-right: 0.5rem;\n  }\n  .p-multiselect-panel .p-multiselect-header .p-multiselect-close {\n    margin-left: 0.5rem;\n    width: 2rem;\n    height: 2rem;\n    color: #6b7280;\n    border: 0 none;\n    background: transparent;\n    border-radius: 50%;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n  }\n  .p-multiselect-panel .p-multiselect-header .p-multiselect-close:enabled:hover {\n    color: #374151;\n    border-color: transparent;\n    background: #f3f4f6;\n  }\n  .p-multiselect-panel .p-multiselect-header .p-multiselect-close:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-multiselect-panel .p-multiselect-items {\n    padding: 0.75rem 0;\n  }\n  .p-multiselect-panel .p-multiselect-items .p-multiselect-item {\n    margin: 0;\n    padding: 0.75rem 1.25rem;\n    border: 0 none;\n    color: #4b5563;\n    background: transparent;\n    transition: box-shadow 0.2s;\n    border-radius: 0;\n  }\n  .p-multiselect-panel .p-multiselect-items .p-multiselect-item:first-child {\n    margin-top: 0;\n  }\n  .p-multiselect-panel .p-multiselect-items .p-multiselect-item:last-child {\n    margin-bottom: 0;\n  }\n  .p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight.p-focus {\n    background: rgba(99, 102, 241, 0.24);\n  }\n  .p-multiselect-panel .p-multiselect-items .p-multiselect-item:not(.p-highlight):not(.p-disabled).p-focus {\n    color: #4b5563;\n    background: #f3f4f6;\n  }\n  .p-multiselect-panel .p-multiselect-items .p-multiselect-item .p-checkbox {\n    margin-right: 0.5rem;\n  }\n  .p-multiselect-panel .p-multiselect-items .p-multiselect-item-group {\n    margin: 0;\n    padding: 0.75rem 1.25rem;\n    color: #374151;\n    background: #ffffff;\n    font-weight: 700;\n  }\n  .p-multiselect-panel .p-multiselect-items .p-multiselect-empty-message {\n    padding: 0.75rem 1.25rem;\n    color: #4b5563;\n    background: transparent;\n  }\n  .p-password.p-invalid.p-component > .p-inputtext {\n    border-color: #e24c4c;\n  }\n  .p-password-panel {\n    padding: 1.25rem;\n    background: #ffffff;\n    color: #4b5563;\n    border: 0 none;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n    border-radius: 6px;\n  }\n  .p-password-panel .p-password-meter {\n    margin-bottom: 0.5rem;\n    background: #e5e7eb;\n  }\n  .p-password-panel .p-password-meter .p-password-strength.weak {\n    background: #ea5455;\n  }\n  .p-password-panel .p-password-meter .p-password-strength.medium {\n    background: #ff9f42;\n  }\n  .p-password-panel .p-password-meter .p-password-strength.strong {\n    background: #29c76f;\n  }\n  .p-radiobutton {\n    position: relative;\n    display: inline-flex;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n    vertical-align: bottom;\n  }\n  .p-radiobutton-input {\n    cursor: pointer;\n  }\n  .p-radiobutton-box {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n  }\n  .p-radiobutton-icon {\n    backface-visibility: hidden;\n    transform: translateZ(0) scale(0.1);\n    border-radius: 50%;\n    visibility: hidden;\n  }\n  .p-radiobutton.p-highlight .p-radiobutton-icon {\n    transform: translateZ(0) scale(1, 1);\n    visibility: visible;\n  }\n  .p-radiobutton {\n    width: 22px;\n    height: 22px;\n  }\n  .p-radiobutton .p-radiobutton-input {\n    -webkit-appearance: none;\n       -moz-appearance: none;\n            appearance: none;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    padding: 0;\n    margin: 0;\n    opacity: 0;\n    z-index: 1;\n    outline: 0 none;\n    border: 2px solid #d1d5db;\n    border-radius: 50%;\n  }\n  .p-radiobutton .p-radiobutton-box {\n    border: 2px solid #d1d5db;\n    background: #ffffff;\n    width: 22px;\n    height: 22px;\n    color: #4b5563;\n    border-radius: 50%;\n    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;\n    outline-color: transparent;\n  }\n  .p-radiobutton .p-radiobutton-box .p-radiobutton-icon {\n    width: 12px;\n    height: 12px;\n    transition-duration: 0.2s;\n    background-color: #ffffff;\n  }\n  .p-radiobutton.p-highlight .p-radiobutton-box {\n    border-color: #6366f1;\n    background: #6366f1;\n  }\n  .p-radiobutton:not(.p-disabled):has(.p-radiobutton-input:hover) .p-radiobutton-box {\n    border-color: #6366f1;\n  }\n  .p-radiobutton:not(.p-disabled):has(.p-radiobutton-input:hover).p-highlight .p-radiobutton-box {\n    border-color: #4338ca;\n    background: #4338ca;\n  }\n  .p-radiobutton:not(.p-disabled):has(.p-radiobutton-input:hover).p-highlight .p-radiobutton-box .p-radiobutton-icon {\n    background-color: #ffffff;\n  }\n  .p-radiobutton:not(.p-disabled):has(.p-radiobutton-input:focus-visible) .p-radiobutton-box {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n    border-color: #6366f1;\n  }\n  .p-radiobutton.p-invalid > .p-radiobutton-box {\n    border-color: #e24c4c;\n  }\n  .p-radiobutton.p-variant-filled .p-radiobutton-box {\n    background-color: #f3f4f6;\n  }\n  .p-radiobutton.p-variant-filled.p-highlight .p-radiobutton-box {\n    background: #6366f1;\n  }\n  .p-radiobutton.p-variant-filled:not(.p-disabled):has(.p-radiobutton-input:hover) .p-radiobutton-box {\n    background-color: #f3f4f6;\n  }\n  .p-radiobutton.p-variant-filled:not(.p-disabled):has(.p-radiobutton-input:hover).p-highlight .p-radiobutton-box {\n    background: #4338ca;\n  }\n  .p-input-filled .p-radiobutton .p-radiobutton-box {\n    background-color: #f3f4f6;\n  }\n  .p-input-filled .p-radiobutton.p-highlight .p-radiobutton-box {\n    background: #6366f1;\n  }\n  .p-input-filled .p-radiobutton:not(.p-disabled):has(.p-radiobutton-input:hover) .p-radiobutton-box {\n    background-color: #f3f4f6;\n  }\n  .p-input-filled .p-radiobutton:not(.p-disabled):has(.p-radiobutton-input:hover).p-highlight .p-radiobutton-box {\n    background: #4338ca;\n  }\n  .p-rating {\n    position: relative;\n    display: flex;\n    align-items: center;\n  }\n  .p-rating-item {\n    display: inline-flex;\n    align-items: center;\n    cursor: pointer;\n  }\n  .p-rating.p-readonly .p-rating-item {\n    cursor: default;\n  }\n  .p-rating {\n    gap: 0.5rem;\n  }\n  .p-rating .p-rating-item {\n    outline-color: transparent;\n    border-radius: 50%;\n  }\n  .p-rating .p-rating-item .p-rating-icon {\n    color: #4b5563;\n    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;\n    font-size: 1.143rem;\n  }\n  .p-rating .p-rating-item .p-rating-icon.p-icon {\n    width: 1.143rem;\n    height: 1.143rem;\n  }\n  .p-rating .p-rating-item .p-rating-icon.p-rating-cancel {\n    color: #ea5455;\n  }\n  .p-rating .p-rating-item.p-focus {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-rating .p-rating-item.p-rating-item-active .p-rating-icon {\n    color: #6366f1;\n  }\n  .p-rating:not(.p-disabled):not(.p-readonly) .p-rating-item:hover .p-rating-icon {\n    color: #6366f1;\n  }\n  .p-rating:not(.p-disabled):not(.p-readonly) .p-rating-item:hover .p-rating-icon.p-rating-cancel {\n    color: #e73d3e;\n  }\n  .p-selectbutton .p-button {\n    background: #ffffff;\n    border: 1px solid #d1d5db;\n    color: #4b5563;\n    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;\n  }\n  .p-selectbutton .p-button .p-button-icon-left,\n  .p-selectbutton .p-button .p-button-icon-right {\n    color: #6b7280;\n  }\n  .p-selectbutton .p-button:not(.p-disabled):not(.p-highlight):hover {\n    background: #f3f4f6;\n    border-color: #d1d5db;\n    color: #4b5563;\n  }\n  .p-selectbutton .p-button:not(.p-disabled):not(.p-highlight):hover .p-button-icon-left,\n  .p-selectbutton .p-button:not(.p-disabled):not(.p-highlight):hover .p-button-icon-right {\n    color: #374151;\n  }\n  .p-selectbutton .p-button.p-highlight {\n    background: #6366f1;\n    border-color: #6366f1;\n    color: #ffffff;\n  }\n  .p-selectbutton .p-button.p-highlight .p-button-icon-left,\n  .p-selectbutton .p-button.p-highlight .p-button-icon-right {\n    color: #ffffff;\n  }\n  .p-selectbutton .p-button.p-highlight:hover {\n    background: #4f46e5;\n    border-color: #4f46e5;\n    color: #ffffff;\n  }\n  .p-selectbutton .p-button.p-highlight:hover .p-button-icon-left,\n  .p-selectbutton .p-button.p-highlight:hover .p-button-icon-right {\n    color: #ffffff;\n  }\n  .p-selectbutton.p-invalid > .p-button {\n    border-color: #e24c4c;\n  }\n  .p-slider {\n    background: #e5e7eb;\n    border: 0 none;\n    border-radius: 6px;\n  }\n  .p-slider.p-slider-horizontal {\n    height: 0.286rem;\n  }\n  .p-slider.p-slider-horizontal .p-slider-handle {\n    margin-top: -0.5715rem;\n    margin-left: -0.5715rem;\n  }\n  .p-slider.p-slider-vertical {\n    width: 0.286rem;\n  }\n  .p-slider.p-slider-vertical .p-slider-handle {\n    margin-left: -0.5715rem;\n    margin-bottom: -0.5715rem;\n  }\n  .p-slider .p-slider-handle {\n    height: 1.143rem;\n    width: 1.143rem;\n    background: #ffffff;\n    border: 2px solid #6366f1;\n    border-radius: 50%;\n    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;\n  }\n  .p-slider .p-slider-handle:focus {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-slider .p-slider-range {\n    background: #6366f1;\n  }\n  .p-slider:not(.p-disabled) .p-slider-handle:hover {\n    background: #6366f1;\n    border-color: #6366f1;\n  }\n  .p-treeselect {\n    background: #ffffff;\n    border: 1px solid #d1d5db;\n    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;\n    border-radius: 6px;\n  }\n  .p-treeselect:not(.p-disabled):hover {\n    border-color: #6366f1;\n  }\n  .p-treeselect:not(.p-disabled).p-focus {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n    border-color: #6366f1;\n  }\n  .p-treeselect.p-treeselect-clearable .p-treeselect-label {\n    padding-right: 1.75rem;\n  }\n  .p-treeselect.p-variant-filled {\n    background: #f3f4f6;\n  }\n  .p-treeselect.p-variant-filled:not(.p-disabled):hover {\n    background-color: #f3f4f6;\n  }\n  .p-treeselect.p-variant-filled:not(.p-disabled).p-focus {\n    background-color: #ffffff;\n  }\n  .p-treeselect .p-treeselect-label {\n    padding: 0.75rem 0.75rem;\n    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;\n  }\n  .p-treeselect .p-treeselect-label.p-placeholder {\n    color: #6b7280;\n  }\n  .p-treeselect.p-treeselect-chip .p-treeselect-token {\n    padding: 0.375rem 0.75rem;\n    margin-right: 0.5rem;\n    background: #e5e7eb;\n    color: #4b5563;\n    border-radius: 16px;\n  }\n  .p-treeselect .p-treeselect-trigger {\n    background: transparent;\n    color: #6b7280;\n    width: 3rem;\n    border-top-right-radius: 6px;\n    border-bottom-right-radius: 6px;\n  }\n  .p-treeselect .p-treeselect-clear-icon {\n    color: #6b7280;\n    right: 3rem;\n  }\n  .p-treeselect.p-invalid.p-component {\n    border-color: #e24c4c;\n  }\n  .p-inputwrapper-filled.p-treeselect.p-treeselect-chip .p-treeselect-label {\n    padding: 0.375rem 0.75rem;\n  }\n  .p-treeselect-panel {\n    background: #ffffff;\n    color: #4b5563;\n    border: 0 none;\n    border-radius: 6px;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  }\n  .p-treeselect-panel .p-treeselect-header {\n    padding: 0.75rem 1.25rem;\n    border-bottom: 1px solid #e5e7eb;\n    color: #374151;\n    background: #f9fafb;\n    margin: 0;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n  }\n  .p-treeselect-panel .p-treeselect-header .p-treeselect-filter-container {\n    margin-right: 0.5rem;\n  }\n  .p-treeselect-panel .p-treeselect-header .p-treeselect-filter-container .p-treeselect-filter {\n    padding-right: 1.75rem;\n  }\n  .p-treeselect-panel .p-treeselect-header .p-treeselect-filter-container .p-treeselect-filter-icon {\n    right: 0.75rem;\n    color: #6b7280;\n  }\n  .p-treeselect-panel .p-treeselect-header .p-treeselect-filter-container.p-treeselect-clearable-filter .p-treeselect-filter {\n    padding-right: 3.5rem;\n  }\n  .p-treeselect-panel .p-treeselect-header .p-treeselect-filter-container.p-treeselect-clearable-filter .p-treeselect-filter-clear-icon {\n    right: 2.5rem;\n  }\n  .p-treeselect-panel .p-treeselect-header .p-treeselect-close {\n    width: 2rem;\n    height: 2rem;\n    color: #6b7280;\n    border: 0 none;\n    background: transparent;\n    border-radius: 50%;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n  }\n  .p-treeselect-panel .p-treeselect-header .p-treeselect-close:enabled:hover {\n    color: #374151;\n    border-color: transparent;\n    background: #f3f4f6;\n  }\n  .p-treeselect-panel .p-treeselect-header .p-treeselect-close:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-treeselect-panel .p-treeselect-items-wrapper .p-tree {\n    border: 0 none;\n  }\n  .p-treeselect-panel .p-treeselect-items-wrapper .p-treeselect-empty-message {\n    padding: 0.75rem 1.25rem;\n    color: #4b5563;\n    background: transparent;\n  }\n  .p-input-filled .p-treeselect {\n    background: #f3f4f6;\n  }\n  .p-input-filled .p-treeselect:not(.p-disabled):hover {\n    background-color: #f3f4f6;\n  }\n  .p-input-filled .p-treeselect:not(.p-disabled).p-focus {\n    background-color: #ffffff;\n  }\n  .p-togglebutton {\n    position: relative;\n    display: inline-flex;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n    vertical-align: bottom;\n  }\n  .p-togglebutton-input {\n    cursor: pointer;\n  }\n  .p-togglebutton .p-button {\n    flex: 1 1 auto;\n  }\n  .p-togglebutton .p-togglebutton-input {\n    -webkit-appearance: none;\n       -moz-appearance: none;\n            appearance: none;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    padding: 0;\n    margin: 0;\n    opacity: 0;\n    z-index: 1;\n    outline: 0 none;\n    border: 1px solid #d1d5db;\n    border-radius: 6px;\n  }\n  .p-togglebutton .p-button {\n    background: #ffffff;\n    border: 1px solid #d1d5db;\n    color: #4b5563;\n    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;\n    outline-color: transparent;\n  }\n  .p-togglebutton .p-button .p-button-icon-left,\n  .p-togglebutton .p-button .p-button-icon-right {\n    color: #6b7280;\n  }\n  .p-togglebutton.p-highlight .p-button {\n    background: #6366f1;\n    border-color: #6366f1;\n    color: #ffffff;\n  }\n  .p-togglebutton.p-highlight .p-button .p-button-icon-left,\n  .p-togglebutton.p-highlight .p-button .p-button-icon-right {\n    color: #ffffff;\n  }\n  .p-togglebutton:not(.p-disabled):has(.p-togglebutton-input:hover):not(.p-highlight) .p-button {\n    background: #f3f4f6;\n    border-color: #d1d5db;\n    color: #4b5563;\n  }\n  .p-togglebutton:not(.p-disabled):has(.p-togglebutton-input:hover):not(.p-highlight) .p-button .p-button-icon-left,\n  .p-togglebutton:not(.p-disabled):has(.p-togglebutton-input:hover):not(.p-highlight) .p-button .p-button-icon-right {\n    color: #374151;\n  }\n  .p-togglebutton:not(.p-disabled):has(.p-togglebutton-input:hover).p-highlight .p-button {\n    background: #4f46e5;\n    border-color: #4f46e5;\n    color: #ffffff;\n  }\n  .p-togglebutton:not(.p-disabled):has(.p-togglebutton-input:hover).p-highlight .p-button .p-button-icon-left,\n  .p-togglebutton:not(.p-disabled):has(.p-togglebutton-input:hover).p-highlight .p-button .p-button-icon-right {\n    color: #ffffff;\n  }\n  .p-togglebutton:not(.p-disabled):has(.p-togglebutton-input:focus-visible) .p-button {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n    border-color: #6366f1;\n  }\n  .p-togglebutton.p-invalid > .p-button {\n    border-color: #e24c4c;\n  }\n  .p-button {\n    color: #ffffff;\n    background: #6366f1;\n    border: 1px solid #6366f1;\n    padding: 0.75rem 1.25rem;\n    font-size: 1rem;\n    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;\n    border-radius: 6px;\n  }\n  .p-button:not(:disabled):hover {\n    background: #4f46e5;\n    color: #ffffff;\n    border-color: #4f46e5;\n  }\n  .p-button:not(:disabled):active {\n    background: #4338ca;\n    color: #ffffff;\n    border-color: #4338ca;\n  }\n  .p-button.p-button-outlined {\n    background-color: transparent;\n    color: #6366f1;\n    border: 1px solid;\n  }\n  .p-button.p-button-outlined:not(:disabled):hover {\n    background: rgba(99, 102, 241, 0.04);\n    color: #6366f1;\n    border: 1px solid;\n  }\n  .p-button.p-button-outlined:not(:disabled):active {\n    background: rgba(99, 102, 241, 0.16);\n    color: #6366f1;\n    border: 1px solid;\n  }\n  .p-button.p-button-outlined.p-button-plain {\n    color: #6b7280;\n    border-color: #6b7280;\n  }\n  .p-button.p-button-outlined.p-button-plain:not(:disabled):hover {\n    background: #f3f4f6;\n    color: #6b7280;\n  }\n  .p-button.p-button-outlined.p-button-plain:not(:disabled):active {\n    background: #e5e7eb;\n    color: #6b7280;\n  }\n  .p-button.p-button-text {\n    background-color: transparent;\n    color: #6366f1;\n    border-color: transparent;\n  }\n  .p-button.p-button-text:not(:disabled):hover {\n    background: rgba(99, 102, 241, 0.04);\n    color: #6366f1;\n    border-color: transparent;\n  }\n  .p-button.p-button-text:not(:disabled):active {\n    background: rgba(99, 102, 241, 0.16);\n    color: #6366f1;\n    border-color: transparent;\n  }\n  .p-button.p-button-text.p-button-plain {\n    color: #6b7280;\n  }\n  .p-button.p-button-text.p-button-plain:not(:disabled):hover {\n    background: #f3f4f6;\n    color: #6b7280;\n  }\n  .p-button.p-button-text.p-button-plain:not(:disabled):active {\n    background: #e5e7eb;\n    color: #6b7280;\n  }\n  .p-button:focus {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-button .p-button-label {\n    transition-duration: 0.2s;\n  }\n  .p-button .p-button-icon-left {\n    margin-right: 0.5rem;\n  }\n  .p-button .p-button-icon-right {\n    margin-left: 0.5rem;\n  }\n  .p-button .p-button-icon-bottom {\n    margin-top: 0.5rem;\n  }\n  .p-button .p-button-icon-top {\n    margin-bottom: 0.5rem;\n  }\n  .p-button .p-badge {\n    margin-left: 0.5rem;\n    min-width: 1rem;\n    height: 1rem;\n    line-height: 1rem;\n    color: #6366f1;\n    background-color: #ffffff;\n  }\n  .p-button.p-button-raised {\n    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  }\n  .p-button.p-button-rounded {\n    border-radius: 2rem;\n  }\n  .p-button.p-button-icon-only {\n    width: 3rem;\n    padding: 0.75rem 0;\n  }\n  .p-button.p-button-icon-only .p-button-icon-left,\n  .p-button.p-button-icon-only .p-button-icon-right {\n    margin: 0;\n  }\n  .p-button.p-button-icon-only.p-button-rounded {\n    border-radius: 50%;\n    height: 3rem;\n  }\n  .p-button.p-button-sm {\n    font-size: 0.875rem;\n    padding: 0.65625rem 1.09375rem;\n  }\n  .p-button.p-button-sm .p-button-icon {\n    font-size: 0.875rem;\n  }\n  .p-button.p-button-lg {\n    font-size: 1.25rem;\n    padding: 0.9375rem 1.5625rem;\n  }\n  .p-button.p-button-lg .p-button-icon {\n    font-size: 1.25rem;\n  }\n  .p-button.p-button-loading-label-only.p-button-loading-left .p-button-label {\n    margin-left: 0.5rem;\n  }\n  .p-button.p-button-loading-label-only.p-button-loading-right .p-button-label {\n    margin-right: 0.5rem;\n  }\n  .p-button.p-button-loading-label-only.p-button-loading-top .p-button-label {\n    margin-top: 0.5rem;\n  }\n  .p-button.p-button-loading-label-only.p-button-loading-bottom .p-button-label {\n    margin-bottom: 0.5rem;\n  }\n  .p-button.p-button-loading-label-only .p-button-loading-icon {\n    margin: 0;\n  }\n  .p-fluid .p-button {\n    width: 100%;\n  }\n  .p-fluid .p-button-icon-only {\n    width: 3rem;\n  }\n  .p-fluid .p-button-group {\n    display: flex;\n  }\n  .p-fluid .p-button-group .p-button {\n    flex: 1;\n  }\n  .p-button.p-button-secondary, .p-button-group.p-button-secondary > .p-button, .p-splitbutton.p-button-secondary > .p-button, .p-fileupload-choose.p-button-secondary {\n    color: #ffffff;\n    background: #64748b;\n    border: 1px solid #64748b;\n  }\n  .p-button.p-button-secondary:not(:disabled):hover, .p-button-group.p-button-secondary > .p-button:not(:disabled):hover, .p-splitbutton.p-button-secondary > .p-button:not(:disabled):hover, .p-fileupload-choose.p-button-secondary:not(:disabled):hover {\n    background: #475569;\n    color: #ffffff;\n    border-color: #475569;\n  }\n  .p-button.p-button-secondary:not(:disabled):focus, .p-button-group.p-button-secondary > .p-button:not(:disabled):focus, .p-splitbutton.p-button-secondary > .p-button:not(:disabled):focus, .p-fileupload-choose.p-button-secondary:not(:disabled):focus {\n    box-shadow: 0 0 0 0.2rem #e2e8f0;\n  }\n  .p-button.p-button-secondary:not(:disabled):active, .p-button-group.p-button-secondary > .p-button:not(:disabled):active, .p-splitbutton.p-button-secondary > .p-button:not(:disabled):active, .p-fileupload-choose.p-button-secondary:not(:disabled):active {\n    background: #334155;\n    color: #ffffff;\n    border-color: #334155;\n  }\n  .p-button.p-button-secondary.p-button-outlined, .p-button-group.p-button-secondary > .p-button.p-button-outlined, .p-splitbutton.p-button-secondary > .p-button.p-button-outlined, .p-fileupload-choose.p-button-secondary.p-button-outlined {\n    background-color: transparent;\n    color: #64748b;\n    border: 1px solid;\n  }\n  .p-button.p-button-secondary.p-button-outlined:not(:disabled):hover, .p-button-group.p-button-secondary > .p-button.p-button-outlined:not(:disabled):hover, .p-splitbutton.p-button-secondary > .p-button.p-button-outlined:not(:disabled):hover, .p-fileupload-choose.p-button-secondary.p-button-outlined:not(:disabled):hover {\n    background: rgba(100, 116, 139, 0.04);\n    color: #64748b;\n    border: 1px solid;\n  }\n  .p-button.p-button-secondary.p-button-outlined:not(:disabled):active, .p-button-group.p-button-secondary > .p-button.p-button-outlined:not(:disabled):active, .p-splitbutton.p-button-secondary > .p-button.p-button-outlined:not(:disabled):active, .p-fileupload-choose.p-button-secondary.p-button-outlined:not(:disabled):active {\n    background: rgba(100, 116, 139, 0.16);\n    color: #64748b;\n    border: 1px solid;\n  }\n  .p-button.p-button-secondary.p-button-text, .p-button-group.p-button-secondary > .p-button.p-button-text, .p-splitbutton.p-button-secondary > .p-button.p-button-text, .p-fileupload-choose.p-button-secondary.p-button-text {\n    background-color: transparent;\n    color: #64748b;\n    border-color: transparent;\n  }\n  .p-button.p-button-secondary.p-button-text:not(:disabled):hover, .p-button-group.p-button-secondary > .p-button.p-button-text:not(:disabled):hover, .p-splitbutton.p-button-secondary > .p-button.p-button-text:not(:disabled):hover, .p-fileupload-choose.p-button-secondary.p-button-text:not(:disabled):hover {\n    background: rgba(100, 116, 139, 0.04);\n    border-color: transparent;\n    color: #64748b;\n  }\n  .p-button.p-button-secondary.p-button-text:not(:disabled):active, .p-button-group.p-button-secondary > .p-button.p-button-text:not(:disabled):active, .p-splitbutton.p-button-secondary > .p-button.p-button-text:not(:disabled):active, .p-fileupload-choose.p-button-secondary.p-button-text:not(:disabled):active {\n    background: rgba(100, 116, 139, 0.16);\n    border-color: transparent;\n    color: #64748b;\n  }\n  .p-button.p-button-info, .p-button-group.p-button-info > .p-button, .p-splitbutton.p-button-info > .p-button, .p-fileupload-choose.p-button-info {\n    color: #ffffff;\n    background: #0ea5e9;\n    border: 1px solid #0ea5e9;\n  }\n  .p-button.p-button-info:not(:disabled):hover, .p-button-group.p-button-info > .p-button:not(:disabled):hover, .p-splitbutton.p-button-info > .p-button:not(:disabled):hover, .p-fileupload-choose.p-button-info:not(:disabled):hover {\n    background: #0284c7;\n    color: #ffffff;\n    border-color: #0284c7;\n  }\n  .p-button.p-button-info:not(:disabled):focus, .p-button-group.p-button-info > .p-button:not(:disabled):focus, .p-splitbutton.p-button-info > .p-button:not(:disabled):focus, .p-fileupload-choose.p-button-info:not(:disabled):focus {\n    box-shadow: 0 0 0 0.2rem #bfdbfe;\n  }\n  .p-button.p-button-info:not(:disabled):active, .p-button-group.p-button-info > .p-button:not(:disabled):active, .p-splitbutton.p-button-info > .p-button:not(:disabled):active, .p-fileupload-choose.p-button-info:not(:disabled):active {\n    background: #0369a1;\n    color: #ffffff;\n    border-color: #0369a1;\n  }\n  .p-button.p-button-info.p-button-outlined, .p-button-group.p-button-info > .p-button.p-button-outlined, .p-splitbutton.p-button-info > .p-button.p-button-outlined, .p-fileupload-choose.p-button-info.p-button-outlined {\n    background-color: transparent;\n    color: #0ea5e9;\n    border: 1px solid;\n  }\n  .p-button.p-button-info.p-button-outlined:not(:disabled):hover, .p-button-group.p-button-info > .p-button.p-button-outlined:not(:disabled):hover, .p-splitbutton.p-button-info > .p-button.p-button-outlined:not(:disabled):hover, .p-fileupload-choose.p-button-info.p-button-outlined:not(:disabled):hover {\n    background: rgba(14, 165, 233, 0.04);\n    color: #0ea5e9;\n    border: 1px solid;\n  }\n  .p-button.p-button-info.p-button-outlined:not(:disabled):active, .p-button-group.p-button-info > .p-button.p-button-outlined:not(:disabled):active, .p-splitbutton.p-button-info > .p-button.p-button-outlined:not(:disabled):active, .p-fileupload-choose.p-button-info.p-button-outlined:not(:disabled):active {\n    background: rgba(14, 165, 233, 0.16);\n    color: #0ea5e9;\n    border: 1px solid;\n  }\n  .p-button.p-button-info.p-button-text, .p-button-group.p-button-info > .p-button.p-button-text, .p-splitbutton.p-button-info > .p-button.p-button-text, .p-fileupload-choose.p-button-info.p-button-text {\n    background-color: transparent;\n    color: #0ea5e9;\n    border-color: transparent;\n  }\n  .p-button.p-button-info.p-button-text:not(:disabled):hover, .p-button-group.p-button-info > .p-button.p-button-text:not(:disabled):hover, .p-splitbutton.p-button-info > .p-button.p-button-text:not(:disabled):hover, .p-fileupload-choose.p-button-info.p-button-text:not(:disabled):hover {\n    background: rgba(14, 165, 233, 0.04);\n    border-color: transparent;\n    color: #0ea5e9;\n  }\n  .p-button.p-button-info.p-button-text:not(:disabled):active, .p-button-group.p-button-info > .p-button.p-button-text:not(:disabled):active, .p-splitbutton.p-button-info > .p-button.p-button-text:not(:disabled):active, .p-fileupload-choose.p-button-info.p-button-text:not(:disabled):active {\n    background: rgba(14, 165, 233, 0.16);\n    border-color: transparent;\n    color: #0ea5e9;\n  }\n  .p-button.p-button-success, .p-button-group.p-button-success > .p-button, .p-splitbutton.p-button-success > .p-button, .p-fileupload-choose.p-button-success {\n    color: #ffffff;\n    background: #22c55e;\n    border: 1px solid #22c55e;\n  }\n  .p-button.p-button-success:not(:disabled):hover, .p-button-group.p-button-success > .p-button:not(:disabled):hover, .p-splitbutton.p-button-success > .p-button:not(:disabled):hover, .p-fileupload-choose.p-button-success:not(:disabled):hover {\n    background: #16a34a;\n    color: #ffffff;\n    border-color: #16a34a;\n  }\n  .p-button.p-button-success:not(:disabled):focus, .p-button-group.p-button-success > .p-button:not(:disabled):focus, .p-splitbutton.p-button-success > .p-button:not(:disabled):focus, .p-fileupload-choose.p-button-success:not(:disabled):focus {\n    box-shadow: 0 0 0 0.2rem #bbf7d0;\n  }\n  .p-button.p-button-success:not(:disabled):active, .p-button-group.p-button-success > .p-button:not(:disabled):active, .p-splitbutton.p-button-success > .p-button:not(:disabled):active, .p-fileupload-choose.p-button-success:not(:disabled):active {\n    background: #15803d;\n    color: #ffffff;\n    border-color: #15803d;\n  }\n  .p-button.p-button-success.p-button-outlined, .p-button-group.p-button-success > .p-button.p-button-outlined, .p-splitbutton.p-button-success > .p-button.p-button-outlined, .p-fileupload-choose.p-button-success.p-button-outlined {\n    background-color: transparent;\n    color: #22c55e;\n    border: 1px solid;\n  }\n  .p-button.p-button-success.p-button-outlined:not(:disabled):hover, .p-button-group.p-button-success > .p-button.p-button-outlined:not(:disabled):hover, .p-splitbutton.p-button-success > .p-button.p-button-outlined:not(:disabled):hover, .p-fileupload-choose.p-button-success.p-button-outlined:not(:disabled):hover {\n    background: rgba(34, 197, 94, 0.04);\n    color: #22c55e;\n    border: 1px solid;\n  }\n  .p-button.p-button-success.p-button-outlined:not(:disabled):active, .p-button-group.p-button-success > .p-button.p-button-outlined:not(:disabled):active, .p-splitbutton.p-button-success > .p-button.p-button-outlined:not(:disabled):active, .p-fileupload-choose.p-button-success.p-button-outlined:not(:disabled):active {\n    background: rgba(34, 197, 94, 0.16);\n    color: #22c55e;\n    border: 1px solid;\n  }\n  .p-button.p-button-success.p-button-text, .p-button-group.p-button-success > .p-button.p-button-text, .p-splitbutton.p-button-success > .p-button.p-button-text, .p-fileupload-choose.p-button-success.p-button-text {\n    background-color: transparent;\n    color: #22c55e;\n    border-color: transparent;\n  }\n  .p-button.p-button-success.p-button-text:not(:disabled):hover, .p-button-group.p-button-success > .p-button.p-button-text:not(:disabled):hover, .p-splitbutton.p-button-success > .p-button.p-button-text:not(:disabled):hover, .p-fileupload-choose.p-button-success.p-button-text:not(:disabled):hover {\n    background: rgba(34, 197, 94, 0.04);\n    border-color: transparent;\n    color: #22c55e;\n  }\n  .p-button.p-button-success.p-button-text:not(:disabled):active, .p-button-group.p-button-success > .p-button.p-button-text:not(:disabled):active, .p-splitbutton.p-button-success > .p-button.p-button-text:not(:disabled):active, .p-fileupload-choose.p-button-success.p-button-text:not(:disabled):active {\n    background: rgba(34, 197, 94, 0.16);\n    border-color: transparent;\n    color: #22c55e;\n  }\n  .p-button.p-button-warning, .p-button-group.p-button-warning > .p-button, .p-splitbutton.p-button-warning > .p-button, .p-fileupload-choose.p-button-warning {\n    color: #ffffff;\n    background: #f97316;\n    border: 1px solid #f97316;\n  }\n  .p-button.p-button-warning:not(:disabled):hover, .p-button-group.p-button-warning > .p-button:not(:disabled):hover, .p-splitbutton.p-button-warning > .p-button:not(:disabled):hover, .p-fileupload-choose.p-button-warning:not(:disabled):hover {\n    background: #ea580c;\n    color: #ffffff;\n    border-color: #ea580c;\n  }\n  .p-button.p-button-warning:not(:disabled):focus, .p-button-group.p-button-warning > .p-button:not(:disabled):focus, .p-splitbutton.p-button-warning > .p-button:not(:disabled):focus, .p-fileupload-choose.p-button-warning:not(:disabled):focus {\n    box-shadow: 0 0 0 0.2rem #fde68a;\n  }\n  .p-button.p-button-warning:not(:disabled):active, .p-button-group.p-button-warning > .p-button:not(:disabled):active, .p-splitbutton.p-button-warning > .p-button:not(:disabled):active, .p-fileupload-choose.p-button-warning:not(:disabled):active {\n    background: #c2410c;\n    color: #ffffff;\n    border-color: #c2410c;\n  }\n  .p-button.p-button-warning.p-button-outlined, .p-button-group.p-button-warning > .p-button.p-button-outlined, .p-splitbutton.p-button-warning > .p-button.p-button-outlined, .p-fileupload-choose.p-button-warning.p-button-outlined {\n    background-color: transparent;\n    color: #f97316;\n    border: 1px solid;\n  }\n  .p-button.p-button-warning.p-button-outlined:not(:disabled):hover, .p-button-group.p-button-warning > .p-button.p-button-outlined:not(:disabled):hover, .p-splitbutton.p-button-warning > .p-button.p-button-outlined:not(:disabled):hover, .p-fileupload-choose.p-button-warning.p-button-outlined:not(:disabled):hover {\n    background: rgba(249, 115, 22, 0.04);\n    color: #f97316;\n    border: 1px solid;\n  }\n  .p-button.p-button-warning.p-button-outlined:not(:disabled):active, .p-button-group.p-button-warning > .p-button.p-button-outlined:not(:disabled):active, .p-splitbutton.p-button-warning > .p-button.p-button-outlined:not(:disabled):active, .p-fileupload-choose.p-button-warning.p-button-outlined:not(:disabled):active {\n    background: rgba(249, 115, 22, 0.16);\n    color: #f97316;\n    border: 1px solid;\n  }\n  .p-button.p-button-warning.p-button-text, .p-button-group.p-button-warning > .p-button.p-button-text, .p-splitbutton.p-button-warning > .p-button.p-button-text, .p-fileupload-choose.p-button-warning.p-button-text {\n    background-color: transparent;\n    color: #f97316;\n    border-color: transparent;\n  }\n  .p-button.p-button-warning.p-button-text:not(:disabled):hover, .p-button-group.p-button-warning > .p-button.p-button-text:not(:disabled):hover, .p-splitbutton.p-button-warning > .p-button.p-button-text:not(:disabled):hover, .p-fileupload-choose.p-button-warning.p-button-text:not(:disabled):hover {\n    background: rgba(249, 115, 22, 0.04);\n    border-color: transparent;\n    color: #f97316;\n  }\n  .p-button.p-button-warning.p-button-text:not(:disabled):active, .p-button-group.p-button-warning > .p-button.p-button-text:not(:disabled):active, .p-splitbutton.p-button-warning > .p-button.p-button-text:not(:disabled):active, .p-fileupload-choose.p-button-warning.p-button-text:not(:disabled):active {\n    background: rgba(249, 115, 22, 0.16);\n    border-color: transparent;\n    color: #f97316;\n  }\n  .p-button.p-button-help, .p-button-group.p-button-help > .p-button, .p-splitbutton.p-button-help > .p-button, .p-fileupload-choose.p-button-help {\n    color: #ffffff;\n    background: #a855f7;\n    border: 1px solid #a855f7;\n  }\n  .p-button.p-button-help:not(:disabled):hover, .p-button-group.p-button-help > .p-button:not(:disabled):hover, .p-splitbutton.p-button-help > .p-button:not(:disabled):hover, .p-fileupload-choose.p-button-help:not(:disabled):hover {\n    background: #9333ea;\n    color: #ffffff;\n    border-color: #9333ea;\n  }\n  .p-button.p-button-help:not(:disabled):focus, .p-button-group.p-button-help > .p-button:not(:disabled):focus, .p-splitbutton.p-button-help > .p-button:not(:disabled):focus, .p-fileupload-choose.p-button-help:not(:disabled):focus {\n    box-shadow: 0 0 0 0.2rem #e9d5ff;\n  }\n  .p-button.p-button-help:not(:disabled):active, .p-button-group.p-button-help > .p-button:not(:disabled):active, .p-splitbutton.p-button-help > .p-button:not(:disabled):active, .p-fileupload-choose.p-button-help:not(:disabled):active {\n    background: #7e22ce;\n    color: #ffffff;\n    border-color: #7e22ce;\n  }\n  .p-button.p-button-help.p-button-outlined, .p-button-group.p-button-help > .p-button.p-button-outlined, .p-splitbutton.p-button-help > .p-button.p-button-outlined, .p-fileupload-choose.p-button-help.p-button-outlined {\n    background-color: transparent;\n    color: #a855f7;\n    border: 1px solid;\n  }\n  .p-button.p-button-help.p-button-outlined:not(:disabled):hover, .p-button-group.p-button-help > .p-button.p-button-outlined:not(:disabled):hover, .p-splitbutton.p-button-help > .p-button.p-button-outlined:not(:disabled):hover, .p-fileupload-choose.p-button-help.p-button-outlined:not(:disabled):hover {\n    background: rgba(168, 85, 247, 0.04);\n    color: #a855f7;\n    border: 1px solid;\n  }\n  .p-button.p-button-help.p-button-outlined:not(:disabled):active, .p-button-group.p-button-help > .p-button.p-button-outlined:not(:disabled):active, .p-splitbutton.p-button-help > .p-button.p-button-outlined:not(:disabled):active, .p-fileupload-choose.p-button-help.p-button-outlined:not(:disabled):active {\n    background: rgba(168, 85, 247, 0.16);\n    color: #a855f7;\n    border: 1px solid;\n  }\n  .p-button.p-button-help.p-button-text, .p-button-group.p-button-help > .p-button.p-button-text, .p-splitbutton.p-button-help > .p-button.p-button-text, .p-fileupload-choose.p-button-help.p-button-text {\n    background-color: transparent;\n    color: #a855f7;\n    border-color: transparent;\n  }\n  .p-button.p-button-help.p-button-text:not(:disabled):hover, .p-button-group.p-button-help > .p-button.p-button-text:not(:disabled):hover, .p-splitbutton.p-button-help > .p-button.p-button-text:not(:disabled):hover, .p-fileupload-choose.p-button-help.p-button-text:not(:disabled):hover {\n    background: rgba(168, 85, 247, 0.04);\n    border-color: transparent;\n    color: #a855f7;\n  }\n  .p-button.p-button-help.p-button-text:not(:disabled):active, .p-button-group.p-button-help > .p-button.p-button-text:not(:disabled):active, .p-splitbutton.p-button-help > .p-button.p-button-text:not(:disabled):active, .p-fileupload-choose.p-button-help.p-button-text:not(:disabled):active {\n    background: rgba(168, 85, 247, 0.16);\n    border-color: transparent;\n    color: #a855f7;\n  }\n  .p-button.p-button-danger, .p-button-group.p-button-danger > .p-button, .p-splitbutton.p-button-danger > .p-button, .p-fileupload-choose.p-button-danger {\n    color: #ffffff;\n    background: #ef4444;\n    border: 1px solid #ef4444;\n  }\n  .p-button.p-button-danger:not(:disabled):hover, .p-button-group.p-button-danger > .p-button:not(:disabled):hover, .p-splitbutton.p-button-danger > .p-button:not(:disabled):hover, .p-fileupload-choose.p-button-danger:not(:disabled):hover {\n    background: #dc2626;\n    color: #ffffff;\n    border-color: #dc2626;\n  }\n  .p-button.p-button-danger:not(:disabled):focus, .p-button-group.p-button-danger > .p-button:not(:disabled):focus, .p-splitbutton.p-button-danger > .p-button:not(:disabled):focus, .p-fileupload-choose.p-button-danger:not(:disabled):focus {\n    box-shadow: 0 0 0 0.2rem #fecaca;\n  }\n  .p-button.p-button-danger:not(:disabled):active, .p-button-group.p-button-danger > .p-button:not(:disabled):active, .p-splitbutton.p-button-danger > .p-button:not(:disabled):active, .p-fileupload-choose.p-button-danger:not(:disabled):active {\n    background: #b91c1c;\n    color: #ffffff;\n    border-color: #b91c1c;\n  }\n  .p-button.p-button-danger.p-button-outlined, .p-button-group.p-button-danger > .p-button.p-button-outlined, .p-splitbutton.p-button-danger > .p-button.p-button-outlined, .p-fileupload-choose.p-button-danger.p-button-outlined {\n    background-color: transparent;\n    color: #ef4444;\n    border: 1px solid;\n  }\n  .p-button.p-button-danger.p-button-outlined:not(:disabled):hover, .p-button-group.p-button-danger > .p-button.p-button-outlined:not(:disabled):hover, .p-splitbutton.p-button-danger > .p-button.p-button-outlined:not(:disabled):hover, .p-fileupload-choose.p-button-danger.p-button-outlined:not(:disabled):hover {\n    background: rgba(239, 68, 68, 0.04);\n    color: #ef4444;\n    border: 1px solid;\n  }\n  .p-button.p-button-danger.p-button-outlined:not(:disabled):active, .p-button-group.p-button-danger > .p-button.p-button-outlined:not(:disabled):active, .p-splitbutton.p-button-danger > .p-button.p-button-outlined:not(:disabled):active, .p-fileupload-choose.p-button-danger.p-button-outlined:not(:disabled):active {\n    background: rgba(239, 68, 68, 0.16);\n    color: #ef4444;\n    border: 1px solid;\n  }\n  .p-button.p-button-danger.p-button-text, .p-button-group.p-button-danger > .p-button.p-button-text, .p-splitbutton.p-button-danger > .p-button.p-button-text, .p-fileupload-choose.p-button-danger.p-button-text {\n    background-color: transparent;\n    color: #ef4444;\n    border-color: transparent;\n  }\n  .p-button.p-button-danger.p-button-text:not(:disabled):hover, .p-button-group.p-button-danger > .p-button.p-button-text:not(:disabled):hover, .p-splitbutton.p-button-danger > .p-button.p-button-text:not(:disabled):hover, .p-fileupload-choose.p-button-danger.p-button-text:not(:disabled):hover {\n    background: rgba(239, 68, 68, 0.04);\n    border-color: transparent;\n    color: #ef4444;\n  }\n  .p-button.p-button-danger.p-button-text:not(:disabled):active, .p-button-group.p-button-danger > .p-button.p-button-text:not(:disabled):active, .p-splitbutton.p-button-danger > .p-button.p-button-text:not(:disabled):active, .p-fileupload-choose.p-button-danger.p-button-text:not(:disabled):active {\n    background: rgba(239, 68, 68, 0.16);\n    border-color: transparent;\n    color: #ef4444;\n  }\n  .p-button.p-button-contrast, .p-button-group.p-button-contrast > .p-button, .p-splitbutton.p-button-contrast > .p-button {\n    color: #ffffff;\n    background: #1f2937;\n    border: 1px solid #1f2937;\n  }\n  .p-button.p-button-contrast:not(:disabled):hover, .p-button-group.p-button-contrast > .p-button:not(:disabled):hover, .p-splitbutton.p-button-contrast > .p-button:not(:disabled):hover {\n    background: #374151;\n    color: #ffffff;\n    border-color: #374151;\n  }\n  .p-button.p-button-contrast:not(:disabled):focus, .p-button-group.p-button-contrast > .p-button:not(:disabled):focus, .p-splitbutton.p-button-contrast > .p-button:not(:disabled):focus {\n    box-shadow: none;\n  }\n  .p-button.p-button-contrast:not(:disabled):active, .p-button-group.p-button-contrast > .p-button:not(:disabled):active, .p-splitbutton.p-button-contrast > .p-button:not(:disabled):active {\n    background: #4b5563;\n    color: #ffffff;\n    border-color: #4b5563;\n  }\n  .p-button.p-button-contrast.p-button-outlined, .p-button-group.p-button-contrast > .p-button.p-button-outlined, .p-splitbutton.p-button-contrast > .p-button.p-button-outlined {\n    background-color: transparent;\n    color: #1f2937;\n    border: 1px solid;\n  }\n  .p-button.p-button-contrast.p-button-outlined:not(:disabled):hover, .p-button-group.p-button-contrast > .p-button.p-button-outlined:not(:disabled):hover, .p-splitbutton.p-button-contrast > .p-button.p-button-outlined:not(:disabled):hover {\n    background: rgba(31, 41, 55, 0.04);\n    color: #1f2937;\n    border: 1px solid;\n  }\n  .p-button.p-button-contrast.p-button-outlined:not(:disabled):active, .p-button-group.p-button-contrast > .p-button.p-button-outlined:not(:disabled):active, .p-splitbutton.p-button-contrast > .p-button.p-button-outlined:not(:disabled):active {\n    background: rgba(31, 41, 55, 0.16);\n    color: #1f2937;\n    border: 1px solid;\n  }\n  .p-button.p-button-contrast.p-button-text, .p-button-group.p-button-contrast > .p-button.p-button-text, .p-splitbutton.p-button-contrast > .p-button.p-button-text {\n    background-color: transparent;\n    color: #1f2937;\n    border-color: transparent;\n  }\n  .p-button.p-button-contrast.p-button-text:not(:disabled):hover, .p-button-group.p-button-contrast > .p-button.p-button-text:not(:disabled):hover, .p-splitbutton.p-button-contrast > .p-button.p-button-text:not(:disabled):hover {\n    background: rgba(31, 41, 55, 0.04);\n    border-color: transparent;\n    color: #1f2937;\n  }\n  .p-button.p-button-contrast.p-button-text:not(:disabled):active, .p-button-group.p-button-contrast > .p-button.p-button-text:not(:disabled):active, .p-splitbutton.p-button-contrast > .p-button.p-button-text:not(:disabled):active {\n    background: rgba(31, 41, 55, 0.16);\n    border-color: transparent;\n    color: #1f2937;\n  }\n  .p-button.p-button-link {\n    color: #4338ca;\n    background: transparent;\n    border: transparent;\n  }\n  .p-button.p-button-link:not(:disabled):hover {\n    background: transparent;\n    color: #4338ca;\n    border-color: transparent;\n  }\n  .p-button.p-button-link:not(:disabled):hover .p-button-label {\n    text-decoration: underline;\n  }\n  .p-button.p-button-link:not(:disabled):focus {\n    background: transparent;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n    border-color: transparent;\n  }\n  .p-button.p-button-link:not(:disabled):active {\n    background: transparent;\n    color: #4338ca;\n    border-color: transparent;\n  }\n  .p-splitbutton {\n    border-radius: 6px;\n  }\n  .p-splitbutton.p-button-outlined > .p-button {\n    background-color: transparent;\n    color: #6366f1;\n    border: 1px solid;\n  }\n  .p-splitbutton.p-button-outlined > .p-button:not(:disabled):hover {\n    background: rgba(99, 102, 241, 0.04);\n    color: #6366f1;\n  }\n  .p-splitbutton.p-button-outlined > .p-button:not(:disabled):active {\n    background: rgba(99, 102, 241, 0.16);\n    color: #6366f1;\n  }\n  .p-splitbutton.p-button-outlined.p-button-plain > .p-button {\n    color: #6b7280;\n    border-color: #6b7280;\n  }\n  .p-splitbutton.p-button-outlined.p-button-plain > .p-button:not(:disabled):hover {\n    background: #f3f4f6;\n    color: #6b7280;\n  }\n  .p-splitbutton.p-button-outlined.p-button-plain > .p-button:not(:disabled):active {\n    background: #e5e7eb;\n    color: #6b7280;\n  }\n  .p-splitbutton.p-button-text > .p-button {\n    background-color: transparent;\n    color: #6366f1;\n    border-color: transparent;\n  }\n  .p-splitbutton.p-button-text > .p-button:not(:disabled):hover {\n    background: rgba(99, 102, 241, 0.04);\n    color: #6366f1;\n    border-color: transparent;\n  }\n  .p-splitbutton.p-button-text > .p-button:not(:disabled):active {\n    background: rgba(99, 102, 241, 0.16);\n    color: #6366f1;\n    border-color: transparent;\n  }\n  .p-splitbutton.p-button-text.p-button-plain > .p-button {\n    color: #6b7280;\n  }\n  .p-splitbutton.p-button-text.p-button-plain > .p-button:not(:disabled):hover {\n    background: #f3f4f6;\n    color: #6b7280;\n  }\n  .p-splitbutton.p-button-text.p-button-plain > .p-button:not(:disabled):active {\n    background: #e5e7eb;\n    color: #6b7280;\n  }\n  .p-splitbutton.p-button-raised {\n    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  }\n  .p-splitbutton.p-button-rounded {\n    border-radius: 2rem;\n  }\n  .p-splitbutton.p-button-rounded > .p-button {\n    border-radius: 2rem;\n  }\n  .p-splitbutton.p-button-sm > .p-button {\n    font-size: 0.875rem;\n    padding: 0.65625rem 1.09375rem;\n  }\n  .p-splitbutton.p-button-sm > .p-button .p-button-icon {\n    font-size: 0.875rem;\n  }\n  .p-splitbutton.p-button-lg > .p-button {\n    font-size: 1.25rem;\n    padding: 0.9375rem 1.5625rem;\n  }\n  .p-splitbutton.p-button-lg > .p-button.p-button-icon-only {\n    width: auto;\n  }\n  .p-splitbutton.p-button-lg > .p-button .p-button-icon {\n    font-size: 1.25rem;\n  }\n  .p-splitbutton .p-splitbutton-menubutton,\n  .p-splitbutton .p-splitbutton.p-button-rounded > .p-splitbutton-menubutton.p-button,\n  .p-splitbutton .p-splitbutton.p-button-outlined > .p-splitbutton-menubutton.p-button {\n    border-top-left-radius: 0;\n    border-bottom-left-radius: 0;\n  }\n  .p-splitbutton.p-button-secondary.p-button-outlined > .p-button {\n    background-color: transparent;\n    color: #64748b;\n    border: 1px solid;\n  }\n  .p-splitbutton.p-button-secondary.p-button-outlined > .p-button:not(:disabled):hover {\n    background: rgba(100, 116, 139, 0.04);\n    color: #64748b;\n  }\n  .p-splitbutton.p-button-secondary.p-button-outlined > .p-button:not(:disabled):active {\n    background: rgba(100, 116, 139, 0.16);\n    color: #64748b;\n  }\n  .p-splitbutton.p-button-secondary.p-button-text > .p-button {\n    background-color: transparent;\n    color: #64748b;\n    border-color: transparent;\n  }\n  .p-splitbutton.p-button-secondary.p-button-text > .p-button:not(:disabled):hover {\n    background: rgba(100, 116, 139, 0.04);\n    border-color: transparent;\n    color: #64748b;\n  }\n  .p-splitbutton.p-button-secondary.p-button-text > .p-button:not(:disabled):active {\n    background: rgba(100, 116, 139, 0.16);\n    border-color: transparent;\n    color: #64748b;\n  }\n  .p-splitbutton.p-button-info.p-button-outlined > .p-button {\n    background-color: transparent;\n    color: #0ea5e9;\n    border: 1px solid;\n  }\n  .p-splitbutton.p-button-info.p-button-outlined > .p-button:not(:disabled):hover {\n    background: rgba(14, 165, 233, 0.04);\n    color: #0ea5e9;\n  }\n  .p-splitbutton.p-button-info.p-button-outlined > .p-button:not(:disabled):active {\n    background: rgba(14, 165, 233, 0.16);\n    color: #0ea5e9;\n  }\n  .p-splitbutton.p-button-info.p-button-text > .p-button {\n    background-color: transparent;\n    color: #0ea5e9;\n    border-color: transparent;\n  }\n  .p-splitbutton.p-button-info.p-button-text > .p-button:not(:disabled):hover {\n    background: rgba(14, 165, 233, 0.04);\n    border-color: transparent;\n    color: #0ea5e9;\n  }\n  .p-splitbutton.p-button-info.p-button-text > .p-button:not(:disabled):active {\n    background: rgba(14, 165, 233, 0.16);\n    border-color: transparent;\n    color: #0ea5e9;\n  }\n  .p-splitbutton.p-button-success.p-button-outlined > .p-button {\n    background-color: transparent;\n    color: #22c55e;\n    border: 1px solid;\n  }\n  .p-splitbutton.p-button-success.p-button-outlined > .p-button:not(:disabled):hover {\n    background: rgba(34, 197, 94, 0.04);\n    color: #22c55e;\n  }\n  .p-splitbutton.p-button-success.p-button-outlined > .p-button:not(:disabled):active {\n    background: rgba(34, 197, 94, 0.16);\n    color: #22c55e;\n  }\n  .p-splitbutton.p-button-success.p-button-text > .p-button {\n    background-color: transparent;\n    color: #22c55e;\n    border-color: transparent;\n  }\n  .p-splitbutton.p-button-success.p-button-text > .p-button:not(:disabled):hover {\n    background: rgba(34, 197, 94, 0.04);\n    border-color: transparent;\n    color: #22c55e;\n  }\n  .p-splitbutton.p-button-success.p-button-text > .p-button:not(:disabled):active {\n    background: rgba(34, 197, 94, 0.16);\n    border-color: transparent;\n    color: #22c55e;\n  }\n  .p-splitbutton.p-button-warning.p-button-outlined > .p-button {\n    background-color: transparent;\n    color: #f97316;\n    border: 1px solid;\n  }\n  .p-splitbutton.p-button-warning.p-button-outlined > .p-button:not(:disabled):hover {\n    background: rgba(249, 115, 22, 0.04);\n    color: #f97316;\n  }\n  .p-splitbutton.p-button-warning.p-button-outlined > .p-button:not(:disabled):active {\n    background: rgba(249, 115, 22, 0.16);\n    color: #f97316;\n  }\n  .p-splitbutton.p-button-warning.p-button-text > .p-button {\n    background-color: transparent;\n    color: #f97316;\n    border-color: transparent;\n  }\n  .p-splitbutton.p-button-warning.p-button-text > .p-button:not(:disabled):hover {\n    background: rgba(249, 115, 22, 0.04);\n    border-color: transparent;\n    color: #f97316;\n  }\n  .p-splitbutton.p-button-warning.p-button-text > .p-button:not(:disabled):active {\n    background: rgba(249, 115, 22, 0.16);\n    border-color: transparent;\n    color: #f97316;\n  }\n  .p-splitbutton.p-button-help.p-button-outlined > .p-button {\n    background-color: transparent;\n    color: #a855f7;\n    border: 1px solid;\n  }\n  .p-splitbutton.p-button-help.p-button-outlined > .p-button:not(:disabled):hover {\n    background: rgba(168, 85, 247, 0.04);\n    color: #a855f7;\n  }\n  .p-splitbutton.p-button-help.p-button-outlined > .p-button:not(:disabled):active {\n    background: rgba(168, 85, 247, 0.16);\n    color: #a855f7;\n  }\n  .p-splitbutton.p-button-help.p-button-text > .p-button {\n    background-color: transparent;\n    color: #a855f7;\n    border-color: transparent;\n  }\n  .p-splitbutton.p-button-help.p-button-text > .p-button:not(:disabled):hover {\n    background: rgba(168, 85, 247, 0.04);\n    border-color: transparent;\n    color: #a855f7;\n  }\n  .p-splitbutton.p-button-help.p-button-text > .p-button:not(:disabled):active {\n    background: rgba(168, 85, 247, 0.16);\n    border-color: transparent;\n    color: #a855f7;\n  }\n  .p-splitbutton.p-button-danger.p-button-outlined > .p-button {\n    background-color: transparent;\n    color: #ef4444;\n    border: 1px solid;\n  }\n  .p-splitbutton.p-button-danger.p-button-outlined > .p-button:not(:disabled):hover {\n    background: rgba(239, 68, 68, 0.04);\n    color: #ef4444;\n  }\n  .p-splitbutton.p-button-danger.p-button-outlined > .p-button:not(:disabled):active {\n    background: rgba(239, 68, 68, 0.16);\n    color: #ef4444;\n  }\n  .p-splitbutton.p-button-danger.p-button-text > .p-button {\n    background-color: transparent;\n    color: #ef4444;\n    border-color: transparent;\n  }\n  .p-splitbutton.p-button-danger.p-button-text > .p-button:not(:disabled):hover {\n    background: rgba(239, 68, 68, 0.04);\n    border-color: transparent;\n    color: #ef4444;\n  }\n  .p-splitbutton.p-button-danger.p-button-text > .p-button:not(:disabled):active {\n    background: rgba(239, 68, 68, 0.16);\n    border-color: transparent;\n    color: #ef4444;\n  }\n  .p-speeddial-button.p-button.p-button-icon-only {\n    width: 4rem;\n    height: 4rem;\n  }\n  .p-speeddial-button.p-button.p-button-icon-only .p-button-icon {\n    font-size: 1.3rem;\n  }\n  .p-speeddial-button.p-button.p-button-icon-only .p-button-icon.p-icon {\n    width: 1.3rem;\n    height: 1.3rem;\n  }\n  .p-speeddial-list {\n    outline: 0 none;\n  }\n  .p-speeddial-action {\n    width: 3rem;\n    height: 3rem;\n    background: #4b5563;\n    color: #fff;\n  }\n  .p-speeddial-action:hover {\n    background: #022354;\n    color: #fff;\n  }\n  .p-speeddial-direction-up .p-speeddial-item {\n    margin: 0.25rem;\n  }\n  .p-speeddial-direction-up .p-speeddial-item:first-child {\n    margin-bottom: 0.5rem;\n  }\n  .p-speeddial-direction-down .p-speeddial-item {\n    margin: 0.25rem;\n  }\n  .p-speeddial-direction-down .p-speeddial-item:first-child {\n    margin-top: 0.5rem;\n  }\n  .p-speeddial-direction-left .p-speeddial-item {\n    margin: 0 0.25rem;\n  }\n  .p-speeddial-direction-left .p-speeddial-item:first-child {\n    margin-right: 0.5rem;\n  }\n  .p-speeddial-direction-right .p-speeddial-item {\n    margin: 0 0.25rem;\n  }\n  .p-speeddial-direction-right .p-speeddial-item:first-child {\n    margin-left: 0.5rem;\n  }\n  .p-speeddial-circle .p-speeddial-item,\n  .p-speeddial-semi-circle .p-speeddial-item,\n  .p-speeddial-quarter-circle .p-speeddial-item {\n    margin: 0;\n  }\n  .p-speeddial-circle .p-speeddial-item:first-child, .p-speeddial-circle .p-speeddial-item:last-child,\n  .p-speeddial-semi-circle .p-speeddial-item:first-child,\n  .p-speeddial-semi-circle .p-speeddial-item:last-child,\n  .p-speeddial-quarter-circle .p-speeddial-item:first-child,\n  .p-speeddial-quarter-circle .p-speeddial-item:last-child {\n    margin: 0;\n  }\n  .p-speeddial-mask {\n    background-color: rgba(0, 0, 0, 0.4);\n    border-radius: 6px;\n  }\n  .p-carousel .p-carousel-content .p-carousel-prev,\n  .p-carousel .p-carousel-content .p-carousel-next {\n    width: 2rem;\n    height: 2rem;\n    color: #6b7280;\n    border: 0 none;\n    background: transparent;\n    border-radius: 50%;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n    margin: 0.5rem;\n  }\n  .p-carousel .p-carousel-content .p-carousel-prev:enabled:hover,\n  .p-carousel .p-carousel-content .p-carousel-next:enabled:hover {\n    color: #374151;\n    border-color: transparent;\n    background: #f3f4f6;\n  }\n  .p-carousel .p-carousel-content .p-carousel-prev:focus-visible,\n  .p-carousel .p-carousel-content .p-carousel-next:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-carousel .p-carousel-indicators {\n    padding: 1rem;\n  }\n  .p-carousel .p-carousel-indicators .p-carousel-indicator {\n    margin-right: 0.5rem;\n    margin-bottom: 0.5rem;\n  }\n  .p-carousel .p-carousel-indicators .p-carousel-indicator button {\n    background-color: #d1d5db;\n    width: 2rem;\n    height: 0.5rem;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n    border-radius: 0;\n  }\n  .p-carousel .p-carousel-indicators .p-carousel-indicator button:hover {\n    background: #9ca3af;\n  }\n  .p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {\n    background: #eef2ff;\n    color: #4338ca;\n  }\n  .p-datatable .p-paginator-top {\n    border-width: 0 0 1px 0;\n    border-radius: 0;\n  }\n  .p-datatable .p-paginator-bottom {\n    border-width: 0 0 1px 0;\n    border-radius: 0;\n  }\n  .p-datatable .p-datatable-header {\n    background: #f9fafb;\n    color: #374151;\n    border: 1px solid #e5e7eb;\n    border-width: 1px 0 1px 0;\n    padding: 1rem 1rem;\n    font-weight: 700;\n  }\n  .p-datatable .p-datatable-footer {\n    background: #f9fafb;\n    color: #374151;\n    border: 1px solid #e5e7eb;\n    border-width: 0 0 1px 0;\n    padding: 1rem 1rem;\n    font-weight: 700;\n  }\n  .p-datatable .p-datatable-thead > tr > th {\n    text-align: left;\n    padding: 1rem 1rem;\n    border: 1px solid #e5e7eb;\n    border-width: 0 0 1px 0;\n    font-weight: 700;\n    color: #374151;\n    background: #f9fafb;\n    transition: box-shadow 0.2s;\n  }\n  .p-datatable .p-datatable-tfoot > tr > td {\n    text-align: left;\n    padding: 1rem 1rem;\n    border: 1px solid #e5e7eb;\n    border-width: 0 0 1px 0;\n    font-weight: 700;\n    color: #374151;\n    background: #f9fafb;\n  }\n  .p-datatable .p-sortable-column .p-sortable-column-icon {\n    color: #374151;\n    margin-left: 0.5rem;\n  }\n  .p-datatable .p-sortable-column .p-sortable-column-badge {\n    border-radius: 50%;\n    height: 1.143rem;\n    min-width: 1.143rem;\n    line-height: 1.143rem;\n    color: #4338ca;\n    background: #eef2ff;\n    margin-left: 0.5rem;\n  }\n  .p-datatable .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover {\n    background: #f3f4f6;\n    color: #374151;\n  }\n  .p-datatable .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover .p-sortable-column-icon {\n    color: #374151;\n  }\n  .p-datatable .p-sortable-column.p-highlight {\n    background: #eef2ff;\n    color: #4338ca;\n  }\n  .p-datatable .p-sortable-column.p-highlight .p-sortable-column-icon {\n    color: #4338ca;\n  }\n  .p-datatable .p-sortable-column.p-highlight:not(.p-sortable-disabled):hover {\n    background: #eef2ff;\n    color: #4338ca;\n  }\n  .p-datatable .p-sortable-column.p-highlight:not(.p-sortable-disabled):hover .p-sortable-column-icon {\n    color: #4338ca;\n  }\n  .p-datatable .p-sortable-column:focus-visible {\n    box-shadow: inset 0 0 0 0.15rem #c7d2fe;\n    outline: 0 none;\n  }\n  .p-datatable .p-datatable-tbody > tr {\n    background: #ffffff;\n    color: #4b5563;\n    transition: box-shadow 0.2s;\n  }\n  .p-datatable .p-datatable-tbody > tr > td {\n    text-align: left;\n    border: 1px solid #e5e7eb;\n    border-width: 0 0 1px 0;\n    padding: 1rem 1rem;\n  }\n  .p-datatable .p-datatable-tbody > tr > td .p-row-toggler,\n  .p-datatable .p-datatable-tbody > tr > td .p-row-editor-init,\n  .p-datatable .p-datatable-tbody > tr > td .p-row-editor-save,\n  .p-datatable .p-datatable-tbody > tr > td .p-row-editor-cancel {\n    width: 2rem;\n    height: 2rem;\n    color: #6b7280;\n    border: 0 none;\n    background: transparent;\n    border-radius: 50%;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n  }\n  .p-datatable .p-datatable-tbody > tr > td .p-row-toggler:enabled:hover,\n  .p-datatable .p-datatable-tbody > tr > td .p-row-editor-init:enabled:hover,\n  .p-datatable .p-datatable-tbody > tr > td .p-row-editor-save:enabled:hover,\n  .p-datatable .p-datatable-tbody > tr > td .p-row-editor-cancel:enabled:hover {\n    color: #374151;\n    border-color: transparent;\n    background: #f3f4f6;\n  }\n  .p-datatable .p-datatable-tbody > tr > td .p-row-toggler:focus-visible,\n  .p-datatable .p-datatable-tbody > tr > td .p-row-editor-init:focus-visible,\n  .p-datatable .p-datatable-tbody > tr > td .p-row-editor-save:focus-visible,\n  .p-datatable .p-datatable-tbody > tr > td .p-row-editor-cancel:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-datatable .p-datatable-tbody > tr > td .p-row-editor-save {\n    margin-right: 0.5rem;\n  }\n  .p-datatable .p-datatable-tbody > tr > td > .p-column-title {\n    font-weight: 700;\n  }\n  .p-datatable .p-datatable-tbody > tr > td.p-highlight {\n    background: #eef2ff;\n    color: #4338ca;\n  }\n  .p-datatable .p-datatable-tbody > tr.p-highlight {\n    background: #eef2ff;\n    color: #4338ca;\n  }\n  .p-datatable .p-datatable-tbody > tr.p-highlight-contextmenu {\n    outline: 0.15rem solid #c7d2fe;\n    outline-offset: -0.15rem;\n  }\n  .p-datatable .p-datatable-tbody > tr.p-datatable-dragpoint-top > td {\n    box-shadow: inset 0 2px 0 0 #eef2ff;\n  }\n  .p-datatable .p-datatable-tbody > tr.p-datatable-dragpoint-bottom > td {\n    box-shadow: inset 0 -2px 0 0 #eef2ff;\n  }\n  .p-datatable.p-datatable-selectable .p-datatable-tbody > tr.p-selectable-row:not(.p-highlight):not(.p-datatable-emptymessage):hover {\n    background: #f3f4f6;\n    color: #4b5563;\n  }\n  .p-datatable.p-datatable-selectable .p-datatable-tbody > tr.p-selectable-row:focus-visible {\n    outline: 0.15rem solid #c7d2fe;\n    outline-offset: -0.15rem;\n  }\n  .p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row > td.p-selectable-cell:not(.p-highlight):hover {\n    background: #f3f4f6;\n    color: #4b5563;\n  }\n  .p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row > td.p-selectable-cell:focus-visible {\n    outline: 0.15rem solid #c7d2fe;\n    outline-offset: -0.15rem;\n  }\n  .p-datatable.p-datatable-hoverable-rows .p-datatable-tbody > tr:not(.p-highlight):not(.p-datatable-emptymessage):hover {\n    background: #f3f4f6;\n    color: #4b5563;\n  }\n  .p-datatable .p-column-resizer-helper {\n    background: #6366f1;\n  }\n  .p-datatable .p-datatable-scrollable-header,\n  .p-datatable .p-datatable-scrollable-footer {\n    background: #f9fafb;\n  }\n  .p-datatable.p-datatable-scrollable > .p-datatable-wrapper > .p-datatable-table > .p-datatable-thead,\n  .p-datatable.p-datatable-scrollable > .p-datatable-wrapper > .p-datatable-table > .p-datatable-tfoot, .p-datatable.p-datatable-scrollable > .p-datatable-wrapper > .p-virtualscroller > .p-datatable-table > .p-datatable-thead,\n  .p-datatable.p-datatable-scrollable > .p-datatable-wrapper > .p-virtualscroller > .p-datatable-table > .p-datatable-tfoot {\n    background-color: #f9fafb;\n  }\n  .p-datatable .p-datatable-loading-icon {\n    font-size: 2rem;\n  }\n  .p-datatable .p-datatable-loading-icon.p-icon {\n    width: 2rem;\n    height: 2rem;\n  }\n  .p-datatable.p-datatable-gridlines .p-datatable-header {\n    border-width: 1px 1px 0 1px;\n  }\n  .p-datatable.p-datatable-gridlines .p-datatable-footer {\n    border-width: 0 1px 1px 1px;\n  }\n  .p-datatable.p-datatable-gridlines .p-paginator-top {\n    border-width: 0 1px 0 1px;\n  }\n  .p-datatable.p-datatable-gridlines .p-paginator-bottom {\n    border-width: 0 1px 1px 1px;\n  }\n  .p-datatable.p-datatable-gridlines .p-datatable-thead > tr > th {\n    border-width: 1px 0 1px 1px;\n  }\n  .p-datatable.p-datatable-gridlines .p-datatable-thead > tr > th:last-child {\n    border-width: 1px;\n  }\n  .p-datatable.p-datatable-gridlines .p-datatable-tbody > tr > td {\n    border-width: 1px 0 0 1px;\n  }\n  .p-datatable.p-datatable-gridlines .p-datatable-tbody > tr > td:last-child {\n    border-width: 1px 1px 0 1px;\n  }\n  .p-datatable.p-datatable-gridlines .p-datatable-tbody > tr:last-child > td {\n    border-width: 1px 0 1px 1px;\n  }\n  .p-datatable.p-datatable-gridlines .p-datatable-tbody > tr:last-child > td:last-child {\n    border-width: 1px;\n  }\n  .p-datatable.p-datatable-gridlines .p-datatable-tfoot > tr > td {\n    border-width: 1px 0 1px 1px;\n  }\n  .p-datatable.p-datatable-gridlines .p-datatable-tfoot > tr > td:last-child {\n    border-width: 1px 1px 1px 1px;\n  }\n  .p-datatable.p-datatable-gridlines .p-datatable-thead + .p-datatable-tfoot > tr > td {\n    border-width: 0 0 1px 1px;\n  }\n  .p-datatable.p-datatable-gridlines .p-datatable-thead + .p-datatable-tfoot > tr > td:last-child {\n    border-width: 0 1px 1px 1px;\n  }\n  .p-datatable.p-datatable-gridlines:has(.p-datatable-thead):has(.p-datatable-tbody) .p-datatable-tbody > tr > td {\n    border-width: 0 0 1px 1px;\n  }\n  .p-datatable.p-datatable-gridlines:has(.p-datatable-thead):has(.p-datatable-tbody) .p-datatable-tbody > tr > td:last-child {\n    border-width: 0 1px 1px 1px;\n  }\n  .p-datatable.p-datatable-gridlines:has(.p-datatable-tbody):has(.p-datatable-tfoot) .p-datatable-tbody > tr:last-child > td {\n    border-width: 0 0 0 1px;\n  }\n  .p-datatable.p-datatable-gridlines:has(.p-datatable-tbody):has(.p-datatable-tfoot) .p-datatable-tbody > tr:last-child > td:last-child {\n    border-width: 0 1px 0 1px;\n  }\n  .p-datatable.p-datatable-striped .p-datatable-tbody > tr.p-row-odd {\n    background: #f8f8fa;\n  }\n  .p-datatable.p-datatable-striped .p-datatable-tbody > tr.p-row-odd.p-highlight {\n    background: #eef2ff;\n    color: #4338ca;\n  }\n  .p-datatable.p-datatable-striped .p-datatable-tbody > tr.p-row-odd.p-highlight .p-row-toggler {\n    color: #4338ca;\n  }\n  .p-datatable.p-datatable-striped .p-datatable-tbody > tr.p-row-odd.p-highlight .p-row-toggler:hover {\n    color: #4338ca;\n  }\n  .p-datatable.p-datatable-striped .p-datatable-tbody > tr.p-row-odd + .p-row-expanded {\n    background: #f8f8fa;\n  }\n  .p-datatable.p-datatable-sm .p-datatable-header {\n    padding: 0.5rem 0.5rem;\n  }\n  .p-datatable.p-datatable-sm .p-datatable-thead > tr > th {\n    padding: 0.5rem 0.5rem;\n  }\n  .p-datatable.p-datatable-sm .p-datatable-tbody > tr > td {\n    padding: 0.5rem 0.5rem;\n  }\n  .p-datatable.p-datatable-sm .p-datatable-tfoot > tr > td {\n    padding: 0.5rem 0.5rem;\n  }\n  .p-datatable.p-datatable-sm .p-datatable-footer {\n    padding: 0.5rem 0.5rem;\n  }\n  .p-datatable.p-datatable-lg .p-datatable-header {\n    padding: 1.25rem 1.25rem;\n  }\n  .p-datatable.p-datatable-lg .p-datatable-thead > tr > th {\n    padding: 1.25rem 1.25rem;\n  }\n  .p-datatable.p-datatable-lg .p-datatable-tbody > tr > td {\n    padding: 1.25rem 1.25rem;\n  }\n  .p-datatable.p-datatable-lg .p-datatable-tfoot > tr > td {\n    padding: 1.25rem 1.25rem;\n  }\n  .p-datatable.p-datatable-lg .p-datatable-footer {\n    padding: 1.25rem 1.25rem;\n  }\n  .p-datatable-drag-selection-helper {\n    background: rgba(99, 102, 241, 0.16);\n  }\n  .p-dataview .p-paginator-top {\n    border-width: 0 0 1px 0;\n    border-radius: 0;\n  }\n  .p-dataview .p-paginator-bottom {\n    border-width: 0 0 1px 0;\n    border-radius: 0;\n  }\n  .p-dataview .p-dataview-header {\n    background: #f9fafb;\n    color: #374151;\n    border: 1px solid #e5e7eb;\n    border-width: 1px 0 1px 0;\n    padding: 1rem 1rem;\n    font-weight: 700;\n  }\n  .p-dataview .p-dataview-content {\n    background: #ffffff;\n    color: #4b5563;\n    border: 0 none;\n    padding: 0;\n  }\n  .p-dataview .p-dataview-footer {\n    background: #f9fafb;\n    color: #374151;\n    border: 1px solid #e5e7eb;\n    border-width: 0 0 1px 0;\n    padding: 1rem 1rem;\n    font-weight: 700;\n    border-bottom-left-radius: 6px;\n    border-bottom-right-radius: 6px;\n  }\n  .p-dataview .p-dataview-loading-icon {\n    font-size: 2rem;\n  }\n  .p-dataview .p-dataview-loading-icon.p-icon {\n    width: 2rem;\n    height: 2rem;\n  }\n  .p-datascroller .p-paginator-top {\n    border-width: 0 0 1px 0;\n    border-radius: 0;\n  }\n  .p-datascroller .p-paginator-bottom {\n    border-width: 0 0 1px 0;\n    border-radius: 0;\n  }\n  .p-datascroller .p-datascroller-header {\n    background: #f9fafb;\n    color: #374151;\n    border: 1px solid #e5e7eb;\n    border-width: 1px 0 1px 0;\n    padding: 1rem 1rem;\n    font-weight: 700;\n  }\n  .p-datascroller .p-datascroller-content {\n    background: #ffffff;\n    color: #4b5563;\n    border: 0 none;\n    padding: 0;\n  }\n  .p-datascroller.p-datascroller-inline .p-datascroller-list > li {\n    border: solid #e5e7eb;\n    border-width: 0 0 1px 0;\n  }\n  .p-datascroller .p-datascroller-footer {\n    background: #f9fafb;\n    color: #374151;\n    border: 1px solid #e5e7eb;\n    border-width: 0 0 1px 0;\n    padding: 1rem 1rem;\n    font-weight: 700;\n    border-bottom-left-radius: 6px;\n    border-bottom-right-radius: 6px;\n  }\n  .p-column-filter-row .p-column-filter-menu-button,\n  .p-column-filter-row .p-column-filter-clear-button {\n    margin-left: 0.5rem;\n  }\n  .p-column-filter-menu-button {\n    width: 2rem;\n    height: 2rem;\n    color: #6b7280;\n    border: 0 none;\n    background: transparent;\n    border-radius: 50%;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n  }\n  .p-column-filter-menu-button:hover {\n    color: #374151;\n    border-color: transparent;\n    background: #f3f4f6;\n  }\n  .p-column-filter-menu-button.p-column-filter-menu-button-open, .p-column-filter-menu-button.p-column-filter-menu-button-open:hover {\n    background: #f3f4f6;\n    color: #374151;\n  }\n  .p-column-filter-menu-button.p-column-filter-menu-button-active, .p-column-filter-menu-button.p-column-filter-menu-button-active:hover {\n    background: #eef2ff;\n    color: #4338ca;\n  }\n  .p-column-filter-menu-button:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-column-filter-clear-button {\n    width: 2rem;\n    height: 2rem;\n    color: #6b7280;\n    border: 0 none;\n    background: transparent;\n    border-radius: 50%;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n  }\n  .p-column-filter-clear-button:hover {\n    color: #374151;\n    border-color: transparent;\n    background: #f3f4f6;\n  }\n  .p-column-filter-clear-button:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-column-filter-overlay {\n    background: #ffffff;\n    color: #4b5563;\n    border: 0 none;\n    border-radius: 6px;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n    min-width: 12.5rem;\n  }\n  .p-column-filter-overlay .p-column-filter-row-items {\n    padding: 0.75rem 0;\n  }\n  .p-column-filter-overlay .p-column-filter-row-items .p-column-filter-row-item {\n    margin: 0;\n    padding: 0.75rem 1.25rem;\n    border: 0 none;\n    color: #4b5563;\n    background: transparent;\n    transition: box-shadow 0.2s;\n    border-radius: 0;\n  }\n  .p-column-filter-overlay .p-column-filter-row-items .p-column-filter-row-item.p-highlight {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-column-filter-overlay .p-column-filter-row-items .p-column-filter-row-item:not(.p-highlight):not(.p-disabled):hover {\n    color: #4b5563;\n    background: #f3f4f6;\n  }\n  .p-column-filter-overlay .p-column-filter-row-items .p-column-filter-row-item:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: inset 0 0 0 0.15rem #c7d2fe;\n  }\n  .p-column-filter-overlay .p-column-filter-row-items .p-column-filter-separator {\n    border-top: 1px solid #e5e7eb;\n    margin: 0.25rem 0;\n  }\n  .p-column-filter-overlay-menu .p-column-filter-operator {\n    padding: 0.75rem 1.25rem;\n    border-bottom: 1px solid #e5e7eb;\n    color: #374151;\n    background: #f9fafb;\n    margin: 0;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n  }\n  .p-column-filter-overlay-menu .p-column-filter-constraint {\n    padding: 1.25rem;\n    border-bottom: 1px solid #e5e7eb;\n  }\n  .p-column-filter-overlay-menu .p-column-filter-constraint .p-column-filter-matchmode-dropdown {\n    margin-bottom: 0.5rem;\n  }\n  .p-column-filter-overlay-menu .p-column-filter-constraint .p-column-filter-remove-button {\n    margin-top: 0.5rem;\n  }\n  .p-column-filter-overlay-menu .p-column-filter-constraint:last-child {\n    border-bottom: 0 none;\n  }\n  .p-column-filter-overlay-menu .p-column-filter-add-rule {\n    padding: 0.75rem 1.25rem;\n  }\n  .p-column-filter-overlay-menu .p-column-filter-buttonbar {\n    padding: 1.25rem;\n  }\n  .p-orderlist .p-orderlist-controls {\n    padding: 1.25rem;\n  }\n  .p-orderlist .p-orderlist-controls .p-button {\n    margin-bottom: 0.5rem;\n  }\n  .p-orderlist .p-orderlist-header {\n    background: #f9fafb;\n    color: #374151;\n    border: 1px solid #e5e7eb;\n    padding: 1.25rem;\n    font-weight: 700;\n    border-bottom: 0 none;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n  }\n  .p-orderlist .p-orderlist-filter-container {\n    padding: 1.25rem;\n    background: #ffffff;\n    border: 1px solid #e5e7eb;\n    border-bottom: 0 none;\n  }\n  .p-orderlist .p-orderlist-filter-container .p-orderlist-filter-input {\n    padding-right: 1.75rem;\n  }\n  .p-orderlist .p-orderlist-filter-container .p-orderlist-filter-icon {\n    right: 0.75rem;\n    color: #6b7280;\n  }\n  .p-orderlist .p-orderlist-list {\n    border: 1px solid #e5e7eb;\n    background: #ffffff;\n    color: #4b5563;\n    padding: 0.75rem 0;\n    border-bottom-right-radius: 6px;\n    border-bottom-left-radius: 6px;\n    outline: 0 none;\n  }\n  .p-orderlist .p-orderlist-list .p-orderlist-item {\n    padding: 0.75rem 1.25rem;\n    margin: 0;\n    border: 0 none;\n    color: #4b5563;\n    background: transparent;\n    transition: transform 0.2s, box-shadow 0.2s;\n  }\n  .p-orderlist .p-orderlist-list .p-orderlist-item:not(.p-highlight):hover {\n    background: #f3f4f6;\n    color: #4b5563;\n  }\n  .p-orderlist .p-orderlist-list .p-orderlist-item.p-focus {\n    color: #4b5563;\n    background: #e5e7eb;\n  }\n  .p-orderlist .p-orderlist-list .p-orderlist-item.p-highlight {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-orderlist .p-orderlist-list .p-orderlist-item.p-highlight.p-focus {\n    background: rgba(99, 102, 241, 0.24);\n  }\n  .p-orderlist.p-orderlist-striped .p-orderlist-list .p-orderlist-item:nth-child(even) {\n    background: #f8f8fa;\n  }\n  .p-orderlist.p-orderlist-striped .p-orderlist-list .p-orderlist-item:nth-child(even):hover {\n    background: #f3f4f6;\n  }\n  .p-organizationchart .p-organizationchart-node-content.p-organizationchart-selectable-node:not(.p-highlight):hover {\n    background: #f3f4f6;\n    color: #4b5563;\n  }\n  .p-organizationchart .p-organizationchart-node-content.p-highlight {\n    background: #eef2ff;\n    color: #4338ca;\n  }\n  .p-organizationchart .p-organizationchart-node-content.p-highlight .p-node-toggler i {\n    color: #6f91ff;\n  }\n  .p-organizationchart .p-organizationchart-line-down {\n    background: #e5e7eb;\n  }\n  .p-organizationchart .p-organizationchart-line-left {\n    border-right: 1px solid #e5e7eb;\n    border-color: #e5e7eb;\n  }\n  .p-organizationchart .p-organizationchart-line-top {\n    border-top: 1px solid #e5e7eb;\n    border-color: #e5e7eb;\n  }\n  .p-organizationchart .p-organizationchart-node-content {\n    border: 1px solid #e5e7eb;\n    background: #ffffff;\n    color: #4b5563;\n    padding: 1.25rem;\n  }\n  .p-organizationchart .p-organizationchart-node-content .p-node-toggler {\n    background: inherit;\n    color: inherit;\n    border-radius: 50%;\n  }\n  .p-organizationchart .p-organizationchart-node-content .p-node-toggler:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-paginator {\n    background: #ffffff;\n    color: #6b7280;\n    border: solid #f3f4f6;\n    border-width: 0;\n    padding: 0.5rem 1rem;\n    border-radius: 6px;\n  }\n  .p-paginator .p-paginator-first,\n  .p-paginator .p-paginator-prev,\n  .p-paginator .p-paginator-next,\n  .p-paginator .p-paginator-last {\n    background-color: transparent;\n    border: 0 none;\n    color: #6b7280;\n    min-width: 3rem;\n    height: 3rem;\n    margin: 0.143rem;\n    transition: box-shadow 0.2s;\n    border-radius: 50%;\n  }\n  .p-paginator .p-paginator-first:not(.p-disabled):not(.p-highlight):hover,\n  .p-paginator .p-paginator-prev:not(.p-disabled):not(.p-highlight):hover,\n  .p-paginator .p-paginator-next:not(.p-disabled):not(.p-highlight):hover,\n  .p-paginator .p-paginator-last:not(.p-disabled):not(.p-highlight):hover {\n    background: #f3f4f6;\n    border-color: transparent;\n    color: #374151;\n  }\n  .p-paginator .p-paginator-first {\n    border-top-left-radius: 50%;\n    border-bottom-left-radius: 50%;\n  }\n  .p-paginator .p-paginator-last {\n    border-top-right-radius: 50%;\n    border-bottom-right-radius: 50%;\n  }\n  .p-paginator .p-dropdown {\n    margin-left: 0.5rem;\n    height: 3rem;\n  }\n  .p-paginator .p-dropdown .p-dropdown-label {\n    padding-right: 0;\n  }\n  .p-paginator .p-paginator-page-input {\n    margin-left: 0.5rem;\n    margin-right: 0.5rem;\n  }\n  .p-paginator .p-paginator-page-input .p-inputtext {\n    max-width: 3rem;\n  }\n  .p-paginator .p-paginator-current {\n    background-color: transparent;\n    border: 0 none;\n    color: #6b7280;\n    min-width: 3rem;\n    height: 3rem;\n    margin: 0.143rem;\n    padding: 0 0.5rem;\n  }\n  .p-paginator .p-paginator-pages .p-paginator-page {\n    background-color: transparent;\n    border: 0 none;\n    color: #6b7280;\n    min-width: 3rem;\n    height: 3rem;\n    margin: 0.143rem;\n    transition: box-shadow 0.2s;\n    border-radius: 50%;\n  }\n  .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {\n    background: #eef2ff;\n    border-color: #eef2ff;\n    color: #4338ca;\n  }\n  .p-paginator .p-paginator-pages .p-paginator-page:not(.p-highlight):hover {\n    background: #f3f4f6;\n    border-color: transparent;\n    color: #374151;\n  }\n  .p-picklist .p-picklist-buttons {\n    padding: 1.25rem;\n  }\n  .p-picklist .p-picklist-buttons .p-button {\n    margin-bottom: 0.5rem;\n  }\n  .p-picklist .p-picklist-header {\n    background: #f9fafb;\n    color: #374151;\n    border: 1px solid #e5e7eb;\n    padding: 1.25rem;\n    font-weight: 700;\n    border-bottom: 0 none;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n  }\n  .p-picklist .p-picklist-filter-container {\n    padding: 1.25rem;\n    background: #ffffff;\n    border: 1px solid #e5e7eb;\n    border-bottom: 0 none;\n  }\n  .p-picklist .p-picklist-filter-container .p-picklist-filter-input {\n    padding-right: 1.75rem;\n  }\n  .p-picklist .p-picklist-filter-container .p-picklist-filter-icon {\n    right: 0.75rem;\n    color: #6b7280;\n  }\n  .p-picklist .p-picklist-list {\n    border: 1px solid #e5e7eb;\n    background: #ffffff;\n    color: #4b5563;\n    padding: 0.75rem 0;\n    border-bottom-right-radius: 6px;\n    border-bottom-left-radius: 6px;\n    outline: 0 none;\n  }\n  .p-picklist .p-picklist-list .p-picklist-item {\n    padding: 0.75rem 1.25rem;\n    margin: 0;\n    border: 0 none;\n    color: #4b5563;\n    background: transparent;\n    transition: transform 0.2s, box-shadow 0.2s;\n  }\n  .p-picklist .p-picklist-list .p-picklist-item:not(.p-highlight):hover {\n    background: #f3f4f6;\n    color: #4b5563;\n  }\n  .p-picklist .p-picklist-list .p-picklist-item.p-focus {\n    color: #4b5563;\n    background: #e5e7eb;\n  }\n  .p-picklist .p-picklist-list .p-picklist-item.p-highlight {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-picklist .p-picklist-list .p-picklist-item.p-highlight.p-focus {\n    background: rgba(99, 102, 241, 0.24);\n  }\n  .p-tree-container {\n    margin: 0;\n    padding: 0;\n    list-style-type: none;\n    overflow: auto;\n  }\n  .p-treenode-children {\n    margin: 0;\n    padding: 0;\n    list-style-type: none;\n  }\n  .p-treenode-selectable {\n    cursor: pointer;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n  }\n  .p-tree-toggler {\n    cursor: pointer;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    overflow: hidden;\n    position: relative;\n    flex-shrink: 0;\n  }\n  .p-treenode-leaf > .p-treenode-content .p-tree-toggler {\n    visibility: hidden;\n  }\n  .p-treenode-content {\n    display: flex;\n    align-items: center;\n  }\n  .p-tree-filter {\n    width: 100%;\n  }\n  .p-tree-filter-container {\n    position: relative;\n    display: block;\n    width: 100%;\n  }\n  .p-tree-filter-icon {\n    position: absolute;\n    top: 50%;\n    margin-top: -0.5rem;\n  }\n  .p-tree-loading {\n    position: relative;\n    min-height: 4rem;\n  }\n  .p-tree .p-tree-loading-overlay {\n    position: absolute;\n    z-index: 1;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n  }\n  .p-tree {\n    border: 1px solid #e5e7eb;\n    background: #ffffff;\n    color: #4b5563;\n    padding: 1.25rem;\n    border-radius: 6px;\n  }\n  .p-tree .p-tree-container .p-treenode {\n    padding: 0.143rem;\n    outline: 0 none;\n  }\n  .p-tree .p-tree-container .p-treenode:focus > .p-treenode-content {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: inset 0 0 0 0.15rem #c7d2fe;\n  }\n  .p-tree .p-tree-container .p-treenode .p-treenode-content {\n    border-radius: 6px;\n    transition: box-shadow 0.2s;\n    padding: 0.5rem;\n  }\n  .p-tree .p-tree-container .p-treenode .p-treenode-content .p-tree-toggler {\n    margin-right: 0.5rem;\n    width: 2rem;\n    height: 2rem;\n    color: #6b7280;\n    border: 0 none;\n    background: transparent;\n    border-radius: 50%;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n  }\n  .p-tree .p-tree-container .p-treenode .p-treenode-content .p-tree-toggler:enabled:hover {\n    color: #374151;\n    border-color: transparent;\n    background: #f3f4f6;\n  }\n  .p-tree .p-tree-container .p-treenode .p-treenode-content .p-tree-toggler:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-tree .p-tree-container .p-treenode .p-treenode-content .p-treenode-icon {\n    margin-right: 0.5rem;\n    color: #6b7280;\n  }\n  .p-tree .p-tree-container .p-treenode .p-treenode-content .p-checkbox {\n    margin-right: 0.5rem;\n  }\n  .p-tree .p-tree-container .p-treenode .p-treenode-content .p-checkbox.p-indeterminate .p-checkbox-icon {\n    color: #4b5563;\n  }\n  .p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight {\n    background: #eef2ff;\n    color: #4338ca;\n  }\n  .p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight .p-tree-toggler,\n  .p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight .p-treenode-icon {\n    color: #4338ca;\n  }\n  .p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight .p-tree-toggler:hover,\n  .p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight .p-treenode-icon:hover {\n    color: #4338ca;\n  }\n  .p-tree .p-tree-container .p-treenode .p-treenode-content.p-treenode-selectable:not(.p-highlight):hover {\n    background: #f3f4f6;\n    color: #4b5563;\n  }\n  .p-tree .p-tree-container .p-treenode .p-treenode-content.p-treenode-dragover {\n    background: #f3f4f6;\n    color: #4b5563;\n  }\n  .p-tree .p-tree-filter-container {\n    margin-bottom: 0.5rem;\n  }\n  .p-tree .p-tree-filter-container .p-tree-filter {\n    width: 100%;\n    padding-right: 1.75rem;\n  }\n  .p-tree .p-tree-filter-container .p-tree-filter-icon {\n    right: 0.75rem;\n    color: #6b7280;\n  }\n  .p-tree .p-treenode-children {\n    padding: 0 0 0 1rem;\n  }\n  .p-tree .p-tree-loading-icon {\n    font-size: 2rem;\n  }\n  .p-tree .p-tree-loading-icon.p-icon {\n    width: 2rem;\n    height: 2rem;\n  }\n  .p-tree .p-treenode-droppoint {\n    height: 0.5rem;\n  }\n  .p-tree .p-treenode-droppoint.p-treenode-droppoint-active {\n    background: #8ba7ff;\n  }\n  .p-treetable {\n    position: relative;\n  }\n  .p-treetable > .p-treetable-wrapper {\n    overflow: auto;\n  }\n  .p-treetable table {\n    border-collapse: collapse;\n    width: 100%;\n    table-layout: fixed;\n  }\n  .p-treetable .p-sortable-column {\n    cursor: pointer;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n  }\n  .p-treetable-selectable .p-treetable-tbody > tr {\n    cursor: pointer;\n  }\n  .p-treetable-toggler {\n    cursor: pointer;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n    vertical-align: middle;\n    overflow: hidden;\n    position: relative;\n  }\n  .p-treetable-toggler + .p-checkbox {\n    vertical-align: middle;\n  }\n  .p-treetable-toggler + .p-checkbox + span {\n    vertical-align: middle;\n  }\n  /* Resizable */\n  .p-treetable-resizable > .p-treetable-wrapper {\n    overflow-x: auto;\n  }\n  .p-treetable-resizable .p-treetable-thead > tr > th,\n  .p-treetable-resizable .p-treetable-tfoot > tr > td,\n  .p-treetable-resizable .p-treetable-tbody > tr > td {\n    overflow: hidden;\n  }\n  .p-treetable-resizable .p-resizable-column {\n    background-clip: padding-box;\n    position: relative;\n  }\n  .p-treetable-resizable-fit .p-resizable-column:last-child .p-column-resizer {\n    display: none;\n  }\n  .p-treetable .p-column-resizer {\n    display: block;\n    position: absolute;\n    top: 0;\n    right: 0;\n    margin: 0;\n    width: 0.5rem;\n    height: 100%;\n    padding: 0px;\n    cursor: col-resize;\n    border: 1px solid transparent;\n  }\n  .p-treetable .p-column-resizer-helper {\n    width: 1px;\n    position: absolute;\n    z-index: 10;\n    display: none;\n  }\n  /* Scrollable */\n  .p-treetable-scrollable-wrapper {\n    position: relative;\n  }\n  .p-treetable-scrollable-header,\n  .p-treetable-scrollable-footer {\n    overflow: hidden;\n    border: 0 none;\n  }\n  .p-treetable-scrollable-body {\n    overflow: auto;\n    position: relative;\n  }\n  .p-treetable-virtual-table {\n    position: absolute;\n  }\n  /* Frozen Columns */\n  .p-treetable-frozen-view .p-treetable-scrollable-body {\n    overflow: hidden;\n  }\n  .p-treetable-unfrozen-view {\n    position: absolute;\n    top: 0px;\n    left: 0px;\n  }\n  /* Reorder */\n  .p-treetable-reorder-indicator-up,\n  .p-treetable-reorder-indicator-down {\n    position: absolute;\n    display: none;\n  }\n  /* Loader */\n  .p-treetable .p-treetable-loading-overlay {\n    position: absolute;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    z-index: 2;\n  }\n  /* Alignment */\n  .p-treetable .p-treetable-thead > tr > th.p-align-left > .p-column-header-content,\n  .p-treetable .p-treetable-tbody > tr > td.p-align-left,\n  .p-treetable .p-treetable-tfoot > tr > td.p-align-left {\n    text-align: left;\n    justify-content: flex-start;\n  }\n  .p-treetable .p-treetable-thead > tr > th.p-align-right > .p-column-header-content,\n  .p-treetable .p-treetable-tbody > tr > td.p-align-right,\n  .p-treetable .p-treetable-tfoot > tr > td.p-align-right {\n    text-align: right;\n    justify-content: flex-end;\n  }\n  .p-treetable .p-treetable-thead > tr > th.p-align-center > .p-column-header-content,\n  .p-treetable .p-treetable-tbody > tr > td.p-align-center,\n  .p-treetable .p-treetable-tfoot > tr > td.p-align-center {\n    text-align: center;\n    justify-content: center;\n  }\n  .p-treetable .p-paginator-top {\n    border-width: 0 0 1px 0;\n    border-radius: 0;\n  }\n  .p-treetable .p-paginator-bottom {\n    border-width: 0 0 1px 0;\n    border-radius: 0;\n  }\n  .p-treetable .p-treetable-header {\n    background: #f9fafb;\n    color: #374151;\n    border: 1px solid #e5e7eb;\n    border-width: 1px 0 1px 0;\n    padding: 1rem 1rem;\n    font-weight: 700;\n  }\n  .p-treetable .p-treetable-footer {\n    background: #f9fafb;\n    color: #374151;\n    border: 1px solid #e5e7eb;\n    border-width: 0 0 1px 0;\n    padding: 1rem 1rem;\n    font-weight: 700;\n  }\n  .p-treetable .p-treetable-thead > tr > th {\n    text-align: left;\n    padding: 1rem 1rem;\n    border: 1px solid #e5e7eb;\n    border-width: 0 0 1px 0;\n    font-weight: 700;\n    color: #374151;\n    background: #f9fafb;\n    transition: box-shadow 0.2s;\n  }\n  .p-treetable .p-treetable-tfoot > tr > td {\n    text-align: left;\n    padding: 1rem 1rem;\n    border: 1px solid #e5e7eb;\n    border-width: 0 0 1px 0;\n    font-weight: 700;\n    color: #374151;\n    background: #f9fafb;\n  }\n  .p-treetable .p-sortable-column {\n    outline-color: #c7d2fe;\n  }\n  .p-treetable .p-sortable-column .p-sortable-column-icon {\n    color: #374151;\n    margin-left: 0.5rem;\n  }\n  .p-treetable .p-sortable-column .p-sortable-column-badge {\n    border-radius: 50%;\n    height: 1.143rem;\n    min-width: 1.143rem;\n    line-height: 1.143rem;\n    color: #4338ca;\n    background: #eef2ff;\n    margin-left: 0.5rem;\n  }\n  .p-treetable .p-sortable-column:not(.p-highlight):hover {\n    background: #f3f4f6;\n    color: #374151;\n  }\n  .p-treetable .p-sortable-column:not(.p-highlight):hover .p-sortable-column-icon {\n    color: #374151;\n  }\n  .p-treetable .p-sortable-column.p-highlight {\n    background: #eef2ff;\n    color: #4338ca;\n  }\n  .p-treetable .p-sortable-column.p-highlight .p-sortable-column-icon {\n    color: #4338ca;\n  }\n  .p-treetable .p-treetable-tbody > tr {\n    background: #ffffff;\n    color: #4b5563;\n    transition: box-shadow 0.2s;\n  }\n  .p-treetable .p-treetable-tbody > tr > td {\n    text-align: left;\n    border: 1px solid #e5e7eb;\n    border-width: 0 0 1px 0;\n    padding: 1rem 1rem;\n  }\n  .p-treetable .p-treetable-tbody > tr > td .p-treetable-toggler {\n    width: 2rem;\n    height: 2rem;\n    color: #6b7280;\n    border: 0 none;\n    background: transparent;\n    border-radius: 50%;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n    margin-right: 0.5rem;\n  }\n  .p-treetable .p-treetable-tbody > tr > td .p-treetable-toggler:enabled:hover {\n    color: #374151;\n    border-color: transparent;\n    background: #f3f4f6;\n  }\n  .p-treetable .p-treetable-tbody > tr > td .p-treetable-toggler:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-treetable .p-treetable-tbody > tr > td .p-treetable-toggler + .p-checkbox {\n    margin-right: 0.5rem;\n  }\n  .p-treetable .p-treetable-tbody > tr > td .p-treetable-toggler + .p-checkbox .p-indeterminate .p-checkbox-icon {\n    color: #4b5563;\n  }\n  .p-treetable .p-treetable-tbody > tr:focus-visible {\n    outline: 0.15rem solid #c7d2fe;\n    outline-offset: -0.15rem;\n  }\n  .p-treetable .p-treetable-tbody > tr.p-highlight {\n    background: #eef2ff;\n    color: #4338ca;\n  }\n  .p-treetable .p-treetable-tbody > tr.p-highlight .p-treetable-toggler {\n    color: #4338ca;\n  }\n  .p-treetable .p-treetable-tbody > tr.p-highlight .p-treetable-toggler:hover {\n    color: #4338ca;\n  }\n  .p-treetable.p-treetable-selectable .p-treetable-tbody > tr:not(.p-highlight):hover, .p-treetable.p-treetable-hoverable-rows .p-treetable-tbody > tr:not(.p-highlight):hover {\n    background: #f3f4f6;\n    color: #4b5563;\n  }\n  .p-treetable.p-treetable-selectable .p-treetable-tbody > tr:not(.p-highlight):hover .p-treetable-toggler, .p-treetable.p-treetable-hoverable-rows .p-treetable-tbody > tr:not(.p-highlight):hover .p-treetable-toggler {\n    color: #4b5563;\n  }\n  .p-treetable .p-column-resizer-helper {\n    background: #6366f1;\n  }\n  .p-treetable .p-treetable-scrollable-header,\n  .p-treetable .p-treetable-scrollable-footer {\n    background: #f9fafb;\n  }\n  .p-treetable .p-treetable-loading-icon {\n    font-size: 2rem;\n  }\n  .p-treetable .p-treetable-loading-icon.p-icon {\n    width: 2rem;\n    height: 2rem;\n  }\n  .p-treetable.p-treetable-gridlines .p-treetable-header {\n    border-width: 1px 1px 0 1px;\n  }\n  .p-treetable.p-treetable-gridlines .p-treetable-footer {\n    border-width: 0 1px 1px 1px;\n  }\n  .p-treetable.p-treetable-gridlines .p-treetable-top {\n    border-width: 0 1px 0 1px;\n  }\n  .p-treetable.p-treetable-gridlines .p-treetable-bottom {\n    border-width: 0 1px 1px 1px;\n  }\n  .p-treetable.p-treetable-gridlines .p-treetable-thead > tr > th {\n    border-width: 1px;\n  }\n  .p-treetable.p-treetable-gridlines .p-treetable-tbody > tr > td {\n    border-width: 1px;\n  }\n  .p-treetable.p-treetable-gridlines .p-treetable-tfoot > tr > td {\n    border-width: 1px;\n  }\n  .p-treetable.p-treetable-striped .p-treetable-tbody > tr.p-row-odd {\n    background: #f8f8fa;\n  }\n  .p-treetable.p-treetable-striped .p-treetable-tbody > tr.p-row-odd.p-highlight {\n    background: #eef2ff;\n    color: #4338ca;\n  }\n  .p-treetable.p-treetable-striped .p-treetable-tbody > tr.p-row-odd.p-highlight .p-row-toggler {\n    color: #4338ca;\n  }\n  .p-treetable.p-treetable-striped .p-treetable-tbody > tr.p-row-odd.p-highlight .p-row-toggler:hover {\n    color: #4338ca;\n  }\n  .p-treetable.p-treetable-striped .p-treetable-tbody > tr.p-row-odd + .p-row-expanded {\n    background: #f8f8fa;\n  }\n  .p-treetable.p-treetable-sm .p-treetable-header {\n    padding: 0.875rem 0.875rem;\n  }\n  .p-treetable.p-treetable-sm .p-treetable-thead > tr > th {\n    padding: 0.5rem 0.5rem;\n  }\n  .p-treetable.p-treetable-sm .p-treetable-tbody > tr > td {\n    padding: 0.5rem 0.5rem;\n  }\n  .p-treetable.p-treetable-sm .p-treetable-tfoot > tr > td {\n    padding: 0.5rem 0.5rem;\n  }\n  .p-treetable.p-treetable-sm .p-treetable-footer {\n    padding: 0.5rem 0.5rem;\n  }\n  .p-treetable.p-treetable-lg .p-treetable-header {\n    padding: 1.25rem 1.25rem;\n  }\n  .p-treetable.p-treetable-lg .p-treetable-thead > tr > th {\n    padding: 1.25rem 1.25rem;\n  }\n  .p-treetable.p-treetable-lg .p-treetable-tbody > tr > td {\n    padding: 1.25rem 1.25rem;\n  }\n  .p-treetable.p-treetable-lg .p-treetable-tfoot > tr > td {\n    padding: 1.25rem 1.25rem;\n  }\n  .p-treetable.p-treetable-lg .p-treetable-footer {\n    padding: 1.25rem 1.25rem;\n  }\n  .p-timeline .p-timeline-event-marker {\n    border: 2px solid #6366f1;\n    border-radius: 50%;\n    width: 1rem;\n    height: 1rem;\n    background-color: #ffffff;\n  }\n  .p-timeline .p-timeline-event-connector {\n    background-color: #e5e7eb;\n  }\n  .p-timeline.p-timeline-vertical .p-timeline-event-opposite,\n  .p-timeline.p-timeline-vertical .p-timeline-event-content {\n    padding: 0 1rem;\n  }\n  .p-timeline.p-timeline-vertical .p-timeline-event-connector {\n    width: 2px;\n  }\n  .p-timeline.p-timeline-horizontal .p-timeline-event-opposite,\n  .p-timeline.p-timeline-horizontal .p-timeline-event-content {\n    padding: 1rem 0;\n  }\n  .p-timeline.p-timeline-horizontal .p-timeline-event-connector {\n    height: 2px;\n  }\n  .p-accordion .p-accordion-header .p-accordion-header-link {\n    padding: 1.25rem;\n    border: 1px solid #e5e7eb;\n    color: #6b7280;\n    background: #f9fafb;\n    font-weight: 700;\n    border-radius: 6px;\n    transition: box-shadow 0.2s;\n  }\n  .p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {\n    margin-right: 0.5rem;\n  }\n  .p-accordion .p-accordion-header:not(.p-disabled) .p-accordion-header-link:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link {\n    background: #f3f4f6;\n    border-color: #e5e7eb;\n    color: #374151;\n  }\n  .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {\n    background: #f9fafb;\n    border-color: #e5e7eb;\n    color: #374151;\n    border-bottom-right-radius: 0;\n    border-bottom-left-radius: 0;\n  }\n  .p-accordion .p-accordion-header:not(.p-disabled).p-highlight:hover .p-accordion-header-link {\n    border-color: #e5e7eb;\n    background: #f3f4f6;\n    color: #374151;\n  }\n  .p-accordion .p-accordion-content {\n    padding: 1.25rem;\n    border: 1px solid #e5e7eb;\n    background: #ffffff;\n    color: #4b5563;\n    border-top: 0;\n    border-top-right-radius: 0;\n    border-top-left-radius: 0;\n    border-bottom-right-radius: 6px;\n    border-bottom-left-radius: 6px;\n  }\n  .p-accordion .p-accordion-tab {\n    margin-bottom: 4px;\n  }\n  .p-card {\n    background: #ffffff;\n    color: #4b5563;\n    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);\n    border-radius: 6px;\n  }\n  .p-card .p-card-body {\n    padding: 1.25rem;\n  }\n  .p-card .p-card-title {\n    font-size: 1.5rem;\n    font-weight: 700;\n    margin-bottom: 0.5rem;\n  }\n  .p-card .p-card-subtitle {\n    font-weight: 400;\n    margin-bottom: 0.5rem;\n    color: #6b7280;\n  }\n  .p-card .p-card-content {\n    padding: 1.25rem 0;\n  }\n  .p-card .p-card-footer {\n    padding: 1.25rem 0 0 0;\n  }\n  .p-fieldset {\n    border: 1px solid #e5e7eb;\n    background: #ffffff;\n    color: #4b5563;\n    border-radius: 6px;\n  }\n  .p-fieldset .p-fieldset-legend {\n    padding: 1.25rem;\n    border: 1px solid #e5e7eb;\n    color: #374151;\n    background: #f9fafb;\n    font-weight: 700;\n    border-radius: 6px;\n  }\n  .p-fieldset.p-fieldset-toggleable .p-fieldset-legend {\n    padding: 0;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n  }\n  .p-fieldset.p-fieldset-toggleable .p-fieldset-legend a {\n    padding: 1.25rem;\n    color: #374151;\n    border-radius: 6px;\n    transition: box-shadow 0.2s;\n  }\n  .p-fieldset.p-fieldset-toggleable .p-fieldset-legend a .p-fieldset-toggler {\n    margin-right: 0.5rem;\n  }\n  .p-fieldset.p-fieldset-toggleable .p-fieldset-legend a:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-fieldset.p-fieldset-toggleable .p-fieldset-legend:hover {\n    background: #f3f4f6;\n    border-color: #e5e7eb;\n    color: #374151;\n  }\n  .p-fieldset .p-fieldset-content {\n    padding: 1.25rem;\n  }\n  .p-divider .p-divider-content {\n    background-color: #ffffff;\n  }\n  .p-divider.p-divider-horizontal {\n    margin: 1.25rem 0;\n    padding: 0 1.25rem;\n  }\n  .p-divider.p-divider-horizontal:before {\n    border-top: 1px #e5e7eb;\n  }\n  .p-divider.p-divider-horizontal .p-divider-content {\n    padding: 0 0.5rem;\n  }\n  .p-divider.p-divider-vertical {\n    margin: 0 1.25rem;\n    padding: 1.25rem 0;\n  }\n  .p-divider.p-divider-vertical:before {\n    border-left: 1px #e5e7eb;\n  }\n  .p-divider.p-divider-vertical .p-divider-content {\n    padding: 0.5rem 0;\n  }\n  .p-panel .p-panel-header {\n    border: 1px solid #e5e7eb;\n    padding: 1.25rem;\n    background: #f9fafb;\n    color: #374151;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n  }\n  .p-panel .p-panel-header .p-panel-title {\n    font-weight: 700;\n  }\n  .p-panel .p-panel-header .p-panel-header-icon {\n    width: 2rem;\n    height: 2rem;\n    color: #6b7280;\n    border: 0 none;\n    background: transparent;\n    border-radius: 50%;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n  }\n  .p-panel .p-panel-header .p-panel-header-icon:enabled:hover {\n    color: #374151;\n    border-color: transparent;\n    background: #f3f4f6;\n  }\n  .p-panel .p-panel-header .p-panel-header-icon:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-panel.p-panel-toggleable .p-panel-header {\n    padding: 0.75rem 1.25rem;\n  }\n  .p-panel .p-panel-content {\n    padding: 1.25rem;\n    border: 1px solid #e5e7eb;\n    background: #ffffff;\n    color: #4b5563;\n    border-bottom-right-radius: 6px;\n    border-bottom-left-radius: 6px;\n    border-top: 0 none;\n  }\n  .p-panel .p-panel-footer {\n    padding: 0.75rem 1.25rem;\n    border: 1px solid #e5e7eb;\n    background: #ffffff;\n    color: #4b5563;\n    border-top: 0 none;\n  }\n  .p-splitter {\n    border: 1px solid #e5e7eb;\n    background: #ffffff;\n    border-radius: 6px;\n    color: #4b5563;\n  }\n  .p-splitter .p-splitter-gutter {\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n    background: #f9fafb;\n  }\n  .p-splitter .p-splitter-gutter .p-splitter-gutter-handle {\n    background: #e5e7eb;\n  }\n  .p-splitter .p-splitter-gutter .p-splitter-gutter-handle:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-splitter .p-splitter-gutter-resizing {\n    background: #e5e7eb;\n  }\n  .p-stepper .p-stepper-nav {\n    display: flex;\n    justify-content: space-between;\n    margin: 0;\n    padding: 0;\n    list-style-type: none;\n  }\n  .p-stepper .p-stepper-header {\n    padding: 0.5rem;\n  }\n  .p-stepper .p-stepper-header .p-stepper-action {\n    transition: box-shadow 0.2s;\n    border-radius: 6px;\n    background: #ffffff;\n    outline-color: transparent;\n  }\n  .p-stepper .p-stepper-header .p-stepper-action .p-stepper-number {\n    color: #4b5563;\n    border: 1px solid #f3f4f6;\n    border-width: 2px;\n    background: #ffffff;\n    min-width: 2rem;\n    height: 2rem;\n    line-height: 2rem;\n    font-size: 1.143rem;\n    border-radius: 50%;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n  }\n  .p-stepper .p-stepper-header .p-stepper-action .p-stepper-title {\n    margin-left: 0.5rem;\n    color: #6b7280;\n    font-weight: 700;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n  }\n  .p-stepper .p-stepper-header .p-stepper-action:not(.p-disabled):focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-stepper .p-stepper-header.p-highlight .p-stepper-number {\n    background: #eef2ff;\n    color: #4338ca;\n  }\n  .p-stepper .p-stepper-header.p-highlight .p-stepper-title {\n    color: #4b5563;\n  }\n  .p-stepper .p-stepper-header:not(.p-disabled):focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-stepper .p-stepper-header:has(~ .p-highlight) .p-stepper-separator {\n    background-color: #6366f1;\n  }\n  .p-stepper .p-stepper-panels {\n    background: #ffffff;\n    padding: 1.25rem;\n    color: #4b5563;\n  }\n  .p-stepper .p-stepper-separator {\n    background-color: #e5e7eb;\n    width: 100%;\n    height: 2px;\n    margin-inline-start: 1rem;\n    transition: box-shadow 0.2s;\n  }\n  .p-stepper.p-stepper-vertical {\n    display: flex;\n    flex-direction: column;\n  }\n  .p-stepper.p-stepper-vertical .p-stepper-toggleable-content {\n    display: flex;\n    flex: 1 1 auto;\n    background: #ffffff;\n    color: #4b5563;\n  }\n  .p-stepper.p-stepper-vertical .p-stepper-panel {\n    display: flex;\n    flex-direction: column;\n    flex: initial;\n  }\n  .p-stepper.p-stepper-vertical .p-stepper-panel.p-stepper-panel-active {\n    flex: 1 1 auto;\n  }\n  .p-stepper.p-stepper-vertical .p-stepper-panel .p-stepper-header {\n    flex: initial;\n  }\n  .p-stepper.p-stepper-vertical .p-stepper-panel .p-stepper-content {\n    width: 100%;\n    padding-left: 1rem;\n  }\n  .p-stepper.p-stepper-vertical .p-stepper-panel .p-stepper-separator {\n    flex: 0 0 auto;\n    width: 2px;\n    height: auto;\n    margin-inline-start: calc(1.75rem + 2px);\n  }\n  .p-stepper.p-stepper-vertical .p-stepper-panel:has(~ .p-stepper-panel-active) .p-stepper-separator {\n    background-color: #6366f1;\n  }\n  .p-stepper.p-stepper-vertical .p-stepper-panel:last-of-type .p-stepper-content {\n    padding-left: 3rem;\n  }\n  .p-scrollpanel .p-scrollpanel-bar {\n    background: #f9fafb;\n    border: 0 none;\n  }\n  .p-scrollpanel .p-scrollpanel-bar:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-tabview-nav-container {\n    position: relative;\n  }\n  .p-tabview-scrollable .p-tabview-nav-container {\n    overflow: hidden;\n  }\n  .p-tabview-nav-content {\n    overflow-x: auto;\n    overflow-y: hidden;\n    scroll-behavior: smooth;\n    scrollbar-width: none;\n    overscroll-behavior: contain auto;\n    position: relative;\n  }\n  .p-tabview-nav {\n    display: flex;\n    margin: 0;\n    padding: 0;\n    list-style-type: none;\n    flex: 1 1 auto;\n  }\n  .p-tabview-nav-link {\n    cursor: pointer;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n    display: flex;\n    align-items: center;\n    position: relative;\n    text-decoration: none;\n    overflow: hidden;\n  }\n  .p-tabview-ink-bar {\n    display: none;\n    z-index: 1;\n  }\n  .p-tabview-nav-link:focus {\n    z-index: 1;\n  }\n  .p-tabview-close {\n    z-index: 1;\n  }\n  .p-tabview-title {\n    line-height: 1;\n    white-space: nowrap;\n  }\n  .p-tabview-nav-btn {\n    position: absolute;\n    top: 0;\n    z-index: 2;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n  }\n  .p-tabview-nav-prev {\n    left: 0;\n  }\n  .p-tabview-nav-next {\n    right: 0;\n  }\n  .p-tabview-nav-content::-webkit-scrollbar {\n    display: none;\n  }\n  .p-tabview .p-tabview-nav {\n    background: #ffffff;\n    border: 1px solid #e5e7eb;\n    border-width: 0 0 2px 0;\n  }\n  .p-tabview .p-tabview-nav li {\n    margin-right: 0;\n  }\n  .p-tabview .p-tabview-nav li .p-tabview-nav-link {\n    border: solid #e5e7eb;\n    border-width: 0 0 2px 0;\n    border-color: transparent transparent #e5e7eb transparent;\n    background: #ffffff;\n    color: #6b7280;\n    padding: 1.25rem;\n    font-weight: 700;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n    transition: box-shadow 0.2s;\n    margin: 0 0 -2px 0;\n  }\n  .p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: inset 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-tabview .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link {\n    background: #ffffff;\n    border-color: #9ca3af;\n    color: #6b7280;\n  }\n  .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {\n    background: #ffffff;\n    border-color: #6366f1;\n    color: #6366f1;\n  }\n  .p-tabview .p-tabview-close {\n    margin-left: 0.5rem;\n  }\n  .p-tabview .p-tabview-nav-btn.p-link {\n    background: #ffffff;\n    color: #6366f1;\n    width: 3rem;\n    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n    border-radius: 0;\n  }\n  .p-tabview .p-tabview-nav-btn.p-link:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: inset 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-tabview .p-tabview-panels {\n    background: #ffffff;\n    padding: 1.25rem;\n    border: 0 none;\n    color: #4b5563;\n    border-bottom-right-radius: 6px;\n    border-bottom-left-radius: 6px;\n  }\n  .p-toolbar {\n    background: #f9fafb;\n    border: 1px solid #e5e7eb;\n    padding: 1.25rem;\n    border-radius: 6px;\n    gap: 0.5rem;\n  }\n  .p-toolbar .p-toolbar-separator {\n    margin: 0 0.5rem;\n  }\n  .p-confirm-popup {\n    background: #ffffff;\n    color: #4b5563;\n    border: 0 none;\n    border-radius: 6px;\n    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);\n  }\n  .p-confirm-popup .p-confirm-popup-content {\n    padding: 1.25rem;\n  }\n  .p-confirm-popup .p-confirm-popup-footer {\n    text-align: right;\n    padding: 0 1.25rem 1.25rem 1.25rem;\n  }\n  .p-confirm-popup .p-confirm-popup-footer button {\n    margin: 0 0.5rem 0 0;\n    width: auto;\n  }\n  .p-confirm-popup .p-confirm-popup-footer button:last-child {\n    margin: 0;\n  }\n  .p-confirm-popup:after {\n    border: solid transparent;\n    border-color: rgba(255, 255, 255, 0);\n    border-bottom-color: #ffffff;\n  }\n  .p-confirm-popup:before {\n    border: solid transparent;\n    border-color: rgba(255, 255, 255, 0);\n    border-bottom-color: #f2f2f2;\n  }\n  .p-confirm-popup.p-confirm-popup-flipped:after {\n    border-top-color: #ffffff;\n  }\n  .p-confirm-popup.p-confirm-popup-flipped:before {\n    border-top-color: #ffffff;\n  }\n  .p-confirm-popup .p-confirm-popup-icon {\n    font-size: 1.5rem;\n  }\n  .p-confirm-popup .p-confirm-popup-icon.p-icon {\n    width: 1.5rem;\n    height: 1.5rem;\n  }\n  .p-confirm-popup .p-confirm-popup-message {\n    margin-left: 1rem;\n  }\n  .p-dialog {\n    border-radius: 6px;\n    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);\n    border: 0 none;\n  }\n  .p-dialog .p-dialog-header {\n    border-bottom: 0 none;\n    background: #ffffff;\n    color: #374151;\n    padding: 1.5rem;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n  }\n  .p-dialog .p-dialog-header .p-dialog-title {\n    font-weight: 700;\n    font-size: 1.25rem;\n  }\n  .p-dialog .p-dialog-header .p-dialog-header-icon {\n    width: 2rem;\n    height: 2rem;\n    color: #6b7280;\n    border: 0 none;\n    background: transparent;\n    border-radius: 50%;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n    margin-right: 0.5rem;\n  }\n  .p-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover {\n    color: #374151;\n    border-color: transparent;\n    background: #f3f4f6;\n  }\n  .p-dialog .p-dialog-header .p-dialog-header-icon:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-dialog .p-dialog-header .p-dialog-header-icon:last-child {\n    margin-right: 0;\n  }\n  .p-dialog .p-dialog-content {\n    background: #ffffff;\n    color: #4b5563;\n    padding: 0 1.5rem 2rem 1.5rem;\n  }\n  .p-dialog .p-dialog-content:last-of-type {\n    border-bottom-right-radius: 6px;\n    border-bottom-left-radius: 6px;\n  }\n  .p-dialog .p-dialog-footer {\n    border-top: 0 none;\n    background: #ffffff;\n    color: #4b5563;\n    padding: 0 1.5rem 1.5rem 1.5rem;\n    text-align: right;\n    border-bottom-right-radius: 6px;\n    border-bottom-left-radius: 6px;\n  }\n  .p-dialog .p-dialog-footer button {\n    margin: 0 0.5rem 0 0;\n    width: auto;\n  }\n  .p-dialog.p-dialog-maximized .p-dialog-header, .p-dialog.p-dialog-maximized .p-dialog-content:last-of-type {\n    border-radius: 0;\n  }\n  .p-dialog.p-confirm-dialog .p-confirm-dialog-icon {\n    font-size: 2rem;\n  }\n  .p-dialog.p-confirm-dialog .p-confirm-dialog-icon.p-icon {\n    width: 2rem;\n    height: 2rem;\n  }\n  .p-dialog.p-confirm-dialog .p-confirm-dialog-message {\n    margin-left: 1rem;\n  }\n  .p-overlaypanel {\n    background: #ffffff;\n    color: #4b5563;\n    border: 0 none;\n    border-radius: 6px;\n    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);\n  }\n  .p-overlaypanel .p-overlaypanel-content {\n    padding: 1.25rem;\n  }\n  .p-overlaypanel .p-overlaypanel-close {\n    background: #6366f1;\n    color: #ffffff;\n    width: 2rem;\n    height: 2rem;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n    border-radius: 50%;\n    position: absolute;\n    top: -1rem;\n    right: -1rem;\n  }\n  .p-overlaypanel .p-overlaypanel-close:enabled:hover {\n    background: #4f46e5;\n    color: #ffffff;\n  }\n  .p-overlaypanel:after {\n    border: solid transparent;\n    border-color: rgba(255, 255, 255, 0);\n    border-bottom-color: #ffffff;\n  }\n  .p-overlaypanel:before {\n    border: solid transparent;\n    border-color: rgba(255, 255, 255, 0);\n    border-bottom-color: #f2f2f2;\n  }\n  .p-overlaypanel.p-overlaypanel-flipped:after {\n    border-top-color: #ffffff;\n  }\n  .p-overlaypanel.p-overlaypanel-flipped:before {\n    border-top-color: #ffffff;\n  }\n  .p-sidebar {\n    background: #ffffff;\n    color: #4b5563;\n    border: 0 none;\n    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);\n  }\n  .p-sidebar .p-sidebar-header {\n    padding: 1.25rem;\n  }\n  .p-sidebar .p-sidebar-header .p-sidebar-close,\n  .p-sidebar .p-sidebar-header .p-sidebar-icon {\n    width: 2rem;\n    height: 2rem;\n    color: #6b7280;\n    border: 0 none;\n    background: transparent;\n    border-radius: 50%;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n  }\n  .p-sidebar .p-sidebar-header .p-sidebar-close:enabled:hover,\n  .p-sidebar .p-sidebar-header .p-sidebar-icon:enabled:hover {\n    color: #374151;\n    border-color: transparent;\n    background: #f3f4f6;\n  }\n  .p-sidebar .p-sidebar-header .p-sidebar-close:focus-visible,\n  .p-sidebar .p-sidebar-header .p-sidebar-icon:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-sidebar .p-sidebar-header + .p-sidebar-content {\n    padding-top: 0;\n  }\n  .p-sidebar .p-sidebar-content {\n    padding: 1.25rem;\n  }\n  .p-tooltip .p-tooltip-text {\n    background: #4b5563;\n    color: #ffffff;\n    padding: 0.75rem 0.75rem;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n    border-radius: 6px;\n  }\n  .p-tooltip.p-tooltip-right .p-tooltip-arrow {\n    border-right-color: #4b5563;\n  }\n  .p-tooltip.p-tooltip-left .p-tooltip-arrow {\n    border-left-color: #4b5563;\n  }\n  .p-tooltip.p-tooltip-top .p-tooltip-arrow {\n    border-top-color: #4b5563;\n  }\n  .p-tooltip.p-tooltip-bottom .p-tooltip-arrow {\n    border-bottom-color: #4b5563;\n  }\n  .p-fileupload .p-fileupload-buttonbar {\n    background: #f9fafb;\n    padding: 1.25rem;\n    border: 1px solid #e5e7eb;\n    color: #374151;\n    border-bottom: 0 none;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n    gap: 0.5rem;\n  }\n  .p-fileupload .p-fileupload-buttonbar .p-button {\n    margin-right: 0.5rem;\n  }\n  .p-fileupload .p-fileupload-content {\n    background: #ffffff;\n    padding: 2rem 1rem;\n    border: 1px solid #e5e7eb;\n    color: #4b5563;\n    border-bottom-right-radius: 6px;\n    border-bottom-left-radius: 6px;\n  }\n  .p-fileupload .p-progressbar {\n    height: 0.25rem;\n  }\n  .p-fileupload .p-fileupload-row > div {\n    padding: 1rem 1rem;\n  }\n  .p-fileupload.p-fileupload-advanced .p-message {\n    margin-top: 0;\n  }\n  .p-breadcrumb {\n    background: #ffffff;\n    border: 1px solid #e5e7eb;\n    border-radius: 6px;\n    padding: 1rem;\n  }\n  .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link {\n    transition: box-shadow 0.2s;\n    border-radius: 6px;\n  }\n  .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-icon {\n    color: #6b7280;\n  }\n  .p-breadcrumb .p-breadcrumb-list li.p-menuitem-separator {\n    margin: 0 0.5rem 0 0.5rem;\n    color: #4b5563;\n  }\n  .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-icon {\n    color: #6b7280;\n  }\n  .p-contextmenu {\n    padding: 0.5rem 0;\n    background: #ffffff;\n    color: #4b5563;\n    border: 0 none;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n    border-radius: 6px;\n    width: 12.5rem;\n  }\n  .p-contextmenu .p-contextmenu-root-list {\n    outline: 0 none;\n  }\n  .p-contextmenu .p-submenu-list {\n    padding: 0.5rem 0;\n    background: #ffffff;\n    border: 0 none;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n    border-radius: 6px;\n  }\n  .p-contextmenu .p-menuitem > .p-menuitem-content {\n    color: #4b5563;\n    transition: box-shadow 0.2s;\n    border-radius: 0;\n  }\n  .p-contextmenu .p-menuitem > .p-menuitem-content .p-menuitem-link {\n    color: #4b5563;\n    padding: 0.75rem 1.25rem;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n  }\n  .p-contextmenu .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-contextmenu .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-icon {\n    color: #6b7280;\n    margin-right: 0.5rem;\n  }\n  .p-contextmenu .p-menuitem > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #6b7280;\n  }\n  .p-contextmenu .p-menuitem.p-highlight > .p-menuitem-content {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-contextmenu .p-menuitem.p-highlight > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4338ca;\n  }\n  .p-contextmenu .p-menuitem.p-highlight > .p-menuitem-content .p-menuitem-link .p-menuitem-icon,\n  .p-contextmenu .p-menuitem.p-highlight > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #4338ca;\n  }\n  .p-contextmenu .p-menuitem.p-highlight.p-focus > .p-menuitem-content {\n    background: rgba(99, 102, 241, 0.24);\n  }\n  .p-contextmenu .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content {\n    color: #4b5563;\n    background: #e5e7eb;\n  }\n  .p-contextmenu .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-contextmenu .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-menuitem-icon,\n  .p-contextmenu .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #4b5563;\n  }\n  .p-contextmenu .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {\n    color: #4b5563;\n    background: #f3f4f6;\n  }\n  .p-contextmenu .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-contextmenu .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-icon,\n  .p-contextmenu .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-submenu-icon {\n    color: #6b7280;\n  }\n  .p-contextmenu .p-menuitem-separator {\n    border-top: 1px solid #e5e7eb;\n    margin: 0.25rem 0;\n  }\n  .p-contextmenu .p-submenu-icon {\n    font-size: 0.875rem;\n  }\n  .p-contextmenu .p-submenu-icon.p-icon {\n    width: 0.875rem;\n    height: 0.875rem;\n  }\n  .p-dock .p-dock-list-container {\n    background: rgba(255, 255, 255, 0.1);\n    border: 1px solid rgba(255, 255, 255, 0.2);\n    padding: 0.5rem 0.5rem;\n    border-radius: 0.5rem;\n  }\n  .p-dock .p-dock-list-container .p-dock-list {\n    outline: 0 none;\n  }\n  .p-dock .p-dock-item {\n    padding: 0.5rem;\n    border-radius: 6px;\n  }\n  .p-dock .p-dock-item.p-focus {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: inset 0 0 0 0.15rem #c7d2fe;\n  }\n  .p-dock .p-dock-action {\n    width: 4rem;\n    height: 4rem;\n  }\n  .p-dock.p-dock-top .p-dock-item-second-prev,\n  .p-dock.p-dock-top .p-dock-item-second-next, .p-dock.p-dock-bottom .p-dock-item-second-prev,\n  .p-dock.p-dock-bottom .p-dock-item-second-next {\n    margin: 0 0.9rem;\n  }\n  .p-dock.p-dock-top .p-dock-item-prev,\n  .p-dock.p-dock-top .p-dock-item-next, .p-dock.p-dock-bottom .p-dock-item-prev,\n  .p-dock.p-dock-bottom .p-dock-item-next {\n    margin: 0 1.3rem;\n  }\n  .p-dock.p-dock-top .p-dock-item-current, .p-dock.p-dock-bottom .p-dock-item-current {\n    margin: 0 1.5rem;\n  }\n  .p-dock.p-dock-left .p-dock-item-second-prev,\n  .p-dock.p-dock-left .p-dock-item-second-next, .p-dock.p-dock-right .p-dock-item-second-prev,\n  .p-dock.p-dock-right .p-dock-item-second-next {\n    margin: 0.9rem 0;\n  }\n  .p-dock.p-dock-left .p-dock-item-prev,\n  .p-dock.p-dock-left .p-dock-item-next, .p-dock.p-dock-right .p-dock-item-prev,\n  .p-dock.p-dock-right .p-dock-item-next {\n    margin: 1.3rem 0;\n  }\n  .p-dock.p-dock-left .p-dock-item-current, .p-dock.p-dock-right .p-dock-item-current {\n    margin: 1.5rem 0;\n  }\n  .p-dock.p-dock-mobile.p-dock-top .p-dock-list-container, .p-dock.p-dock-mobile.p-dock-bottom .p-dock-list-container {\n    overflow-x: auto;\n    width: 100%;\n  }\n  .p-dock.p-dock-mobile.p-dock-top .p-dock-list-container .p-dock-list, .p-dock.p-dock-mobile.p-dock-bottom .p-dock-list-container .p-dock-list {\n    margin: 0 auto;\n  }\n  .p-dock.p-dock-mobile.p-dock-left .p-dock-list-container, .p-dock.p-dock-mobile.p-dock-right .p-dock-list-container {\n    overflow-y: auto;\n    height: 100%;\n  }\n  .p-dock.p-dock-mobile.p-dock-left .p-dock-list-container .p-dock-list, .p-dock.p-dock-mobile.p-dock-right .p-dock-list-container .p-dock-list {\n    margin: auto 0;\n  }\n  .p-dock.p-dock-mobile .p-dock-list .p-dock-item {\n    transform: none;\n    margin: 0;\n  }\n  .p-dock.p-dock-mobile.p-dock-magnification.p-dock-top .p-dock-item-second-prev,\n  .p-dock.p-dock-mobile.p-dock-magnification.p-dock-top .p-dock-item-second-next,\n  .p-dock.p-dock-mobile.p-dock-magnification.p-dock-top .p-dock-item-prev,\n  .p-dock.p-dock-mobile.p-dock-magnification.p-dock-top .p-dock-item-next,\n  .p-dock.p-dock-mobile.p-dock-magnification.p-dock-top .p-dock-item-current, .p-dock.p-dock-mobile.p-dock-magnification.p-dock-bottom .p-dock-item-second-prev,\n  .p-dock.p-dock-mobile.p-dock-magnification.p-dock-bottom .p-dock-item-second-next,\n  .p-dock.p-dock-mobile.p-dock-magnification.p-dock-bottom .p-dock-item-prev,\n  .p-dock.p-dock-mobile.p-dock-magnification.p-dock-bottom .p-dock-item-next,\n  .p-dock.p-dock-mobile.p-dock-magnification.p-dock-bottom .p-dock-item-current, .p-dock.p-dock-mobile.p-dock-magnification.p-dock-left .p-dock-item-second-prev,\n  .p-dock.p-dock-mobile.p-dock-magnification.p-dock-left .p-dock-item-second-next,\n  .p-dock.p-dock-mobile.p-dock-magnification.p-dock-left .p-dock-item-prev,\n  .p-dock.p-dock-mobile.p-dock-magnification.p-dock-left .p-dock-item-next,\n  .p-dock.p-dock-mobile.p-dock-magnification.p-dock-left .p-dock-item-current, .p-dock.p-dock-mobile.p-dock-magnification.p-dock-right .p-dock-item-second-prev,\n  .p-dock.p-dock-mobile.p-dock-magnification.p-dock-right .p-dock-item-second-next,\n  .p-dock.p-dock-mobile.p-dock-magnification.p-dock-right .p-dock-item-prev,\n  .p-dock.p-dock-mobile.p-dock-magnification.p-dock-right .p-dock-item-next,\n  .p-dock.p-dock-mobile.p-dock-magnification.p-dock-right .p-dock-item-current {\n    transform: none;\n    margin: 0;\n  }\n  .p-megamenu {\n    padding: 0.5rem;\n    background: #f9fafb;\n    color: #4b5563;\n    border: 1px solid #e5e7eb;\n    border-radius: 6px;\n  }\n  .p-megamenu .p-megamenu-root-list {\n    outline: 0 none;\n  }\n  .p-megamenu .p-menuitem > .p-menuitem-content {\n    color: #4b5563;\n    transition: box-shadow 0.2s;\n    border-radius: 0;\n  }\n  .p-megamenu .p-menuitem > .p-menuitem-content .p-menuitem-link {\n    color: #4b5563;\n    padding: 0.75rem 1.25rem;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n  }\n  .p-megamenu .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-megamenu .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-icon {\n    color: #6b7280;\n    margin-right: 0.5rem;\n  }\n  .p-megamenu .p-menuitem > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #6b7280;\n  }\n  .p-megamenu .p-menuitem.p-highlight > .p-menuitem-content {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-megamenu .p-menuitem.p-highlight > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4338ca;\n  }\n  .p-megamenu .p-menuitem.p-highlight > .p-menuitem-content .p-menuitem-link .p-menuitem-icon,\n  .p-megamenu .p-menuitem.p-highlight > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #4338ca;\n  }\n  .p-megamenu .p-menuitem.p-highlight.p-focus > .p-menuitem-content {\n    background: rgba(99, 102, 241, 0.24);\n  }\n  .p-megamenu .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content {\n    color: #4b5563;\n    background: #e5e7eb;\n  }\n  .p-megamenu .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-megamenu .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-menuitem-icon,\n  .p-megamenu .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #4b5563;\n  }\n  .p-megamenu .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {\n    color: #4b5563;\n    background: #f3f4f6;\n  }\n  .p-megamenu .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-megamenu .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-icon,\n  .p-megamenu .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-submenu-icon {\n    color: #6b7280;\n  }\n  .p-megamenu .p-megamenu-panel {\n    background: #ffffff;\n    color: #4b5563;\n    border: 0 none;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  }\n  .p-megamenu .p-submenu-header {\n    margin: 0;\n    padding: 0.75rem 1.25rem;\n    color: #374151;\n    background: #ffffff;\n    font-weight: 700;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n  }\n  .p-megamenu .p-submenu-list {\n    padding: 0.5rem 0;\n    width: 12.5rem;\n  }\n  .p-megamenu .p-submenu-list .p-menuitem-separator {\n    border-top: 1px solid #e5e7eb;\n    margin: 0.25rem 0;\n  }\n  .p-megamenu.p-megamenu-vertical {\n    width: 12.5rem;\n    padding: 0.5rem 0;\n  }\n  .p-megamenu .p-megamenu-button {\n    width: 2rem;\n    height: 2rem;\n    color: #6b7280;\n    border-radius: 50%;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n  }\n  .p-megamenu .p-megamenu-button:hover {\n    color: #6b7280;\n    background: #f3f4f6;\n  }\n  .p-megamenu .p-megamenu-button:focus {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-megamenu.p-megamenu-horizontal .p-megamenu-root-list > .p-menuitem > .p-menuitem-content {\n    color: #4b5563;\n    transition: box-shadow 0.2s;\n    border-radius: 6px;\n  }\n  .p-megamenu.p-megamenu-horizontal .p-megamenu-root-list > .p-menuitem > .p-menuitem-content .p-menuitem-link {\n    padding: 0.75rem 1.25rem;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n  }\n  .p-megamenu.p-megamenu-horizontal .p-megamenu-root-list > .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-megamenu.p-megamenu-horizontal .p-megamenu-root-list > .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-icon {\n    color: #6b7280;\n    margin-right: 0.5rem;\n  }\n  .p-megamenu.p-megamenu-horizontal .p-megamenu-root-list > .p-menuitem > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #6b7280;\n    margin-left: 0.5rem;\n  }\n  .p-megamenu.p-megamenu-horizontal .p-megamenu-root-list > .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {\n    color: #4b5563;\n    background: #f3f4f6;\n  }\n  .p-megamenu.p-megamenu-horizontal .p-megamenu-root-list > .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-megamenu.p-megamenu-horizontal .p-megamenu-root-list > .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-icon,\n  .p-megamenu.p-megamenu-horizontal .p-megamenu-root-list > .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-submenu-icon {\n    color: #6b7280;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list {\n    padding: 0.5rem 0;\n    background: #ffffff;\n    border: 0 none;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list .p-menu-separator {\n    border-top: 1px solid #e5e7eb;\n    margin: 0.25rem 0;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list .p-submenu-icon {\n    font-size: 0.875rem;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list .p-submenu-icon.p-icon {\n    width: 0.875rem;\n    height: 0.875rem;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem {\n    width: 100%;\n    position: static;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem > .p-menuitem-link > .p-menuitem-content {\n    color: #4b5563;\n    transition: box-shadow 0.2s;\n    border-radius: 0;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem > .p-menuitem-link > .p-menuitem-content .p-menuitem-link {\n    color: #4b5563;\n    padding: 0.75rem 1.25rem;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem > .p-menuitem-link > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem > .p-menuitem-link > .p-menuitem-content .p-menuitem-link .p-menuitem-icon {\n    color: #6b7280;\n    margin-right: 0.5rem;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem > .p-menuitem-link > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #6b7280;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem > .p-menuitem-link.p-highlight > .p-menuitem-content {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem > .p-menuitem-link.p-highlight > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4338ca;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem > .p-menuitem-link.p-highlight > .p-menuitem-content .p-menuitem-link .p-menuitem-icon,\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem > .p-menuitem-link.p-highlight > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #4338ca;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem > .p-menuitem-link.p-highlight.p-focus > .p-menuitem-content {\n    background: rgba(99, 102, 241, 0.24);\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem > .p-menuitem-link:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content {\n    color: #4b5563;\n    background: #e5e7eb;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem > .p-menuitem-link:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem > .p-menuitem-link:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-menuitem-icon,\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem > .p-menuitem-link:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #4b5563;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem > .p-menuitem-link:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {\n    color: #4b5563;\n    background: #f3f4f6;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem > .p-menuitem-link:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem > .p-menuitem-link:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-icon,\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem > .p-menuitem-link:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-submenu-icon {\n    color: #6b7280;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem > .p-menuitem-link > .p-submenu-icon {\n    margin-left: auto;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link > .p-submenu-icon {\n    transform: rotate(-180deg);\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list .p-submenu-list {\n    width: 100%;\n    position: static;\n    box-shadow: none;\n    border: 0 none;\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list .p-submenu-list .p-submenu-icon {\n    transition: transform 0.2s;\n    transform: rotate(90deg);\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list .p-submenu-list .p-menuitem-active > .p-menuitem-link > .p-submenu-icon {\n    transform: rotate(-90deg);\n  }\n  .p-megamenu.p-megamenu-mobile-active .p-megamenu-root-list .p-menuitem {\n    width: 100%;\n    position: static;\n  }\n  .p-menu {\n    padding: 0.5rem 0;\n    background: #ffffff;\n    color: #4b5563;\n    border: 1px solid #e5e7eb;\n    border-radius: 6px;\n    width: 12.5rem;\n  }\n  .p-menu .p-menuitem > .p-menuitem-content {\n    color: #4b5563;\n    transition: box-shadow 0.2s;\n    border-radius: 0;\n  }\n  .p-menu .p-menuitem > .p-menuitem-content .p-menuitem-link {\n    color: #4b5563;\n    padding: 0.75rem 1.25rem;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n  }\n  .p-menu .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-menu .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-icon {\n    color: #6b7280;\n    margin-right: 0.5rem;\n  }\n  .p-menu .p-menuitem > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #6b7280;\n  }\n  .p-menu .p-menuitem.p-highlight > .p-menuitem-content {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-menu .p-menuitem.p-highlight > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4338ca;\n  }\n  .p-menu .p-menuitem.p-highlight > .p-menuitem-content .p-menuitem-link .p-menuitem-icon,\n  .p-menu .p-menuitem.p-highlight > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #4338ca;\n  }\n  .p-menu .p-menuitem.p-highlight.p-focus > .p-menuitem-content {\n    background: rgba(99, 102, 241, 0.24);\n  }\n  .p-menu .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content {\n    color: #4b5563;\n    background: #e5e7eb;\n  }\n  .p-menu .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-menu .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-menuitem-icon,\n  .p-menu .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #4b5563;\n  }\n  .p-menu .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {\n    color: #4b5563;\n    background: #f3f4f6;\n  }\n  .p-menu .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-menu .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-icon,\n  .p-menu .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-submenu-icon {\n    color: #6b7280;\n  }\n  .p-menu.p-menu-overlay {\n    background: #ffffff;\n    border: 0 none;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  }\n  .p-menu .p-submenu-header {\n    margin: 0;\n    padding: 0.75rem 1.25rem;\n    color: #374151;\n    background: #ffffff;\n    font-weight: 700;\n    border-top-right-radius: 0;\n    border-top-left-radius: 0;\n  }\n  .p-menu .p-menu-separator {\n    border-top: 1px solid #e5e7eb;\n    margin: 0.25rem 0;\n  }\n  .p-menubar {\n    padding: 0.5rem;\n    background: #f9fafb;\n    color: #4b5563;\n    border: 1px solid #e5e7eb;\n    border-radius: 6px;\n  }\n  .p-menubar .p-menubar-root-list {\n    outline: 0 none;\n  }\n  .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-content {\n    color: #4b5563;\n    transition: box-shadow 0.2s;\n    border-radius: 6px;\n  }\n  .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-content .p-menuitem-link {\n    padding: 0.75rem 1.25rem;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n  }\n  .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-icon {\n    color: #6b7280;\n    margin-right: 0.5rem;\n  }\n  .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #6b7280;\n    margin-left: 0.5rem;\n  }\n  .p-menubar .p-menubar-root-list > .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {\n    color: #4b5563;\n    background: #f3f4f6;\n  }\n  .p-menubar .p-menubar-root-list > .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-menubar .p-menubar-root-list > .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-icon,\n  .p-menubar .p-menubar-root-list > .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-submenu-icon {\n    color: #6b7280;\n  }\n  .p-menubar .p-menuitem > .p-menuitem-content {\n    color: #4b5563;\n    transition: box-shadow 0.2s;\n    border-radius: 0;\n  }\n  .p-menubar .p-menuitem > .p-menuitem-content .p-menuitem-link {\n    color: #4b5563;\n    padding: 0.75rem 1.25rem;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n  }\n  .p-menubar .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-menubar .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-icon {\n    color: #6b7280;\n    margin-right: 0.5rem;\n  }\n  .p-menubar .p-menuitem > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #6b7280;\n  }\n  .p-menubar .p-menuitem.p-highlight > .p-menuitem-content {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-menubar .p-menuitem.p-highlight > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4338ca;\n  }\n  .p-menubar .p-menuitem.p-highlight > .p-menuitem-content .p-menuitem-link .p-menuitem-icon,\n  .p-menubar .p-menuitem.p-highlight > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #4338ca;\n  }\n  .p-menubar .p-menuitem.p-highlight.p-focus > .p-menuitem-content {\n    background: rgba(99, 102, 241, 0.24);\n  }\n  .p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content {\n    color: #4b5563;\n    background: #e5e7eb;\n  }\n  .p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-menuitem-icon,\n  .p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #4b5563;\n  }\n  .p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {\n    color: #4b5563;\n    background: #f3f4f6;\n  }\n  .p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-icon,\n  .p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-submenu-icon {\n    color: #6b7280;\n  }\n  .p-menubar .p-submenu-list {\n    padding: 0.5rem 0;\n    background: #ffffff;\n    border: 0 none;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n    width: 12.5rem;\n  }\n  .p-menubar .p-submenu-list .p-menuitem-separator {\n    border-top: 1px solid #e5e7eb;\n    margin: 0.25rem 0;\n  }\n  .p-menubar .p-submenu-list .p-submenu-icon {\n    font-size: 0.875rem;\n  }\n  .p-menubar.p-menubar-mobile .p-menubar-button {\n    width: 2rem;\n    height: 2rem;\n    color: #6b7280;\n    border-radius: 50%;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n  }\n  .p-menubar.p-menubar-mobile .p-menubar-button:hover {\n    color: #6b7280;\n    background: #f3f4f6;\n  }\n  .p-menubar.p-menubar-mobile .p-menubar-button:focus {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-menubar.p-menubar-mobile .p-menubar-root-list {\n    padding: 0.5rem 0;\n    background: #ffffff;\n    border: 0 none;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  }\n  .p-menubar.p-menubar-mobile .p-menubar-root-list .p-menuitem-separator {\n    border-top: 1px solid #e5e7eb;\n    margin: 0.25rem 0;\n  }\n  .p-menubar.p-menubar-mobile .p-menubar-root-list .p-submenu-icon {\n    font-size: 0.875rem;\n  }\n  .p-menubar.p-menubar-mobile .p-menubar-root-list .p-menuitem .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    margin-left: auto;\n    transition: transform 0.2s;\n  }\n  .p-menubar.p-menubar-mobile .p-menubar-root-list .p-menuitem.p-menuitem-active > .p-menuitem-content > .p-menuitem-link > .p-submenu-icon {\n    transform: rotate(-180deg);\n  }\n  .p-menubar.p-menubar-mobile .p-menubar-root-list .p-submenu-list .p-submenu-icon {\n    transition: transform 0.2s;\n    transform: rotate(90deg);\n  }\n  .p-menubar.p-menubar-mobile .p-menubar-root-list .p-submenu-list .p-menuitem-active > .p-menuitem-content > .p-menuitem-link > .p-submenu-icon {\n    transform: rotate(-90deg);\n  }\n  .p-menubar.p-menubar-mobile .p-menubar-root-list ul li a {\n    padding-left: 2.25rem;\n  }\n  .p-menubar.p-menubar-mobile .p-menubar-root-list ul li ul li a {\n    padding-left: 3.75rem;\n  }\n  .p-menubar.p-menubar-mobile .p-menubar-root-list ul li ul li ul li a {\n    padding-left: 5.25rem;\n  }\n  .p-menubar.p-menubar-mobile .p-menubar-root-list ul li ul li ul li ul li a {\n    padding-left: 6.75rem;\n  }\n  .p-menubar.p-menubar-mobile .p-menubar-root-list ul li ul li ul li ul li ul li a {\n    padding-left: 8.25rem;\n  }\n  @media screen and (max-width: 960px) {\n    .p-menubar {\n      position: relative;\n    }\n    .p-menubar .p-menubar-button {\n      display: flex;\n      width: 2rem;\n      height: 2rem;\n      color: #6b7280;\n      border-radius: 50%;\n      transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n    }\n    .p-menubar .p-menubar-button:hover {\n      color: #6b7280;\n      background: #f3f4f6;\n    }\n    .p-menubar .p-menubar-button:focus {\n      outline: 0 none;\n      outline-offset: 0;\n      box-shadow: 0 0 0 0.2rem #c7d2fe;\n    }\n    .p-menubar .p-menubar-root-list {\n      position: absolute;\n      display: none;\n      padding: 0.5rem 0;\n      background: #ffffff;\n      border: 0 none;\n      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n      width: 100%;\n    }\n    .p-menubar .p-menubar-root-list .p-menu-separator {\n      border-top: 1px solid #e5e7eb;\n      margin: 0.25rem 0;\n    }\n    .p-menubar .p-menubar-root-list .p-submenu-icon {\n      font-size: 0.875rem;\n    }\n    .p-menubar .p-menubar-root-list .p-submenu-icon.p-icon {\n      width: 0.875rem;\n      height: 0.875rem;\n    }\n    .p-menubar .p-menubar-root-list > .p-menuitem {\n      width: 100%;\n      position: static;\n    }\n    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link > .p-menuitem-content {\n      color: #4b5563;\n      transition: box-shadow 0.2s;\n      border-radius: 0;\n    }\n    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link > .p-menuitem-content .p-menuitem-link {\n      color: #4b5563;\n      padding: 0.75rem 1.25rem;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n              user-select: none;\n    }\n    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n      color: #4b5563;\n    }\n    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link > .p-menuitem-content .p-menuitem-link .p-menuitem-icon {\n      color: #6b7280;\n      margin-right: 0.5rem;\n    }\n    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n      color: #6b7280;\n    }\n    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link.p-highlight > .p-menuitem-content {\n      color: #4338ca;\n      background: #eef2ff;\n    }\n    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link.p-highlight > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n      color: #4338ca;\n    }\n    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link.p-highlight > .p-menuitem-content .p-menuitem-link .p-menuitem-icon,\n    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link.p-highlight > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n      color: #4338ca;\n    }\n    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link.p-highlight.p-focus > .p-menuitem-content {\n      background: rgba(99, 102, 241, 0.24);\n    }\n    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content {\n      color: #4b5563;\n      background: #e5e7eb;\n    }\n    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n      color: #4b5563;\n    }\n    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-menuitem-icon,\n    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n      color: #4b5563;\n    }\n    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {\n      color: #4b5563;\n      background: #f3f4f6;\n    }\n    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-text {\n      color: #4b5563;\n    }\n    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-icon,\n    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-submenu-icon {\n      color: #6b7280;\n    }\n    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link > .p-submenu-icon {\n      margin-left: auto;\n      transition: transform 0.2s;\n    }\n    .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link > .p-submenu-icon {\n      transform: rotate(-180deg);\n    }\n    .p-menubar .p-menubar-root-list .p-submenu-list {\n      width: 100%;\n      position: static;\n      box-shadow: none;\n      border: 0 none;\n    }\n    .p-menubar .p-menubar-root-list .p-submenu-list .p-submenu-icon {\n      transition: transform 0.2s;\n      transform: rotate(90deg);\n    }\n    .p-menubar .p-menubar-root-list .p-submenu-list .p-menuitem-active > .p-menuitem-link > .p-submenu-icon {\n      transform: rotate(-90deg);\n    }\n    .p-menubar .p-menubar-root-list .p-menuitem {\n      width: 100%;\n      position: static;\n    }\n    .p-menubar .p-menubar-root-list ul li a {\n      padding-left: 2.25rem;\n    }\n    .p-menubar .p-menubar-root-list ul li ul li a {\n      padding-left: 3.75rem;\n    }\n    .p-menubar .p-menubar-root-list ul li ul li ul li a {\n      padding-left: 5.25rem;\n    }\n    .p-menubar .p-menubar-root-list ul li ul li ul li ul li a {\n      padding-left: 6.75rem;\n    }\n    .p-menubar .p-menubar-root-list ul li ul li ul li ul li ul li a {\n      padding-left: 8.25rem;\n    }\n    .p-menubar.p-menubar-mobile-active .p-menubar-root-list {\n      display: flex;\n      flex-direction: column;\n      top: 100%;\n      left: 0;\n      z-index: 1;\n    }\n  }\n  .p-panelmenu .p-panelmenu-header {\n    outline: 0 none;\n  }\n  .p-panelmenu .p-panelmenu-header .p-panelmenu-header-content {\n    border: 1px solid #e5e7eb;\n    color: #6b7280;\n    background: #f9fafb;\n    border-radius: 6px;\n    transition: box-shadow 0.2s;\n  }\n  .p-panelmenu .p-panelmenu-header .p-panelmenu-header-content .p-panelmenu-header-link {\n    color: #6b7280;\n    padding: 1.25rem;\n    font-weight: 700;\n  }\n  .p-panelmenu .p-panelmenu-header .p-panelmenu-header-content .p-panelmenu-header-link .p-submenu-icon {\n    margin-right: 0.5rem;\n  }\n  .p-panelmenu .p-panelmenu-header .p-panelmenu-header-content .p-panelmenu-header-link .p-menuitem-icon {\n    margin-right: 0.5rem;\n  }\n  .p-panelmenu .p-panelmenu-header:not(.p-disabled):focus-visible .p-panelmenu-header-content {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: inset 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-panelmenu .p-panelmenu-header:not(.p-highlight):not(.p-disabled):hover .p-panelmenu-header-content {\n    background: #f3f4f6;\n    border-color: #e5e7eb;\n    color: #374151;\n  }\n  .p-panelmenu .p-panelmenu-header:not(.p-disabled).p-highlight .p-panelmenu-header-content {\n    background: #f9fafb;\n    border-color: #e5e7eb;\n    color: #374151;\n    border-bottom-right-radius: 0;\n    border-bottom-left-radius: 0;\n    margin-bottom: 0;\n  }\n  .p-panelmenu .p-panelmenu-header:not(.p-disabled).p-highlight:hover .p-panelmenu-header-content {\n    border-color: #e5e7eb;\n    background: #f3f4f6;\n    color: #374151;\n  }\n  .p-panelmenu .p-panelmenu-content {\n    padding: 0.5rem 0;\n    border: 1px solid #e5e7eb;\n    background: #ffffff;\n    color: #4b5563;\n    border-top: 0;\n    border-top-right-radius: 0;\n    border-top-left-radius: 0;\n    border-bottom-right-radius: 6px;\n    border-bottom-left-radius: 6px;\n  }\n  .p-panelmenu .p-panelmenu-content .p-panelmenu-root-list {\n    outline: 0 none;\n  }\n  .p-panelmenu .p-panelmenu-content .p-menuitem > .p-menuitem-content {\n    color: #4b5563;\n    transition: box-shadow 0.2s;\n    border-radius: 0;\n  }\n  .p-panelmenu .p-panelmenu-content .p-menuitem > .p-menuitem-content .p-menuitem-link {\n    color: #4b5563;\n    padding: 0.75rem 1.25rem;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n  }\n  .p-panelmenu .p-panelmenu-content .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-panelmenu .p-panelmenu-content .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-icon {\n    color: #6b7280;\n    margin-right: 0.5rem;\n  }\n  .p-panelmenu .p-panelmenu-content .p-menuitem > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #6b7280;\n  }\n  .p-panelmenu .p-panelmenu-content .p-menuitem.p-highlight > .p-menuitem-content {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-panelmenu .p-panelmenu-content .p-menuitem.p-highlight > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4338ca;\n  }\n  .p-panelmenu .p-panelmenu-content .p-menuitem.p-highlight > .p-menuitem-content .p-menuitem-link .p-menuitem-icon,\n  .p-panelmenu .p-panelmenu-content .p-menuitem.p-highlight > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #4338ca;\n  }\n  .p-panelmenu .p-panelmenu-content .p-menuitem.p-highlight.p-focus > .p-menuitem-content {\n    background: rgba(99, 102, 241, 0.24);\n  }\n  .p-panelmenu .p-panelmenu-content .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content {\n    color: #4b5563;\n    background: #e5e7eb;\n  }\n  .p-panelmenu .p-panelmenu-content .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-panelmenu .p-panelmenu-content .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-menuitem-icon,\n  .p-panelmenu .p-panelmenu-content .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #4b5563;\n  }\n  .p-panelmenu .p-panelmenu-content .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {\n    color: #4b5563;\n    background: #f3f4f6;\n  }\n  .p-panelmenu .p-panelmenu-content .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-panelmenu .p-panelmenu-content .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-icon,\n  .p-panelmenu .p-panelmenu-content .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-submenu-icon {\n    color: #6b7280;\n  }\n  .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    margin-right: 0.5rem;\n  }\n  .p-panelmenu .p-panelmenu-content .p-menuitem-separator {\n    border-top: 1px solid #e5e7eb;\n    margin: 0.25rem 0;\n  }\n  .p-panelmenu .p-panelmenu-content .p-submenu-list:not(.p-panelmenu-root-list) {\n    padding: 0 0 0 1rem;\n  }\n  .p-panelmenu .p-panelmenu-panel {\n    margin-bottom: 4px;\n  }\n  .p-slidemenu {\n    padding: 0.5rem 0;\n    background: #ffffff;\n    color: #4b5563;\n    border: 1px solid #e5e7eb;\n    border-radius: 6px;\n    width: 12.5rem;\n  }\n  .p-slidemenu .p-menuitem-link > .p-menuitem-content {\n    color: #4b5563;\n    transition: box-shadow 0.2s;\n    border-radius: 0;\n  }\n  .p-slidemenu .p-menuitem-link > .p-menuitem-content .p-menuitem-link {\n    color: #4b5563;\n    padding: 0.75rem 1.25rem;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n  }\n  .p-slidemenu .p-menuitem-link > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-slidemenu .p-menuitem-link > .p-menuitem-content .p-menuitem-link .p-menuitem-icon {\n    color: #6b7280;\n    margin-right: 0.5rem;\n  }\n  .p-slidemenu .p-menuitem-link > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #6b7280;\n  }\n  .p-slidemenu .p-menuitem-link.p-highlight > .p-menuitem-content {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-slidemenu .p-menuitem-link.p-highlight > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4338ca;\n  }\n  .p-slidemenu .p-menuitem-link.p-highlight > .p-menuitem-content .p-menuitem-link .p-menuitem-icon,\n  .p-slidemenu .p-menuitem-link.p-highlight > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #4338ca;\n  }\n  .p-slidemenu .p-menuitem-link.p-highlight.p-focus > .p-menuitem-content {\n    background: rgba(99, 102, 241, 0.24);\n  }\n  .p-slidemenu .p-menuitem-link:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content {\n    color: #4b5563;\n    background: #e5e7eb;\n  }\n  .p-slidemenu .p-menuitem-link:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-slidemenu .p-menuitem-link:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-menuitem-icon,\n  .p-slidemenu .p-menuitem-link:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #4b5563;\n  }\n  .p-slidemenu .p-menuitem-link:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {\n    color: #4b5563;\n    background: #f3f4f6;\n  }\n  .p-slidemenu .p-menuitem-link:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-slidemenu .p-menuitem-link:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-icon,\n  .p-slidemenu .p-menuitem-link:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-submenu-icon {\n    color: #6b7280;\n  }\n  .p-slidemenu.p-slidemenu-overlay {\n    background: #ffffff;\n    border: 0 none;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  }\n  .p-slidemenu .p-slidemenu-list {\n    padding: 0.5rem 0;\n    background: #ffffff;\n    border: 0 none;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  }\n  .p-slidemenu .p-slidemenu.p-slidemenu-active > .p-slidemenu-link {\n    background: #eef2ff;\n  }\n  .p-slidemenu .p-slidemenu.p-slidemenu-active > .p-slidemenu-link .p-slidemenu-text {\n    color: #4338ca;\n  }\n  .p-slidemenu .p-slidemenu.p-slidemenu-active > .p-slidemenu-link .p-slidemenu-icon, .p-slidemenu .p-slidemenu.p-slidemenu-active > .p-slidemenu-link .p-slidemenu-icon {\n    color: #4338ca;\n  }\n  .p-slidemenu .p-slidemenu-separator {\n    border-top: 1px solid #e5e7eb;\n    margin: 0.25rem 0;\n  }\n  .p-slidemenu .p-slidemenu-icon {\n    font-size: 0.875rem;\n  }\n  .p-slidemenu .p-slidemenu-icon.p-icon {\n    width: 0.875rem;\n    height: 0.875rem;\n  }\n  .p-slidemenu .p-slidemenu-backward {\n    padding: 0.75rem 1.25rem;\n    color: #4b5563;\n  }\n  .p-steps .p-steps-item .p-menuitem-link {\n    background: transparent;\n    transition: box-shadow 0.2s;\n    border-radius: 6px;\n    background: #ffffff;\n  }\n  .p-steps .p-steps-item .p-menuitem-link .p-steps-number {\n    color: #4b5563;\n    border: 1px solid #f3f4f6;\n    background: #ffffff;\n    min-width: 2rem;\n    height: 2rem;\n    line-height: 2rem;\n    font-size: 1.143rem;\n    z-index: 1;\n    border-radius: 50%;\n  }\n  .p-steps .p-steps-item .p-menuitem-link .p-steps-title {\n    margin-top: 0.5rem;\n    color: #6b7280;\n  }\n  .p-steps .p-steps-item .p-menuitem-link:not(.p-disabled):focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-steps .p-steps-item.p-highlight .p-steps-number {\n    background: #eef2ff;\n    color: #4338ca;\n  }\n  .p-steps .p-steps-item.p-highlight .p-steps-title {\n    font-weight: 700;\n    color: #4b5563;\n  }\n  .p-steps .p-steps-item:before {\n    content: \" \";\n    border-top: 1px solid #e5e7eb;\n    width: 100%;\n    top: 50%;\n    left: 0;\n    display: block;\n    position: absolute;\n    margin-top: -1rem;\n  }\n  .p-tabmenu .p-tabmenu-nav {\n    background: #ffffff;\n    border: 1px solid #e5e7eb;\n    border-width: 0 0 2px 0;\n  }\n  .p-tabmenu .p-tabmenu-nav .p-tabmenuitem {\n    margin-right: 0;\n  }\n  .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link {\n    border: solid #e5e7eb;\n    border-width: 0 0 2px 0;\n    border-color: transparent transparent #e5e7eb transparent;\n    background: #ffffff;\n    color: #6b7280;\n    padding: 1.25rem;\n    font-weight: 700;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n    transition: box-shadow 0.2s;\n    margin: 0 0 -2px 0;\n    height: calc(100% + 2px);\n  }\n  .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link .p-menuitem-icon {\n    margin-right: 0.5rem;\n  }\n  .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link:not(.p-disabled):focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: inset 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-tabmenu .p-tabmenu-nav .p-tabmenuitem:not(.p-highlight):not(.p-disabled):hover .p-menuitem-link {\n    background: #ffffff;\n    border-color: #9ca3af;\n    color: #6b7280;\n  }\n  .p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight .p-menuitem-link {\n    background: #ffffff;\n    border-color: #6366f1;\n    color: #6366f1;\n  }\n  .p-tieredmenu {\n    padding: 0.5rem 0;\n    background: #ffffff;\n    color: #4b5563;\n    border: 1px solid #e5e7eb;\n    border-radius: 6px;\n    width: 12.5rem;\n  }\n  .p-tieredmenu.p-tieredmenu-overlay {\n    background: #ffffff;\n    border: 0 none;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  }\n  .p-tieredmenu .p-tieredmenu-root-list {\n    outline: 0 none;\n  }\n  .p-tieredmenu .p-submenu-list {\n    padding: 0.5rem 0;\n    background: #ffffff;\n    border: 0 none;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n  }\n  .p-tieredmenu .p-menuitem > .p-menuitem-content {\n    color: #4b5563;\n    transition: box-shadow 0.2s;\n    border-radius: 0;\n  }\n  .p-tieredmenu .p-menuitem > .p-menuitem-content .p-menuitem-link {\n    color: #4b5563;\n    padding: 0.75rem 1.25rem;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n  }\n  .p-tieredmenu .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-tieredmenu .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-icon {\n    color: #6b7280;\n    margin-right: 0.5rem;\n  }\n  .p-tieredmenu .p-menuitem > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #6b7280;\n  }\n  .p-tieredmenu .p-menuitem.p-highlight > .p-menuitem-content {\n    color: #4338ca;\n    background: #eef2ff;\n  }\n  .p-tieredmenu .p-menuitem.p-highlight > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4338ca;\n  }\n  .p-tieredmenu .p-menuitem.p-highlight > .p-menuitem-content .p-menuitem-link .p-menuitem-icon,\n  .p-tieredmenu .p-menuitem.p-highlight > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #4338ca;\n  }\n  .p-tieredmenu .p-menuitem.p-highlight.p-focus > .p-menuitem-content {\n    background: rgba(99, 102, 241, 0.24);\n  }\n  .p-tieredmenu .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content {\n    color: #4b5563;\n    background: #e5e7eb;\n  }\n  .p-tieredmenu .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-tieredmenu .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-menuitem-icon,\n  .p-tieredmenu .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content .p-menuitem-link .p-submenu-icon {\n    color: #4b5563;\n  }\n  .p-tieredmenu .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {\n    color: #4b5563;\n    background: #f3f4f6;\n  }\n  .p-tieredmenu .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-text {\n    color: #4b5563;\n  }\n  .p-tieredmenu .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-icon,\n  .p-tieredmenu .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-submenu-icon {\n    color: #6b7280;\n  }\n  .p-tieredmenu .p-menuitem-separator {\n    border-top: 1px solid #e5e7eb;\n    margin: 0.25rem 0;\n  }\n  .p-tieredmenu .p-submenu-icon {\n    font-size: 0.875rem;\n  }\n  .p-tieredmenu .p-submenu-icon.p-icon {\n    width: 0.875rem;\n    height: 0.875rem;\n  }\n  .p-inline-message {\n    padding: 0.75rem 0.75rem;\n    margin: 0;\n    border-radius: 6px;\n  }\n  .p-inline-message.p-inline-message-info {\n    background: rgba(219, 234, 254, 0.7);\n    border: solid #3b82f6;\n    border-width: 0px;\n    color: #3b82f6;\n  }\n  .p-inline-message.p-inline-message-info .p-inline-message-icon {\n    color: #3b82f6;\n  }\n  .p-inline-message.p-inline-message-success {\n    background: rgba(228, 248, 240, 0.7);\n    border: solid #1ea97c;\n    border-width: 0px;\n    color: #1ea97c;\n  }\n  .p-inline-message.p-inline-message-success .p-inline-message-icon {\n    color: #1ea97c;\n  }\n  .p-inline-message.p-inline-message-warn {\n    background: rgba(255, 242, 226, 0.7);\n    border: solid #cc8925;\n    border-width: 0px;\n    color: #cc8925;\n  }\n  .p-inline-message.p-inline-message-warn .p-inline-message-icon {\n    color: #cc8925;\n  }\n  .p-inline-message.p-inline-message-error {\n    background: rgba(255, 231, 230, 0.7);\n    border: solid #ff5757;\n    border-width: 0px;\n    color: #ff5757;\n  }\n  .p-inline-message.p-inline-message-error .p-inline-message-icon {\n    color: #ff5757;\n  }\n  .p-inline-message .p-inline-message-icon {\n    font-size: 1rem;\n    margin-right: 0.5rem;\n  }\n  .p-inline-message .p-inline-message-icon.p-icon {\n    width: 1rem;\n    height: 1rem;\n  }\n  .p-inline-message .p-inline-message-text {\n    font-size: 1rem;\n  }\n  .p-inline-message.p-inline-message-icon-only .p-inline-message-icon {\n    margin-right: 0;\n  }\n  .p-message {\n    margin: 1rem 0;\n    border-radius: 6px;\n  }\n  .p-message .p-message-wrapper {\n    padding: 1.25rem 1.75rem;\n  }\n  .p-message .p-message-close {\n    width: 2rem;\n    height: 2rem;\n    border-radius: 50%;\n    background: transparent;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n  }\n  .p-message .p-message-close:hover {\n    background: rgba(255, 255, 255, 0.5);\n  }\n  .p-message .p-message-close:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-message.p-message-info {\n    background: rgba(219, 234, 254, 0.7);\n    border: solid #3b82f6;\n    border-width: 0 0 0 6px;\n    color: #3b82f6;\n  }\n  .p-message.p-message-info .p-message-icon {\n    color: #3b82f6;\n  }\n  .p-message.p-message-info .p-message-close {\n    color: #3b82f6;\n  }\n  .p-message.p-message-success {\n    background: rgba(228, 248, 240, 0.7);\n    border: solid #1ea97c;\n    border-width: 0 0 0 6px;\n    color: #1ea97c;\n  }\n  .p-message.p-message-success .p-message-icon {\n    color: #1ea97c;\n  }\n  .p-message.p-message-success .p-message-close {\n    color: #1ea97c;\n  }\n  .p-message.p-message-warn {\n    background: rgba(255, 242, 226, 0.7);\n    border: solid #cc8925;\n    border-width: 0 0 0 6px;\n    color: #cc8925;\n  }\n  .p-message.p-message-warn .p-message-icon {\n    color: #cc8925;\n  }\n  .p-message.p-message-warn .p-message-close {\n    color: #cc8925;\n  }\n  .p-message.p-message-error {\n    background: rgba(255, 231, 230, 0.7);\n    border: solid #ff5757;\n    border-width: 0 0 0 6px;\n    color: #ff5757;\n  }\n  .p-message.p-message-error .p-message-icon {\n    color: #ff5757;\n  }\n  .p-message.p-message-error .p-message-close {\n    color: #ff5757;\n  }\n  .p-message .p-message-text {\n    font-size: 1rem;\n    font-weight: 500;\n  }\n  .p-message .p-message-icon {\n    font-size: 1.5rem;\n    margin-right: 0.5rem;\n  }\n  .p-message .p-message-icon.p-icon {\n    width: 1.5rem;\n    height: 1.5rem;\n  }\n  .p-message .p-message-summary {\n    font-weight: 700;\n  }\n  .p-message .p-message-detail {\n    margin-left: 0.5rem;\n  }\n  .p-toast {\n    opacity: 1;\n  }\n  .p-toast .p-toast-message {\n    margin: 0 0 1rem 0;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n    border-radius: 6px;\n  }\n  .p-toast .p-toast-message .p-toast-message-content {\n    padding: 1rem;\n    border-width: 0 0 0 6px;\n  }\n  .p-toast .p-toast-message .p-toast-message-content .p-toast-message-text {\n    margin: 0 0 0 1rem;\n  }\n  .p-toast .p-toast-message .p-toast-message-content .p-toast-message-icon {\n    font-size: 2rem;\n  }\n  .p-toast .p-toast-message .p-toast-message-content .p-toast-message-icon.p-icon {\n    width: 2rem;\n    height: 2rem;\n  }\n  .p-toast .p-toast-message .p-toast-message-content .p-toast-summary {\n    font-weight: 700;\n  }\n  .p-toast .p-toast-message .p-toast-message-content .p-toast-detail {\n    margin: 0.5rem 0 0 0;\n  }\n  .p-toast .p-toast-message .p-toast-icon-close {\n    width: 2rem;\n    height: 2rem;\n    border-radius: 50%;\n    background: transparent;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n  }\n  .p-toast .p-toast-message .p-toast-icon-close:hover {\n    background: rgba(255, 255, 255, 0.5);\n  }\n  .p-toast .p-toast-message .p-toast-icon-close:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-toast .p-toast-message.p-toast-message-info {\n    background: rgba(219, 234, 254, 0.7);\n    border: solid #3b82f6;\n    border-width: 0 0 0 6px;\n    color: #3b82f6;\n  }\n  .p-toast .p-toast-message.p-toast-message-info .p-toast-message-icon,\n  .p-toast .p-toast-message.p-toast-message-info .p-toast-icon-close {\n    color: #3b82f6;\n  }\n  .p-toast .p-toast-message.p-toast-message-success {\n    background: rgba(228, 248, 240, 0.7);\n    border: solid #1ea97c;\n    border-width: 0 0 0 6px;\n    color: #1ea97c;\n  }\n  .p-toast .p-toast-message.p-toast-message-success .p-toast-message-icon,\n  .p-toast .p-toast-message.p-toast-message-success .p-toast-icon-close {\n    color: #1ea97c;\n  }\n  .p-toast .p-toast-message.p-toast-message-warn {\n    background: rgba(255, 242, 226, 0.7);\n    border: solid #cc8925;\n    border-width: 0 0 0 6px;\n    color: #cc8925;\n  }\n  .p-toast .p-toast-message.p-toast-message-warn .p-toast-message-icon,\n  .p-toast .p-toast-message.p-toast-message-warn .p-toast-icon-close {\n    color: #cc8925;\n  }\n  .p-toast .p-toast-message.p-toast-message-error {\n    background: rgba(255, 231, 230, 0.7);\n    border: solid #ff5757;\n    border-width: 0 0 0 6px;\n    color: #ff5757;\n  }\n  .p-toast .p-toast-message.p-toast-message-error .p-toast-message-icon,\n  .p-toast .p-toast-message.p-toast-message-error .p-toast-icon-close {\n    color: #ff5757;\n  }\n  .p-galleria .p-galleria-close {\n    margin: 0.5rem;\n    background: transparent;\n    color: #f9fafb;\n    width: 4rem;\n    height: 4rem;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n    border-radius: 50%;\n  }\n  .p-galleria .p-galleria-close .p-galleria-close-icon {\n    font-size: 2rem;\n  }\n  .p-galleria .p-galleria-close .p-galleria-close-icon.p-icon {\n    width: 2rem;\n    height: 2rem;\n  }\n  .p-galleria .p-galleria-close:hover {\n    background: rgba(255, 255, 255, 0.1);\n    color: #f9fafb;\n  }\n  .p-galleria .p-galleria-item-nav {\n    background: transparent;\n    color: #f9fafb;\n    width: 4rem;\n    height: 4rem;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n    border-radius: 6px;\n    margin: 0 0.5rem;\n  }\n  .p-galleria .p-galleria-item-nav .p-galleria-item-prev-icon,\n  .p-galleria .p-galleria-item-nav .p-galleria-item-next-icon {\n    font-size: 2rem;\n  }\n  .p-galleria .p-galleria-item-nav .p-galleria-item-prev-icon.p-icon,\n  .p-galleria .p-galleria-item-nav .p-galleria-item-next-icon.p-icon {\n    width: 2rem;\n    height: 2rem;\n  }\n  .p-galleria .p-galleria-item-nav:not(.p-disabled):hover {\n    background: rgba(255, 255, 255, 0.1);\n    color: #f9fafb;\n  }\n  .p-galleria .p-galleria-caption {\n    background: rgba(0, 0, 0, 0.5);\n    color: #f9fafb;\n    padding: 1rem;\n  }\n  .p-galleria .p-galleria-indicators {\n    padding: 1rem;\n  }\n  .p-galleria .p-galleria-indicators .p-galleria-indicator button {\n    background-color: #d1d5db;\n    width: 1rem;\n    height: 1rem;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n    border-radius: 50%;\n  }\n  .p-galleria .p-galleria-indicators .p-galleria-indicator button:hover {\n    background: #9ca3af;\n  }\n  .p-galleria .p-galleria-indicators .p-galleria-indicator.p-highlight button {\n    background: #eef2ff;\n    color: #4338ca;\n  }\n  .p-galleria.p-galleria-indicators-bottom .p-galleria-indicator, .p-galleria.p-galleria-indicators-top .p-galleria-indicator {\n    margin-right: 0.5rem;\n  }\n  .p-galleria.p-galleria-indicators-left .p-galleria-indicator, .p-galleria.p-galleria-indicators-right .p-galleria-indicator {\n    margin-bottom: 0.5rem;\n  }\n  .p-galleria.p-galleria-indicator-onitem .p-galleria-indicators {\n    background: rgba(0, 0, 0, 0.5);\n  }\n  .p-galleria.p-galleria-indicator-onitem .p-galleria-indicators .p-galleria-indicator button {\n    background: rgba(255, 255, 255, 0.4);\n  }\n  .p-galleria.p-galleria-indicator-onitem .p-galleria-indicators .p-galleria-indicator button:hover {\n    background: rgba(255, 255, 255, 0.6);\n  }\n  .p-galleria.p-galleria-indicator-onitem .p-galleria-indicators .p-galleria-indicator.p-highlight button {\n    background: #eef2ff;\n    color: #4338ca;\n  }\n  .p-galleria .p-galleria-thumbnail-container {\n    background: rgba(0, 0, 0, 0.9);\n    padding: 1rem 0.25rem;\n  }\n  .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-prev,\n  .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-next {\n    margin: 0.5rem;\n    background-color: transparent;\n    color: #f9fafb;\n    width: 2rem;\n    height: 2rem;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n    border-radius: 50%;\n  }\n  .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-prev:hover,\n  .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-next:hover {\n    background: rgba(255, 255, 255, 0.1);\n    color: #f9fafb;\n  }\n  .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-item-content {\n    transition: box-shadow 0.2s;\n  }\n  .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-item-content:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-galleria-mask {\n    --maskbg: rgba(0, 0, 0, 0.9);\n  }\n  .p-image-mask {\n    --maskbg: rgba(0, 0, 0, 0.9);\n  }\n  .p-image-preview-indicator {\n    background-color: transparent;\n    color: #f8f9fa;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n  }\n  .p-image-preview-indicator .p-icon {\n    width: 1.5rem;\n    height: 1.5rem;\n  }\n  .p-image-preview-container:hover > .p-image-preview-indicator {\n    background-color: rgba(0, 0, 0, 0.5);\n  }\n  .p-image-toolbar {\n    padding: 1rem;\n  }\n  .p-image-action.p-link {\n    color: #f8f9fa;\n    background-color: transparent;\n    width: 3rem;\n    height: 3rem;\n    border-radius: 50%;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n    margin-right: 0.5rem;\n  }\n  .p-image-action.p-link:last-child {\n    margin-right: 0;\n  }\n  .p-image-action.p-link:hover {\n    color: #f8f9fa;\n    background-color: rgba(255, 255, 255, 0.1);\n  }\n  .p-image-action.p-link span {\n    font-size: 1.5rem;\n  }\n  .p-image-action.p-link .p-icon {\n    width: 1.5rem;\n    height: 1.5rem;\n  }\n  .p-avatar {\n    background-color: #e5e7eb;\n    border-radius: 6px;\n  }\n  .p-avatar.p-avatar-lg {\n    width: 3rem;\n    height: 3rem;\n    font-size: 1.5rem;\n  }\n  .p-avatar.p-avatar-lg .p-avatar-icon {\n    font-size: 1.5rem;\n  }\n  .p-avatar.p-avatar-xl {\n    width: 4rem;\n    height: 4rem;\n    font-size: 2rem;\n  }\n  .p-avatar.p-avatar-xl .p-avatar-icon {\n    font-size: 2rem;\n  }\n  .p-avatar-circle {\n    border-radius: 50%;\n  }\n  .p-avatar-group .p-avatar {\n    border: 2px solid #ffffff;\n  }\n  .p-chip {\n    background-color: #e5e7eb;\n    color: #4b5563;\n    border-radius: 16px;\n    padding: 0 0.75rem;\n  }\n  .p-chip .p-chip-text {\n    line-height: 1.5;\n    margin-top: 0.375rem;\n    margin-bottom: 0.375rem;\n  }\n  .p-chip .p-chip-icon {\n    margin-right: 0.5rem;\n  }\n  .p-chip img {\n    width: 2.25rem;\n    height: 2.25rem;\n    margin-left: -0.75rem;\n    margin-right: 0.5rem;\n  }\n  .p-chip .p-chip-remove-icon {\n    border-radius: 6px;\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n    margin-left: 0.5rem;\n  }\n  .p-chip .p-chip-remove-icon:focus-visible {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-chip .p-chip-remove-icon:focus {\n    outline: 0 none;\n  }\n  .p-scrolltop {\n    width: 3rem;\n    height: 3rem;\n    border-radius: 50%;\n    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);\n    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;\n  }\n  .p-scrolltop.p-link {\n    background: rgba(0, 0, 0, 0.7);\n  }\n  .p-scrolltop.p-link:hover {\n    background: rgba(0, 0, 0, 0.8);\n  }\n  .p-scrolltop .p-scrolltop-icon {\n    font-size: 1.5rem;\n    color: #f9fafb;\n  }\n  .p-scrolltop .p-scrolltop-icon.p-icon {\n    width: 1.5rem;\n    height: 1.5rem;\n  }\n  .p-skeleton {\n    background-color: #e5e7eb;\n    border-radius: 6px;\n  }\n  .p-skeleton:after {\n    background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));\n  }\n  .p-tag {\n    background: #6366f1;\n    color: #ffffff;\n    font-size: 0.75rem;\n    font-weight: 700;\n    padding: 0.25rem 0.4rem;\n    border-radius: 6px;\n  }\n  .p-tag.p-tag-success {\n    background-color: #22c55e;\n    color: #ffffff;\n  }\n  .p-tag.p-tag-info {\n    background-color: #0ea5e9;\n    color: #ffffff;\n  }\n  .p-tag.p-tag-warning {\n    background-color: #f97316;\n    color: #ffffff;\n  }\n  .p-tag.p-tag-danger {\n    background-color: #ef4444;\n    color: #ffffff;\n  }\n  .p-tag .p-tag-icon {\n    margin-right: 0.25rem;\n    font-size: 0.75rem;\n  }\n  .p-tag .p-tag-icon.p-icon {\n    width: 0.75rem;\n    height: 0.75rem;\n  }\n  .p-inplace .p-inplace-display {\n    padding: 0.75rem 0.75rem;\n    border-radius: 6px;\n    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;\n  }\n  .p-inplace .p-inplace-display:not(.p-disabled):hover {\n    background: #f3f4f6;\n    color: #4b5563;\n  }\n  .p-inplace .p-inplace-display:focus {\n    outline: 0 none;\n    outline-offset: 0;\n    box-shadow: 0 0 0 0.2rem #c7d2fe;\n  }\n  .p-metergroup .p-metergroup-meter-container {\n    background: #e5e7eb;\n    border-radius: 6px;\n  }\n  .p-metergroup .p-metergroup-meter {\n    border: 0 none;\n    background: #6366f1;\n  }\n  .p-metergroup .p-metergroup-label-list .p-metergroup-label-list-item {\n    line-height: 1.5rem;\n  }\n  .p-metergroup .p-metergroup-label-list .p-metergroup-label-type {\n    background: #6366f1;\n    width: 0.5rem;\n    height: 0.5rem;\n    border-radius: 100%;\n    margin-right: 0.5rem;\n  }\n  .p-metergroup .p-metergroup-label-list .p-metergroup-label {\n    margin-right: 1rem;\n  }\n  .p-metergroup .p-metergroup-label-list .p-metergroup-label-icon {\n    width: 1rem;\n    height: 1rem;\n    margin-right: 0.5rem;\n  }\n  .p-metergroup.p-metergroup-horizontal .p-metergroup-meter-container {\n    height: 0.5rem;\n  }\n  .p-metergroup.p-metergroup-horizontal .p-metergroup-meter:first-of-type {\n    border-top-left-radius: 6px;\n    border-bottom-left-radius: 6px;\n  }\n  .p-metergroup.p-metergroup-horizontal .p-metergroup-meter:last-of-type {\n    border-top-right-radius: 6px;\n    border-bottom-right-radius: 6px;\n  }\n  .p-metergroup.p-metergroup-horizontal .p-metergroup-label-list-start {\n    margin-bottom: 1rem;\n  }\n  .p-metergroup.p-metergroup-horizontal .p-metergroup-label-list-end {\n    margin-top: 1rem;\n  }\n  .p-metergroup.p-metergroup-vertical .p-metergroup-meter-container {\n    width: 0.5rem;\n    height: 100%;\n  }\n  .p-metergroup.p-metergroup-vertical .p-metergroup-meter:first-of-type {\n    border-top-left-radius: 6px;\n    border-top-right-radius: 6px;\n  }\n  .p-metergroup.p-metergroup-vertical .p-metergroup-meter:last-of-type {\n    border-bottom-left-radius: 6px;\n    border-bottom-right-radius: 6px;\n  }\n  .p-metergroup.p-metergroup-vertical .p-metergroup-label-list:not(.p-metergroup-label-list-start) {\n    margin-left: 1rem;\n  }\n  .p-progressbar {\n    border: 0 none;\n    height: 1.5rem;\n    background: #e5e7eb;\n    border-radius: 6px;\n  }\n  .p-progressbar .p-progressbar-value {\n    border: 0 none;\n    margin: 0;\n    background: #6366f1;\n  }\n  .p-progressbar .p-progressbar-label {\n    color: #ffffff;\n    line-height: 1.5rem;\n  }\n  .p-terminal {\n    background: #ffffff;\n    color: #4b5563;\n    border: 1px solid #e5e7eb;\n    padding: 1.25rem;\n  }\n  .p-terminal .p-terminal-input {\n    font-family: var(--font-family);\n    font-feature-settings: var(--font-feature-settings, normal);\n    font-size: 1rem;\n  }\n  .p-badge {\n    background: #6366f1;\n    color: #ffffff;\n    font-size: 0.75rem;\n    font-weight: 700;\n    min-width: 1.5rem;\n    height: 1.5rem;\n    line-height: 1.5rem;\n  }\n  .p-badge.p-badge-secondary {\n    background-color: #64748b;\n    color: #ffffff;\n  }\n  .p-badge.p-badge-success {\n    background-color: #22c55e;\n    color: #ffffff;\n  }\n  .p-badge.p-badge-info {\n    background-color: #0ea5e9;\n    color: #ffffff;\n  }\n  .p-badge.p-badge-warning {\n    background-color: #f97316;\n    color: #ffffff;\n  }\n  .p-badge.p-badge-danger {\n    background-color: #ef4444;\n    color: #ffffff;\n  }\n  .p-badge.p-badge-lg {\n    font-size: 1.125rem;\n    min-width: 2.25rem;\n    height: 2.25rem;\n    line-height: 2.25rem;\n  }\n  .p-badge.p-badge-xl {\n    font-size: 1.5rem;\n    min-width: 3rem;\n    height: 3rem;\n    line-height: 3rem;\n  }\n  .p-tag {\n    background: #6366f1;\n    color: #ffffff;\n    font-size: 0.75rem;\n    font-weight: 700;\n    padding: 0.25rem 0.4rem;\n    border-radius: 6px;\n  }\n  .p-tag.p-tag-success {\n    background-color: #22c55e;\n    color: #ffffff;\n  }\n  .p-tag.p-tag-info {\n    background-color: #0ea5e9;\n    color: #ffffff;\n  }\n  .p-tag.p-tag-warning {\n    background-color: #f97316;\n    color: #ffffff;\n  }\n  .p-tag.p-tag-danger {\n    background-color: #ef4444;\n    color: #ffffff;\n  }\n  .p-button-label {\n    font-weight: 700;\n  }\n  .p-selectbutton > .p-button,\n  .p-togglebutton.p-button {\n    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;\n  }\n  .p-accordion .p-accordion-header .p-accordion-header-link {\n    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;\n  }\n  .p-tabview .p-tabview-nav li .p-tabview-nav-link {\n    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;\n  }\n  .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link {\n    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;\n  }\n  .p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {\n    background-color: #6366f1;\n  }\n  .p-galleria .p-galleria-indicators .p-galleria-indicator.p-highlight button {\n    background-color: #6366f1;\n  }\n  .p-button:focus {\n    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #b1b3f8, 0 1px 2px 0 rgb(0, 0, 0);\n  }\n  .p-button.p-button-secondary:enabled:focus {\n    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #b0b9c6, 0 1px 2px 0 rgb(0, 0, 0);\n  }\n  .p-button.p-button-success:enabled:focus {\n    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #88eaac, 0 1px 2px 0 rgb(0, 0, 0);\n  }\n  .p-button.p-button-info:enabled:focus {\n    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #83d3f8, 0 1px 2px 0 rgb(0, 0, 0);\n  }\n  .p-button.p-button-warning:enabled:focus {\n    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #fcb98b, 0 1px 2px 0 rgb(0, 0, 0);\n  }\n  .p-button.p-button-help:enabled:focus {\n    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #d4aafb, 0 1px 2px 0 rgb(0, 0, 0);\n  }\n  .p-button.p-button-danger:enabled:focus {\n    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #f7a2a2, 0 1px 2px 0 rgb(0, 0, 0);\n  }\n  .p-datatable .p-datatable-tbody > tr.p-datatable-dragpoint-top > td {\n    box-shadow: inset 0 2px 0 0 #6366f1;\n  }\n  .p-datatable .p-datatable-tbody > tr.p-datatable-dragpoint-bottom > td {\n    box-shadow: inset 0 -2px 0 0 #6366f1;\n  }\n  .p-speeddial-item.p-focus > .p-speeddial-action {\n    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #b1b3f8, 0 1px 2px 0 rgb(0, 0, 0);\n  }\n  .p-toast-message {\n    -webkit-backdrop-filter: blur(10px);\n            backdrop-filter: blur(10px);\n  }\n  .p-inline-message-text {\n    font-weight: 500;\n  }\n  .p-picklist-buttons .p-button,\n  .p-orderlist-controls .p-button {\n    transition: opacity 0.2s, background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;\n  }\n  .p-steps .p-steps-item.p-highlight .p-steps-number {\n    background: #6366f1;\n    color: #ffffff;\n  }\n  .p-stepper .p-stepper-header.p-highlight .p-stepper-number {\n    background: #6366f1;\n    color: #ffffff;\n  }\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/css/DataTable.css":
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/css/DataTable.css ***!
+  \***********************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".p-datatable-gridlines .p-datatable-tbody > tr > td {\n    border-bottom: 1px solid #dee2e6;\n}\n\n.p-datatable-gridlines .p-datatable-tbody > tr > td:first-child {\n    border-left: 1px solid #dee2e6;\n}\n\n.p-datatable-gridlines .p-datatable-tbody > tr > td:last-child {\n    border-right: 1px solid #dee2e6;\n}\n\n.border-left {\n    border-left: 1px solid #dee2e6;\n}\n\n.border-right {\n    border-right: 1px solid #dee2e6;\n}\n\n.border-bottom {\n    border-bottom: 1px solid #dee2e6;\n}\n\n.text-large {\n    font-size: 1rem; /* Or any size you prefer */\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -37289,6 +37202,2162 @@ var Message = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo( /*#__PURE__*
   }, rootProps), content);
 }));
 Message.displayName = 'Message';
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/primereact/multiselect/multiselect.esm.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/primereact/multiselect/multiselect.esm.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   MultiSelect: () => (/* binding */ MultiSelect)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var primereact_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primereact/api */ "./node_modules/primereact/api/api.esm.js");
+/* harmony import */ var primereact_componentbase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primereact/componentbase */ "./node_modules/primereact/componentbase/componentbase.esm.js");
+/* harmony import */ var primereact_hooks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! primereact/hooks */ "./node_modules/primereact/hooks/hooks.esm.js");
+/* harmony import */ var primereact_icons_chevrondown__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! primereact/icons/chevrondown */ "./node_modules/primereact/icons/chevrondown/index.esm.js");
+/* harmony import */ var primereact_icons_spinner__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! primereact/icons/spinner */ "./node_modules/primereact/icons/spinner/index.esm.js");
+/* harmony import */ var primereact_icons_times__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! primereact/icons/times */ "./node_modules/primereact/icons/times/index.esm.js");
+/* harmony import */ var primereact_icons_timescircle__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! primereact/icons/timescircle */ "./node_modules/primereact/icons/timescircle/index.esm.js");
+/* harmony import */ var primereact_overlayservice__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! primereact/overlayservice */ "./node_modules/primereact/overlayservice/overlayservice.esm.js");
+/* harmony import */ var primereact_tooltip__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primereact/tooltip */ "./node_modules/primereact/tooltip/tooltip.esm.js");
+/* harmony import */ var primereact_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primereact/utils */ "./node_modules/primereact/utils/utils.esm.js");
+/* harmony import */ var primereact_csstransition__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! primereact/csstransition */ "./node_modules/primereact/csstransition/csstransition.esm.js");
+/* harmony import */ var primereact_portal__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! primereact/portal */ "./node_modules/primereact/portal/portal.esm.js");
+/* harmony import */ var primereact_virtualscroller__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! primereact/virtualscroller */ "./node_modules/primereact/virtualscroller/virtualscroller.esm.js");
+/* harmony import */ var primereact_icons_check__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! primereact/icons/check */ "./node_modules/primereact/icons/check/index.esm.js");
+/* harmony import */ var primereact_icons_search__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primereact/icons/search */ "./node_modules/primereact/icons/search/index.esm.js");
+/* harmony import */ var primereact_inputtext__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primereact/inputtext */ "./node_modules/primereact/inputtext/inputtext.esm.js");
+/* harmony import */ var primereact_ripple__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! primereact/ripple */ "./node_modules/primereact/ripple/ripple.esm.js");
+'use client';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function _extends() {
+  _extends = Object.assign ? Object.assign.bind() : function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
+  return _extends.apply(this, arguments);
+}
+
+function _typeof(o) {
+  "@babel/helpers - typeof";
+
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+    return typeof o;
+  } : function (o) {
+    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+  }, _typeof(o);
+}
+
+function _toPrimitive(input, hint) {
+  if (_typeof(input) !== "object" || input === null) return input;
+  var prim = input[Symbol.toPrimitive];
+  if (prim !== undefined) {
+    var res = prim.call(input, hint || "default");
+    if (_typeof(res) !== "object") return res;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return (hint === "string" ? String : Number)(input);
+}
+
+function _toPropertyKey(arg) {
+  var key = _toPrimitive(arg, "string");
+  return _typeof(key) === "symbol" ? key : String(key);
+}
+
+function _defineProperty(obj, key, value) {
+  key = _toPropertyKey(key);
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
+
+function _arrayLikeToArray$1(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+  return arr2;
+}
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return _arrayLikeToArray$1(arr);
+}
+
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
+}
+
+function _unsupportedIterableToArray$1(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray$1(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$1(o, minLen);
+}
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray$1(arr) || _nonIterableSpread();
+}
+
+function _readOnlyError(name) {
+  throw new TypeError("\"" + name + "\" is read-only");
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+function _iterableToArrayLimit(r, l) {
+  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+  if (null != t) {
+    var e,
+      n,
+      i,
+      u,
+      a = [],
+      f = !0,
+      o = !1;
+    try {
+      if (i = (t = t.call(r)).next, 0 === l) {
+        if (Object(t) !== t) return;
+        f = !1;
+      } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
+    } catch (r) {
+      o = !0, n = r;
+    } finally {
+      try {
+        if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return;
+      } finally {
+        if (o) throw n;
+      }
+    }
+    return a;
+  }
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray$1(arr, i) || _nonIterableRest();
+}
+
+var classes$1 = {
+  root: function root(_ref) {
+    var props = _ref.props,
+      context = _ref.context,
+      focusedState = _ref.focusedState,
+      overlayVisibleState = _ref.overlayVisibleState;
+    return (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)('p-multiselect p-component p-inputwrapper', {
+      'p-multiselect-chip': props.display === 'chip',
+      'p-disabled': props.disabled,
+      'p-invalid': props.invalid,
+      'p-variant-filled': props.variant ? props.variant === 'filled' : context && context.inputStyle === 'filled',
+      'p-multiselect-clearable': props.showClear && !props.disabled,
+      'p-focus': focusedState,
+      'p-inputwrapper-filled': primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.isNotEmpty(props.value),
+      'p-inputwrapper-focus': focusedState || overlayVisibleState
+    });
+  },
+  label: function label(_ref2) {
+    var props = _ref2.props,
+      empty = _ref2.empty;
+    return (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)('p-multiselect-label', {
+      'p-placeholder': empty && props.placeholder,
+      'p-multiselect-label-empty': empty && !props.placeholder && !props.selectedItemTemplate,
+      'p-multiselect-items-label': !empty && props.display !== 'chip' && props.value.length > props.maxSelectedLabels
+    });
+  },
+  panel: function panel(_ref3) {
+    var props = _ref3.panelProps,
+      context = _ref3.context,
+      allowOptionSelect = _ref3.allowOptionSelect;
+    return (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)('p-multiselect-panel p-component', {
+      'p-multiselect-inline': props.inline,
+      'p-multiselect-flex': props.flex,
+      'p-multiselect-limited': !allowOptionSelect,
+      'p-input-filled': context && context.inputStyle === 'filled' || primereact_api__WEBPACK_IMPORTED_MODULE_2__["default"].inputStyle === 'filled',
+      'p-ripple-disabled': context && context.ripple === false || primereact_api__WEBPACK_IMPORTED_MODULE_2__["default"].ripple === false
+    });
+  },
+  list: function list(_ref4) {
+    var virtualScrollerOptions = _ref4.virtualScrollerOptions;
+    return virtualScrollerOptions ? 'p-multiselect-items p-component' : 'p-multiselect-items p-component';
+  },
+  labelContainer: 'p-multiselect-label-container',
+  triggerIcon: 'p-multiselect-trigger-icon p-c',
+  trigger: 'p-multiselect-trigger',
+  clearIcon: 'p-multiselect-clear-icon',
+  tokenLabel: 'p-multiselect-token-label',
+  token: 'p-multiselect-token',
+  removeTokenIcon: 'p-multiselect-token-icon',
+  wrapper: 'p-multiselect-items-wrapper',
+  emptyMessage: 'p-multiselect-empty-message',
+  itemGroup: 'p-multiselect-item-group',
+  closeButton: 'p-multiselect-close p-link',
+  header: 'p-multiselect-header',
+  closeIcon: 'p-multiselect-close-icon',
+  headerCheckboxContainer: 'p-multiselect-select-all',
+  headerCheckboxIcon: 'p-multiselect-select-all p-checkbox-icon p-c',
+  headerSelectAllLabel: 'p-multiselect-select-all-label',
+  filterContainer: 'p-multiselect-filter-container',
+  filterIcon: 'p-multiselect-filter-icon',
+  item: function item(_ref5) {
+    var props = _ref5.itemProps;
+    return (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)('p-multiselect-item', {
+      'p-highlight': props.selected,
+      'p-disabled': props.disabled,
+      'p-focus': props.focusedOptionIndex === props.index
+    });
+  },
+  checkboxContainer: 'p-multiselect-checkbox',
+  checkboxIcon: 'p-checkbox-icon p-c',
+  transition: 'p-connected-overlay'
+};
+var styles = "\n@layer primereact {\n    .p-multiselect {\n        display: inline-flex;\n        user-select: none;\n        cursor: pointer;\n    }\n    \n    .p-multiselect-trigger {\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        flex-shrink: 0;\n        cursor: pointer;\n    }\n    \n    .p-multiselect-label-container {\n        overflow: hidden;\n        flex: 1 1 auto;\n        cursor: pointer;\n    }\n    \n    .p-multiselect-label  {\n        display: block;\n        white-space: nowrap;\n        cursor: pointer;\n        overflow: hidden;\n        text-overflow: ellipsis;\n    }\n    \n    .p-multiselect-label-empty {\n        overflow: hidden;\n        visibility: hidden;\n    }\n    \n    .p-multiselect-token {\n        cursor: default;\n        display: inline-flex;\n        align-items: center;\n        flex: 0 0 auto;\n    }\n    \n    .p-multiselect-token-icon {\n        cursor: pointer;\n    }\n    \n    .p-multiselect .p-multiselect-panel {\n        min-width: 100%;\n    }\n    \n    .p-multiselect-inline.p-multiselect-panel {\n        border: none;\n        position: initial;\n        background: none;\n        box-shadow: none;\n    }\n    \n    .p-multiselect-inline.p-multiselect-panel .p-multiselect-items {\n        padding: 0;\n    }\n    \n    .p-multiselect-flex.p-multiselect-panel .p-multiselect-items {\n        display: flex;\n        flex-wrap: wrap;\n    }\n    \n    .p-multiselect-items-wrapper {\n        overflow: auto;\n    }\n    \n    .p-multiselect-items {\n        margin: 0;\n        padding: 0;\n        list-style-type: none;\n    }\n    \n    .p-multiselect-item {\n        cursor: pointer;\n        display: flex;\n        align-items: center;\n        font-weight: normal;\n        white-space: nowrap;\n        position: relative;\n        overflow: hidden;\n        outline: none;\n    }\n    \n    .p-multiselect-header {\n        display: flex;\n        align-items: center;\n        justify-content: space-between;\n    }\n    \n    .p-multiselect-select-all-label {\n        margin-left: 0.5rem;\n    }\n    \n    .p-multiselect-filter-container {\n        position: relative;\n        flex: 1 1 auto;\n    }\n    \n    .p-multiselect-filter-icon {\n        position: absolute;\n        top: 50%;\n        margin-top: -.5rem;\n    }\n    \n    .p-multiselect-filter-container .p-inputtext {\n        width: 100%;\n    }\n    \n    .p-multiselect-close {\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        flex-shrink: 0;\n        overflow: hidden;\n        position: relative;\n        margin-left: auto;\n    }\n    \n    .p-multiselect-clear-icon {\n        position: absolute;\n        top: 50%;\n        margin-top: -.5rem;\n        right: 3rem;\n    }\n    \n    .p-fluid .p-multiselect {\n        display: flex;\n    }\n}\n";
+var inlineStyles = {
+  root: function root(_ref6) {
+    var props = _ref6.props;
+    return props.showClear && !props.disabled && {
+      position: 'relative'
+    };
+  },
+  itemGroup: function itemGroup(_ref7) {
+    var scrollerOptions = _ref7.scrollerOptions;
+    return {
+      height: scrollerOptions.props ? scrollerOptions.props.itemSize : undefined
+    };
+  }
+};
+var MultiSelectBase = primereact_componentbase__WEBPACK_IMPORTED_MODULE_3__.ComponentBase.extend({
+  defaultProps: {
+    __TYPE: 'MultiSelect',
+    appendTo: null,
+    ariaLabelledBy: null,
+    checkboxIcon: null,
+    className: null,
+    clearIcon: null,
+    closeIcon: null,
+    dataKey: null,
+    disabled: false,
+    display: 'comma',
+    dropdownIcon: null,
+    emptyFilterMessage: null,
+    emptyMessage: null,
+    filter: false,
+    filterBy: null,
+    filterInputAutoFocus: true,
+    filterLocale: undefined,
+    selectOnFocus: false,
+    focusOnHover: true,
+    autoOptionFocus: false,
+    filterMatchMode: 'contains',
+    filterPlaceholder: null,
+    filterTemplate: null,
+    fixedPlaceholder: false,
+    flex: false,
+    id: null,
+    inline: false,
+    inputId: null,
+    inputRef: null,
+    invalid: false,
+    variant: null,
+    itemCheckboxIcon: null,
+    itemClassName: null,
+    itemTemplate: null,
+    loading: false,
+    loadingIcon: null,
+    maxSelectedLabels: null,
+    name: null,
+    onBlur: null,
+    onChange: null,
+    onClick: null,
+    onFilter: null,
+    onFocus: null,
+    onHide: null,
+    onRemove: null,
+    onSelectAll: null,
+    onShow: null,
+    optionDisabled: null,
+    optionGroupChildren: null,
+    optionGroupLabel: null,
+    optionGroupTemplate: null,
+    optionLabel: null,
+    optionValue: null,
+    options: null,
+    overlayVisible: false,
+    panelClassName: null,
+    panelFooterTemplate: null,
+    panelHeaderTemplate: null,
+    panelStyle: null,
+    placeholder: null,
+    removeIcon: null,
+    resetFilterOnHide: false,
+    scrollHeight: '200px',
+    selectAll: false,
+    selectAllLabel: null,
+    selectedItemTemplate: null,
+    selectedItemsLabel: '{0} items selected',
+    selectionLimit: null,
+    showClear: false,
+    showSelectAll: true,
+    style: null,
+    tabIndex: 0,
+    tooltip: null,
+    tooltipOptions: null,
+    transitionOptions: null,
+    useOptionAsValue: false,
+    value: null,
+    virtualScrollerOptions: null,
+    children: undefined
+  },
+  css: {
+    classes: classes$1,
+    styles: styles,
+    inlineStyles: inlineStyles
+  }
+});
+
+var classes = {
+  box: 'p-checkbox-box',
+  input: 'p-checkbox-input',
+  icon: 'p-checkbox-icon',
+  root: function root(_ref) {
+    var props = _ref.props,
+      checked = _ref.checked,
+      context = _ref.context;
+    return (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)('p-checkbox p-component', {
+      'p-highlight': checked,
+      'p-disabled': props.disabled,
+      'p-invalid': props.invalid,
+      'p-variant-filled': props.variant ? props.variant === 'filled' : context && context.inputStyle === 'filled'
+    });
+  }
+};
+var CheckboxBase = primereact_componentbase__WEBPACK_IMPORTED_MODULE_3__.ComponentBase.extend({
+  defaultProps: {
+    __TYPE: 'Checkbox',
+    autoFocus: false,
+    checked: false,
+    className: null,
+    disabled: false,
+    falseValue: false,
+    icon: null,
+    id: null,
+    inputId: null,
+    inputRef: null,
+    invalid: false,
+    variant: null,
+    name: null,
+    onChange: null,
+    onContextMenu: null,
+    onMouseDown: null,
+    readOnly: false,
+    required: false,
+    style: null,
+    tabIndex: null,
+    tooltip: null,
+    tooltipOptions: null,
+    trueValue: true,
+    value: null,
+    children: undefined
+  },
+  css: {
+    classes: classes
+  }
+});
+
+function ownKeys$4(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$4(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$4(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$4(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var Checkbox = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function (inProps, ref) {
+  var mergeProps = (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_4__.useMergeProps)();
+  var context = react__WEBPACK_IMPORTED_MODULE_0__.useContext(primereact_api__WEBPACK_IMPORTED_MODULE_2__.PrimeReactContext);
+  var props = CheckboxBase.getProps(inProps, context);
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(false),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    focusedState = _React$useState2[0],
+    setFocusedState = _React$useState2[1];
+  var _CheckboxBase$setMeta = CheckboxBase.setMetaData({
+      props: props,
+      state: {
+        focused: focusedState
+      },
+      context: {
+        checked: props.checked === props.trueValue,
+        disabled: props.disabled
+      }
+    }),
+    ptm = _CheckboxBase$setMeta.ptm,
+    cx = _CheckboxBase$setMeta.cx,
+    isUnstyled = _CheckboxBase$setMeta.isUnstyled;
+  (0,primereact_componentbase__WEBPACK_IMPORTED_MODULE_3__.useHandleStyle)(CheckboxBase.css.styles, isUnstyled, {
+    name: 'checkbox'
+  });
+  var elementRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+  var inputRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(props.inputRef);
+  var isChecked = function isChecked() {
+    return props.checked === props.trueValue;
+  };
+  var _onChange = function onChange(event) {
+    if (props.disabled || props.readonly) {
+      return;
+    }
+    if (props.onChange) {
+      var _props$onChange;
+      var _checked = isChecked();
+      var value = _checked ? props.falseValue : props.trueValue;
+      var eventData = {
+        originalEvent: event,
+        value: props.value,
+        checked: value,
+        stopPropagation: function stopPropagation() {
+          event === null || event === void 0 || event.stopPropagation();
+        },
+        preventDefault: function preventDefault() {
+          event === null || event === void 0 || event.preventDefault();
+        },
+        target: {
+          type: 'checkbox',
+          name: props.name,
+          id: props.id,
+          value: props.value,
+          checked: value
+        }
+      };
+      props === null || props === void 0 || (_props$onChange = props.onChange) === null || _props$onChange === void 0 || _props$onChange.call(props, eventData);
+
+      // do not continue if the user defined click wants to prevent
+      if (event.defaultPrevented) {
+        return;
+      }
+      primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.focus(inputRef.current);
+    }
+  };
+  var _onFocus = function onFocus() {
+    var _props$onFocus;
+    setFocusedState(true);
+    props === null || props === void 0 || (_props$onFocus = props.onFocus) === null || _props$onFocus === void 0 || _props$onFocus.call(props);
+  };
+  var _onBlur = function onBlur() {
+    var _props$onBlur;
+    setFocusedState(false);
+    props === null || props === void 0 || (_props$onBlur = props.onBlur) === null || _props$onBlur === void 0 || _props$onBlur.call(props);
+  };
+  react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle(ref, function () {
+    return {
+      props: props,
+      focus: function focus() {
+        return primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.focus(inputRef.current);
+      },
+      getElement: function getElement() {
+        return elementRef.current;
+      },
+      getInput: function getInput() {
+        return inputRef.current;
+      }
+    };
+  });
+  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {
+    primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.combinedRefs(inputRef, props.inputRef);
+  }, [inputRef, props.inputRef]);
+  (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_4__.useUpdateEffect)(function () {
+    inputRef.current.checked = isChecked();
+  }, [props.checked, props.trueValue]);
+  (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_4__.useMountEffect)(function () {
+    if (props.autoFocus) {
+      primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.focus(inputRef.current, props.autoFocus);
+    }
+  });
+  var checked = isChecked();
+  var hasTooltip = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.isNotEmpty(props.tooltip);
+  var otherProps = CheckboxBase.getOtherProps(props);
+  var rootProps = mergeProps({
+    id: props.id,
+    className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)(props.className, cx('root', {
+      checked: checked,
+      context: context
+    })),
+    style: props.style,
+    'data-p-highlight': checked,
+    'data-p-disabled': props.disabled,
+    onContextMenu: props.onContextMenu,
+    onMouseDown: props.onMouseDown
+  }, otherProps, ptm('root'));
+  var createInputElement = function createInputElement() {
+    var ariaProps = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.reduceKeys(otherProps, primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.ARIA_PROPS);
+    var inputProps = mergeProps(_objectSpread$4({
+      id: props.inputId,
+      type: 'checkbox',
+      className: cx('input'),
+      name: props.name,
+      tabIndex: props.tabIndex,
+      onFocus: function onFocus(e) {
+        return _onFocus();
+      },
+      onBlur: function onBlur(e) {
+        return _onBlur();
+      },
+      onChange: function onChange(e) {
+        return _onChange(e);
+      },
+      disabled: props.disabled,
+      readOnly: props.readOnly,
+      required: props.required,
+      'aria-invalid': props.invalid,
+      checked: checked
+    }, ariaProps), ptm('input'));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", _extends({
+      ref: inputRef
+    }, inputProps));
+  };
+  var createBoxElement = function createBoxElement() {
+    var iconProps = mergeProps({
+      className: cx('icon')
+    }, ptm('icon'));
+    var boxProps = mergeProps({
+      className: cx('box', {
+        checked: checked
+      }),
+      'data-p-highlight': checked,
+      'data-p-disabled': props.disabled
+    }, ptm('box'));
+    var icon = checked ? props.icon || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(primereact_icons_check__WEBPACK_IMPORTED_MODULE_5__.CheckIcon, iconProps) : null;
+    var checkboxIcon = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.IconUtils.getJSXIcon(icon, _objectSpread$4({}, iconProps), {
+      props: props,
+      checked: checked
+    });
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", boxProps, checkboxIcon);
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", _extends({
+    ref: elementRef
+  }, rootProps), createInputElement(), createBoxElement()), hasTooltip && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(primereact_tooltip__WEBPACK_IMPORTED_MODULE_6__.Tooltip, _extends({
+    target: elementRef,
+    content: props.tooltip,
+    pt: ptm('tooltip')
+  }, props.tooltipOptions)));
+}));
+Checkbox.displayName = 'Checkbox';
+
+function ownKeys$3(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$3(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$3(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$3(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var MultiSelectHeader = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo(function (props) {
+  var mergeProps = (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_4__.useMergeProps)();
+  var ptm = props.ptm,
+    cx = props.cx,
+    isUnstyled = props.isUnstyled;
+  var filterOptions = {
+    filter: function filter(e) {
+      return onFilter(e);
+    },
+    reset: function reset() {
+      return props.resetFilter();
+    }
+  };
+  var getPTOptions = function getPTOptions(key, options) {
+    return ptm(key, _objectSpread$3({
+      hostName: props.hostName
+    }, options));
+  };
+  var onFilter = function onFilter(event) {
+    if (props.onFilter) {
+      props.onFilter({
+        originalEvent: event,
+        query: event.target.value
+      });
+    }
+  };
+  var onToggleAll = function onToggleAll(event) {
+    if (props.onSelectAll) {
+      props.onSelectAll({
+        originalEvent: event,
+        checked: props.selectAll
+      });
+    } else {
+      var value = props.isAllSelected() ? [] : props.visibleOptions.filter(function (option) {
+        return props.isValidOption(option);
+      }).map(function (option) {
+        return props.getOptionValue(option);
+      });
+      props.updateModel(event, value, value);
+    }
+  };
+  var createFilterElement = function createFilterElement() {
+    var filterIconProps = mergeProps({
+      className: cx('filterIcon')
+    }, getPTOptions('filterIcon'));
+    var icon = props.filterIcon || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(primereact_icons_search__WEBPACK_IMPORTED_MODULE_7__.SearchIcon, filterIconProps);
+    var filterIcon = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.IconUtils.getJSXIcon(icon, _objectSpread$3({}, filterIconProps), {
+      props: props
+    });
+    if (props.filter) {
+      var filterContainerProps = mergeProps({
+        className: cx('filterContainer')
+      }, getPTOptions('filterContainer'));
+      var content = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", filterContainerProps, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(primereact_inputtext__WEBPACK_IMPORTED_MODULE_8__.InputText, {
+        ref: props.filterRef,
+        type: "text",
+        role: "searchbox",
+        value: props.filterValue,
+        onChange: onFilter,
+        className: "p-multiselect-filter",
+        placeholder: props.filterPlaceholder,
+        pt: ptm('filterInput'),
+        __parentMetadata: {
+          parent: props.metaData
+        }
+      }), filterIcon);
+      if (props.filterTemplate) {
+        var defaultContentOptions = {
+          className: filterContainerProps.className,
+          element: content,
+          filterOptions: filterOptions,
+          onFilter: onFilter,
+          filterIconClassName: props.filterIconClassName,
+          props: props
+        };
+        content = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.getJSXElement(props.filterTemplate, defaultContentOptions);
+      }
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, content);
+    }
+    return null;
+  };
+  var filterElement = createFilterElement();
+  var selectAllId = props.id ? props.id + '_selectall' : (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.UniqueComponentId)();
+  var headerSelectAllLabelProps = mergeProps({
+    htmlFor: selectAllId,
+    className: cx('headerSelectAllLabel')
+  }, getPTOptions('headerSelectAllLabel'));
+  var headerCheckboxIconProps = mergeProps({
+    className: cx('headerCheckboxIcon')
+  }, getPTOptions('headerCheckboxIcon'));
+  var headerCheckboxContainerProps = mergeProps({
+    className: cx('headerCheckboxContainer')
+  }, getPTOptions('headerCheckboxContainer'));
+  var checkedIcon = props.itemCheckboxIcon || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(primereact_icons_check__WEBPACK_IMPORTED_MODULE_5__.CheckIcon, headerCheckboxIconProps);
+  var itemCheckboxIcon = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.IconUtils.getJSXIcon(checkedIcon, _objectSpread$3({}, headerCheckboxIconProps), {
+    selected: props.selected
+  });
+  var checkboxElement = props.showSelectAll && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", headerCheckboxContainerProps, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Checkbox, {
+    id: selectAllId,
+    checked: props.selectAll,
+    onChange: onToggleAll,
+    role: "checkbox",
+    "aria-checked": props.selectAll,
+    icon: itemCheckboxIcon,
+    pt: ptm('headerCheckbox'),
+    unstyled: isUnstyled()
+  }), !props.filter && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", headerSelectAllLabelProps, props.selectAllLabel));
+  var iconProps = mergeProps({
+    className: cx('closeIcon'),
+    'aria-hidden': true
+  }, getPTOptions('closeIcon'));
+  var icon = props.closeIcon || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(primereact_icons_times__WEBPACK_IMPORTED_MODULE_9__.TimesIcon, iconProps);
+  var closeIcon = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.IconUtils.getJSXIcon(icon, _objectSpread$3({}, iconProps), {
+    props: props
+  });
+  var headerProps = mergeProps({
+    className: cx('header')
+  }, getPTOptions('header'));
+  var closeButtonProps = mergeProps({
+    type: 'button',
+    className: cx('closeButton'),
+    'aria-label': (0,primereact_api__WEBPACK_IMPORTED_MODULE_2__.localeOption)('close'),
+    onClick: props.onClose
+  }, getPTOptions('closeButton'));
+  var closeElement = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", closeButtonProps, closeIcon, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(primereact_ripple__WEBPACK_IMPORTED_MODULE_10__.Ripple, null));
+  var element = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", headerProps, checkboxElement, filterElement, closeElement);
+  if (props.template) {
+    var defaultOptions = {
+      className: 'p-multiselect-header',
+      checkboxElement: checkboxElement,
+      checked: props.selectAll,
+      onChange: onToggleAll,
+      filterElement: filterElement,
+      closeElement: closeElement,
+      closeElementClassName: 'p-multiselect-close p-link',
+      closeIconClassName: 'p-multiselect-close-icon',
+      onCloseClick: props.onClose,
+      element: element,
+      itemCheckboxIcon: itemCheckboxIcon,
+      props: props
+    };
+    return primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.getJSXElement(props.template, defaultOptions);
+  }
+  return element;
+});
+MultiSelectHeader.displayName = 'MultiSelectHeader';
+
+function ownKeys$2(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$2(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$2(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$2(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var MultiSelectItem = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo(function (props) {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(false),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    focusedState = _React$useState2[0],
+    setFocusedState = _React$useState2[1];
+  var checkboxRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+  var mergeProps = (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_4__.useMergeProps)();
+  var ptm = props.ptm,
+    cx = props.cx,
+    isUnstyled = props.isUnstyled;
+  var getPTOptions = function getPTOptions(key) {
+    return ptm(key, {
+      hostName: props.hostName,
+      context: {
+        selected: props.selected,
+        disabled: props.disabled,
+        focused: focusedState,
+        focusedIndex: props.focusedIndex,
+        index: props.index
+      }
+    });
+  };
+  var onFocus = function onFocus(event) {
+    var _checkboxRef$current;
+    setFocusedState(true);
+    checkboxRef === null || checkboxRef === void 0 || (_checkboxRef$current = checkboxRef.current) === null || _checkboxRef$current === void 0 || _checkboxRef$current.getInput().focus();
+  };
+  var onBlur = function onBlur(event) {
+    setFocusedState(false);
+  };
+  var onClick = function onClick(event) {
+    if (props.onClick) {
+      props.onClick(event, props.option);
+    }
+    event.preventDefault();
+    event.stopPropagation();
+  };
+  var checkboxIconProps = mergeProps({
+    className: cx('checkboxIcon')
+  }, getPTOptions('checkboxIcon'));
+  var icon = props.checkboxIcon || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(primereact_icons_check__WEBPACK_IMPORTED_MODULE_5__.CheckIcon, checkboxIconProps);
+  var checkboxIcon = props.selected ? primereact_utils__WEBPACK_IMPORTED_MODULE_1__.IconUtils.getJSXIcon(icon, _objectSpread$2({}, checkboxIconProps), {
+    selected: props.selected
+  }) : null;
+  var content = props.template ? primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.getJSXElement(props.template, props.option) : props.label;
+  var tabIndex = props.disabled ? -1 : props.tabIndex;
+  var checkboxContainerProps = mergeProps({
+    className: cx('checkboxContainer')
+  }, getPTOptions('checkboxContainer'));
+  var itemProps = mergeProps({
+    className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)(props.className, props.option.className, cx('item', {
+      itemProps: props
+    })),
+    style: props.style,
+    onClick: onClick,
+    onFocus: onFocus,
+    onBlur: onBlur,
+    onMouseMove: function onMouseMove(e) {
+      return props === null || props === void 0 ? void 0 : props.onMouseMove(e, props.index);
+    },
+    tabIndex: tabIndex,
+    role: 'option',
+    'aria-selected': props.selected,
+    'data-p-highlight': props.selected,
+    'data-p-disabled': props.disabled
+  }, getPTOptions('item'));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", itemProps, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", checkboxContainerProps, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Checkbox, {
+    ref: checkboxRef,
+    checked: props.selected,
+    icon: checkboxIcon,
+    pt: ptm('checkbox'),
+    unstyled: isUnstyled()
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, content), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(primereact_ripple__WEBPACK_IMPORTED_MODULE_10__.Ripple, null));
+});
+MultiSelectItem.displayName = 'MultiSelectItem';
+
+function ownKeys$1(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$1(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$1(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$1(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var MultiSelectPanel = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function (props, ref) {
+  var virtualScrollerRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+  var filterInputRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+  var mergeProps = (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_4__.useMergeProps)();
+  var context = react__WEBPACK_IMPORTED_MODULE_0__.useContext(primereact_api__WEBPACK_IMPORTED_MODULE_2__.PrimeReactContext);
+  var ptm = props.ptm,
+    cx = props.cx,
+    sx = props.sx,
+    isUnstyled = props.isUnstyled;
+  var getPTOptions = function getPTOptions(key, options) {
+    return ptm(key, _objectSpread$1({
+      hostName: props.hostName
+    }, options));
+  };
+  var onEnter = function onEnter() {
+    props.onEnter(function () {
+      if (virtualScrollerRef.current) {
+        var selectedIndex = props.getSelectedOptionIndex();
+        if (selectedIndex !== -1) {
+          setTimeout(function () {
+            return virtualScrollerRef.current.scrollToIndex(selectedIndex);
+          }, 0);
+        }
+      }
+    });
+  };
+  var onEntered = function onEntered() {
+    props.onEntered(function () {
+      if (props.filter && props.filterInputAutoFocus && filterInputRef.current) {
+        primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.focus(filterInputRef.current, false);
+      }
+    });
+  };
+  var onFilterInputChange = function onFilterInputChange(event) {
+    if (virtualScrollerRef.current) {
+      virtualScrollerRef.current.scrollToIndex(0);
+    }
+    props.onFilterInputChange && props.onFilterInputChange(event);
+  };
+  var isEmptyFilter = function isEmptyFilter() {
+    return !(props.visibleOptions && props.visibleOptions.length) && props.hasFilter;
+  };
+  var createHeader = function createHeader() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(MultiSelectHeader, {
+      hostName: props.hostName,
+      id: props.id,
+      filter: props.filter,
+      filterRef: filterInputRef,
+      filterValue: props.filterValue,
+      filterTemplate: props.filterTemplate,
+      visibleOptions: props.visibleOptions,
+      isValidOption: props.isValidOption,
+      getOptionValue: props.getOptionValue,
+      updateModel: props.updateModel,
+      onFilter: onFilterInputChange,
+      filterPlaceholder: props.filterPlaceholder,
+      onClose: props.onCloseClick,
+      showSelectAll: props.showSelectAll,
+      selectAll: props.isAllSelected(),
+      selectAllLabel: props.selectAllLabel,
+      onSelectAll: props.onSelectAll,
+      template: props.panelHeaderTemplate,
+      resetFilter: props.resetFilter,
+      closeIcon: props.closeIcon,
+      filterIcon: props.filterIcon,
+      itemCheckboxIcon: props.itemCheckboxIcon,
+      ptm: ptm,
+      cx: cx,
+      isUnstyled: isUnstyled,
+      metaData: props.metaData
+    });
+  };
+  var createFooter = function createFooter() {
+    if (props.panelFooterTemplate) {
+      var content = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.getJSXElement(props.panelFooterTemplate, props, props.onOverlayHide);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "p-multiselect-footer"
+      }, content);
+    }
+    return null;
+  };
+  var changeFocusedItemOnHover = function changeFocusedItemOnHover(event, index) {
+    if (props.focusOnHover) {
+      var _props$changeFocusedO;
+      props === null || props === void 0 || (_props$changeFocusedO = props.changeFocusedOptionIndex) === null || _props$changeFocusedO === void 0 || _props$changeFocusedO.call(props, event, index);
+    }
+  };
+  var createGroupChildren = function createGroupChildren(optionGroup, style) {
+    var groupChildren = props.getOptionGroupChildren(optionGroup);
+    return groupChildren.map(function (option, j) {
+      var optionLabel = props.getOptionLabel(option);
+      var optionKey = j + '_' + props.getOptionRenderKey(option);
+      var disabled = props.isOptionDisabled(option);
+      var tabIndex = disabled ? null : props.tabIndex || 0;
+      var selected = props.isSelected(option);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(MultiSelectItem, {
+        hostName: props.hostName,
+        index: j,
+        key: optionKey,
+        focusedOptionIndex: props.focusedOptionIndex,
+        label: optionLabel,
+        option: option,
+        style: style,
+        template: props.itemTemplate,
+        selected: selected,
+        onClick: props.onOptionSelect,
+        onMouseMove: changeFocusedItemOnHover,
+        tabIndex: tabIndex,
+        disabled: disabled,
+        className: props.itemClassName,
+        checkboxIcon: props.checkboxIcon,
+        isUnstyled: isUnstyled,
+        ptm: ptm,
+        cx: cx
+      });
+    });
+  };
+  var createEmptyFilter = function createEmptyFilter() {
+    var emptyFilterMessage = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.getJSXElement(props.emptyFilterMessage, props) || (0,primereact_api__WEBPACK_IMPORTED_MODULE_2__.localeOption)('emptyFilterMessage');
+    var emptyMessageProps = mergeProps({
+      className: cx('emptyMessage')
+    }, getPTOptions('emptyMessage'));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", emptyMessageProps, emptyFilterMessage);
+  };
+  var createEmptyContent = function createEmptyContent() {
+    var emptyMessage = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.getJSXElement(props.emptyMessage, props) || (0,primereact_api__WEBPACK_IMPORTED_MODULE_2__.localeOption)('emptyMessage');
+    var emptyMessageProps = mergeProps({
+      className: cx('emptyMessage')
+    }, getPTOptions('emptyMessage'));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", emptyMessageProps, emptyMessage);
+  };
+  var createItem = function createItem(option, index) {
+    var scrollerOptions = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    var style = {
+      height: scrollerOptions.props ? scrollerOptions.props.itemSize : undefined
+    };
+    if (props.optionGroupLabel) {
+      var groupContent = props.optionGroupTemplate ? primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.getJSXElement(props.optionGroupTemplate, option, index) : props.getOptionGroupLabel(option);
+      var groupChildrenContent = createGroupChildren(option, style);
+      var key = index + '_' + props.getOptionGroupRenderKey(option);
+      var itemGroupProps = mergeProps({
+        className: cx('itemGroup'),
+        style: sx('itemGroup', {
+          scrollerOptions: scrollerOptions
+        })
+      }, getPTOptions('itemGroup'));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        key: key
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", itemGroupProps, groupContent), groupChildrenContent);
+    }
+    var optionLabel = props.getOptionLabel(option);
+    var optionKey = index + '_' + props.getOptionRenderKey(option);
+    var disabled = props.isOptionDisabled(option);
+    var tabIndex = disabled ? null : props.tabIndex || 0;
+    var selected = props.isSelected(option);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(MultiSelectItem, {
+      hostName: props.hostName,
+      key: optionKey,
+      focusedOptionIndex: props.focusedOptionIndex,
+      label: optionLabel,
+      option: option,
+      style: style,
+      index: index,
+      template: props.itemTemplate,
+      selected: selected,
+      onClick: props.onOptionSelect,
+      onMouseMove: changeFocusedItemOnHover,
+      tabIndex: tabIndex,
+      disabled: disabled,
+      className: props.itemClassName,
+      checkboxIcon: props.checkboxIcon,
+      isUnstyled: isUnstyled,
+      ptm: ptm,
+      cx: cx
+    });
+  };
+  var createItems = function createItems() {
+    if (primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.isNotEmpty(props.visibleOptions)) {
+      return props.visibleOptions.map(createItem);
+    }
+    return props.hasFilter ? createEmptyFilter() : createEmptyContent();
+  };
+  var createContent = function createContent() {
+    if (props.virtualScrollerOptions) {
+      var virtualScrollerProps = _objectSpread$1(_objectSpread$1({}, props.virtualScrollerOptions), {
+        style: _objectSpread$1(_objectSpread$1({}, props.virtualScrollerOptions.style), {
+          height: props.scrollHeight
+        }),
+        className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)('p-multiselect-items-wrapper', props.virtualScrollerOptions.className),
+        items: props.visibleOptions,
+        autoSize: true,
+        onLazyLoad: function onLazyLoad(event) {
+          return props.virtualScrollerOptions.onLazyLoad(_objectSpread$1(_objectSpread$1({}, event), {
+            filter: props.filterValue
+          }));
+        },
+        itemTemplate: function itemTemplate(item, options) {
+          return item && createItem(item, options.index, options);
+        },
+        contentTemplate: function contentTemplate(options) {
+          var content = isEmptyFilter() ? createEmptyFilter() : options.children;
+          var listProps = mergeProps({
+            ref: options.contentRef,
+            style: options.style,
+            className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)(options.className, cx('list', {
+              virtualScrollerProps: props.virtualScrollerOptions
+            })),
+            role: 'listbox',
+            'aria-multiselectable': true
+          }, getPTOptions('list'));
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", listProps, content);
+        }
+      });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(primereact_virtualscroller__WEBPACK_IMPORTED_MODULE_11__.VirtualScroller, _extends({
+        ref: virtualScrollerRef
+      }, virtualScrollerProps, {
+        pt: ptm('virtualScroller'),
+        __parentMetadata: {
+          parent: props.metaData
+        }
+      }));
+    }
+    var items = createItems();
+    var wrapperProps = mergeProps({
+      className: cx('wrapper'),
+      style: {
+        maxHeight: props.scrollHeight
+      }
+    }, getPTOptions('wrapper'));
+    var listProps = mergeProps({
+      className: cx('list'),
+      role: 'listbox',
+      'aria-multiselectable': true
+    }, getPTOptions('list'));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", wrapperProps, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", listProps, items));
+  };
+  var createElement = function createElement() {
+    var allowOptionSelect = props.allowOptionSelect();
+    var header = createHeader();
+    var content = createContent();
+    var footer = createFooter();
+    var panelProps = mergeProps({
+      className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)(props.panelClassName, cx('panel', {
+        panelProps: props,
+        context: context,
+        allowOptionSelect: allowOptionSelect
+      })),
+      style: props.panelStyle,
+      onClick: props.onClick
+    }, getPTOptions('panel'));
+    if (props.inline) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", _extends({
+        ref: ref
+      }, panelProps), content, footer);
+    }
+    var transitionProps = mergeProps({
+      classNames: cx('transition'),
+      "in": props["in"],
+      timeout: {
+        enter: 120,
+        exit: 100
+      },
+      options: props.transitionOptions,
+      unmountOnExit: true,
+      onEnter: onEnter,
+      onEntered: onEntered,
+      onExit: props.onExit,
+      onExited: props.onExited
+    }, getPTOptions('transition'));
+    var firstHiddenElementProps = mergeProps({
+      ref: props.firstHiddenFocusableElementOnOverlay,
+      role: 'presentation',
+      'aria-hidden': 'true',
+      className: 'p-hidden-accessible p-hidden-focusable',
+      tabIndex: '0',
+      onFocus: props.onFirstHiddenFocus,
+      'data-p-hidden-accessible': true,
+      'data-p-hidden-focusable': true
+    }, ptm('hiddenFirstFocusableEl'));
+    var lastHiddenElementProps = mergeProps({
+      ref: props.lastHiddenFocusableElementOnOverlay,
+      role: 'presentation',
+      'aria-hidden': 'true',
+      className: 'p-hidden-accessible p-hidden-focusable',
+      tabIndex: '0',
+      onFocus: props.onLastHiddenFocus,
+      'data-p-hidden-accessible': true,
+      'data-p-hidden-focusable': true
+    }, ptm('hiddenLastFocusableEl'));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(primereact_csstransition__WEBPACK_IMPORTED_MODULE_12__.CSSTransition, _extends({
+      nodeRef: ref
+    }, transitionProps), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", _extends({
+      ref: ref
+    }, panelProps), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", firstHiddenElementProps), header, content, footer, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", lastHiddenElementProps)));
+  };
+  var element = createElement();
+  if (props.inline) {
+    return element;
+  }
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(primereact_portal__WEBPACK_IMPORTED_MODULE_13__.Portal, {
+    element: element,
+    appendTo: props.appendTo
+  });
+}));
+MultiSelectPanel.displayName = 'MultiSelectPanel';
+
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+var MultiSelect = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function (inProps, ref) {
+  var mergeProps = (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_4__.useMergeProps)();
+  var context = react__WEBPACK_IMPORTED_MODULE_0__.useContext(primereact_api__WEBPACK_IMPORTED_MODULE_2__.PrimeReactContext);
+  var props = MultiSelectBase.getProps(inProps, context);
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(null),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    focusedOptionIndex = _React$useState2[0],
+    setFocusedOptionIndex = _React$useState2[1];
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0__.useState(false),
+    _React$useState4 = _slicedToArray(_React$useState3, 2),
+    clicked = _React$useState4[0],
+    setClicked = _React$useState4[1];
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0__.useState(''),
+    _React$useState6 = _slicedToArray(_React$useState5, 2),
+    filterState = _React$useState6[0],
+    setFilterState = _React$useState6[1];
+  var _React$useState7 = react__WEBPACK_IMPORTED_MODULE_0__.useState(-1),
+    _React$useState8 = _slicedToArray(_React$useState7, 2),
+    startRangeIndex = _React$useState8[0],
+    setStartRangeIndex = _React$useState8[1];
+  var _React$useState9 = react__WEBPACK_IMPORTED_MODULE_0__.useState(false),
+    _React$useState10 = _slicedToArray(_React$useState9, 2),
+    focusedState = _React$useState10[0],
+    setFocusedState = _React$useState10[1];
+  var _React$useState11 = react__WEBPACK_IMPORTED_MODULE_0__.useState(props.inline),
+    _React$useState12 = _slicedToArray(_React$useState11, 2),
+    overlayVisibleState = _React$useState12[0],
+    setOverlayVisibleState = _React$useState12[1];
+  var elementRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+  var searchValue = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+  var searchTimeout = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+  var firstHiddenFocusableElementOnOverlay = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+  var lastHiddenFocusableElementOnOverlay = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+  var inputRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(props.inputRef);
+  var labelRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+  var overlayRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+  var hasFilter = filterState && filterState.trim().length > 0;
+  var empty = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.isEmpty(props.value);
+  var equalityKey = props.optionValue ? null : props.dataKey;
+  var metaData = {
+    props: props,
+    state: {
+      filterState: filterState,
+      focused: focusedState,
+      overlayVisible: overlayVisibleState
+    }
+  };
+  var _MultiSelectBase$setM = MultiSelectBase.setMetaData(metaData),
+    ptm = _MultiSelectBase$setM.ptm,
+    cx = _MultiSelectBase$setM.cx,
+    sx = _MultiSelectBase$setM.sx,
+    isUnstyled = _MultiSelectBase$setM.isUnstyled;
+  (0,primereact_componentbase__WEBPACK_IMPORTED_MODULE_3__.useHandleStyle)(MultiSelectBase.css.styles, isUnstyled, {
+    name: 'multiselect'
+  });
+  var _useOverlayListener = (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_4__.useOverlayListener)({
+      target: elementRef,
+      overlay: overlayRef,
+      listener: function listener(event, _ref) {
+        var type = _ref.type,
+          valid = _ref.valid;
+        if (valid) {
+          if (type === 'outside') {
+            !isClearClicked(event) && !isSelectAllClicked(event) && hide();
+          } else {
+            hide();
+          }
+        }
+      },
+      when: overlayVisibleState
+    }),
+    _useOverlayListener2 = _slicedToArray(_useOverlayListener, 2),
+    bindOverlayListener = _useOverlayListener2[0],
+    unbindOverlayListener = _useOverlayListener2[1];
+  var onFirstHiddenFocus = function onFirstHiddenFocus(event) {
+    var focusableEl = event.relatedTarget === inputRef.current ? primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.getFirstFocusableElement(overlayRef.current, ':not([data-p-hidden-focusable="true"])') : inputRef.current;
+    primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.focus(focusableEl);
+  };
+  var onLastHiddenFocus = function onLastHiddenFocus(event) {
+    var focusableEl = event.relatedTarget === inputRef.current ? primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.getLastFocusableElement(overlayRef.current, ':not([data-p-hidden-focusable="true"])') : inputRef.current;
+    primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.focus(focusableEl);
+  };
+  var onPanelClick = function onPanelClick(event) {
+    primereact_overlayservice__WEBPACK_IMPORTED_MODULE_14__.OverlayService.emit('overlay-click', {
+      originalEvent: event,
+      target: elementRef.current
+    });
+  };
+  var allowOptionSelect = function allowOptionSelect() {
+    return !props.selectionLimit || !props.value || props.value && props.value.length < props.selectionLimit;
+  };
+  var findNextSelectedOptionIndex = function findNextSelectedOptionIndex(index) {
+    var matchedOptionIndex = hasSelectedOption() && index < visibleOptions.length - 1 ? visibleOptions.slice(index + 1).findIndex(function (option) {
+      return isValidSelectedOption(option);
+    }) : -1;
+    return matchedOptionIndex > -1 ? matchedOptionIndex + index + 1 : -1;
+  };
+  var findPrevSelectedOptionIndex = function findPrevSelectedOptionIndex(index) {
+    var matchedOptionIndex = hasSelectedOption() && index > 0 ? primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.findLastIndex(visibleOptions.slice(0, index), function (option) {
+      return isValidSelectedOption(option);
+    }) : -1;
+    return matchedOptionIndex > -1 ? matchedOptionIndex : -1;
+  };
+  var findNearestSelectedOptionIndex = function findNearestSelectedOptionIndex(index) {
+    var firstCheckUp = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var matchedOptionIndex = -1;
+    if (hasSelectedOption()) {
+      if (firstCheckUp) {
+        matchedOptionIndex = findPrevSelectedOptionIndex(index);
+        matchedOptionIndex = matchedOptionIndex === -1 ? findNextSelectedOptionIndex(index) : matchedOptionIndex;
+      } else {
+        matchedOptionIndex = findNextSelectedOptionIndex(index);
+        matchedOptionIndex = matchedOptionIndex === -1 ? findPrevSelectedOptionIndex(index) : matchedOptionIndex;
+      }
+    }
+    return matchedOptionIndex > -1 ? matchedOptionIndex : index;
+  };
+  var onOptionSelectRange = function onOptionSelectRange(event) {
+    var start = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -1;
+    var end = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : -1;
+    start === -1 && (start = findNearestSelectedOptionIndex(end, true));
+    end === -1 && (end = findNearestSelectedOptionIndex(start));
+    if (start !== -1 && end !== -1) {
+      var rangeStart = Math.min(start, end);
+      var rangeEnd = Math.max(start, end);
+      var value = visibleOptions.slice(rangeStart, rangeEnd + 1).filter(function (option) {
+        return isValidOption(option);
+      }).map(function (option) {
+        return getOptionValue(option);
+      });
+      updateModel(event, value, value);
+    }
+  };
+  var onOptionSelect = function onOptionSelect(event, option) {
+    var index = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : -1;
+    if (props.disabled || isOptionDisabled(option)) {
+      return;
+    }
+    var selected = isSelected(option);
+    var value = null;
+    if (selected) {
+      value = props.value.filter(function (val) {
+        return !primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.equals(val, getOptionValue(option), equalityKey);
+      });
+    } else {
+      value = [].concat(_toConsumableArray(props.value || []), [getOptionValue(option)]);
+    }
+    updateModel(event, value, option);
+    index !== -1 && setFocusedOptionIndex(index);
+  };
+  var onClick = function onClick(event) {
+    if (!props.inline && !props.disabled && !props.loading && !isPanelClicked(event) && primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.getAttribute(event.target, 'data-pc-section') !== 'removetokenicon' && !isClearClicked(event)) {
+      overlayVisibleState ? hide() : show();
+      primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.focus(inputRef.current);
+      event.preventDefault();
+    }
+    setClicked(true);
+  };
+  var onArrowDownKey = function onArrowDownKey(event) {
+    if (!overlayVisibleState) {
+      show();
+      props.editable && changeFocusedOptionIndex(event, findSelectedOptionIndex());
+    } else {
+      var optionIndex = focusedOptionIndex !== -1 ? findNextOptionIndex(focusedOptionIndex) : clicked ? findFirstOptionIndex() : findFirstFocusedOptionIndex();
+      if (event.shiftKey) {
+        onOptionSelectRange(event, startRangeIndex, optionIndex);
+      }
+      changeFocusedOptionIndex(event, optionIndex);
+    }
+    event.preventDefault();
+  };
+  var onArrowUpKey = function onArrowUpKey(event) {
+    var pressedInInputText = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    if (event.altKey && !pressedInInputText) {
+      if (focusedOptionIndex !== -1) {
+        onOptionSelect(event, visibleOptions[focusedOptionIndex]);
+      }
+      overlayVisibleState && hide();
+      event.preventDefault();
+    } else {
+      var optionIndex = focusedOptionIndex !== -1 ? findPrevOptionIndex(focusedOptionIndex) : clicked ? findLastOptionIndex() : findLastFocusedOptionIndex();
+      changeFocusedOptionIndex(event, optionIndex);
+      !overlayVisibleState && show();
+      event.preventDefault();
+    }
+  };
+  var onEnterKey = function onEnterKey(event) {
+    if (!overlayVisibleState) {
+      setFocusedOptionIndex(-1);
+      onArrowDownKey(event);
+    } else if (focusedOptionIndex !== -1) {
+      if (event.shiftKey) {
+        onOptionSelectRange(event, focusedOptionIndex);
+      } else {
+        onOptionSelect(event, visibleOptions[focusedOptionIndex]);
+      }
+    }
+    event.preventDefault();
+  };
+  var onHomeKey = function onHomeKey(event) {
+    var pressedInInputText = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var currentTarget = event.currentTarget;
+    if (pressedInInputText) {
+      var len = currentTarget.value.length;
+      currentTarget.setSelectionRange(0, event.shiftKey ? len : 0);
+      setFocusedOptionIndex(-1);
+    } else {
+      var metaKey = event.metaKey || event.ctrlKey;
+      var optionIndex = findFirstOptionIndex();
+      if (event.shiftKey && metaKey) {
+        onOptionSelectRange(event, optionIndex, startRangeIndex);
+      }
+      changeFocusedOptionIndex(event, optionIndex);
+      !overlayVisibleState && show();
+    }
+    event.preventDefault();
+  };
+  var onEndKey = function onEndKey(event) {
+    var pressedInInputText = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var currentTarget = event.currentTarget;
+    if (pressedInInputText) {
+      var len = currentTarget.value.length;
+      currentTarget.setSelectionRange(event.shiftKey ? 0 : len, len);
+      _readOnlyError("focusedOptionIndex");
+    } else {
+      var metaKey = event.metaKey || event.ctrlKey;
+      var optionIndex = findLastOptionIndex();
+      if (event.shiftKey && metaKey) {
+        onOptionSelectRange(event, startRangeIndex, optionIndex);
+      }
+      changeFocusedOptionIndex(event, optionIndex);
+      !overlayVisibleState && show();
+    }
+    event.preventDefault();
+  };
+  var onPageUpKey = function onPageUpKey(event) {
+    event.preventDefault();
+  };
+  var onPageDownKey = function onPageDownKey(event) {
+    event.preventDefault();
+  };
+  var onTabKey = function onTabKey(event) {
+    var pressedInInputText = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    if (!pressedInInputText) {
+      if (overlayVisibleState && hasFocusableElements()) {
+        primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.focus(event.shiftKey ? lastHiddenFocusableElementOnOverlay.current : firstHiddenFocusableElementOnOverlay.current);
+        event.preventDefault();
+      } else {
+        if (focusedOptionIndex !== -1) {
+          onOptionSelect(event, visibleOptions[focusedOptionIndex]);
+        }
+        overlayVisibleState && hide(filter);
+      }
+    }
+  };
+  var onShiftKey = function onShiftKey() {
+    setStartRangeIndex(focusedOptionIndex);
+  };
+  var onKeyDown = function onKeyDown(event) {
+    var metaKey = event.metaKey || event.ctrlKey;
+    switch (event.code) {
+      case 'ArrowUp':
+        if (props.inline) {
+          break;
+        }
+        onArrowUpKey(event);
+        break;
+      case 'ArrowDown':
+        if (props.inline) {
+          break;
+        }
+        onArrowDownKey(event);
+        break;
+      case 'Space':
+      case 'NumpadEnter':
+      case 'Enter':
+        if (props.inline) {
+          break;
+        }
+        onEnterKey(event);
+        break;
+      case 'Home':
+        if (props.inline) {
+          break;
+        }
+        onHomeKey(event);
+        event.preventDefault();
+        break;
+      case 'End':
+        if (props.inline) {
+          break;
+        }
+        onEndKey(event);
+        event.preventDefault();
+        break;
+      case 'PageDown':
+        onPageDownKey(event);
+        break;
+      case 'PageUp':
+        onPageUpKey(event);
+        break;
+      case 'Escape':
+        if (props.inline) {
+          break;
+        }
+        hide();
+        break;
+      case 'Tab':
+        onTabKey(event);
+        break;
+      case 'ShiftLeft':
+      case 'ShiftRight':
+        onShiftKey();
+        break;
+      default:
+        if (event.code === 'KeyA' && metaKey) {
+          var value = visibleOptions.filter(function (option) {
+            return isValidOption(option);
+          }).map(function (option) {
+            return getOptionValue(option);
+          });
+          updateModel(event, value, value);
+          event.preventDefault();
+          break;
+        }
+        if (!metaKey && primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.isPrintableCharacter(event.key)) {
+          !overlayVisibleState && show();
+          searchOptions(event);
+          event.preventDefault();
+        }
+        break;
+    }
+    setClicked(false);
+  };
+  var onSelectAll = function onSelectAll(event) {
+    if (props.onSelectAll) {
+      props.onSelectAll(event);
+    } else {
+      var value = null;
+      if (event.checked) {
+        value = [];
+        if (visibleOptions) {
+          var selectedOptions = visibleOptions.filter(function (option) {
+            return isOptionDisabled(option) && isSelected(option);
+          });
+          value = selectedOptions.map(function (option) {
+            return getOptionValue(option);
+          });
+        }
+      } else if (visibleOptions) {
+        var options = visibleOptions.filter(function (option) {
+          return !isOptionDisabled(option) || isSelected(option);
+        });
+        if (props.optionGroupLabel) {
+          value = [];
+          options.forEach(function (optionGroup) {
+            return value = [].concat(_toConsumableArray(value), _toConsumableArray(getOptionGroupChildren(optionGroup).filter(function (option) {
+              return !isOptionDisabled(option);
+            }).map(function (option) {
+              return getOptionValue(option);
+            })));
+          });
+        } else {
+          value = options.map(function (option) {
+            return getOptionValue(option);
+          });
+        }
+      }
+
+      // make sure not to exceed the selection limit
+      if (props.selectionLimit && value && value.length) {
+        value = value.slice(0, props.selectionLimit);
+      }
+      updateModel(event.originalEvent, value, value);
+    }
+  };
+  var updateModel = function updateModel(event, value, selectedOption) {
+    if (props.onChange) {
+      props.onChange({
+        originalEvent: event,
+        value: value,
+        selectedOption: selectedOption,
+        stopPropagation: function stopPropagation() {
+          event === null || event === void 0 || event.stopPropagation();
+        },
+        preventDefault: function preventDefault() {
+          event === null || event === void 0 || event.preventDefault();
+        },
+        target: {
+          name: props.name,
+          id: props.id,
+          value: value
+        }
+      });
+    }
+  };
+  var onFilterInputChange = function onFilterInputChange(event) {
+    var filter = event.query;
+    setFilterState(filter);
+    if (props.onFilter) {
+      props.onFilter({
+        originalEvent: event,
+        filter: filter
+      });
+    }
+  };
+  var resetFilter = function resetFilter() {
+    setFilterState('');
+    props.onFilter && props.onFilter({
+      filter: ''
+    });
+  };
+  var scrollInView = function scrollInView(event) {
+    if (!overlayVisibleState) {
+      return;
+    }
+    var focusedItem;
+    if (event) {
+      focusedItem = event.currentTarget;
+    } else {
+      focusedItem = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.findSingle(overlayRef.current, 'li[data-p-highlight="true"]');
+    }
+    if (focusedItem && focusedItem.scrollIntoView) {
+      focusedItem.scrollIntoView({
+        block: 'nearest',
+        inline: 'nearest'
+      });
+    }
+  };
+  var show = function show() {
+    setOverlayVisibleState(true);
+    setFocusedOptionIndex(focusedOptionIndex !== -1 ? focusedOptionIndex : props.autoOptionFocus ? findFirstFocusedOptionIndex() : findSelectedOptionIndex());
+    primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.focus(inputRef.current);
+  };
+  var hide = function hide() {
+    setFocusedOptionIndex(-1);
+    setOverlayVisibleState(false);
+    setClicked(false);
+  };
+  var onOverlayEnter = function onOverlayEnter(callback) {
+    primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ZIndexUtils.set('overlay', overlayRef.current, context && context.autoZIndex || primereact_api__WEBPACK_IMPORTED_MODULE_2__["default"].autoZIndex, context && context.zIndex.overlay || primereact_api__WEBPACK_IMPORTED_MODULE_2__["default"].zIndex.overlay);
+    primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.addStyles(overlayRef.current, {
+      position: 'absolute',
+      top: '0',
+      left: '0'
+    });
+    alignOverlay();
+    scrollInView();
+    callback && callback();
+  };
+  var onOverlayEntered = function onOverlayEntered(callback) {
+    callback && callback();
+    bindOverlayListener();
+    props.onShow && props.onShow();
+  };
+  var onOverlayExit = function onOverlayExit() {
+    unbindOverlayListener();
+  };
+  var onOverlayExited = function onOverlayExited() {
+    if (props.filter && props.resetFilterOnHide) {
+      resetFilter();
+    }
+    primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ZIndexUtils.clear(overlayRef.current);
+    props.onHide && props.onHide();
+  };
+  var alignOverlay = function alignOverlay() {
+    primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.alignOverlay(overlayRef.current, labelRef.current.parentElement, props.appendTo || context && context.appendTo || primereact_api__WEBPACK_IMPORTED_MODULE_2__["default"].appendTo);
+  };
+  var isClearClicked = function isClearClicked(event) {
+    return primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.getAttribute(event.target, 'data-pc-section') === 'clearicon';
+  };
+  var isSelectAllClicked = function isSelectAllClicked(event) {
+    return primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.getAttribute(event.target, 'data-pc-section') === 'headercheckboxcontainer';
+  };
+  var isPanelClicked = function isPanelClicked(event) {
+    return overlayRef.current && overlayRef.current.contains(event.target);
+  };
+  var onCloseClick = function onCloseClick(event) {
+    hide();
+    primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.focus(inputRef.current);
+    event.preventDefault();
+    event.stopPropagation();
+  };
+  var getSelectedOptionIndex = function getSelectedOptionIndex() {
+    if (props.value != null && props.options) {
+      if (props.optionGroupLabel) {
+        var groupIndex = 0;
+        var optionIndex = props.options.findIndex(function (optionGroup, i) {
+          return (groupIndex = i) && findOptionIndexInList(props.value, getOptionGroupChildren(optionGroup)) !== -1;
+        });
+        return optionIndex !== -1 ? {
+          group: groupIndex,
+          option: optionIndex
+        } : -1;
+      }
+      return findOptionIndexInList(props.value, props.options);
+    }
+    return -1;
+  };
+  var findOptionIndexInList = function findOptionIndexInList(value, list) {
+    return list.findIndex(function (item) {
+      return value.some(function (val) {
+        return primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.equals(val, getOptionValue(item), equalityKey);
+      });
+    });
+  };
+  var isEquals = function isEquals(value1, value2) {
+    return primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.equals(value1, value2, equalityKey);
+  };
+  var isSelected = function isSelected(option) {
+    if (props.value) {
+      var optionValue = getOptionValue(option);
+      var isUsed = isOptionValueUsed(option);
+      return props.value.some(function (val) {
+        return primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.equals(isUsed ? val : getOptionValue(val), optionValue, equalityKey);
+      });
+    }
+    return false;
+  };
+  var getLabelByValue = function getLabelByValue(val) {
+    var option;
+    if (props.options) {
+      if (props.optionGroupLabel) {
+        var _iterator = _createForOfIteratorHelper(props.options),
+          _step;
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var optionGroup = _step.value;
+            option = findOptionByValue(val, getOptionGroupChildren(optionGroup));
+            if (option) {
+              break;
+            }
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+      } else {
+        option = findOptionByValue(val, props.options);
+        if (primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.isEmpty(option)) {
+          option = findOptionByValue(val, props.value);
+        }
+      }
+    }
+    return option ? getOptionLabel(option) : null;
+  };
+  var findOptionByValue = function findOptionByValue(val, list) {
+    return list.find(function (option) {
+      return primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.equals(getOptionValue(option), val, equalityKey);
+    });
+  };
+  var onFocus = function onFocus(event) {
+    setFocusedState(true);
+    props.onFocus && props.onFocus(event);
+  };
+  var onBlur = function onBlur(event) {
+    setFocusedState(false);
+    props.onBlur && props.onBlur(event);
+  };
+  var isAllSelected = function isAllSelected() {
+    if (props.onSelectAll) {
+      return props.selectAll;
+    }
+    if (primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.isEmpty(visibleOptions)) {
+      return false;
+    }
+    var options = visibleOptions.filter(function (option) {
+      return !isOptionDisabled(option);
+    });
+    if (props.optionGroupLabel) {
+      var areAllSelected = true;
+      var _iterator2 = _createForOfIteratorHelper(options),
+        _step2;
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var optionGroup = _step2.value;
+          var visibleOptionsGroupChildren = getOptionGroupChildren(optionGroup).filter(function (option) {
+            return !isOptionDisabled(option);
+          });
+          if (visibleOptionsGroupChildren.some(function (option) {
+            return !isSelected(option);
+          }) === true) {
+            areAllSelected = false;
+          }
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+      return areAllSelected;
+    }
+    return !options.some(function (option) {
+      return !isSelected(option);
+    });
+  };
+  var getOptionLabel = function getOptionLabel(option) {
+    return props.optionLabel ? primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.resolveFieldData(option, props.optionLabel) : option && option.label !== undefined ? option.label : option;
+  };
+  var getOptionValue = function getOptionValue(option) {
+    if (props.useOptionAsValue) {
+      return option;
+    }
+    if (props.optionValue) {
+      var data = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.resolveFieldData(option, props.optionValue);
+      return data !== null ? data : option;
+    }
+    return option && option.value !== undefined ? option.value : option;
+  };
+  var getOptionRenderKey = function getOptionRenderKey(option) {
+    return props.dataKey ? primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.resolveFieldData(option, props.dataKey) : getOptionLabel(option);
+  };
+  var getOptionGroupRenderKey = function getOptionGroupRenderKey(optionGroup) {
+    return primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.resolveFieldData(optionGroup, props.optionGroupLabel);
+  };
+  var getOptionGroupLabel = function getOptionGroupLabel(optionGroup) {
+    return primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.resolveFieldData(optionGroup, props.optionGroupLabel);
+  };
+  var getOptionGroupChildren = function getOptionGroupChildren(optionGroup) {
+    return primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.resolveFieldData(optionGroup, props.optionGroupChildren);
+  };
+  var isOptionDisabled = function isOptionDisabled(option) {
+    var _option$disabled;
+    // disable if we have hit our selection limit
+    if (!allowOptionSelect() && !isSelected(option)) {
+      return true;
+    }
+
+    // check if custom optionDisabled function is being used
+    var optionDisabled = props.optionDisabled;
+    if (optionDisabled) {
+      return primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.isFunction(optionDisabled) ? optionDisabled(option) : primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.resolveFieldData(option, optionDisabled);
+    }
+
+    // fallback to the option itself disabled value
+    return option && ((_option$disabled = option.disabled) !== null && _option$disabled !== void 0 ? _option$disabled : false);
+  };
+  var isOptionValueUsed = function isOptionValueUsed(option) {
+    return !props.useOptionAsValue && props.optionValue || option && option.value !== undefined;
+  };
+  var isOptionGroup = function isOptionGroup(option) {
+    return props.optionGroupLabel && option.optionGroup && option.group;
+  };
+  var hasSelectedOption = function hasSelectedOption() {
+    return primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.isNotEmpty(props.value);
+  };
+  var hasFocusableElements = function hasFocusableElements() {
+    return primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.getFocusableElements(overlayRef.current, ':not([data-p-hidden-focusable="true"])').length > 0;
+  };
+  var isOptionMatched = function isOptionMatched(option) {
+    var _getOptionLabel;
+    return isValidOption(option) && ((_getOptionLabel = getOptionLabel(option)) === null || _getOptionLabel === void 0 ? void 0 : _getOptionLabel.toLocaleLowerCase(props.filterLocale).startsWith(searchValue.current.toLocaleLowerCase(props.filterLocale)));
+  };
+  var isValidOption = function isValidOption(option) {
+    return primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.isNotEmpty(option) && !(isOptionDisabled(option) || isOptionGroup(option));
+  };
+  var isValidSelectedOption = function isValidSelectedOption(option) {
+    return isValidOption(option) && isSelected(option);
+  };
+  var findSelectedOptionIndex = function findSelectedOptionIndex() {
+    if (hasSelectedOption()) {
+      var _loop = function _loop() {
+          var value = props.value[index];
+          var matchedOptionIndex = visibleOptions.findIndex(function (option) {
+            return isValidSelectedOption(option) && isEquals(value, getOptionValue(option));
+          });
+          if (matchedOptionIndex > -1) {
+            return {
+              v: matchedOptionIndex
+            };
+          }
+        },
+        _ret;
+      for (var index = props.value.length - 1; index >= 0; index--) {
+        _ret = _loop();
+        if (_ret) return _ret.v;
+      }
+    }
+    return -1;
+  };
+  var findFirstFocusedOptionIndex = function findFirstFocusedOptionIndex() {
+    var selectedIndex = findSelectedOptionIndex();
+    return selectedIndex < 0 ? findFirstOptionIndex() : selectedIndex;
+  };
+  var findLastFocusedOptionIndex = function findLastFocusedOptionIndex() {
+    var selectedIndex = findSelectedOptionIndex();
+    return selectedIndex < 0 ? findLastOptionIndex() : selectedIndex;
+  };
+  var findFirstOptionIndex = function findFirstOptionIndex() {
+    return visibleOptions.findIndex(function (option) {
+      return isValidOption(option);
+    });
+  };
+  var findLastOptionIndex = function findLastOptionIndex() {
+    return primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.findLastIndex(visibleOptions, function (option) {
+      return isValidOption(option);
+    });
+  };
+  var findNextOptionIndex = function findNextOptionIndex(index) {
+    var matchedOptionIndex = index < visibleOptions.length - 1 ? visibleOptions.slice(index + 1).findIndex(function (option) {
+      return isValidOption(option);
+    }) : -1;
+    return matchedOptionIndex > -1 ? matchedOptionIndex + index + 1 : index;
+  };
+  var findPrevOptionIndex = function findPrevOptionIndex(index) {
+    var matchedOptionIndex = index > 0 ? primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.findLastIndex(visibleOptions.slice(0, index), function (option) {
+      return isValidOption(option);
+    }) : -1;
+    return matchedOptionIndex > -1 ? matchedOptionIndex : index;
+  };
+  var searchOptions = function searchOptions(event) {
+    searchValue.current = (searchValue.current || '') + event.key;
+    var optionIndex = -1;
+    if (primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.isNotEmpty(searchValue.current)) {
+      if (focusedOptionIndex !== -1) {
+        optionIndex = visibleOptions.slice(focusedOptionIndex).findIndex(function (option) {
+          return isOptionMatched(option);
+        });
+        optionIndex = optionIndex === -1 ? visibleOptions.slice(0, focusedOptionIndex).findIndex(function (option) {
+          return isOptionMatched(option);
+        }) : optionIndex + focusedOptionIndex;
+      } else {
+        optionIndex = visibleOptions.findIndex(function (option) {
+          return isOptionMatched(option);
+        });
+      }
+      if (optionIndex === -1 && focusedOptionIndex === -1) {
+        optionIndex = findFirstFocusedOptionIndex();
+      }
+      if (optionIndex !== -1) {
+        changeFocusedOptionIndex(event, optionIndex);
+      }
+    }
+    if (searchTimeout.current) {
+      clearTimeout(searchTimeout.current);
+    }
+    searchTimeout.current = setTimeout(function () {
+      searchValue.current = '';
+      searchTimeout.current = null;
+    }, 500);
+  };
+  var changeFocusedOptionIndex = function changeFocusedOptionIndex(event, index) {
+    if (focusedOptionIndex !== index) {
+      setFocusedOptionIndex(index);
+      scrollInView(event);
+      if (props.selectOnFocus) {
+        onOptionSelect(event, visibleOptions[index], false);
+      }
+    }
+  };
+  var removeChip = function removeChip(event, item) {
+    var value = props.value.filter(function (val) {
+      return !primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.equals(val, item, equalityKey);
+    });
+    if (props.onRemove) {
+      props.onRemove({
+        originalEvent: event,
+        value: value
+      });
+    }
+    updateModel(event, value, item);
+  };
+  var getSelectedItemsLabel = function getSelectedItemsLabel() {
+    var pattern = /{(.*?)}/;
+    var selectedItemsLabel = props.selectedItemsLabel || (0,primereact_api__WEBPACK_IMPORTED_MODULE_2__.localeOption)('selectionMessage');
+    if (pattern.test(selectedItemsLabel)) {
+      return selectedItemsLabel.replace(selectedItemsLabel.match(pattern)[0], props.value.length + '');
+    }
+    return selectedItemsLabel;
+  };
+  var getLabel = function getLabel() {
+    var label;
+    if (!empty && !props.fixedPlaceholder) {
+      if (primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.isNotEmpty(props.maxSelectedLabels) && props.value.length > props.maxSelectedLabels) {
+        return getSelectedItemsLabel();
+      }
+      if (primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.isArray(props.value)) {
+        return props.value.reduce(function (acc, value, index) {
+          return acc + (index !== 0 ? ', ' : '') + getLabelByValue(value);
+        }, '');
+      }
+      return '';
+    }
+    return label;
+  };
+  var getLabelContent = function getLabelContent() {
+    if (props.selectedItemTemplate) {
+      if (!empty) {
+        if (primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.isNotEmpty(props.maxSelectedLabels) && props.value.length > props.maxSelectedLabels) {
+          return getSelectedItemsLabel();
+        }
+        return props.value.map(function (val, index) {
+          var item = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.getJSXElement(props.selectedItemTemplate, val);
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+            key: index
+          }, item);
+        });
+      }
+      return primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.getJSXElement(props.selectedItemTemplate);
+    }
+    if (props.display === 'chip' && !empty) {
+      var value = props.value.slice(0, props.maxSelectedLabels || props.value.length);
+      return value.map(function (val, i) {
+        var context = {
+          context: {
+            value: val,
+            index: i
+          }
+        };
+        var label = getLabelByValue(val);
+        var labelKey = label + '_' + i;
+        var iconProps = mergeProps({
+          key: i,
+          className: cx('removeTokenIcon'),
+          onClick: function onClick(e) {
+            return removeChip(e, val);
+          }
+        }, ptm('removeTokenIcon', context));
+        var icon = !props.disabled && (props.removeIcon ? primereact_utils__WEBPACK_IMPORTED_MODULE_1__.IconUtils.getJSXIcon(props.removeIcon, _objectSpread({}, iconProps), {
+          props: props
+        }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(primereact_icons_timescircle__WEBPACK_IMPORTED_MODULE_15__.TimesCircleIcon, iconProps));
+        var tokenProps = mergeProps({
+          className: cx('token')
+        }, ptm('token', context));
+        var tokenLabelProps = mergeProps({
+          className: cx('tokenLabel')
+        }, ptm('tokenLabel', context));
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", _extends({}, tokenProps, {
+          key: labelKey
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", tokenLabelProps, label), icon);
+      });
+    }
+    return getLabel();
+  };
+  var getVisibleOptions = function getVisibleOptions() {
+    if (hasFilter) {
+      var filterValue = filterState.trim().toLocaleLowerCase(props.filterLocale);
+      var searchFields = props.filterBy ? props.filterBy.split(',') : [props.optionLabel || 'label'];
+      if (props.optionGroupLabel) {
+        var filteredGroups = [];
+        var _iterator3 = _createForOfIteratorHelper(props.options),
+          _step3;
+        try {
+          for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+            var optgroup = _step3.value;
+            var filteredSubOptions = primereact_api__WEBPACK_IMPORTED_MODULE_2__.FilterService.filter(getOptionGroupChildren(optgroup), searchFields, filterValue, props.filterMatchMode, props.filterLocale);
+            if (filteredSubOptions && filteredSubOptions.length) {
+              filteredGroups.push(_objectSpread(_objectSpread({}, optgroup), _defineProperty({}, props.optionGroupChildren, filteredSubOptions)));
+            }
+          }
+        } catch (err) {
+          _iterator3.e(err);
+        } finally {
+          _iterator3.f();
+        }
+        return filteredGroups;
+      }
+      return primereact_api__WEBPACK_IMPORTED_MODULE_2__.FilterService.filter(props.options, searchFields, filterValue, props.filterMatchMode, props.filterLocale);
+    }
+    return props.options;
+  };
+  react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle(ref, function () {
+    return {
+      props: props,
+      show: show,
+      hide: hide,
+      focus: function focus() {
+        return primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.focus(inputRef.current);
+      },
+      getElement: function getElement() {
+        return elementRef.current;
+      },
+      getOverlay: function getOverlay() {
+        return overlayRef.current;
+      },
+      getInput: function getInput() {
+        return inputRef.current;
+      }
+    };
+  });
+  (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_4__.useMountEffect)(function () {
+    alignOverlay();
+  });
+  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {
+    primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.combinedRefs(inputRef, props.inputRef);
+  }, [inputRef, props.inputRef]);
+  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {
+    setTimeout(function () {
+      props.overlayVisible ? show() : hide();
+    }, 100);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.overlayVisible]);
+  (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_4__.useUpdateEffect)(function () {
+    if (overlayVisibleState && filterState && hasFilter) {
+      alignOverlay();
+    }
+  }, [overlayVisibleState, filterState, hasFilter]);
+  (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_4__.useUnmountEffect)(function () {
+    primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ZIndexUtils.clear(overlayRef.current);
+  });
+  var createClearIcon = function createClearIcon() {
+    var clearIconProps = mergeProps({
+      className: cx('clearIcon'),
+      onClick: function onClick(e) {
+        return updateModel(e, [], []);
+      }
+    }, ptm('clearIcon'));
+    var icon = props.clearIcon || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(primereact_icons_times__WEBPACK_IMPORTED_MODULE_9__.TimesIcon, clearIconProps);
+    var clearIcon = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.IconUtils.getJSXIcon(icon, _objectSpread({}, clearIconProps), {
+      props: props
+    });
+    if (!empty && props.showClear && !props.disabled) {
+      return clearIcon;
+    }
+    return null;
+  };
+  var createLabel = function createLabel() {
+    var content = getLabelContent();
+    var labelContainerProps = mergeProps({
+      ref: labelRef,
+      className: cx('labelContainer')
+    }, ptm('labelContainer'));
+    var labelProps = mergeProps({
+      className: cx('label', {
+        empty: empty
+      })
+    }, ptm('label'));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", labelContainerProps, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", labelProps, content || props.placeholder || 'empty'));
+  };
+  var visibleOptions = getVisibleOptions();
+  var hasTooltip = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.isNotEmpty(props.tooltip);
+  var otherProps = MultiSelectBase.getOtherProps(props);
+  var ariaProps = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.reduceKeys(otherProps, primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.ARIA_PROPS);
+  var triggerIconProps = mergeProps({
+    className: cx('triggerIcon')
+  }, ptm('triggerIcon'));
+  var triggerProps = mergeProps({
+    className: cx('trigger')
+  }, ptm('trigger'));
+  var loadingIcon = props.loadingIcon ? primereact_utils__WEBPACK_IMPORTED_MODULE_1__.IconUtils.getJSXIcon(props.loadingIcon, _objectSpread({}, triggerIconProps), {
+    props: props
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(primereact_icons_spinner__WEBPACK_IMPORTED_MODULE_16__.SpinnerIcon, _extends({
+    spin: true
+  }, triggerIconProps));
+  var dropdownIcon = props.dropdownIcon ? primereact_utils__WEBPACK_IMPORTED_MODULE_1__.IconUtils.getJSXIcon(props.dropdownIcon, _objectSpread({}, triggerIconProps), {
+    props: props
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(primereact_icons_chevrondown__WEBPACK_IMPORTED_MODULE_17__.ChevronDownIcon, triggerIconProps);
+  var triggerIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", triggerProps, props.loading ? loadingIcon : dropdownIcon);
+  var label = !props.inline && createLabel();
+  var clearIcon = !props.inline && createClearIcon();
+  var rootProps = mergeProps(_objectSpread(_objectSpread({
+    ref: elementRef,
+    id: props.id,
+    style: _objectSpread(_objectSpread({}, props.style), sx('root')),
+    className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)(props.className, cx('root', {
+      focusedState: focusedState,
+      context: context,
+      overlayVisibleState: overlayVisibleState
+    }))
+  }, otherProps), {}, {
+    onClick: onClick
+  }), MultiSelectBase.getOtherProps(props), ptm('root'));
+  var hiddenInputWrapperProps = mergeProps({
+    className: 'p-hidden-accessible',
+    'data-p-hidden-accessible': true
+  }, ptm('hiddenInputWrapper'));
+  var inputProps = mergeProps(_objectSpread({
+    ref: inputRef,
+    id: props.inputId,
+    name: props.name,
+    type: 'text',
+    onFocus: onFocus,
+    onBlur: onBlur,
+    onKeyDown: onKeyDown,
+    role: 'combobox',
+    'aria-expanded': overlayVisibleState,
+    disabled: props.disabled,
+    tabIndex: !props.disabled ? props.tabIndex : -1
+  }, ariaProps), ptm('input'));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", rootProps, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", hiddenInputWrapperProps, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", _extends({}, inputProps, {
+    readOnly: true
+  }))), !props.inline && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, label, clearIcon, triggerIcon), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(MultiSelectPanel, _extends({
+    hostName: "MultiSelect",
+    ref: overlayRef,
+    visibleOptions: visibleOptions
+  }, props, {
+    onClick: onPanelClick,
+    onOverlayHide: hide,
+    filterValue: filterState,
+    focusedOptionIndex: focusedOptionIndex,
+    onFirstHiddenFocus: onFirstHiddenFocus,
+    onLastHiddenFocus: onLastHiddenFocus,
+    firstHiddenFocusableElementOnOverlay: firstHiddenFocusableElementOnOverlay,
+    lastHiddenFocusableElementOnOverlay: lastHiddenFocusableElementOnOverlay,
+    setFocusedOptionIndex: setFocusedOptionIndex,
+    hasFilter: hasFilter,
+    isValidOption: isValidOption,
+    getOptionValue: getOptionValue,
+    updateModel: updateModel,
+    onFilterInputChange: onFilterInputChange,
+    resetFilter: resetFilter,
+    onCloseClick: onCloseClick,
+    onSelectAll: onSelectAll,
+    getOptionLabel: getOptionLabel,
+    getOptionRenderKey: getOptionRenderKey,
+    isOptionDisabled: isOptionDisabled,
+    getOptionGroupChildren: getOptionGroupChildren,
+    getOptionGroupLabel: getOptionGroupLabel,
+    getOptionGroupRenderKey: getOptionGroupRenderKey,
+    isSelected: isSelected,
+    getSelectedOptionIndex: getSelectedOptionIndex,
+    isAllSelected: isAllSelected,
+    onOptionSelect: onOptionSelect,
+    allowOptionSelect: allowOptionSelect,
+    "in": overlayVisibleState,
+    onEnter: onOverlayEnter,
+    onEntered: onOverlayEntered,
+    onExit: onOverlayExit,
+    onExited: onOverlayExited,
+    ptm: ptm,
+    cx: cx,
+    sx: sx,
+    isUnstyled: isUnstyled,
+    metaData: metaData,
+    changeFocusedOptionIndex: changeFocusedOptionIndex
+  }))), hasTooltip && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(primereact_tooltip__WEBPACK_IMPORTED_MODULE_6__.Tooltip, _extends({
+    target: elementRef,
+    content: props.tooltip,
+    pt: ptm('tooltip')
+  }, props.tooltipOptions)));
+}));
+MultiSelect.displayName = 'MultiSelect';
 
 
 
@@ -87173,6 +89242,36 @@ var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMP
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_theme_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./resources/css/DataTable.css":
+/*!*************************************!*\
+  !*** ./resources/css/DataTable.css ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_DataTable_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./DataTable.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/css/DataTable.css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_DataTable_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_DataTable_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 

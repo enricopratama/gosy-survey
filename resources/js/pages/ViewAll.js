@@ -1,10 +1,11 @@
 import React from "react";
 import SurveyTable from "../components/SurveyTable";
-// import "primeflex/primeflex.css";
+import BreadcrumbComponent from "../components/BreadcrumbComponent";
 
 export default function ViewAll() {
     return (
         <div className="mx-auto">
+            <BreadcrumbComponent />
             <SurveyTable />
         </div>
     );
