@@ -12453,7 +12453,7 @@ function SurveyTable() {
     header: "Question Group ID"
   }, {
     field: "data_status",
-    header: "Status"
+    header: "Data Status"
   }, {
     field: "question_type",
     header: "Question Type"
@@ -13981,13 +13981,6 @@ var AddEditQuestionDialog = function AddEditQuestionDialog(_ref) {
             onChange: function onChange(e) {
               return onDataStatusChange(e, "data_status");
             }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputnumber__WEBPACK_IMPORTED_MODULE_6__.InputNumber, {
-            id: "data_status",
-            value: response.data_status || 0,
-            required: true,
-            onValueChange: function onValueChange(e) {
-              return onInputNumberChange(e, "data_status");
-            }
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("hr", {
@@ -14513,7 +14506,7 @@ function NewQuestion() {
       question_type: "",
       question_name: "",
       sequence: null,
-      data_status: null,
+      data_status: 0,
       is_parent: null,
       is_mandatory: null,
       option_1: null,
@@ -14566,19 +14559,19 @@ function NewQuestion() {
   var onInputNumberChange = function onInputNumberChange(e, name) {
     var val = e.value || 0;
     var _response = _objectSpread({}, response);
-    _response["".concat(name)] = val;
+    _response["".concat(name)] = parseInt(val, 10);
     setResponse(_response);
   };
   var onCheckboxChange = function onCheckboxChange(e, name) {
     var val = e.checked ? 1 : 0;
     var _response = _objectSpread({}, response);
-    _response["".concat(name)] = val;
+    _response["".concat(name)] = parseInt(val, 10);
     setResponse(_response);
   };
   var onDataStatusChange = function onDataStatusChange(e, name) {
     var val = e.value ? 1 : 0;
     var _response = _objectSpread({}, response);
-    _response["".concat(name)] = val;
+    _response["".concat(name)] = parseInt(val, 10);
     setResponse(_response);
   };
 
@@ -14949,23 +14942,25 @@ function NewQuestion() {
           case 0:
             setSubmitted(true);
             if (!(response.question_name.trim() && response.question_type.trim() && response.sequence && response.question_group_id)) {
-              _context8.next = 39;
+              _context8.next = 41;
               break;
             }
             _questions = _toConsumableArray(questions);
             _response = _objectSpread({}, response);
+            console.log("_response", _response);
             formData = new FormData();
             formData.append("question_group_id", _response.question_group_id);
             formData.append("question_name", _response.question_name);
             formData.append("question_key", _response.question_key);
             formData.append("question_type", _response.question_type);
             formData.append("sequence", _response.sequence);
-            formData.append("data_status", _response.data_status);
+            formData.append("data_status", parseInt(_response.data_status, 10));
             formData.append("is_parent", _response.is_parent);
             formData.append("is_mandatory", _response.is_mandatory);
-            formData.forEach(function (value, key) {
-              console.log("".concat(key, ": ").concat(value));
-            });
+
+            // formData.forEach((value, key) => {
+            //     console.log(`${key}: ${value}`);
+            // });
             index = findIndexByID(_response.question_id);
             _context8.prev = 15;
             if (!(index >= 0 && editState)) {
@@ -14979,7 +14974,18 @@ function NewQuestion() {
             console.log("edited question:", result.data);
             newQuestion = result.data.data || result.data;
             if (result.status === 200) {
+              // Works when updating UI
               _questions[index] = _response;
+              console.log("New Question Data Status", newQuestion.data_status);
+              console.log("Response Data Status", _response.data_status);
+              console.log("New Question Data Status:", newQuestion.data_status, "Type:", _typeof(parseInt(newQuestion.data_status, 10)));
+              console.log("Response Data Status:", _response.data_status, "Type:", _typeof(_response.data_status));
+
+              // New Approach
+              // _questions[index] = {
+              //     ..._response,
+              //     data_status: parseInt(newQuestion.data_status, 10), // Ensure it's an integer
+              // };
               toast.current.show({
                 severity: "success",
                 summary: "Successful",
@@ -15002,12 +15008,16 @@ function NewQuestion() {
               getQuestions();
               filterQuestionsByGroupName();
             }
-            _context8.next = 30;
+            _context8.next = 31;
             break;
           case 25:
-            _context8.next = 27;
+            // New Question
+            formData.forEach(function (value, key) {
+              console.log("".concat(key, ": ").concat(value, " (Type: ").concat(_typeof(value), ")"));
+            });
+            _context8.next = 28;
             return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/addQuestion", formData);
-          case 27:
+          case 28:
             result = _context8.sent;
             console.log("new question", result.data);
             if (result.status === 200) {
@@ -15036,7 +15046,7 @@ function NewQuestion() {
                 option_8_flow: _newQuestion.option_8_flow,
                 option_9: _newQuestion.option_9,
                 option_9_flow: _newQuestion.option_9_flow,
-                data_status: _newQuestion.data_status
+                data_status: parseInt(_newQuestion.data_status, 10)
               });
               _questions.push(mergedQuestion);
               toast.current.show({
@@ -15054,7 +15064,7 @@ function NewQuestion() {
                   question_type: "",
                   question_name: "",
                   sequence: null,
-                  data_status: null,
+                  data_status: 0,
                   is_parent: 0
                 });
               });
@@ -15062,11 +15072,11 @@ function NewQuestion() {
               getQuestions();
               filterQuestionsByGroupName();
             }
-          case 30:
-            _context8.next = 36;
+          case 31:
+            _context8.next = 37;
             break;
-          case 32:
-            _context8.prev = 32;
+          case 33:
+            _context8.prev = 33;
             _context8.t0 = _context8["catch"](15);
             console.error("There was an error saving the question!", _context8.t0);
             toast.current.show({
@@ -15075,17 +15085,18 @@ function NewQuestion() {
               detail: ((_error$response3 = _context8.t0.response) === null || _error$response3 === void 0 || (_error$response3 = _error$response3.data) === null || _error$response3 === void 0 ? void 0 : _error$response3.message) || "Failed to save question",
               life: 3000
             });
-          case 36:
+          case 37:
             setQuestions(_questions);
             setEditState(false);
             setUpdateUI(function (prev) {
               return !prev;
             }); // Trigger UI update
-          case 39:
+            console.log("Questions", questions);
+          case 41:
           case "end":
             return _context8.stop();
         }
-      }, _callee8, null, [[15, 32]]);
+      }, _callee8, null, [[15, 33]]);
     }));
     return function saveQuestion() {
       return _ref8.apply(this, arguments);
@@ -15099,7 +15110,6 @@ function NewQuestion() {
     setQuestionDialog(false);
     setEditState(false);
     filterQuestionsByGroupName();
-    setResponse.apply(void 0, _toConsumableArray(initialEmptyQuestion));
   };
   var hideDeleteQuestionDialog = function hideDeleteQuestionDialog() {
     setDeleteQuestionDialog(false);
@@ -15185,7 +15195,7 @@ function NewQuestion() {
                 question_type: "",
                 question_name: "",
                 sequence: null,
-                data_status: null
+                data_status: 0
               });
             });
             // getQuestions();
@@ -15280,7 +15290,7 @@ function NewQuestion() {
                 question_type: "",
                 question_name: "",
                 sequence: null,
-                data_status: null
+                data_status: 0
               });
             });
             // getQuestions();
@@ -15353,7 +15363,7 @@ function NewQuestion() {
   var editQuestion = function editQuestion(question) {
     setResponse(_objectSpread({}, question));
     setQuestionDialog(true);
-    console.log("Response Now", response);
+    console.log("Want to Edit Response DS", question.data_status);
     setEditState(true);
   };
 
@@ -15550,6 +15560,26 @@ function NewQuestion() {
       })
     });
   };
+  var isActiveBodyTemplate = function isActiveBodyTemplate(rowData) {
+    var isActive = rowData.data_status === 1 ? 1 : 0;
+    var iconClassName = (0,primereact_utils__WEBPACK_IMPORTED_MODULE_19__.classNames)("pi", {
+      "pi-check text-success": isActive,
+      "pi-minus text-danger": !isActive
+    });
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
+      className: "d-inline-flex align-items-center justify-content-center",
+      style: {
+        width: "2rem",
+        height: "2rem"
+      },
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("i", {
+        className: iconClassName,
+        style: {
+          fontSize: "20px"
+        }
+      })
+    });
+  };
   var updateResponseOptions = /*#__PURE__*/function () {
     var _ref12 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12(updatedOptions) {
       var _questions, index, result;
@@ -15579,7 +15609,7 @@ function NewQuestion() {
                   question_type: "",
                   question_name: "",
                   sequence: null,
-                  data_status: null,
+                  data_status: 0,
                   is_parent: 0,
                   is_mandatory: 0
                 });
@@ -15604,7 +15634,7 @@ function NewQuestion() {
                 question_type: "",
                 question_name: "",
                 sequence: null,
-                data_status: null,
+                data_status: 0,
                 is_parent: 0,
                 is_mandatory: 0
               });
@@ -15915,6 +15945,18 @@ function NewQuestion() {
                 width: "4rem"
               },
               sortable: true,
+              className: "border-left border-right"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_26__.Column, {
+              field: "data_status",
+              header: "Active?",
+              sortable: true,
+              style: {
+                width: "4rem"
+              },
+              body: isActiveBodyTemplate,
+              bodyStyle: {
+                textAlign: "center"
+              },
               className: "border-left border-right"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_column__WEBPACK_IMPORTED_MODULE_26__.Column, {
               field: "is_parent",

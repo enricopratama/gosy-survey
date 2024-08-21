@@ -97,7 +97,7 @@ export default function NewQuestion() {
         question_type: "",
         question_name: "",
         sequence: null,
-        data_status: null,
+        data_status: 0,
         is_parent: null,
         is_mandatory: null,
         option_1: null,
@@ -137,21 +137,21 @@ export default function NewQuestion() {
     const onInputNumberChange = (e, name) => {
         const val = e.value || 0;
         let _response = { ...response };
-        _response[`${name}`] = val;
+        _response[`${name}`] = parseInt(val, 10);
         setResponse(_response);
     };
 
     const onCheckboxChange = (e, name) => {
         const val = e.checked ? 1 : 0;
         let _response = { ...response };
-        _response[`${name}`] = val;
+        _response[`${name}`] = parseInt(val, 10);
         setResponse(_response);
     };
 
     const onDataStatusChange = (e, name) => {
         const val = e.value ? 1 : 0;
         let _response = { ...response };
-        _response[`${name}`] = val;
+        _response[`${name}`] = parseInt(val, 10);
         setResponse(_response);
     };
 
@@ -410,6 +410,7 @@ export default function NewQuestion() {
         ) {
             let _questions = [...questions];
             let _response = { ...response };
+            console.log("_response", _response);
 
             var formData = new FormData();
             formData.append("question_group_id", _response.question_group_id);
@@ -417,20 +418,21 @@ export default function NewQuestion() {
             formData.append("question_key", _response.question_key);
             formData.append("question_type", _response.question_type);
             formData.append("sequence", _response.sequence);
-            formData.append("data_status", _response.data_status);
+            formData.append("data_status", parseInt(_response.data_status, 10));
             formData.append("is_parent", _response.is_parent);
             formData.append("is_mandatory", _response.is_mandatory);
 
-            formData.forEach((value, key) => {
-                console.log(`${key}: ${value}`);
-            });
+            // formData.forEach((value, key) => {
+            //     console.log(`${key}: ${value}`);
+            // });
 
             const index = findIndexByID(_response.question_id);
 
             try {
                 let result;
+
+                // Update question
                 if (index >= 0 && editState) {
-                    // Update existing question
                     result = await axios.post(
                         `/editQuestion/${_response.question_id}`,
                         formData
@@ -440,7 +442,35 @@ export default function NewQuestion() {
                     const newQuestion = result.data.data || result.data;
 
                     if (result.status === 200) {
+                        // Works when updating UI
                         _questions[index] = _response;
+                        console.log(
+                            "New Question Data Status",
+                            newQuestion.data_status
+                        );
+                        console.log(
+                            "Response Data Status",
+                            _response.data_status
+                        );
+
+                        console.log(
+                            "New Question Data Status:",
+                            newQuestion.data_status,
+                            "Type:",
+                            typeof parseInt(newQuestion.data_status, 10)
+                        );
+                        console.log(
+                            "Response Data Status:",
+                            _response.data_status,
+                            "Type:",
+                            typeof _response.data_status
+                        );
+
+                        // New Approach
+                        // _questions[index] = {
+                        //     ..._response,
+                        //     data_status: parseInt(newQuestion.data_status, 10), // Ensure it's an integer
+                        // };
                         toast.current.show({
                             severity: "success",
                             summary: "Successful",
@@ -462,6 +492,10 @@ export default function NewQuestion() {
                     }
                 } else {
                     // New Question
+                    formData.forEach((value, key) => {
+                        console.log(`${key}: ${value} (Type: ${typeof value})`);
+                    });
+
                     result = await axios.post("/addQuestion", formData);
                     console.log("new question", result.data);
                     if (result.status === 200) {
@@ -492,7 +526,7 @@ export default function NewQuestion() {
                             option_8_flow: newQuestion.option_8_flow,
                             option_9: newQuestion.option_9,
                             option_9_flow: newQuestion.option_9_flow,
-                            data_status: newQuestion.data_status,
+                            data_status: parseInt(newQuestion.data_status, 10),
                         };
 
                         _questions.push(mergedQuestion);
@@ -510,7 +544,7 @@ export default function NewQuestion() {
                             question_type: "",
                             question_name: "",
                             sequence: null,
-                            data_status: null,
+                            data_status: 0,
                             is_parent: 0,
                         }));
                         setQuestionDialog(false);
@@ -532,6 +566,7 @@ export default function NewQuestion() {
             setQuestions(_questions);
             setEditState(false);
             setUpdateUI((prev) => !prev); // Trigger UI update
+            console.log("Questions", questions);
         }
     };
 
@@ -544,7 +579,6 @@ export default function NewQuestion() {
         setQuestionDialog(false);
         setEditState(false);
         filterQuestionsByGroupName();
-        setResponse(...initialEmptyQuestion);
     };
 
     const hideDeleteQuestionDialog = () => {
@@ -625,7 +659,7 @@ export default function NewQuestion() {
                 question_type: "",
                 question_name: "",
                 sequence: null,
-                data_status: null,
+                data_status: 0,
             }));
             // getQuestions();
             // filterQuestionsByGroupName();
@@ -697,7 +731,7 @@ export default function NewQuestion() {
                     question_type: "",
                     question_name: "",
                     sequence: null,
-                    data_status: null,
+                    data_status: 0,
                 }));
                 // getQuestions();
                 // filterQuestionsByGroupName();
@@ -754,7 +788,7 @@ export default function NewQuestion() {
     const editQuestion = (question) => {
         setResponse({ ...question });
         setQuestionDialog(true);
-        console.log("Response Now", response);
+        console.log("Want to Edit Response DS", question.data_status);
         setEditState(true);
     };
 
@@ -954,6 +988,23 @@ export default function NewQuestion() {
         );
     };
 
+    const isActiveBodyTemplate = (rowData) => {
+        const isActive = rowData.data_status === 1 ? 1 : 0;
+        const iconClassName = classNames("pi", {
+            "pi-check text-success": isActive,
+            "pi-minus text-danger": !isActive,
+        });
+
+        return (
+            <div
+                className="d-inline-flex align-items-center justify-content-center"
+                style={{ width: "2rem", height: "2rem" }}
+            >
+                <i className={iconClassName} style={{ fontSize: "20px" }}></i>
+            </div>
+        );
+    };
+
     const updateResponseOptions = async (updatedOptions) => {
         let _questions = [...questions];
         const index = findIndexByID(updatedOptions.question_id);
@@ -984,7 +1035,7 @@ export default function NewQuestion() {
                     question_type: "",
                     question_name: "",
                     sequence: null,
-                    data_status: null,
+                    data_status: 0,
                     is_parent: 0,
                     is_mandatory: 0,
                 }));
@@ -1004,7 +1055,7 @@ export default function NewQuestion() {
                 question_type: "",
                 question_name: "",
                 sequence: null,
-                data_status: null,
+                data_status: 0,
                 is_parent: 0,
                 is_mandatory: 0,
             }));
@@ -1418,6 +1469,15 @@ export default function NewQuestion() {
                                 header="Type"
                                 style={{ width: "4rem" }}
                                 sortable
+                                className="border-left border-right"
+                            />
+                            <Column
+                                field="data_status"
+                                header="Active?"
+                                sortable
+                                style={{ width: "4rem" }}
+                                body={isActiveBodyTemplate}
+                                bodyStyle={{ textAlign: "center" }}
                                 className="border-left border-right"
                             />
                             <Column

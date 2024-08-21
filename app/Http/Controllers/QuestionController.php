@@ -18,17 +18,19 @@ class QuestionController extends Controller
         return response()->json($questions);
     }
 
-    /**
-     * Gets all the questions alongside their headers (question or survey types)
-     */
     public function getQuestions()
     {
         try {
             $questions = Question::select(
                 'mst_question_ori.*',
-                'mst_question_group.*',
-                'mst_survey.*',
-                'mst_survey_question_group.*'
+                'mst_question_group.question_group_name AS question_group_name',
+                'mst_survey.survey_id AS survey_id',
+                'mst_survey.survey_name AS survey_name',
+                'mst_survey_question_group.survey_question_id AS survey_question_group_id',
+                'mst_survey_question_group.sequence AS survey_question_group_sequence',
+                'mst_question_group.data_status AS question_group_data_status',
+                'mst_survey.data_status AS survey_data_status',
+                'mst_survey_question_group.data_status AS survey_question_group_data_status'
             )
                 ->leftJoin(
                     'mst_survey_question_group',
@@ -52,9 +54,6 @@ class QuestionController extends Controller
 
             return response()->json($questions);
         } catch (\Exception $e) {
-            // \Log::error('Failed to retrieve questions: ' . $e->getMessage());
-
-            // Return a JSON response with a 500 status code
             return response()->json(
                 [
                     'error' => 'Failed to retrieve questions.',

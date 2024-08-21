@@ -172,14 +172,6 @@ const AddEditQuestionDialog = ({
                                 onDataStatusChange(e, "data_status")
                             }
                         />
-                        <InputNumber
-                            id="data_status"
-                            value={response.data_status || 0}
-                            required
-                            onValueChange={(e) =>
-                                onInputNumberChange(e, "data_status")
-                            }
-                        />
                     </div>
                 </div>
 

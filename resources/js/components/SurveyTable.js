@@ -35,7 +35,7 @@ export default function SurveyTable() {
         { field: "question_name", header: "Question Name" },
         { field: "question_key", header: "Question Key" },
         { field: "question_group_id", header: "Question Group ID" },
-        { field: "data_status", header: "Status" },
+        { field: "data_status", header: "Data Status" },
         { field: "question_type", header: "Question Type" },
         { field: "option_1", header: "Option 1" },
         { field: "option_1_flow", header: "Option 1 Flow" },
