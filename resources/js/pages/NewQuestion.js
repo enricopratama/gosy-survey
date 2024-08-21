@@ -44,8 +44,9 @@ export default function NewQuestion() {
         sequence: null,
         question_name: "",
         question_type: "",
-        data_status: null,
+        data_status: 0,
         is_parent: 0,
+        is_mandatory: 1,
     };
 
     // Data Table Size
@@ -97,8 +98,8 @@ export default function NewQuestion() {
         question_name: "",
         sequence: null,
         data_status: null,
-        is_parent: 0,
-        is_mandatory: 1,
+        is_parent: null,
+        is_mandatory: null,
         option_1: null,
         option_1_flow: null,
         option_2: null,
@@ -142,6 +143,13 @@ export default function NewQuestion() {
 
     const onCheckboxChange = (e, name) => {
         const val = e.checked ? 1 : 0;
+        let _response = { ...response };
+        _response[`${name}`] = val;
+        setResponse(_response);
+    };
+
+    const onDataStatusChange = (e, name) => {
+        const val = e.value ? 1 : 0;
         let _response = { ...response };
         _response[`${name}`] = val;
         setResponse(_response);
@@ -398,7 +406,6 @@ export default function NewQuestion() {
             response.question_name.trim() &&
             response.question_type.trim() &&
             response.sequence &&
-            response.data_status &&
             response.question_group_id
         ) {
             let _questions = [...questions];
@@ -445,7 +452,7 @@ export default function NewQuestion() {
                             question_type: "",
                             question_name: "",
                             sequence: null,
-                            data_status: null,
+                            data_status: 0,
                             is_parent: 0,
                         }));
                         setQuestionDialog(false);
@@ -485,6 +492,7 @@ export default function NewQuestion() {
                             option_8_flow: newQuestion.option_8_flow,
                             option_9: newQuestion.option_9,
                             option_9_flow: newQuestion.option_9_flow,
+                            data_status: newQuestion.data_status,
                         };
 
                         _questions.push(mergedQuestion);
@@ -536,6 +544,7 @@ export default function NewQuestion() {
         setQuestionDialog(false);
         setEditState(false);
         filterQuestionsByGroupName();
+        setResponse(...initialEmptyQuestion);
     };
 
     const hideDeleteQuestionDialog = () => {
@@ -632,7 +641,7 @@ export default function NewQuestion() {
             setQuestions(_questions);
         } finally {
             setDeleteQuestionDialog(false);
-            setQuestion(initialEmptyQuestion);
+            // setQuestion(initialEmptyQuestion);
             setEditState(false);
             getQuestions();
             filterQuestionsByGroupName();
@@ -745,6 +754,7 @@ export default function NewQuestion() {
     const editQuestion = (question) => {
         setResponse({ ...question });
         setQuestionDialog(true);
+        console.log("Response Now", response);
         setEditState(true);
     };
 
@@ -962,12 +972,12 @@ export default function NewQuestion() {
 
                 setQuestions(_questions);
 
-                toast.current.show({
-                    severity: "success",
-                    summary: "Successful",
-                    detail: `Options for Question ${updatedOptions.sequence} Updated`,
-                    life: 2000,
-                });
+                // toast.current.show({
+                //     severity: "success",
+                //     summary: "Successful",
+                //     detail: `Options for Question ${updatedOptions.sequence} Updated`,
+                //     life: 2000,
+                // });
 
                 setResponse((prevResponse) => ({
                     ...prevResponse,
@@ -1456,6 +1466,7 @@ export default function NewQuestion() {
                             hideDialog={hideDialog}
                             submitted={submitted}
                             onCheckboxChange={onCheckboxChange}
+                            onDataStatusChange={onDataStatusChange}
                         />
 
                         {/* Delete a Question Dialog */}

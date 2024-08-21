@@ -9,11 +9,11 @@ export default function OptionsDialog({
     visible,
     onHide,
     selectedRow,
-    updateResponse, // contains the updated response
+    updateResponse,
 }) {
     const [optionsData, setOptionsData] = useState([]);
 
-    // Function to extract options data from selectedRow
+    // Function to reformat options data from selectedRow
     const extractOptionsData = (row) => {
         const extractedOptions = [];
 
@@ -21,7 +21,7 @@ export default function OptionsDialog({
             for (let i = 1; i <= 9; i++) {
                 extractedOptions.push({
                     option_num: `option_${i}`,
-                    option_data: row[`option_${i}`] || "", // Leave empty if null
+                    option_data: row[`option_${i}`] || "",
                     option_flow: row[`option_${i}_flow`] || "",
                 });
             }
@@ -31,7 +31,6 @@ export default function OptionsDialog({
     };
 
     useEffect(() => {
-        // Call the extractOptionsData function and set the state
         const options = extractOptionsData(selectedRow);
         setOptionsData(options);
     }, [selectedRow]);
@@ -54,14 +53,14 @@ export default function OptionsDialog({
                 data.option_flow !== "" ? data.option_flow : null;
         });
 
-        updateResponse(updatedResponse); // Trigger the update response and POST request
-        onHide(); // Close the dialog
+        updateResponse(updatedResponse);
+        onHide();
     };
 
     const textEditor = (options) => (
         <InputText
             type="text"
-            value={options.value || ""} // Leave empty if null
+            value={options.value || ""}
             onChange={(e) => options.editorCallback(e.target.value)}
         />
     );
@@ -69,9 +68,10 @@ export default function OptionsDialog({
     const dialogFooterTemplate = () => (
         <div className="mt-2">
             <Button
-                label="Done"
+                label="Close"
                 className="rounded me-2"
                 icon="pi pi-check"
+                outlined
                 onClick={handleSave}
             />
         </div>

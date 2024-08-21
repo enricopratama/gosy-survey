@@ -7,6 +7,7 @@ import { classNames } from "primereact/utils";
 import { FloatLabel } from "primereact/floatlabel";
 import { Checkbox } from "primereact/checkbox";
 import { Message } from "primereact/message";
+import { InputSwitch } from "primereact/inputswitch";
 
 const AddEditQuestionDialog = ({
     visible = false,
@@ -18,6 +19,7 @@ const AddEditQuestionDialog = ({
     hideDialog = () => {},
     submitted = false,
     onCheckboxChange = () => {},
+    onDataStatusChange = () => {},
 }) => {
     return (
         <Dialog
@@ -150,33 +152,35 @@ const AddEditQuestionDialog = ({
 
             <div className="formgrid grid" style={{ marginTop: "35px" }}>
                 <div
-                    className="field col"
+                    className="field"
                     style={{ marginTop: "35px", marginBottom: "35px" }}
                 >
-                    <span className="p-float-label">
+                    <div className="d-flex flex-row flex-wrap">
+                        <label
+                            htmlFor="data_status"
+                            style={{
+                                fontWeight: "bold",
+                                marginRight: "10px",
+                            }}
+                        >
+                            Active Question?:
+                        </label>
+                        <InputSwitch
+                            inputId="data_status"
+                            checked={response.data_status === 1}
+                            onChange={(e) =>
+                                onDataStatusChange(e, "data_status")
+                            }
+                        />
                         <InputNumber
                             id="data_status"
                             value={response.data_status || 0}
                             required
-                            className={classNames({
-                                "p-invalid": submitted && !response.data_status,
-                            })}
                             onValueChange={(e) =>
                                 onInputNumberChange(e, "data_status")
                             }
                         />
-                        <label htmlFor="data_status" className="font-bold">
-                            Status
-                        </label>
-                    </span>
-                    {submitted && !response.data_status && (
-                        <>
-                            <Message
-                                severity="error"
-                                text="Status is required"
-                            />
-                        </>
-                    )}
+                    </div>
                 </div>
 
                 <hr style={{ width: "100%", margin: "20px 0" }} />

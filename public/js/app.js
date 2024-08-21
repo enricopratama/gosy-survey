@@ -11478,7 +11478,7 @@ function OptionsDialog(_ref) {
     optionsData = _useState2[0],
     setOptionsData = _useState2[1];
 
-  // Function to extract options data from selectedRow
+  // Function to reformat options data from selectedRow
   var extractOptionsData = function extractOptionsData(row) {
     var extractedOptions = [];
     if (row) {
@@ -11486,7 +11486,6 @@ function OptionsDialog(_ref) {
         extractedOptions.push({
           option_num: "option_".concat(i),
           option_data: row["option_".concat(i)] || "",
-          // Leave empty if null
           option_flow: row["option_".concat(i, "_flow")] || ""
         });
       }
@@ -11494,7 +11493,6 @@ function OptionsDialog(_ref) {
     return extractedOptions;
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // Call the extractOptionsData function and set the state
     var options = extractOptionsData(selectedRow);
     setOptionsData(options);
   }, [selectedRow]);
@@ -11511,14 +11509,13 @@ function OptionsDialog(_ref) {
       updatedResponse[data.option_num] = data.option_data !== "" ? data.option_data : null;
       updatedResponse["".concat(data.option_num, "_flow")] = data.option_flow !== "" ? data.option_flow : null;
     });
-    updateResponse(updatedResponse); // Trigger the update response and POST request
-    onHide(); // Close the dialog
+    updateResponse(updatedResponse);
+    onHide();
   };
   var textEditor = function textEditor(options) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputtext__WEBPACK_IMPORTED_MODULE_2__.InputText, {
       type: "text",
-      value: options.value || "" // Leave empty if null
-      ,
+      value: options.value || "",
       onChange: function onChange(e) {
         return options.editorCallback(e.target.value);
       }
@@ -11528,9 +11525,10 @@ function OptionsDialog(_ref) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "mt-2",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_button__WEBPACK_IMPORTED_MODULE_3__.Button, {
-        label: "Done",
+        label: "Close",
         className: "rounded me-2",
         icon: "pi pi-check",
+        outlined: true,
         onClick: handleSave
       })
     });
@@ -13782,7 +13780,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primereact_floatlabel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primereact/floatlabel */ "./node_modules/primereact/floatlabel/floatlabel.esm.js");
 /* harmony import */ var primereact_checkbox__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primereact/checkbox */ "./node_modules/primereact/checkbox/checkbox.esm.js");
 /* harmony import */ var primereact_message__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! primereact/message */ "./node_modules/primereact/message/message.esm.js");
+/* harmony import */ var primereact_inputswitch__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! primereact/inputswitch */ "./node_modules/primereact/inputswitch/inputswitch.esm.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -13811,7 +13811,9 @@ var AddEditQuestionDialog = function AddEditQuestionDialog(_ref) {
     _ref$submitted = _ref.submitted,
     submitted = _ref$submitted === void 0 ? false : _ref$submitted,
     _ref$onCheckboxChange = _ref.onCheckboxChange,
-    onCheckboxChange = _ref$onCheckboxChange === void 0 ? function () {} : _ref$onCheckboxChange;
+    onCheckboxChange = _ref$onCheckboxChange === void 0 ? function () {} : _ref$onCheckboxChange,
+    _ref$onDataStatusChan = _ref.onDataStatusChange,
+    onDataStatusChange = _ref$onDataStatusChan === void 0 ? function () {} : _ref$onDataStatusChan;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(primereact_dialog__WEBPACK_IMPORTED_MODULE_2__.Dialog, {
     visible: visible,
     style: {
@@ -13958,35 +13960,36 @@ var AddEditQuestionDialog = function AddEditQuestionDialog(_ref) {
       style: {
         marginTop: "35px"
       },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: "field col",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "field",
         style: {
           marginTop: "35px",
           marginBottom: "35px"
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
-          className: "p-float-label",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputnumber__WEBPACK_IMPORTED_MODULE_6__.InputNumber, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "d-flex flex-row flex-wrap",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+            htmlFor: "data_status",
+            style: {
+              fontWeight: "bold",
+              marginRight: "10px"
+            },
+            children: "Active Question?:"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputswitch__WEBPACK_IMPORTED_MODULE_10__.InputSwitch, {
+            inputId: "data_status",
+            checked: response.data_status === 1,
+            onChange: function onChange(e) {
+              return onDataStatusChange(e, "data_status");
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_inputnumber__WEBPACK_IMPORTED_MODULE_6__.InputNumber, {
             id: "data_status",
             value: response.data_status || 0,
             required: true,
-            className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_4__.classNames)({
-              "p-invalid": submitted && !response.data_status
-            }),
             onValueChange: function onValueChange(e) {
               return onInputNumberChange(e, "data_status");
             }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-            htmlFor: "data_status",
-            className: "font-bold",
-            children: "Status"
           })]
-        }), submitted && !response.data_status && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(primereact_message__WEBPACK_IMPORTED_MODULE_5__.Message, {
-            severity: "error",
-            text: "Status is required"
-          })
-        })]
+        })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("hr", {
         style: {
           width: "100%",
@@ -14403,8 +14406,9 @@ function NewQuestion() {
     sequence: null,
     question_name: "",
     question_type: "",
-    data_status: null,
-    is_parent: 0
+    data_status: 0,
+    is_parent: 0,
+    is_mandatory: 1
   };
 
   // Data Table Size
@@ -14510,8 +14514,8 @@ function NewQuestion() {
       question_name: "",
       sequence: null,
       data_status: null,
-      is_parent: 0,
-      is_mandatory: 1,
+      is_parent: null,
+      is_mandatory: null,
       option_1: null,
       option_1_flow: null,
       option_2: null,
@@ -14567,6 +14571,12 @@ function NewQuestion() {
   };
   var onCheckboxChange = function onCheckboxChange(e, name) {
     var val = e.checked ? 1 : 0;
+    var _response = _objectSpread({}, response);
+    _response["".concat(name)] = val;
+    setResponse(_response);
+  };
+  var onDataStatusChange = function onDataStatusChange(e, name) {
+    var val = e.value ? 1 : 0;
     var _response = _objectSpread({}, response);
     _response["".concat(name)] = val;
     setResponse(_response);
@@ -14938,7 +14948,7 @@ function NewQuestion() {
         while (1) switch (_context8.prev = _context8.next) {
           case 0:
             setSubmitted(true);
-            if (!(response.question_name.trim() && response.question_type.trim() && response.sequence && response.data_status && response.question_group_id)) {
+            if (!(response.question_name.trim() && response.question_type.trim() && response.sequence && response.question_group_id)) {
               _context8.next = 39;
               break;
             }
@@ -14981,7 +14991,7 @@ function NewQuestion() {
                   question_type: "",
                   question_name: "",
                   sequence: null,
-                  data_status: null,
+                  data_status: 0,
                   is_parent: 0
                 });
               });
@@ -15025,7 +15035,8 @@ function NewQuestion() {
                 option_8: _newQuestion.option_8,
                 option_8_flow: _newQuestion.option_8_flow,
                 option_9: _newQuestion.option_9,
-                option_9_flow: _newQuestion.option_9_flow
+                option_9_flow: _newQuestion.option_9_flow,
+                data_status: _newQuestion.data_status
               });
               _questions.push(mergedQuestion);
               toast.current.show({
@@ -15088,6 +15099,7 @@ function NewQuestion() {
     setQuestionDialog(false);
     setEditState(false);
     filterQuestionsByGroupName();
+    setResponse.apply(void 0, _toConsumableArray(initialEmptyQuestion));
   };
   var hideDeleteQuestionDialog = function hideDeleteQuestionDialog() {
     setDeleteQuestionDialog(false);
@@ -15197,16 +15209,16 @@ function NewQuestion() {
           case 18:
             _context9.prev = 18;
             setDeleteQuestionDialog(false);
-            setQuestion(initialEmptyQuestion);
+            // setQuestion(initialEmptyQuestion);
             setEditState(false);
             getQuestions();
             filterQuestionsByGroupName();
             return _context9.finish(18);
-          case 25:
+          case 24:
           case "end":
             return _context9.stop();
         }
-      }, _callee9, null, [[3, 13, 18, 25]]);
+      }, _callee9, null, [[3, 13, 18, 24]]);
     }));
     return function deleteQuestion() {
       return _ref9.apply(this, arguments);
@@ -15341,6 +15353,7 @@ function NewQuestion() {
   var editQuestion = function editQuestion(question) {
     setResponse(_objectSpread({}, question));
     setQuestionDialog(true);
+    console.log("Response Now", response);
     setEditState(true);
   };
 
@@ -15553,12 +15566,14 @@ function NewQuestion() {
             if (result.status === 200) {
               _questions[index] = _objectSpread(_objectSpread({}, _questions[index]), updatedOptions);
               setQuestions(_questions);
-              toast.current.show({
-                severity: "success",
-                summary: "Successful",
-                detail: "Options for Question ".concat(updatedOptions.sequence, " Updated"),
-                life: 2000
-              });
+
+              // toast.current.show({
+              //     severity: "success",
+              //     summary: "Successful",
+              //     detail: `Options for Question ${updatedOptions.sequence} Updated`,
+              //     life: 2000,
+              // });
+
               setResponse(function (prevResponse) {
                 return _objectSpread(_objectSpread({}, prevResponse), {}, {
                   question_type: "",
@@ -15956,7 +15971,8 @@ function NewQuestion() {
             saveQuestionFooter: saveQuestionFooter,
             hideDialog: hideDialog,
             submitted: submitted,
-            onCheckboxChange: onCheckboxChange
+            onCheckboxChange: onCheckboxChange,
+            onDataStatusChange: onDataStatusChange
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(primereact_dialog__WEBPACK_IMPORTED_MODULE_27__.Dialog, {
             visible: deleteQuestionDialog,
             style: {
@@ -36686,6 +36702,245 @@ var InputNumber = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo( /*#__PUR
   }, props.tooltipOptions)));
 }));
 InputNumber.displayName = 'InputNumber';
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/primereact/inputswitch/inputswitch.esm.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/primereact/inputswitch/inputswitch.esm.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   InputSwitch: () => (/* binding */ InputSwitch)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var primereact_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! primereact/api */ "./node_modules/primereact/api/api.esm.js");
+/* harmony import */ var primereact_componentbase__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primereact/componentbase */ "./node_modules/primereact/componentbase/componentbase.esm.js");
+/* harmony import */ var primereact_hooks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primereact/hooks */ "./node_modules/primereact/hooks/hooks.esm.js");
+/* harmony import */ var primereact_tooltip__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! primereact/tooltip */ "./node_modules/primereact/tooltip/tooltip.esm.js");
+/* harmony import */ var primereact_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primereact/utils */ "./node_modules/primereact/utils/utils.esm.js");
+'use client';
+
+
+
+
+
+
+
+function _extends() {
+  _extends = Object.assign ? Object.assign.bind() : function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
+  return _extends.apply(this, arguments);
+}
+
+function _typeof(o) {
+  "@babel/helpers - typeof";
+
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+    return typeof o;
+  } : function (o) {
+    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+  }, _typeof(o);
+}
+
+function _toPrimitive(input, hint) {
+  if (_typeof(input) !== "object" || input === null) return input;
+  var prim = input[Symbol.toPrimitive];
+  if (prim !== undefined) {
+    var res = prim.call(input, hint || "default");
+    if (_typeof(res) !== "object") return res;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return (hint === "string" ? String : Number)(input);
+}
+
+function _toPropertyKey(arg) {
+  var key = _toPrimitive(arg, "string");
+  return _typeof(key) === "symbol" ? key : String(key);
+}
+
+function _defineProperty(obj, key, value) {
+  key = _toPropertyKey(key);
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
+
+var classes = {
+  root: function root(_ref) {
+    var props = _ref.props,
+      checked = _ref.checked;
+    return (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)('p-inputswitch p-component', {
+      'p-highlight': checked,
+      'p-disabled': props.disabled,
+      'p-invalid': props.invalid
+    });
+  },
+  input: 'p-inputswitch-input',
+  slider: 'p-inputswitch-slider'
+};
+var InputSwitchBase = primereact_componentbase__WEBPACK_IMPORTED_MODULE_2__.ComponentBase.extend({
+  defaultProps: {
+    __TYPE: 'InputSwitch',
+    autoFocus: false,
+    checked: false,
+    className: null,
+    disabled: false,
+    falseValue: false,
+    id: null,
+    inputId: null,
+    inputRef: null,
+    invalid: false,
+    name: null,
+    onBlur: null,
+    onChange: null,
+    onFocus: null,
+    style: null,
+    tabIndex: null,
+    tooltip: null,
+    tooltipOptions: null,
+    trueValue: true,
+    children: undefined
+  },
+  css: {
+    classes: classes
+  }
+});
+
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var InputSwitch = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.memo( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function (inProps, ref) {
+  var mergeProps = (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_3__.useMergeProps)();
+  var context = react__WEBPACK_IMPORTED_MODULE_0__.useContext(primereact_api__WEBPACK_IMPORTED_MODULE_4__.PrimeReactContext);
+  var props = InputSwitchBase.getProps(inProps, context);
+  var _InputSwitchBase$setM = InputSwitchBase.setMetaData({
+      props: props
+    }),
+    ptm = _InputSwitchBase$setM.ptm,
+    cx = _InputSwitchBase$setM.cx,
+    isUnstyled = _InputSwitchBase$setM.isUnstyled;
+  (0,primereact_componentbase__WEBPACK_IMPORTED_MODULE_2__.useHandleStyle)(InputSwitchBase.css.styles, isUnstyled, {
+    name: 'inputswitch'
+  });
+  var elementRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+  var inputRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(props.inputRef);
+  var checked = props.checked === props.trueValue;
+  var onChange = function onChange(event) {
+    if (props.onChange) {
+      var value = checked ? props.falseValue : props.trueValue;
+      props.onChange({
+        originalEvent: event,
+        value: value,
+        stopPropagation: function stopPropagation() {
+          event === null || event === void 0 || event.stopPropagation();
+        },
+        preventDefault: function preventDefault() {
+          event === null || event === void 0 || event.preventDefault();
+        },
+        target: {
+          name: props.name,
+          id: props.id,
+          value: value
+        }
+      });
+    }
+  };
+  var onFocus = function onFocus(event) {
+    var _props$onFocus;
+    props === null || props === void 0 || (_props$onFocus = props.onFocus) === null || _props$onFocus === void 0 || _props$onFocus.call(props, event);
+  };
+  var onBlur = function onBlur(event) {
+    var _props$onBlur;
+    props === null || props === void 0 || (_props$onBlur = props.onBlur) === null || _props$onBlur === void 0 || _props$onBlur.call(props, event);
+  };
+  react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle(ref, function () {
+    return {
+      props: props,
+      focus: function focus() {
+        return primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.focus(inputRef.current);
+      },
+      getElement: function getElement() {
+        return elementRef.current;
+      },
+      getInput: function getInput() {
+        return inputRef.current;
+      }
+    };
+  });
+  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {
+    primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.combinedRefs(inputRef, props.inputRef);
+  }, [inputRef, props.inputRef]);
+  (0,primereact_hooks__WEBPACK_IMPORTED_MODULE_3__.useMountEffect)(function () {
+    if (props.autoFocus) {
+      primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.focus(inputRef.current, props.autoFocus);
+    }
+  });
+  var hasTooltip = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.isNotEmpty(props.tooltip);
+  var otherProps = InputSwitchBase.getOtherProps(props);
+  var ariaProps = primereact_utils__WEBPACK_IMPORTED_MODULE_1__.ObjectUtils.reduceKeys(otherProps, primereact_utils__WEBPACK_IMPORTED_MODULE_1__.DomHandler.ARIA_PROPS);
+  var rootProps = mergeProps({
+    className: (0,primereact_utils__WEBPACK_IMPORTED_MODULE_1__.classNames)(props.className, cx('root', {
+      checked: checked
+    })),
+    style: props.style,
+    role: 'checkbox',
+    'aria-checked': checked,
+    'data-p-highlight': checked,
+    'data-p-disabled': props.disabled
+  }, otherProps, ptm('root'));
+  var inputProps = mergeProps(_objectSpread({
+    type: 'checkbox',
+    id: props.inputId,
+    name: props.name,
+    checked: checked,
+    onChange: onChange,
+    onFocus: onFocus,
+    onBlur: onBlur,
+    disabled: props.disabled,
+    role: 'switch',
+    tabIndex: props.tabIndex,
+    'aria-checked': checked,
+    className: cx('input')
+  }, ariaProps), ptm('input'));
+  var sliderProps = mergeProps({
+    className: cx('slider')
+  }, ptm('slider'));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", _extends({
+    id: props.id,
+    ref: elementRef
+  }, rootProps), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", _extends({
+    ref: inputRef
+  }, inputProps)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", sliderProps)), hasTooltip && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(primereact_tooltip__WEBPACK_IMPORTED_MODULE_5__.Tooltip, _extends({
+    target: elementRef,
+    content: props.tooltip,
+    pt: ptm('tooltip')
+  }, props.tooltipOptions)));
+}));
+InputSwitch.displayName = 'InputSwitch';
 
 
 

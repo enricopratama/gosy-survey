@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+// Logs for updates in USERS logins, QUESTION CRUD activities, etc.
 class CreateLogTable extends Migration
 {
     /**
