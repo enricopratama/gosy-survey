@@ -10,6 +10,7 @@ import TableSizeSelector from "../handlers/TableSizeSelector";
 import { MultiSelect } from "primereact/multiselect";
 import axios from "axios";
 import "../../css/DataTable.css";
+import { Button } from "primereact/button";
 
 export default function SurveyTable() {
     const toast = useRef(null);
@@ -80,9 +81,9 @@ export default function SurveyTable() {
         try {
             const response = await axios.get("/api/questions");
             setQuestions(response.data);
-            setQuestion({
-                ...initialEmptyQuestion,
-            });
+            // setQuestions({
+            //     ...initialEmptyQuestion,
+            // });
         } catch (error) {
             console.error("Error fetching the questions:", error);
         } finally {
@@ -103,14 +104,16 @@ export default function SurveyTable() {
         setGlobalFilterValue(value);
     };
 
-    const headerTemplate = (data) => {
-        return (
-            <React.Fragment>
-                <span className="vertical-align-middle ml-2 font-bold line-height-3">
-                    {data.question_group_name}
-                </span>
-            </React.Fragment>
-        );
+    const handleCreateGroup = () => {
+        // Logic for creating a new question group
+    };
+
+    const handleEditGroup = () => {
+        // Logic for editing the selected question group
+    };
+
+    const handleDeleteGroup = () => {
+        // Logic for deleting the selected question group
     };
 
     const onColumnToggle = (event) => {
@@ -121,9 +124,14 @@ export default function SurveyTable() {
         setVisibleColumns(orderedSelectedColumns);
     };
 
-    const header = (
-        <div className="d-flex gap-2 justify-content-between align-items-center flex-wrap">
-            <h4 className="m-0">Manage Questions</h4>
+    const tableHeader = (
+        <div className="d-flex justify-content-between align-items-center ms-2 flex-wrap">
+            <Button
+                label="New"
+                icon="pi pi-plus"
+                className="rounded mb-2"
+                onClick={handleCreateGroup}
+            />
             <MultiSelect
                 value={visibleColumns}
                 options={columns}
@@ -136,8 +144,9 @@ export default function SurveyTable() {
                 display="chip"
                 filter
                 placeholder="Select Columns"
+                className="mt-2 mb-2"
             />
-            <IconField iconPosition="left" className="me-3">
+            <IconField iconPosition="left" className="me-3 mt-2">
                 <InputIcon className="pi pi-search" />
                 <InputText
                     value={globalFilterValue}
@@ -148,6 +157,30 @@ export default function SurveyTable() {
             </IconField>
         </div>
     );
+
+    const rowHeaderTemplate = (data) => {
+        return (
+            <React.Fragment>
+                <span className="vertical-align-middle ml-2 font-bold line-height-3">
+                    {data.question_group_name}
+                </span>
+                <div className="ml-auto d-flex">
+                    <Button
+                        label="Edit"
+                        icon="pi pi-pencil"
+                        className="p-button-text rounded p-ml-2 outlined"
+                        onClick={() => handleEditGroup(data)}
+                    />
+                    <Button
+                        label="Delete"
+                        icon="pi pi-trash"
+                        className="p-button-danger p-button-text rounded p-ml-2"
+                        onClick={() => handleDeleteGroup(data)}
+                    />
+                </div>
+            </React.Fragment>
+        );
+    };
 
     const onRowReorder = (e) => {
         const reorderedQuestions = e.value;
@@ -180,8 +213,8 @@ export default function SurveyTable() {
                     size={size}
                     filters={filters}
                     showGridlines
-                    header={header}
-                    rowGroupHeaderTemplate={headerTemplate}
+                    header={tableHeader}
+                    rowGroupHeaderTemplate={rowHeaderTemplate}
                     rowGroupMode="subheader"
                     groupRowsBy="question_group_name"
                     sortField="question_group_name"
@@ -193,7 +226,6 @@ export default function SurveyTable() {
                     stripedRows
                     reorderableRows
                     onRowReorder={onRowReorder}
-                    className="text-large"
                 >
                     <Column rowReorder style={{ width: "1rem" }} />
                     <Column
@@ -201,12 +233,13 @@ export default function SurveyTable() {
                         header="Sequence"
                         sortable
                         style={{ width: "1rem" }}
+                        className="border-right"
                     />
                     <Column
                         field="question_name"
                         header="Question Name"
                         sortable
-                        style={{ minWidth: "25rem" }}
+                        style={{ minWidth: "15rem" }}
                         className="border-right"
                     />
                     {visibleColumns.map((col) => (

@@ -744,13 +744,13 @@ export default function NewQuestion() {
     // Delete A Question
     const deleteQuestionDialogFooter = (
         <>
-            <div className="d-flex">
+            <div className="d-flex flex-wrap align-items-center justify-content-between">
                 <div className="p-1">
                     <Button
                         label="Close"
                         icon="pi pi-times"
                         iconPos="left"
-                        className="ms-2 rounded"
+                        className="rounded"
                         outlined
                         onClick={hideDeleteQuestionDialog}
                     />
@@ -760,19 +760,19 @@ export default function NewQuestion() {
                         label="Save"
                         icon="pi pi-check"
                         iconPos="left"
-                        className="ms-2 rounded"
+                        className="rounded"
                         outlined
                         onClick={doSaveDeleteQuestion}
                     />
                 </div>
-                <div className="ms-auto p-2">
+                <div className="p-1 ms-auto">
                     <Button
                         label="Delete"
                         icon="pi pi-trash"
                         rounded
                         iconPos="left"
                         severity="danger"
-                        className="ms-2 rounded"
+                        className="rounded"
                         onClick={deleteQuestion}
                     />
                 </div>
@@ -1144,7 +1144,12 @@ export default function NewQuestion() {
             <BreadcrumbComponent />
             <Toast ref={toast} />
             <div className="card d-flex justify-content-center">
-                <Stepper linear ref={stepperRef} style={{ marginTop: "2rem" }}>
+                <Stepper
+                    // orientation="vertical"
+                    // linear
+                    ref={stepperRef}
+                    style={{ marginTop: "2rem" }}
+                >
                     {/* Step 1 - Survey Type */}
                     <StepperPanel header="Survey Type">
                         <div className="d-flex flex-column">
@@ -1322,7 +1327,7 @@ export default function NewQuestion() {
                     </StepperPanel>
 
                     {/* Step 2 - Question Group Name */}
-                    <StepperPanel header="Question Group Name">
+                    <StepperPanel header="Question Group">
                         <div className="d-flex flex-column">
                             <div
                                 className="rounded surface-ground flex-auto d-flex font-medium mx-5"
@@ -1473,7 +1478,7 @@ export default function NewQuestion() {
                     </StepperPanel>
 
                     {/* Step 3 - Add Question */}
-                    <StepperPanel header="Add Question">
+                    <StepperPanel header="Questions Details">
                         <TableSizeSelector
                             initialSize={size}
                             onSizeChange={(newSize) => setSize(newSize)}

@@ -614,6 +614,9 @@ video {
 .ms-4 {
   margin-inline-start: 1rem;
 }
+.ms-auto {
+  margin-inline-start: auto;
+}
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -625,15 +628,6 @@ video {
 }
 .mt-5 {
   margin-top: 1.25rem;
-}
-.mr-auto {
-  margin-right: auto;
-}
-.me-auto {
-  margin-inline-end: auto;
-}
-.ms-auto {
-  margin-inline-start: auto;
 }
 .block {
   display: block;
@@ -705,6 +699,9 @@ video {
 .p-0 {
   padding: 0px;
 }
+.p-1 {
+  padding: 0.25rem;
+}
 .p-2 {
   padding: 0.5rem;
 }
@@ -713,9 +710,6 @@ video {
 }
 .p-5 {
   padding: 1.25rem;
-}
-.p-1 {
-  padding: 0.25rem;
 }
 .px-3 {
   padding-left: 0.75rem;
