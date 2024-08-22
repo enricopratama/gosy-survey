@@ -23,5 +23,14 @@
 }
 
 .text-large {
-    font-size: 1rem; /* Or any size you prefer */
+    font-size: 1rem;
+}
+
+.arrow-right::after {
+    content: "→";
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-size: 1.2rem;
+    color: #000;
+    vertical-align: middle;
 }

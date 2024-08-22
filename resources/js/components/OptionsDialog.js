@@ -5,6 +5,7 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { Dropdown } from "primereact/dropdown";
+import "../../css/DataTable.css";
 
 export default function OptionsDialog({
     visible,
@@ -15,23 +16,26 @@ export default function OptionsDialog({
 }) {
     const [optionsData, setOptionsData] = useState([]);
 
-    // Extract question keys from the questions prop
-    const questionKeys = ["0", ...questions.map((q) => q.question_key)].sort(
-        (a, b) => {
-            const partsA = a
-                .split(/(\d+)/)
-                .map((part) => (isNaN(part) ? part : parseInt(part, 10)));
-            const partsB = b
-                .split(/(\d+)/)
-                .map((part) => (isNaN(part) ? part : parseInt(part, 10)));
+    const groupedQuestions = questions.reduce((groups, question) => {
+        const group = groups[question.question_group_id] || {
+            question_group_name: question.question_group_name,
+            items: [],
+        };
 
-            for (let i = 0; i < Math.max(partsA.length, partsB.length); i++) {
-                if (partsA[i] < partsB[i]) return -1;
-                if (partsA[i] > partsB[i]) return 1;
-            }
-            return 0;
-        }
-    );
+        group.items.push({
+            label: question.question_name,
+            value: question.question_key,
+        });
+
+        groups[question.question_group_id] = group;
+        return groups;
+    }, {});
+
+    // Convert grouped questions into the format expected by the Dropdown
+    const dropdownOptions = Object.keys(groupedQuestions).map((groupId) => ({
+        label: groupedQuestions[groupId].question_group_name,
+        items: groupedQuestions[groupId].items,
+    }));
 
     // Function to reformat options data from selectedRow
     const extractOptionsData = (row) => {
@@ -89,12 +93,14 @@ export default function OptionsDialog({
         return (
             <Dropdown
                 value={options.value || ""}
-                options={questionKeys}
+                options={dropdownOptions}
                 onChange={(e) => options.editorCallback(e.value)}
-                placeholder="Select a Question Key"
-                panelStyle={{ maxHeight: "600px" }}
-                editable
+                placeholder="Select a Question"
+                panelStyle={{ maxHeight: "600px", maxWidth: "90%" }}
                 filter
+                optionLabel="label"
+                optionGroupLabel="label"
+                optionGroupChildren="items"
             />
         );
     };
@@ -102,10 +108,9 @@ export default function OptionsDialog({
     const dialogFooterTemplate = () => (
         <div className="mt-2">
             <Button
-                label="Close"
+                label="Save"
                 className="rounded me-2"
                 icon="pi pi-check"
-                outlined
                 onClick={handleSave}
             />
         </div>
@@ -113,12 +118,13 @@ export default function OptionsDialog({
 
     return (
         <Dialog
-            header="Manage Options"
+            header={selectedRow.question_name}
             visible={visible}
-            style={{ width: "50vw" }}
+            style={{ width: "65vw", maxHeight: "90vh" }}
+            breakpoints={{ "960px": "75vw", "641px": "90vw" }}
             maximizable
             modal
-            contentStyle={{ height: "80vh" }}
+            contentStyle={{ height: "60vh" }}
             onHide={onHide}
             footer={dialogFooterTemplate()}
         >
@@ -127,9 +133,9 @@ export default function OptionsDialog({
                     value={optionsData}
                     editMode="row"
                     onRowEditComplete={onRowEditComplete}
-                    tableStyle={{ minWidth: "10rem" }}
+                    tableStyle={{ minWidth: "60vw" }}
                     stripedRows
-                    showGridlines
+                    className="p-datatable-gridlines"
                 >
                     <Column
                         field="option_num"
@@ -137,23 +143,37 @@ export default function OptionsDialog({
                         body={(rowData) => (
                             <strong>{rowData.option_num}</strong>
                         )}
+                        className="border-left border-right"
                     />
                     <Column
                         field="option_data"
-                        header="Option Data"
+                        header="Option"
                         editor={(options) => textEditor(options)}
-                        style={{ width: "5%" }}
+                        style={{ width: "10%" }}
+                        className="border-left"
                     />
                     <Column
                         field="option_flow"
-                        header="Option Flow"
+                        header="Next Question"
                         editor={(options) => optionFlowsEditor(options)}
-                        style={{ width: "5%" }}
+                        body={(rowData) => {
+                            // Find the question name based on the stored question key (option_flow)
+                            const selectedQuestion = questions.find(
+                                (question) =>
+                                    question.question_key ===
+                                    rowData.option_flow
+                            );
+                            return selectedQuestion
+                                ? selectedQuestion.question_name
+                                : "";
+                        }}
+                        style={{ width: "15%" }}
                     />
                     <Column
                         rowEditor={true}
                         headerStyle={{ width: "10%" }}
                         bodyStyle={{ textAlign: "right" }}
+                        className=" border-right"
                     />
                 </DataTable>
             </div>

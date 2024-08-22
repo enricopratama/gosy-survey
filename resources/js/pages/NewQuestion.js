@@ -13,6 +13,8 @@ import { FilterMatchMode } from "primereact/api";
 import { Toolbar } from "primereact/toolbar";
 import { InputIcon } from "primereact/inputicon";
 import { IconField } from "primereact/iconfield";
+import { InputSwitch } from "primereact/inputswitch";
+import { PageControlButtons } from "../components/PageControls";
 import TableSizeSelector from "../handlers/TableSizeSelector";
 import axios from "axios";
 import "../../css/app.css";
@@ -50,7 +52,7 @@ export default function NewQuestion() {
     };
 
     // Data Table Size
-    const [size, setSize] = useState("normal"); // Default size is normal
+    const [size, setSize] = useState("small"); // Default size
 
     // Update UI toggle (call after CRUD)
     const [updateUI, setUpdateUI] = useState(false);
@@ -61,6 +63,7 @@ export default function NewQuestion() {
     const [customQuestionGroupStatus, setCustomQuestionGroupStatus] = useState(
         1
     );
+    const [maxSequence, setMaxSequence] = useState(1);
 
     // Surveys
     const [surveys, setSurveys] = useState([]);
@@ -92,11 +95,11 @@ export default function NewQuestion() {
         question_id: null,
         survey_name: null,
         question_group_name: "",
-        question_group_id: mapGrpId,
+        question_group_id: "",
         question_key: "",
         question_type: "",
         question_name: "",
-        sequence: null,
+        sequence: maxSequence,
         data_status: 0,
         is_parent: null,
         is_mandatory: null,
@@ -238,7 +241,21 @@ export default function NewQuestion() {
         getQuestions();
         getSurveys();
         getSurveyQuestionGroups();
-    }, response); // might need to change
+    }, response);
+
+    // useEffect(() => {
+    //     const initializeData = async () => {
+    //         const maxSeq = getMaxSequence(filteredQuestions);
+    //         setMaxSequence(maxSeq);
+
+    //         setResponse((prevResponse) => ({
+    //             ...prevResponse,
+    //             sequence: maxSeq,
+    //         }));
+    //     };
+
+    //     initializeData();
+    // }, []);
 
     const filterQuestionsByGroupName = async () => {
         await getQuestions();
@@ -253,6 +270,15 @@ export default function NewQuestion() {
         });
 
         setFilteredQuestions(filteredQuestions);
+    };
+
+    const getMaxSequence = (questions) => {
+        if (questions.length > 0) {
+            // Find the maximum sequence value in the filtered questions
+            return Math.max(...questions.map((q) => q.sequence || 0)) + 1;
+        } else {
+            return 1; // Default to 1 if there are no questions
+        }
     };
 
     useEffect(() => {
@@ -400,6 +426,7 @@ export default function NewQuestion() {
     };
 
     const saveQuestion = async () => {
+        console.log("Max Sequence", maxSequence);
         setSubmitted(true);
 
         if (
@@ -436,8 +463,6 @@ export default function NewQuestion() {
                         `/editQuestion/${_response.question_id}`,
                         formData
                     );
-
-                    const newQuestion = result.data.data || result.data;
 
                     if (result.status === 200) {
                         // Works when updating UI
@@ -554,7 +579,73 @@ export default function NewQuestion() {
     const hideDeleteQuestionDialog = () => {
         setDeleteQuestionDialog(false);
         setEditState(false);
-        filterQuestionsByGroupName();
+    };
+
+    // Saves active state of question
+    // TODO: fix mandatory UI change
+    const doSaveDeleteQuestion = async () => {
+        let _response = { ...response };
+        const index = findIndexByID(_response.question_id);
+
+        let _questions = [...questions];
+
+        var formData = new FormData();
+        formData.append("question_group_id", _response.question_group_id);
+        formData.append("question_name", _response.question_name);
+        formData.append("question_key", _response.question_key);
+        formData.append("question_type", _response.question_type);
+        formData.append("sequence", _response.sequence);
+        formData.append("data_status", parseInt(_response.data_status, 10));
+        formData.append("is_parent", _response.is_parent);
+        formData.append("is_mandatory", _response.is_mandatory);
+
+        try {
+            const result = await axios.post(
+                `/editQuestion/${_response.question_id}`,
+                formData
+            );
+
+            const newQuestion = result.data.data || result.data;
+
+            if (result.status === 200) {
+                // Update the UI with the new question data
+                _questions[index] = { ..._response, ...newQuestion };
+                setQuestions(_questions); // Update the state with the new questions array
+
+                toast.current.show({
+                    severity: "success",
+                    summary: "Successful",
+                    detail: `Question ${_response.sequence} Activity Updated`,
+                    life: 2000,
+                });
+
+                // setResponse((prevResponse) => ({
+                //     ...prevResponse,
+                //     question_type: "",
+                //     question_name: "",
+                //     sequence: null,
+                //     data_status: 0,
+                //     is_parent: 0,
+                // }));
+
+                setUpdateUI((prev) => !prev);
+                hideDeleteQuestionDialog();
+                setEditState(false);
+            }
+        } catch (error) {
+            console.error("There was an error updating the question!", error);
+
+            toast.current.show({
+                severity: "error",
+                summary: "Error",
+                detail:
+                    error.response?.data?.message || "Failed to save question",
+                life: 3000,
+            });
+            setQuestions(_questions);
+            setEditState(false);
+            setUpdateUI((prev) => !prev);
+        }
     };
 
     const hideDeleteQuestionsDialog = () => {
@@ -631,7 +722,8 @@ export default function NewQuestion() {
                 sequence: null,
                 data_status: 0,
             }));
-            setUpdateUI((prev) => !prev); // Trigger UI update
+            setUpdateUI((prev) => !prev);
+            setEditState(false);
         } catch (error) {
             console.error("Error deleting question", error);
             toast.current.show({
@@ -649,26 +741,43 @@ export default function NewQuestion() {
         }
     };
 
+    // Delete A Question
     const deleteQuestionDialogFooter = (
-        <React.Fragment>
-            <Button
-                label="No"
-                icon="pi pi-times"
-                iconPos="left"
-                className="ms-2 rounded"
-                outlined
-                onClick={hideDeleteQuestionDialog}
-            />
-            <Button
-                label="Yes"
-                icon="pi pi-check"
-                rounded
-                iconPos="left"
-                severity="danger"
-                className="ms-2 rounded"
-                onClick={deleteQuestion}
-            />
-        </React.Fragment>
+        <>
+            <div className="d-flex">
+                <div className="p-1">
+                    <Button
+                        label="Close"
+                        icon="pi pi-times"
+                        iconPos="left"
+                        className="ms-2 rounded"
+                        outlined
+                        onClick={hideDeleteQuestionDialog}
+                    />
+                </div>
+                <div className="p-1">
+                    <Button
+                        label="Save"
+                        icon="pi pi-check"
+                        iconPos="left"
+                        className="ms-2 rounded"
+                        outlined
+                        onClick={doSaveDeleteQuestion}
+                    />
+                </div>
+                <div className="ms-auto p-2">
+                    <Button
+                        label="Delete"
+                        icon="pi pi-trash"
+                        rounded
+                        iconPos="left"
+                        severity="danger"
+                        className="ms-2 rounded"
+                        onClick={deleteQuestion}
+                    />
+                </div>
+            </div>
+        </>
     );
 
     const deleteSelectedQuestions = async () => {
@@ -755,16 +864,14 @@ export default function NewQuestion() {
     const editQuestion = (question) => {
         setResponse({ ...question });
         setQuestionDialog(true);
-        console.log("Want to Edit Response DS", question.data_status);
         setEditState(true);
     };
 
     // Do Delete A Question
     const confirmDeleteQuestion = (question) => {
-        getQuestions();
-        filterQuestionsByGroupName();
         setResponse({ ...question });
         setDeleteQuestionDialog(true);
+        setEditState(true);
     };
 
     // Do Delete Questions
@@ -882,9 +989,12 @@ export default function NewQuestion() {
     );
 
     const openNew = () => {
+        const maxSeq = getMaxSequence(filteredQuestions);
+        setMaxSequence(maxSeq);
         setResponse((prevResponse) => ({
             ...prevResponse,
             ...initialEmptyQuestion,
+            sequence: maxSeq,
         }));
         setSubmitted(false);
         setQuestionDialog(true);
@@ -1074,8 +1184,8 @@ export default function NewQuestion() {
                                                     className={`btn btn-lg m-2 flex-fill ${
                                                         response.survey_name ===
                                                         survey.survey_name
-                                                            ? "btn-primary"
-                                                            : "btn-outline-primary"
+                                                            ? "btn-secondary"
+                                                            : "btn-outline-secondary"
                                                     }`}
                                                     style={{
                                                         height: "100px",
@@ -1086,6 +1196,7 @@ export default function NewQuestion() {
                                                 >
                                                     {survey.survey_name}
                                                 </button>
+
                                                 {/* Popover Over Button */}
                                                 <OverlayPanel ref={op}>
                                                     <div>
@@ -1151,8 +1262,8 @@ export default function NewQuestion() {
                                                             survey.survey_name ===
                                                             customSurvey
                                                     )
-                                                        ? "btn-outline-primary"
-                                                        : "btn-primary"
+                                                        ? "btn-outline-secondary"
+                                                        : "btn-secondary"
                                                 }`}
                                                 style={{
                                                     height: "100px",
@@ -1255,8 +1366,8 @@ export default function NewQuestion() {
                                                         className={`btn btn-lg m-2 flex-fill ${
                                                             response.question_group_name ===
                                                             group.question_group_name
-                                                                ? "btn-primary"
-                                                                : "btn-outline-primary"
+                                                                ? "btn-secondary"
+                                                                : "btn-outline-secondary"
                                                         }`}
                                                         style={{
                                                             height: "100px",
@@ -1284,8 +1395,8 @@ export default function NewQuestion() {
                                                             group.question_group_name ===
                                                             `${response.survey_name} - ${customQuestionGroup}`
                                                     )
-                                                        ? "btn-outline-primary"
-                                                        : "btn-primary"
+                                                        ? "btn-outline-secondary"
+                                                        : "btn-secondary"
                                                 }`}
                                                 style={{
                                                     height: "100px",
@@ -1342,44 +1453,36 @@ export default function NewQuestion() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="d-flex pt-4 justify-content-between mx-5">
-                                <Button
-                                    label="Back"
-                                    className="rounded"
-                                    icon="pi pi-arrow-left"
-                                    severity="secondary"
-                                    onClick={() =>
-                                        stepperRef.current.prevCallback()
-                                    }
-                                />
-                                <Button
-                                    label="Next"
-                                    className="rounded"
-                                    icon="pi pi-arrow-right"
-                                    iconPos="right"
-                                    disabled={
-                                        response.question_group_name === null
-                                    }
-                                    onClick={() => {
-                                        setUpdateUI((prev) => !prev);
-                                        stepperRef.current.nextCallback();
-                                    }}
-                                />
-                            </div>
+                            <PageControlButtons
+                                showBack={true}
+                                backLabel="Back"
+                                onBackClick={() =>
+                                    stepperRef.current.prevCallback()
+                                }
+                                showNext={true}
+                                doneLabel="Next"
+                                onNextClick={() => {
+                                    stepperRef.current.nextCallback();
+                                    setUpdateUI((prev) => !prev);
+                                }}
+                                disabledNext={
+                                    response.question_group_name === ""
+                                }
+                            />
                         </div>
                     </StepperPanel>
 
                     {/* Step 3 - Add Question */}
                     <StepperPanel header="Add Question">
+                        <TableSizeSelector
+                            initialSize={size}
+                            onSizeChange={(newSize) => setSize(newSize)}
+                        />
                         <Toolbar
                             className="mb-4"
                             left={leftToolbarTemplate}
                             right={rightToolbarTemplate}
                         ></Toolbar>
-                        <TableSizeSelector
-                            initialSize={size}
-                            onSizeChange={(newSize) => setSize(newSize)}
-                        />
 
                         <DataTable
                             ref={dt}
@@ -1397,6 +1500,8 @@ export default function NewQuestion() {
                             sortOrder={1}
                             filters={filters}
                             stripedRows
+                            selectionMode="multiple"
+                            dragSelection
                             header={header}
                             rowsPerPageOptions={[5, 10, 25]}
                             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
@@ -1505,7 +1610,7 @@ export default function NewQuestion() {
                             footer={deleteQuestionDialogFooter}
                             onHide={hideDeleteQuestionDialog}
                         >
-                            <div className="confirmation-content">
+                            <div className="confirmation-content d-flex">
                                 <i
                                     className="pi pi-exclamation-triangle me-3"
                                     style={{ fontSize: "2rem" }}
@@ -1514,6 +1619,24 @@ export default function NewQuestion() {
                                     <span>
                                         Are you sure you want to delete{" "}
                                         <b>{question.question_name}</b>?
+                                        <br></br>
+                                        <div className="mt-2">
+                                            You can change the active state
+                                            instead
+                                            <br></br>
+                                            <InputSwitch
+                                                inputId="data_status"
+                                                checked={
+                                                    response.data_status === 1
+                                                }
+                                                onChange={(e) =>
+                                                    onDataStatusChange(
+                                                        e,
+                                                        "data_status"
+                                                    )
+                                                }
+                                            />
+                                        </div>
                                     </span>
                                 )}
                             </div>
@@ -1556,27 +1679,18 @@ export default function NewQuestion() {
                             questions={questions}
                         />
 
-                        {/* Page Control Buttons */}
-                        <div className="d-flex pt-4 justify-content-between mx-5">
-                            <Button
-                                label="Back"
-                                className="rounded"
-                                icon="pi pi-arrow-left"
-                                severity="secondary"
-                                onClick={() =>
-                                    stepperRef.current.prevCallback()
-                                }
-                            />
-                            <Button
-                                label="Done"
-                                className="rounded"
-                                icon="pi pi-check"
-                                iconPos="right"
-                                onClick={() =>
-                                    stepperRef.current.nextCallback()
-                                }
-                            />
-                        </div>
+                        <PageControlButtons
+                            showBack={true}
+                            backLabel="Back"
+                            onBackClick={() =>
+                                stepperRef.current.prevCallback()
+                            }
+                            showNext={true}
+                            doneLabel="Finish"
+                            onNextClick={() =>
+                                stepperRef.current.nextCallback()
+                            }
+                        />
                     </StepperPanel>
                 </Stepper>
             </div>

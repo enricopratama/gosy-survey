@@ -26,20 +26,21 @@ export default function SurveyDialog({
             footer={footer}
             onHide={onHide}
         >
-            <div className="field" style={{ marginBottom: "35px" }}>
-                <label htmlFor="survey_name" className="font-bold">
-                    Survey Type/Name
-                </label>
-                <InputText
-                    id="survey_name"
-                    value={customSurvey}
-                    onChange={onSurveyInputChange}
-                    required
-                    placeholder="Enter Survey Name"
-                    className={classNames({
-                        "p-invalid": submitted && !customSurvey,
-                    })}
-                />
+            <div
+                className="field"
+                style={{ marginBottom: "35px", marginTop: "19px" }}
+            >
+                <span className="p-float-label">
+                    <InputText
+                        id="survey_name"
+                        value={customSurvey}
+                        onChange={onSurveyInputChange}
+                        required
+                    />
+                    <label htmlFor="survey_name" className="font-bold">
+                        Survey Type/Name
+                    </label>
+                </span>
                 {submitted && !customSurvey && (
                     <>
                         <Message
