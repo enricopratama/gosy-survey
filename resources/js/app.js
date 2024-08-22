@@ -48,7 +48,7 @@ function App() {
                         />
                         <Route
                             exact
-                            path="/survey/questions"
+                            path="/survey/preview"
                             element={<PreviewQuest />}
                         />
                         <Route

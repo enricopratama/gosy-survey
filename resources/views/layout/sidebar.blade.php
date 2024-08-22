@@ -76,7 +76,7 @@
                                 <a href="/survey/new" class="nav-link" data-key="t-detached">New Question</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/survey/questions" class="nav-link" data-key="t-detached">Preview Survey</a>
+                                <a href="/survey/preview" class="nav-link" data-key="t-detached">Preview Survey</a>
                             </li>
                         </ul>
                     </div>

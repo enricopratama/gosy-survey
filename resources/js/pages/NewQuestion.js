@@ -13,6 +13,8 @@ import { FilterMatchMode } from "primereact/api";
 import { Toolbar } from "primereact/toolbar";
 import { InputIcon } from "primereact/inputicon";
 import { IconField } from "primereact/iconfield";
+import { InputSwitch } from "primereact/inputswitch";
+import { PageControlButtons } from "../components/PageControls";
 import TableSizeSelector from "../handlers/TableSizeSelector";
 import axios from "axios";
 import "../../css/app.css";
@@ -44,14 +46,15 @@ export default function NewQuestion() {
         sequence: null,
         question_name: "",
         question_type: "",
-        data_status: null,
+        data_status: 1,
         is_parent: 0,
+        is_mandatory: 1,
     };
 
     // Data Table Size
-    const [size, setSize] = useState("normal"); // Default size is normal
+    const [size, setSize] = useState("small"); // Default size
 
-    // Update UI toggler (call after CRUD)
+    // Update UI toggle (call after CRUD)
     const [updateUI, setUpdateUI] = useState(false);
 
     // Question Groups
@@ -60,6 +63,7 @@ export default function NewQuestion() {
     const [customQuestionGroupStatus, setCustomQuestionGroupStatus] = useState(
         1
     );
+    const [maxSequence, setMaxSequence] = useState(1);
 
     // Surveys
     const [surveys, setSurveys] = useState([]);
@@ -91,14 +95,14 @@ export default function NewQuestion() {
         question_id: null,
         survey_name: null,
         question_group_name: "",
-        question_group_id: mapGrpId,
+        question_group_id: "",
         question_key: "",
         question_type: "",
         question_name: "",
-        sequence: null,
-        data_status: null,
-        is_parent: 0,
-        is_mandatory: 1,
+        sequence: maxSequence,
+        data_status: 0,
+        is_parent: null,
+        is_mandatory: null,
         option_1: null,
         option_1_flow: null,
         option_2: null,
@@ -136,14 +140,21 @@ export default function NewQuestion() {
     const onInputNumberChange = (e, name) => {
         const val = e.value || 0;
         let _response = { ...response };
-        _response[`${name}`] = val;
+        _response[`${name}`] = parseInt(val, 10);
         setResponse(_response);
     };
 
     const onCheckboxChange = (e, name) => {
         const val = e.checked ? 1 : 0;
         let _response = { ...response };
-        _response[`${name}`] = val;
+        _response[`${name}`] = parseInt(val, 10);
+        setResponse(_response);
+    };
+
+    const onDataStatusChange = (e, name) => {
+        const val = e.value ? 1 : 0;
+        let _response = { ...response };
+        _response[`${name}`] = parseInt(val, 10);
         setResponse(_response);
     };
 
@@ -230,7 +241,21 @@ export default function NewQuestion() {
         getQuestions();
         getSurveys();
         getSurveyQuestionGroups();
-    }, response); // might need to change
+    }, response);
+
+    // useEffect(() => {
+    //     const initializeData = async () => {
+    //         const maxSeq = getMaxSequence(filteredQuestions);
+    //         setMaxSequence(maxSeq);
+
+    //         setResponse((prevResponse) => ({
+    //             ...prevResponse,
+    //             sequence: maxSeq,
+    //         }));
+    //     };
+
+    //     initializeData();
+    // }, []);
 
     const filterQuestionsByGroupName = async () => {
         await getQuestions();
@@ -245,6 +270,15 @@ export default function NewQuestion() {
         });
 
         setFilteredQuestions(filteredQuestions);
+    };
+
+    const getMaxSequence = (questions) => {
+        if (questions.length > 0) {
+            // Find the maximum sequence value in the filtered questions
+            return Math.max(...questions.map((q) => q.sequence || 0)) + 1;
+        } else {
+            return 1; // Default to 1 if there are no questions
+        }
     };
 
     useEffect(() => {
@@ -392,13 +426,13 @@ export default function NewQuestion() {
     };
 
     const saveQuestion = async () => {
+        console.log("Max Sequence", maxSequence);
         setSubmitted(true);
 
         if (
             response.question_name.trim() &&
             response.question_type.trim() &&
             response.sequence &&
-            response.data_status &&
             response.question_group_id
         ) {
             let _questions = [...questions];
@@ -410,29 +444,28 @@ export default function NewQuestion() {
             formData.append("question_key", _response.question_key);
             formData.append("question_type", _response.question_type);
             formData.append("sequence", _response.sequence);
-            formData.append("data_status", _response.data_status);
+            formData.append("data_status", parseInt(_response.data_status, 10));
             formData.append("is_parent", _response.is_parent);
             formData.append("is_mandatory", _response.is_mandatory);
 
-            formData.forEach((value, key) => {
-                console.log(`${key}: ${value}`);
-            });
+            // formData.forEach((value, key) => {
+            //     console.log(`${key}: ${value}`);
+            // });
 
             const index = findIndexByID(_response.question_id);
 
             try {
                 let result;
+
+                // Update question
                 if (index >= 0 && editState) {
-                    // Update existing question
                     result = await axios.post(
                         `/editQuestion/${_response.question_id}`,
                         formData
                     );
 
-                    console.log("edited question:", result.data);
-                    const newQuestion = result.data.data || result.data;
-
                     if (result.status === 200) {
+                        // Works when updating UI
                         _questions[index] = _response;
                         toast.current.show({
                             severity: "success",
@@ -445,7 +478,7 @@ export default function NewQuestion() {
                             question_type: "",
                             question_name: "",
                             sequence: null,
-                            data_status: null,
+                            data_status: 0,
                             is_parent: 0,
                         }));
                         setQuestionDialog(false);
@@ -455,6 +488,10 @@ export default function NewQuestion() {
                     }
                 } else {
                     // New Question
+                    formData.forEach((value, key) => {
+                        console.log(`${key}: ${value} (Type: ${typeof value})`);
+                    });
+
                     result = await axios.post("/addQuestion", formData);
                     console.log("new question", result.data);
                     if (result.status === 200) {
@@ -502,7 +539,7 @@ export default function NewQuestion() {
                             question_type: "",
                             question_name: "",
                             sequence: null,
-                            data_status: null,
+                            data_status: 0,
                             is_parent: 0,
                         }));
                         setQuestionDialog(false);
@@ -524,6 +561,7 @@ export default function NewQuestion() {
             setQuestions(_questions);
             setEditState(false);
             setUpdateUI((prev) => !prev); // Trigger UI update
+            console.log("Questions", questions);
         }
     };
 
@@ -541,7 +579,73 @@ export default function NewQuestion() {
     const hideDeleteQuestionDialog = () => {
         setDeleteQuestionDialog(false);
         setEditState(false);
-        filterQuestionsByGroupName();
+    };
+
+    // Saves active state of question
+    // TODO: fix mandatory UI change
+    const doSaveDeleteQuestion = async () => {
+        let _response = { ...response };
+        const index = findIndexByID(_response.question_id);
+
+        let _questions = [...questions];
+
+        var formData = new FormData();
+        formData.append("question_group_id", _response.question_group_id);
+        formData.append("question_name", _response.question_name);
+        formData.append("question_key", _response.question_key);
+        formData.append("question_type", _response.question_type);
+        formData.append("sequence", _response.sequence);
+        formData.append("data_status", parseInt(_response.data_status, 10));
+        formData.append("is_parent", _response.is_parent);
+        formData.append("is_mandatory", _response.is_mandatory);
+
+        try {
+            const result = await axios.post(
+                `/editQuestion/${_response.question_id}`,
+                formData
+            );
+
+            const newQuestion = result.data.data || result.data;
+
+            if (result.status === 200) {
+                // Update the UI with the new question data
+                _questions[index] = { ..._response, ...newQuestion };
+                setQuestions(_questions); // Update the state with the new questions array
+
+                toast.current.show({
+                    severity: "success",
+                    summary: "Successful",
+                    detail: `Question ${_response.sequence} Activity Updated`,
+                    life: 2000,
+                });
+
+                // setResponse((prevResponse) => ({
+                //     ...prevResponse,
+                //     question_type: "",
+                //     question_name: "",
+                //     sequence: null,
+                //     data_status: 0,
+                //     is_parent: 0,
+                // }));
+
+                setUpdateUI((prev) => !prev);
+                hideDeleteQuestionDialog();
+                setEditState(false);
+            }
+        } catch (error) {
+            console.error("There was an error updating the question!", error);
+
+            toast.current.show({
+                severity: "error",
+                summary: "Error",
+                detail:
+                    error.response?.data?.message || "Failed to save question",
+                life: 3000,
+            });
+            setQuestions(_questions);
+            setEditState(false);
+            setUpdateUI((prev) => !prev);
+        }
     };
 
     const hideDeleteQuestionsDialog = () => {
@@ -616,11 +720,10 @@ export default function NewQuestion() {
                 question_type: "",
                 question_name: "",
                 sequence: null,
-                data_status: null,
+                data_status: 0,
             }));
-            // getQuestions();
-            // filterQuestionsByGroupName();
-            setUpdateUI((prev) => !prev); // Trigger UI update
+            setUpdateUI((prev) => !prev);
+            setEditState(false);
         } catch (error) {
             console.error("Error deleting question", error);
             toast.current.show({
@@ -632,33 +735,49 @@ export default function NewQuestion() {
             setQuestions(_questions);
         } finally {
             setDeleteQuestionDialog(false);
-            setQuestion(initialEmptyQuestion);
             setEditState(false);
             getQuestions();
             filterQuestionsByGroupName();
         }
     };
 
+    // Delete A Question
     const deleteQuestionDialogFooter = (
-        <React.Fragment>
-            <Button
-                label="No"
-                icon="pi pi-times"
-                iconPos="left"
-                className="ms-2 rounded"
-                outlined
-                onClick={hideDeleteQuestionDialog}
-            />
-            <Button
-                label="Yes"
-                icon="pi pi-check"
-                rounded
-                iconPos="left"
-                severity="danger"
-                className="ms-2 rounded"
-                onClick={deleteQuestion}
-            />
-        </React.Fragment>
+        <>
+            <div className="d-flex flex-wrap align-items-center justify-content-between">
+                <div className="p-1">
+                    <Button
+                        label="Close"
+                        icon="pi pi-times"
+                        iconPos="left"
+                        className="rounded"
+                        outlined
+                        onClick={hideDeleteQuestionDialog}
+                    />
+                </div>
+                <div className="p-1">
+                    <Button
+                        label="Save"
+                        icon="pi pi-check"
+                        iconPos="left"
+                        className="rounded"
+                        outlined
+                        onClick={doSaveDeleteQuestion}
+                    />
+                </div>
+                <div className="p-1 ms-auto">
+                    <Button
+                        label="Delete"
+                        icon="pi pi-trash"
+                        rounded
+                        iconPos="left"
+                        severity="danger"
+                        className="rounded"
+                        onClick={deleteQuestion}
+                    />
+                </div>
+            </div>
+        </>
     );
 
     const deleteSelectedQuestions = async () => {
@@ -688,7 +807,7 @@ export default function NewQuestion() {
                     question_type: "",
                     question_name: "",
                     sequence: null,
-                    data_status: null,
+                    data_status: 0,
                 }));
                 // getQuestions();
                 // filterQuestionsByGroupName();
@@ -750,10 +869,9 @@ export default function NewQuestion() {
 
     // Do Delete A Question
     const confirmDeleteQuestion = (question) => {
-        getQuestions();
-        filterQuestionsByGroupName();
         setResponse({ ...question });
         setDeleteQuestionDialog(true);
+        setEditState(true);
     };
 
     // Do Delete Questions
@@ -871,9 +989,12 @@ export default function NewQuestion() {
     );
 
     const openNew = () => {
+        const maxSeq = getMaxSequence(filteredQuestions);
+        setMaxSequence(maxSeq);
         setResponse((prevResponse) => ({
             ...prevResponse,
             ...initialEmptyQuestion,
+            sequence: maxSeq,
         }));
         setSubmitted(false);
         setQuestionDialog(true);
@@ -944,6 +1065,23 @@ export default function NewQuestion() {
         );
     };
 
+    const isActiveBodyTemplate = (rowData) => {
+        const isActive = rowData.data_status === 1 ? 1 : 0;
+        const iconClassName = classNames("pi", {
+            "pi-check text-success": isActive,
+            "pi-minus text-danger": !isActive,
+        });
+
+        return (
+            <div
+                className="d-inline-flex align-items-center justify-content-center"
+                style={{ width: "2rem", height: "2rem" }}
+            >
+                <i className={iconClassName} style={{ fontSize: "20px" }}></i>
+            </div>
+        );
+    };
+
     const updateResponseOptions = async (updatedOptions) => {
         let _questions = [...questions];
         const index = findIndexByID(updatedOptions.question_id);
@@ -962,19 +1100,19 @@ export default function NewQuestion() {
 
                 setQuestions(_questions);
 
-                toast.current.show({
-                    severity: "success",
-                    summary: "Successful",
-                    detail: `Options for Question ${updatedOptions.sequence} Updated`,
-                    life: 2000,
-                });
+                // toast.current.show({
+                //     severity: "success",
+                //     summary: "Successful",
+                //     detail: `Options for Question ${updatedOptions.sequence} Updated`,
+                //     life: 2000,
+                // });
 
                 setResponse((prevResponse) => ({
                     ...prevResponse,
                     question_type: "",
                     question_name: "",
                     sequence: null,
-                    data_status: null,
+                    data_status: 0,
                     is_parent: 0,
                     is_mandatory: 0,
                 }));
@@ -994,7 +1132,7 @@ export default function NewQuestion() {
                 question_type: "",
                 question_name: "",
                 sequence: null,
-                data_status: null,
+                data_status: 0,
                 is_parent: 0,
                 is_mandatory: 0,
             }));
@@ -1006,7 +1144,12 @@ export default function NewQuestion() {
             <BreadcrumbComponent />
             <Toast ref={toast} />
             <div className="card d-flex justify-content-center">
-                <Stepper linear ref={stepperRef} style={{ marginTop: "2rem" }}>
+                <Stepper
+                    // orientation="vertical"
+                    // linear
+                    ref={stepperRef}
+                    style={{ marginTop: "2rem" }}
+                >
                     {/* Step 1 - Survey Type */}
                     <StepperPanel header="Survey Type">
                         <div className="d-flex flex-column">
@@ -1046,8 +1189,8 @@ export default function NewQuestion() {
                                                     className={`btn btn-lg m-2 flex-fill ${
                                                         response.survey_name ===
                                                         survey.survey_name
-                                                            ? "btn-primary"
-                                                            : "btn-outline-primary"
+                                                            ? "btn-secondary"
+                                                            : "btn-outline-secondary"
                                                     }`}
                                                     style={{
                                                         height: "100px",
@@ -1058,6 +1201,7 @@ export default function NewQuestion() {
                                                 >
                                                     {survey.survey_name}
                                                 </button>
+
                                                 {/* Popover Over Button */}
                                                 <OverlayPanel ref={op}>
                                                     <div>
@@ -1123,8 +1267,8 @@ export default function NewQuestion() {
                                                             survey.survey_name ===
                                                             customSurvey
                                                     )
-                                                        ? "btn-outline-primary"
-                                                        : "btn-primary"
+                                                        ? "btn-outline-secondary"
+                                                        : "btn-secondary"
                                                 }`}
                                                 style={{
                                                     height: "100px",
@@ -1183,7 +1327,7 @@ export default function NewQuestion() {
                     </StepperPanel>
 
                     {/* Step 2 - Question Group Name */}
-                    <StepperPanel header="Question Group Name">
+                    <StepperPanel header="Question Group">
                         <div className="d-flex flex-column">
                             <div
                                 className="rounded surface-ground flex-auto d-flex font-medium mx-5"
@@ -1227,8 +1371,8 @@ export default function NewQuestion() {
                                                         className={`btn btn-lg m-2 flex-fill ${
                                                             response.question_group_name ===
                                                             group.question_group_name
-                                                                ? "btn-primary"
-                                                                : "btn-outline-primary"
+                                                                ? "btn-secondary"
+                                                                : "btn-outline-secondary"
                                                         }`}
                                                         style={{
                                                             height: "100px",
@@ -1256,8 +1400,8 @@ export default function NewQuestion() {
                                                             group.question_group_name ===
                                                             `${response.survey_name} - ${customQuestionGroup}`
                                                     )
-                                                        ? "btn-outline-primary"
-                                                        : "btn-primary"
+                                                        ? "btn-outline-secondary"
+                                                        : "btn-secondary"
                                                 }`}
                                                 style={{
                                                     height: "100px",
@@ -1314,45 +1458,36 @@ export default function NewQuestion() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="d-flex pt-4 justify-content-between mx-5">
-                                <Button
-                                    label="Back"
-                                    className="rounded"
-                                    icon="pi pi-arrow-left"
-                                    severity="secondary"
-                                    onClick={() =>
-                                        stepperRef.current.prevCallback()
-                                    }
-                                />
-                                <Button
-                                    label="Next"
-                                    className="rounded"
-                                    icon="pi pi-arrow-right"
-                                    iconPos="right"
-                                    disabled={
-                                        response.question_group_name === null
-                                    }
-                                    onClick={() => {
-                                        // Optionally, you can update UI again before moving to the next step
-                                        setUpdateUI((prev) => !prev);
-                                        stepperRef.current.nextCallback();
-                                    }}
-                                />
-                            </div>
+                            <PageControlButtons
+                                showBack={true}
+                                backLabel="Back"
+                                onBackClick={() =>
+                                    stepperRef.current.prevCallback()
+                                }
+                                showNext={true}
+                                doneLabel="Next"
+                                onNextClick={() => {
+                                    stepperRef.current.nextCallback();
+                                    setUpdateUI((prev) => !prev);
+                                }}
+                                disabledNext={
+                                    response.question_group_name === ""
+                                }
+                            />
                         </div>
                     </StepperPanel>
 
                     {/* Step 3 - Add Question */}
-                    <StepperPanel header="Add Question">
+                    <StepperPanel header="Questions Details">
+                        <TableSizeSelector
+                            initialSize={size}
+                            onSizeChange={(newSize) => setSize(newSize)}
+                        />
                         <Toolbar
                             className="mb-4"
                             left={leftToolbarTemplate}
                             right={rightToolbarTemplate}
                         ></Toolbar>
-                        <TableSizeSelector
-                            initialSize={size}
-                            onSizeChange={(newSize) => setSize(newSize)}
-                        />
 
                         <DataTable
                             ref={dt}
@@ -1370,6 +1505,8 @@ export default function NewQuestion() {
                             sortOrder={1}
                             filters={filters}
                             stripedRows
+                            selectionMode="multiple"
+                            dragSelection
                             header={header}
                             rowsPerPageOptions={[5, 10, 25]}
                             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
@@ -1408,6 +1545,15 @@ export default function NewQuestion() {
                                 header="Type"
                                 style={{ width: "4rem" }}
                                 sortable
+                                className="border-left border-right"
+                            />
+                            <Column
+                                field="data_status"
+                                header="Active?"
+                                sortable
+                                style={{ width: "4rem" }}
+                                body={isActiveBodyTemplate}
+                                bodyStyle={{ textAlign: "center" }}
                                 className="border-left border-right"
                             />
                             <Column
@@ -1456,6 +1602,7 @@ export default function NewQuestion() {
                             hideDialog={hideDialog}
                             submitted={submitted}
                             onCheckboxChange={onCheckboxChange}
+                            onDataStatusChange={onDataStatusChange}
                         />
 
                         {/* Delete a Question Dialog */}
@@ -1468,7 +1615,7 @@ export default function NewQuestion() {
                             footer={deleteQuestionDialogFooter}
                             onHide={hideDeleteQuestionDialog}
                         >
-                            <div className="confirmation-content">
+                            <div className="confirmation-content d-flex">
                                 <i
                                     className="pi pi-exclamation-triangle me-3"
                                     style={{ fontSize: "2rem" }}
@@ -1477,6 +1624,24 @@ export default function NewQuestion() {
                                     <span>
                                         Are you sure you want to delete{" "}
                                         <b>{question.question_name}</b>?
+                                        <br></br>
+                                        <div className="mt-2">
+                                            You can change the active state
+                                            instead
+                                            <br></br>
+                                            <InputSwitch
+                                                inputId="data_status"
+                                                checked={
+                                                    response.data_status === 1
+                                                }
+                                                onChange={(e) =>
+                                                    onDataStatusChange(
+                                                        e,
+                                                        "data_status"
+                                                    )
+                                                }
+                                            />
+                                        </div>
                                     </span>
                                 )}
                             </div>
@@ -1516,29 +1681,21 @@ export default function NewQuestion() {
                             }}
                             selectedRow={selectedRow}
                             updateResponse={updateResponseOptions}
+                            questions={questions}
                         />
 
-                        {/* Page Control Buttons */}
-                        <div className="d-flex pt-4 justify-content-between mx-5">
-                            <Button
-                                label="Back"
-                                className="rounded"
-                                icon="pi pi-arrow-left"
-                                severity="secondary"
-                                onClick={() =>
-                                    stepperRef.current.prevCallback()
-                                }
-                            />
-                            <Button
-                                label="Done"
-                                className="rounded"
-                                icon="pi pi-check"
-                                iconPos="right"
-                                onClick={() =>
-                                    stepperRef.current.nextCallback()
-                                }
-                            />
-                        </div>
+                        <PageControlButtons
+                            showBack={true}
+                            backLabel="Back"
+                            onBackClick={() =>
+                                stepperRef.current.prevCallback()
+                            }
+                            showNext={true}
+                            doneLabel="Finish"
+                            onNextClick={() =>
+                                stepperRef.current.nextCallback()
+                            }
+                        />
                     </StepperPanel>
                 </Stepper>
             </div>

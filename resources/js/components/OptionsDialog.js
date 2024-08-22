@@ -4,16 +4,40 @@ import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
+import { Dropdown } from "primereact/dropdown";
+import "../../css/DataTable.css";
 
 export default function OptionsDialog({
     visible,
     onHide,
     selectedRow,
-    updateResponse, // contains the updated response
+    updateResponse,
+    questions,
 }) {
     const [optionsData, setOptionsData] = useState([]);
 
-    // Function to extract options data from selectedRow
+    const groupedQuestions = questions.reduce((groups, question) => {
+        const group = groups[question.question_group_id] || {
+            question_group_name: question.question_group_name,
+            items: [],
+        };
+
+        group.items.push({
+            label: question.question_name,
+            value: question.question_key,
+        });
+
+        groups[question.question_group_id] = group;
+        return groups;
+    }, {});
+
+    // Convert grouped questions into the format expected by the Dropdown
+    const dropdownOptions = Object.keys(groupedQuestions).map((groupId) => ({
+        label: groupedQuestions[groupId].question_group_name,
+        items: groupedQuestions[groupId].items,
+    }));
+
+    // Function to reformat options data from selectedRow
     const extractOptionsData = (row) => {
         const extractedOptions = [];
 
@@ -21,7 +45,7 @@ export default function OptionsDialog({
             for (let i = 1; i <= 9; i++) {
                 extractedOptions.push({
                     option_num: `option_${i}`,
-                    option_data: row[`option_${i}`] || "", // Leave empty if null
+                    option_data: row[`option_${i}`] || "",
                     option_flow: row[`option_${i}_flow`] || "",
                 });
             }
@@ -31,7 +55,6 @@ export default function OptionsDialog({
     };
 
     useEffect(() => {
-        // Call the extractOptionsData function and set the state
         const options = extractOptionsData(selectedRow);
         setOptionsData(options);
     }, [selectedRow]);
@@ -54,22 +77,38 @@ export default function OptionsDialog({
                 data.option_flow !== "" ? data.option_flow : null;
         });
 
-        updateResponse(updatedResponse); // Trigger the update response and POST request
-        onHide(); // Close the dialog
+        updateResponse(updatedResponse);
+        onHide();
     };
 
     const textEditor = (options) => (
         <InputText
             type="text"
-            value={options.value || ""} // Leave empty if null
+            value={options.value || ""}
             onChange={(e) => options.editorCallback(e.target.value)}
         />
     );
 
+    const optionFlowsEditor = (options) => {
+        return (
+            <Dropdown
+                value={options.value || ""}
+                options={dropdownOptions}
+                onChange={(e) => options.editorCallback(e.value)}
+                placeholder="Select a Question"
+                panelStyle={{ maxHeight: "600px", maxWidth: "90%" }}
+                filter
+                optionLabel="label"
+                optionGroupLabel="label"
+                optionGroupChildren="items"
+            />
+        );
+    };
+
     const dialogFooterTemplate = () => (
         <div className="mt-2">
             <Button
-                label="Done"
+                label="Save"
                 className="rounded me-2"
                 icon="pi pi-check"
                 onClick={handleSave}
@@ -79,12 +118,13 @@ export default function OptionsDialog({
 
     return (
         <Dialog
-            header="Manage Options"
+            header={selectedRow.question_name}
             visible={visible}
-            style={{ width: "50vw" }}
+            style={{ width: "65vw", maxHeight: "90vh" }}
+            breakpoints={{ "960px": "75vw", "641px": "90vw" }}
             maximizable
             modal
-            contentStyle={{ height: "80vh" }}
+            contentStyle={{ height: "60vh" }}
             onHide={onHide}
             footer={dialogFooterTemplate()}
         >
@@ -93,9 +133,9 @@ export default function OptionsDialog({
                     value={optionsData}
                     editMode="row"
                     onRowEditComplete={onRowEditComplete}
-                    tableStyle={{ minWidth: "10rem" }}
+                    tableStyle={{ minWidth: "60vw" }}
                     stripedRows
-                    showGridlines
+                    className="p-datatable-gridlines"
                 >
                     <Column
                         field="option_num"
@@ -103,25 +143,37 @@ export default function OptionsDialog({
                         body={(rowData) => (
                             <strong>{rowData.option_num}</strong>
                         )}
+                        className="border-left border-right"
                     />
                     <Column
                         field="option_data"
-                        header="Option Data"
+                        header="Option"
                         editor={(options) => textEditor(options)}
-                        style={{ width: "5%" }}
-                        bodyStyle={{ textAlign: "center" }}
+                        style={{ width: "10%" }}
+                        className="border-left"
                     />
                     <Column
                         field="option_flow"
-                        header="Option Flow"
-                        editor={(options) => textEditor(options)}
-                        style={{ width: "5%" }}
-                        bodyStyle={{ textAlign: "center" }}
+                        header="Next Question"
+                        editor={(options) => optionFlowsEditor(options)}
+                        body={(rowData) => {
+                            // Find the question name based on the stored question key (option_flow)
+                            const selectedQuestion = questions.find(
+                                (question) =>
+                                    question.question_key ===
+                                    rowData.option_flow
+                            );
+                            return selectedQuestion
+                                ? selectedQuestion.question_name
+                                : "";
+                        }}
+                        style={{ width: "15%" }}
                     />
                     <Column
                         rowEditor={true}
                         headerStyle={{ width: "10%" }}
                         bodyStyle={{ textAlign: "right" }}
+                        className=" border-right"
                     />
                 </DataTable>
             </div>
