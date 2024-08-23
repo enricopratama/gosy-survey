@@ -16,6 +16,7 @@ export default function OptionsDialog({
 }) {
     const [optionsData, setOptionsData] = useState([]);
 
+    // TODO: change to only view question group names in dialog
     const groupedQuestions = questions.reduce((groups, question) => {
         const group = groups[question.question_group_id] || {
             question_group_name: question.question_group_name,
@@ -41,10 +42,12 @@ export default function OptionsDialog({
     const extractOptionsData = (row) => {
         const extractedOptions = [];
 
+        const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
+
         if (row) {
             for (let i = 1; i <= 9; i++) {
                 extractedOptions.push({
-                    option_num: `option_${i}`,
+                    option_num: `Jawaban ${alphabet[i - 1]}`,
                     option_data: row[`option_${i}`] || "",
                     option_flow: row[`option_${i}_flow`] || "",
                 });
@@ -154,10 +157,9 @@ export default function OptionsDialog({
                     />
                     <Column
                         field="option_flow"
-                        header="Next Question"
+                        header="Next Question Group"
                         editor={(options) => optionFlowsEditor(options)}
                         body={(rowData) => {
-                            // Find the question name based on the stored question key (option_flow)
                             const selectedQuestion = questions.find(
                                 (question) =>
                                     question.question_key ===

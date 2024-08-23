@@ -22,7 +22,7 @@ class QuestionController extends Controller
     {
         try {
             $questions = Question::select(
-                'mst_question_ori.*',
+                'mst_question.*',
                 'mst_question_group.question_group_name AS question_group_name',
                 'mst_survey.survey_id AS survey_id',
                 'mst_survey.survey_name AS survey_name',
@@ -34,7 +34,7 @@ class QuestionController extends Controller
             )
                 ->leftJoin(
                     'mst_survey_question_group',
-                    'mst_question_ori.question_group_id',
+                    'mst_question.question_group_id',
                     '=',
                     'mst_survey_question_group.question_group_id'
                 )
@@ -51,6 +51,26 @@ class QuestionController extends Controller
                     'mst_question_group.question_group_id'
                 )
                 ->get();
+
+            return response()->json($questions);
+        } catch (\Exception $e) {
+            return response()->json(
+                [
+                    'error' => 'Failed to retrieve questions.',
+                    'message' => $e->getMessage(),
+                ],
+                500
+            );
+        }
+    }
+
+    public function getQuestionsComplete()
+    {
+        try {
+            $questions = Question::with([
+                'questionGroup',
+                'surveyQuestionGroup.survey',
+            ])->get();
 
             return response()->json($questions);
         } catch (\Exception $e) {

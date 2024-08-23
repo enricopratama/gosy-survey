@@ -1,4 +1,5 @@
-import "primereact/resources/themes/lara-light-indigo/theme.css"; // theme
+import "primereact/resources/themes/lara-light-indigo/theme.css"; // light mode
+// import "primereact/resources/themes/lara-dark-indigo/theme.css"; // dark mode
 import "primereact/resources/primereact.css"; // core css
 import "primeicons/primeicons.css"; // icons
 import React, { useContext, useEffect } from "react";

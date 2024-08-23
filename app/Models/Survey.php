@@ -36,4 +36,13 @@ class Survey extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function surveyQuestionGroups()
+    {
+        return $this->hasMany(
+            SurveyQuestionGroup::class,
+            'survey_id',
+            'survey_id'
+        );
+    }
 }

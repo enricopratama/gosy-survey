@@ -37,4 +37,13 @@ class QuestionGroup extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function questions()
+    {
+        return $this->hasMany(
+            Question::class,
+            'question_group_id',
+            'question_group_id'
+        );
+    }
 }

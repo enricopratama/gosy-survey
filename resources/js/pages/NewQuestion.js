@@ -27,6 +27,7 @@ import AddEditQuestionDialog from "./AddEditQuestionDialog";
 import OptionsDialog from "../components/OptionsDialog";
 import SurveyDialog from "../components/SurveyDialog";
 import QuestionGroupDialog from "../components/QuestionGroupDialog";
+import Step3Header from "../handlers/Step3Header";
 
 export default function NewQuestion() {
     const op = useRef(null);
@@ -121,6 +122,13 @@ export default function NewQuestion() {
         option_8_flow: null,
         option_9: null,
         option_9_flow: null,
+    });
+
+    const [surveyQGrpResp, setSurveyQGrpResp] = useState({
+        survey_id: response.survey_id,
+        sequence: 1, // set 1 default for now
+        question_group_id: response.question_group_id,
+        data_status: 1, // set 1 default for now
     });
 
     // Filters
@@ -286,74 +294,12 @@ export default function NewQuestion() {
     }, [updateUI]);
 
     // Page 1
-    const handleSurveyClick = (survey) => {
+    const handleSurveyClick = (newSurvey) => {
         setResponse((prevResponse) => ({
             ...prevResponse,
-            survey_name: survey.survey_name,
+            survey_id: newSurvey.survey_id,
+            survey_name: newSurvey.survey_name,
         }));
-    };
-
-    // Page 2
-    const handleQuestionGroupClick = (group) => {
-        setResponse((prevResponse) => ({
-            ...prevResponse,
-            question_group_name: group.question_group_name,
-        }));
-    };
-
-    const handleCustomQuestionGroupSubmit = async () => {
-        setSubmittedQuestion(true);
-
-        if (customQuestionGroup.trim()) {
-            const additionalString = `${response.survey_name} - `;
-            const totalString = additionalString + customQuestionGroup;
-
-            try {
-                const payload = {
-                    question_group_name: totalString,
-                    survey_name: response.survey_name,
-                    data_status: customQuestionGroupStatus,
-                };
-
-                const result = await axios.post("/addQuestionGroup", payload);
-
-                if (result.status === 200 && result.data.status === 1) {
-                    const newQuestionGroup = result.data.data;
-
-                    setSurveyQuestionGroups((prevGroups) => [
-                        ...prevGroups,
-                        newQuestionGroup,
-                    ]);
-                    handleQuestionGroupClick(newQuestionGroup);
-
-                    toast.current.show({
-                        severity: "success",
-                        summary: "Successful",
-                        detail: `Question Group ${newQuestionGroup.question_group_name} Created`,
-                        life: 2000,
-                    });
-
-                    setQuestionGroupDialog(false);
-                } else {
-                    throw new Error(
-                        result.data.message || "Failed to create question group"
-                    );
-                }
-            } catch (error) {
-                console.error(
-                    "There was an error creating the question group!",
-                    error
-                );
-                toast.current.show({
-                    severity: "error",
-                    summary: "Error",
-                    detail:
-                        error.response?.data?.message ||
-                        "Failed to create question group",
-                    life: 3000,
-                });
-            }
-        }
     };
 
     const handleCustomSurveySubmit = async () => {
@@ -366,7 +312,6 @@ export default function NewQuestion() {
                     data_status: customSurveyStatus,
                 };
 
-                // Send a POST request to the backend to create a new survey
                 const result = await axios.post("/addSurvey", payload);
 
                 if (result.status === 200 && result.data.status === 1) {
@@ -406,6 +351,95 @@ export default function NewQuestion() {
         }
     };
 
+    // Page 2: New Question Group (submit)
+    const handleQuestionGroupClick = (group) => {
+        setResponse((prevResponse) => ({
+            ...prevResponse,
+            question_group_name: group.question_group_name,
+        }));
+        setUpdateUI(!updateUI);
+    };
+
+    // Page 2: New Question Group (handle)
+    const handleCustomQuestionGroupSubmit = async () => {
+        setSubmittedQuestion(true);
+
+        if (customQuestionGroup.trim()) {
+            const additionalString = `${response.survey_name} - `;
+            const totalString = additionalString + customQuestionGroup;
+
+            try {
+                const payload = {
+                    question_group_name: totalString,
+                    survey_name: response.survey_name,
+                    data_status: customQuestionGroupStatus,
+                };
+
+                const result = await axios.post("/addQuestionGroup", payload);
+
+                const newQGrp = result.data.data || result.data.data;
+
+                if (result.status === 200 && result.data.status === 1) {
+                    const newQuestionGroup = result.data.data;
+
+                    const surveyQGrpPayload = {
+                        survey_id: response.survey_id,
+                        question_group_id: newQuestionGroup.question_group_id,
+                        sequence: 1, // Set default sequence value as 1
+                        data_status: 1, // Set default data_status value as 1
+                    };
+
+                    const surveyQGrpResult = await axios.post(
+                        "/addSurveyQuestionGroup",
+                        surveyQGrpPayload
+                    );
+
+                    if (
+                        surveyQGrpResult.status === 200 &&
+                        surveyQGrpResult.data.status === 1
+                    ) {
+                        setSurveyQuestionGroups((prevGroups) => [
+                            ...prevGroups,
+                            newQuestionGroup,
+                        ]);
+                        handleQuestionGroupClick(newQuestionGroup);
+
+                        toast.current.show({
+                            severity: "success",
+                            summary: "Successful",
+                            detail: `Question Group ${newQuestionGroup.question_group_name} Created`,
+                            life: 2000,
+                        });
+
+                        setQuestionGroupDialog(false);
+                    } else {
+                        throw new Error(
+                            surveyQGrpResult.data.message ||
+                                "Failed to create survey question group"
+                        );
+                    }
+                } else {
+                    throw new Error(
+                        result.data.message || "Failed to create question group"
+                    );
+                }
+            } catch (error) {
+                console.error(
+                    "There was an error creating the question group!",
+                    error
+                );
+                toast.current.show({
+                    severity: "error",
+                    summary: "Error",
+                    detail:
+                        error.response?.data?.message ||
+                        "Failed to create question group",
+                    life: 3000,
+                });
+            }
+        }
+    };
+
     /**
      * Function to check if question_id exists.
      * Returns the index of the found question_id if found, -1 otherwise.
@@ -426,7 +460,6 @@ export default function NewQuestion() {
     };
 
     const saveQuestion = async () => {
-        console.log("Max Sequence", maxSequence);
         setSubmitted(true);
 
         if (
@@ -441,6 +474,10 @@ export default function NewQuestion() {
             var formData = new FormData();
             formData.append("question_group_id", _response.question_group_id);
             formData.append("question_name", _response.question_name);
+            formData.append(
+                "question_group_name",
+                _response.question_group_name
+            );
             formData.append("question_key", _response.question_key);
             formData.append("question_type", _response.question_type);
             formData.append("sequence", _response.sequence);
@@ -448,9 +485,10 @@ export default function NewQuestion() {
             formData.append("is_parent", _response.is_parent);
             formData.append("is_mandatory", _response.is_mandatory);
 
-            // formData.forEach((value, key) => {
-            //     console.log(`${key}: ${value}`);
-            // });
+            console.log("Form state before inserting");
+            formData.forEach((value, key) => {
+                console.log(`${key}: ${value}`);
+            });
 
             const index = findIndexByID(_response.question_id);
 
@@ -465,7 +503,6 @@ export default function NewQuestion() {
                     );
 
                     if (result.status === 200) {
-                        // Works when updating UI
                         _questions[index] = _response;
                         toast.current.show({
                             severity: "success",
@@ -473,14 +510,6 @@ export default function NewQuestion() {
                             detail: `Question ${_response.sequence} Updated`,
                             life: 2000,
                         });
-                        setResponse((prevResponse) => ({
-                            ...prevResponse,
-                            question_type: "",
-                            question_name: "",
-                            sequence: null,
-                            data_status: 0,
-                            is_parent: 0,
-                        }));
                         setQuestionDialog(false);
                         setUpdateUI((prev) => !prev);
                         getQuestions();
@@ -488,12 +517,7 @@ export default function NewQuestion() {
                     }
                 } else {
                     // New Question
-                    formData.forEach((value, key) => {
-                        console.log(`${key}: ${value} (Type: ${typeof value})`);
-                    });
-
                     result = await axios.post("/addQuestion", formData);
-                    console.log("new question", result.data);
                     if (result.status === 200) {
                         // This worked in updating UI
                         // _questions.push(_response);
@@ -522,9 +546,12 @@ export default function NewQuestion() {
                             option_8_flow: newQuestion.option_8_flow,
                             option_9: newQuestion.option_9,
                             option_9_flow: newQuestion.option_9_flow,
+                            question_group_name: _response.question_group_name,
                         };
 
                         _questions.push(mergedQuestion);
+
+                        console.log("Merged q", mergedQuestion);
                         toast.current.show({
                             severity: "success",
                             summary: "Successful",
@@ -532,19 +559,10 @@ export default function NewQuestion() {
                             life: 2000,
                         });
 
-                        setUpdateUI((prev) => !prev); // Trigger UI update
-
-                        setResponse((prevResponse) => ({
-                            ...prevResponse,
-                            question_type: "",
-                            question_name: "",
-                            sequence: null,
-                            data_status: 0,
-                            is_parent: 0,
-                        }));
+                        setUpdateUI((prev) => !prev);
                         setQuestionDialog(false);
-                        getQuestions();
-                        filterQuestionsByGroupName();
+                        // getQuestions();
+                        // filterQuestionsByGroupName();
                     }
                 }
             } catch (error) {
@@ -560,8 +578,7 @@ export default function NewQuestion() {
             }
             setQuestions(_questions);
             setEditState(false);
-            setUpdateUI((prev) => !prev); // Trigger UI update
-            console.log("Questions", questions);
+            setUpdateUI((prev) => !prev);
         }
     };
 
@@ -573,7 +590,6 @@ export default function NewQuestion() {
         setSubmitted(false);
         setQuestionDialog(false);
         setEditState(false);
-        filterQuestionsByGroupName();
     };
 
     const hideDeleteQuestionDialog = () => {
@@ -581,7 +597,6 @@ export default function NewQuestion() {
         setEditState(false);
     };
 
-    // Saves active state of question
     // TODO: fix mandatory UI change
     const doSaveDeleteQuestion = async () => {
         let _response = { ...response };
@@ -608,9 +623,8 @@ export default function NewQuestion() {
             const newQuestion = result.data.data || result.data;
 
             if (result.status === 200) {
-                // Update the UI with the new question data
                 _questions[index] = { ..._response, ...newQuestion };
-                setQuestions(_questions); // Update the state with the new questions array
+                setQuestions(_questions);
 
                 toast.current.show({
                     severity: "success",
@@ -618,15 +632,6 @@ export default function NewQuestion() {
                     detail: `Question ${_response.sequence} Activity Updated`,
                     life: 2000,
                 });
-
-                // setResponse((prevResponse) => ({
-                //     ...prevResponse,
-                //     question_type: "",
-                //     question_name: "",
-                //     sequence: null,
-                //     data_status: 0,
-                //     is_parent: 0,
-                // }));
 
                 setUpdateUI((prev) => !prev);
                 hideDeleteQuestionDialog();
@@ -981,7 +986,7 @@ export default function NewQuestion() {
                     iconPos="left"
                     onClick={async () => {
                         await saveQuestion();
-                        setUpdateUI((prev) => !prev); // Trigger UI update after saving the question
+                        setUpdateUI((prev) => !prev);
                     }}
                 />
             </div>
@@ -989,6 +994,7 @@ export default function NewQuestion() {
     );
 
     const openNew = () => {
+        // Max Sequence initialisation
         const maxSeq = getMaxSequence(filteredQuestions);
         setMaxSequence(maxSeq);
         setResponse((prevResponse) => ({
@@ -996,6 +1002,7 @@ export default function NewQuestion() {
             ...initialEmptyQuestion,
             sequence: maxSeq,
         }));
+
         setSubmitted(false);
         setQuestionDialog(true);
     };
@@ -1291,6 +1298,7 @@ export default function NewQuestion() {
                                                 )}
                                             </button>
 
+                                            {/* Add New Survey Dialog */}
                                             <SurveyDialog
                                                 visible={questionDialog}
                                                 onHide={hideDialog}
@@ -1479,9 +1487,12 @@ export default function NewQuestion() {
 
                     {/* Step 3 - Add Question */}
                     <StepperPanel header="Questions Details">
-                        <TableSizeSelector
+                        <Step3Header
+                            selectedQuestionGroup={response.question_group_name}
                             initialSize={size}
                             onSizeChange={(newSize) => setSize(newSize)}
+                            questionGroups={surveyQuestionGroups}
+                            onQuestionGroupChange={handleQuestionGroupClick}
                         />
                         <Toolbar
                             className="mb-4"
@@ -1517,7 +1528,7 @@ export default function NewQuestion() {
                                 selectionMode="multiple"
                                 exportable={false}
                                 style={{ width: "4rem" }}
-                                className="border-left border-right"
+                                className="border-right"
                             />
                             <Column
                                 field="sequence"

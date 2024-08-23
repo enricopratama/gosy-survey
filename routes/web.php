@@ -8,6 +8,7 @@ use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\QuestionGroupController;
 use App\Http\Controllers\SurveyController;
+use App\Http\Controllers\SurveyQuestionGroupController;
 
 // Define a route that requires authentication middleware
 Route::get('/flights', function () {
@@ -30,7 +31,8 @@ Route::get('/users', [UserController::class, 'index'])->name('users');
 
 // Questions
 Route::get('/questionsRaw', [QuestionController::class, 'index']);
-Route::get('/questions', [QuestionController::class, 'getQuestions']);
+Route::get('/questions', [QuestionController::class, 'getQuestions']); // original q
+Route::get('/questionsComplete', [QuestionController::class, 'getQuestionsComplete']); // updated q
 Route::get('/questions/{question_id}', [QuestionController::class, 'getQuestionById',]);
 Route::post('/addQuestion', [QuestionController::class, 'store']);
 Route::post('/editQuestion/{question_id}', [QuestionController::class, 'update',]);
@@ -43,7 +45,6 @@ Route::post('/addSurvey', [SurveyController::class, 'store']);
 Route::post('/editSurvey/{survey_id}', [SurveyController::class, 'update']); 
 Route::delete('/deleteSurvey/{survey_id}', [SurveyController::class, 'destroy']); 
 
-
 // Question Groups
 Route::get('/questionGroups', [QuestionGroupController::class, 'index']); 
 Route::get('/questionGroups/{question_group_name}', [QuestionGroupController::class, 'getByQuestionGroup']); 
@@ -51,6 +52,11 @@ Route::post('/addQuestionGroup', [QuestionGroupController::class, 'store']);
 Route::post('/editQuestionGroup/{question_group_id}', [QuestionGroupController::class, 'update']);
 Route::delete('/deleteQuestionGroup/{question_group_id}', [QuestionGroupController::class, 'destroy']); 
 
+// Survey Question Groups
+Route::get('/surveyQuestionGroups', [SurveyQuestionGroupController::class, 'getSurveyQuestionGroups']);
+Route::post('/addSurveyQuestionGroup', [SurveyQuestionGroupController::class, 'store']);
+Route::post('/editSurveyQuestionGroups/{id}', [SurveyQuestionGroupController::class, 'update']);
+Route::delete('/deleteSurveyQuestionGroups/{id}', [SurveyQuestionGroupController::class, 'destroy']);
 
 // Data tables
 Route::get('/master-users', [UserController::class, 'getUserAccess']);

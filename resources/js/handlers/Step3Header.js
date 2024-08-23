@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { SelectButton } from "primereact/selectbutton";
 import { Dropdown } from "primereact/dropdown";
 
-// Must set state, and put size field in DataTable as a prop. Example:
-/* <TableSizeSelector
-    initialSize={size}
-    onSizeChange={(newSize) => setSize(newSize)}
-/> */
-
-export default function TableSizeSelector({ initialSize, onSizeChange }) {
+export default function Step3Header({
+    initialSize,
+    onSizeChange,
+    questionGroups,
+    onQuestionGroupChange,
+    selectedQuestionGroup, // Prop passed from parent
+}) {
     const [sizeOptions] = useState([
         { label: "Small", value: "small" },
         { label: "Normal", value: "normal" },
@@ -38,12 +38,36 @@ export default function TableSizeSelector({ initialSize, onSizeChange }) {
         onSizeChange(e.value);
     };
 
+    const handleQuestionGroupSelect = (e) => {
+        const selectedGroup = e.value;
+        onQuestionGroupChange(selectedGroup);
+    };
+
     return (
         <div className="d-flex justify-content-between mb-4 mt-4 p-toolbar p-component">
+            {/* SelectButton for size options */}
             <SelectButton
                 value={size}
                 onChange={handleSizeChange}
                 options={sizeOptions}
+            />
+
+            {/* Dropdown for selecting question group */}
+            <Dropdown
+                value={
+                    questionGroups.find(
+                        (group) =>
+                            group.question_group_name === selectedQuestionGroup
+                    ) || null
+                }
+                options={questionGroups.map((group) => ({
+                    label: group.question_group_name,
+                    value: group,
+                }))}
+                onChange={handleQuestionGroupSelect}
+                placeholder="Select Question Group"
+                className="mr-4"
+                style={{ width: "300px" }}
             />
         </div>
     );

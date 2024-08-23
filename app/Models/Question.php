@@ -12,7 +12,7 @@ class Question extends Model
     use HasApiTokens, HasFactory, Notifiable;
 
     // table of questions
-    protected $table = 'mst_question_ori';
+    protected $table = 'mst_question';
 
     /**
      * The attributes that are mass assignable.
@@ -71,4 +71,22 @@ class Question extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function questionGroup()
+    {
+        return $this->belongsTo(
+            QuestionGroup::class,
+            'question_group_id',
+            'question_group_id'
+        );
+    }
+
+    public function surveyQuestionGroup()
+    {
+        return $this->belongsTo(
+            SurveyQuestionGroup::class,
+            'question_group_id',
+            'question_group_id'
+        );
+    }
 }

@@ -138,10 +138,10 @@
                             <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
                             <label class="form-check-label" for="auth-remember-check">Remember me</label>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                        <button type="submit" class="btn btn-primary btn-block rounded">Sign In</button>
                     </form>
                     <div class="signin-other-title">
-                        <h5 class="fs-13 mb-4">Sign In with</h5>
+                        <h5 class="fs-13 mb-4">Or Sign In With</h5>
                         <div>
                             <button type="button" class="btn btn-primary btn-icon"><i class="fab fa-facebook-f"></i></button>
                             <button type="button" class="btn btn-danger btn-icon"><i class="fab fa-google"></i></button>

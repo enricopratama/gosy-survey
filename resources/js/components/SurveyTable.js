@@ -8,15 +8,46 @@ import { InputIcon } from "primereact/inputicon";
 import { IconField } from "primereact/iconfield";
 import TableSizeSelector from "../handlers/TableSizeSelector";
 import { MultiSelect } from "primereact/multiselect";
+import { Button } from "primereact/button";
 import axios from "axios";
 import "../../css/DataTable.css";
-import { Button } from "primereact/button";
+import { Dialog } from "primereact/dialog";
+import { InputSwitch } from "primereact/inputswitch";
 
 export default function SurveyTable() {
     const toast = useRef(null);
     const dt = useRef(null);
     const [questions, setQuestions] = useState([]);
     const [size, setSize] = useState("normal");
+
+    const [editState, setEditState] = useState(false);
+
+    const [submitted, setSubmitted] = useState(false);
+
+    // Dialog States
+    const [addDialog, setAddDialog] = useState(false);
+
+    // Question Group Response
+    const [response, setResponse] = useState({
+        question_group_id: null,
+        question_group_name: "",
+        question_group_data_status: "",
+    });
+
+    // Survey Response
+    const [surveyResponse, setSurveyResponse] = useState({
+        survey_id: null,
+        survey_name: "",
+        survey_data_status: "",
+    });
+
+    const initialEmptyQuestionGroup = {
+        question_group_id: null,
+        question_group_name: "",
+        question_group_data_status: "",
+    };
+
+    const [updateUI, setUpdateUI] = useState(false);
 
     // Filters
     const [globalFilterValue, setGlobalFilterValue] = useState("");
@@ -27,6 +58,7 @@ export default function SurveyTable() {
 
     const [expandedRows, setExpandedRows] = useState([]);
     const [loading, setLoading] = useState(true);
+
     const columns = [
         { field: "question_id", header: "ID" },
         { field: "question_key", header: "Question Key" },
@@ -68,15 +100,6 @@ export default function SurveyTable() {
 
     const [visibleColumns, setVisibleColumns] = useState(columns);
 
-    const initialEmptyQuestion = {
-        question_key: "",
-        question_group_id: null,
-        sequence: null,
-        question_name: "",
-        question_type: "",
-        data_status: null,
-    };
-
     const getQuestions = async () => {
         try {
             const response = await axios.get("/api/questions");
@@ -93,7 +116,7 @@ export default function SurveyTable() {
 
     useEffect(() => {
         getQuestions();
-    }, []);
+    }, [updateUI]);
 
     const onGlobalFilterChange = (e) => {
         const value = e.target.value || "";
@@ -104,17 +127,119 @@ export default function SurveyTable() {
         setGlobalFilterValue(value);
     };
 
-    const handleCreateGroup = () => {
-        // Logic for creating a new question group
+    // Input Change Handlers
+    const onInputChange = (e, name, isSurvey = false) => {
+        const val = (e.target && e.target.value) || "";
+        if (isSurvey) {
+            let _surveyResponse = { ...surveyResponse };
+            _surveyResponse[`${name}`] = val;
+            setSurveyResponse(_surveyResponse);
+        } else {
+            let _response = { ...response };
+            _response[`${name}`] = val;
+            setResponse(_response);
+        }
     };
 
-    const handleEditGroup = () => {
-        // Logic for editing the selected question group
+    const onStatusChange = (e, name, isSurvey = false) => {
+        const val = e.checked ? 1 : 0;
+        if (isSurvey) {
+            let _surveyResponse = { ...surveyResponse };
+            _surveyResponse[`${name}`] = val;
+            setSurveyResponse(_surveyResponse);
+        } else {
+            let _response = { ...response };
+            _response[`${name}`] = val;
+            setResponse(_response);
+        }
     };
 
-    const handleDeleteGroup = () => {
-        // Logic for deleting the selected question group
+    // Add Data Handlers
+    const openNew = () => {
+        setSubmitted(false);
+        setResponse(initialEmptyQuestionGroup);
+        setAddDialog(true);
     };
+
+    const hideDialog = () => {
+        setSubmitted(false); // True ? false
+        setAddDialog(false);
+        setEditState(false);
+    };
+
+    const handleCreateGroup = async () => {
+        setSubmitted(true);
+
+        if (response.question_group_name.trim()) {
+            // Create a FormData object to store the form fields
+            var formData = new FormData();
+            formData.append(
+                "question_group_name",
+                response.question_group_name
+            );
+            formData.append(
+                "question_group_data_status",
+                response.question_group_data_status
+            );
+
+            try {
+                // Send a POST request with the FormData
+                const result = await axios.post("/addQuestionGroup", formData);
+
+                if (result.data) {
+                    setQuestions([...questions, result.data]);
+                    setAddDialog(false);
+
+                    toast.current.show({
+                        severity: "success",
+                        summary: "Success",
+                        detail: "Question Group Created",
+                        life: 3000,
+                    });
+
+                    // Reset the form
+                    setResponse(initialEmptyQuestionGroup);
+                    setUpdateUI(!updateUI);
+                }
+            } catch (error) {
+                console.error("Error creating the question group:", error);
+                toast.current.show({
+                    severity: "error",
+                    summary: "Error",
+                    detail: "Failed to Create Question Group",
+                    life: 3000,
+                });
+            }
+        }
+    };
+
+    const saveQuestionFooter = (
+        <React.Fragment>
+            <div className="mt-2">
+                <Button
+                    label="Cancel"
+                    icon="pi pi-times"
+                    iconPos="left"
+                    className="ms-2 rounded"
+                    outlined
+                    onClick={hideDialog}
+                />
+                <Button
+                    label="Save"
+                    icon="pi pi-check"
+                    className="ms-2 rounded"
+                    iconPos="left"
+                    onClick={handleCreateGroup}
+                />
+            </div>
+        </React.Fragment>
+    );
+
+    // Edit Data Handlers
+    const handleEditGroup = () => {};
+
+    // Delete Data Handlers
+    const handleDeleteGroup = () => {};
 
     const onColumnToggle = (event) => {
         const selectedColumns = event.value;
@@ -130,7 +255,7 @@ export default function SurveyTable() {
                 label="New"
                 icon="pi pi-plus"
                 className="rounded mb-2"
-                onClick={handleCreateGroup}
+                onClick={openNew}
             />
             <MultiSelect
                 value={visibleColumns}
@@ -199,7 +324,7 @@ export default function SurveyTable() {
     };
 
     return (
-        <div>
+        <>
             <Toast ref={toast} />
             <div className="card">
                 <TableSizeSelector
@@ -212,7 +337,6 @@ export default function SurveyTable() {
                     dataKey="question_id"
                     size={size}
                     filters={filters}
-                    showGridlines
                     header={tableHeader}
                     rowGroupHeaderTemplate={rowHeaderTemplate}
                     rowGroupMode="subheader"
@@ -253,7 +377,138 @@ export default function SurveyTable() {
                         />
                     ))}
                 </DataTable>
+
+                {/* Add New Question Group Dialog */}
+                <Dialog
+                    visible={addDialog}
+                    style={{ width: "32rem", maxHeight: "90vh" }}
+                    breakpoints={{ "960px": "75vw", "641px": "90vw" }}
+                    header="Add New Question Group"
+                    modal
+                    className="p-fluid"
+                    footer={saveQuestionFooter}
+                    onHide={hideDialog}
+                >
+                    {/* Survey Name */}
+                    <div className="field">
+                        <label htmlFor="question_group_name">Survey Name</label>
+                        <InputText
+                            id="survey_name"
+                            value={surveyResponse.survey_name || ""}
+                            placeholder="eg. Survey Kapal Api"
+                            onChange={(e) =>
+                                setSurveyResponse({
+                                    ...surveyResponse,
+                                    survey_name: e.target.value,
+                                })
+                            }
+                            required
+                            autoFocus
+                            className={
+                                submitted && !surveyResponse.survey_name
+                                    ? "p-invalid"
+                                    : ""
+                            }
+                        />
+                        {submitted && !response.question_group_name && (
+                            <small className="p-error">
+                                Question Group Name is required.
+                            </small>
+                        )}
+                    </div>
+
+                    {/* Survey Data Status */}
+                    <div
+                        className="field"
+                        style={{ marginTop: "35px", marginBottom: "35px" }}
+                    >
+                        <div className="d-flex flex-row flex-wrap">
+                            <label
+                                htmlFor="survey_data_status"
+                                style={{
+                                    fontWeight: "bold",
+                                    marginRight: "10px",
+                                }}
+                            >
+                                Active Survey?:
+                            </label>
+                            <InputSwitch
+                                inputId="survey_data_status"
+                                checked={surveyResponse.data_status === 1}
+                                onChange={(e) =>
+                                    onStatusChange(
+                                        e,
+                                        "survey_data_status",
+                                        true
+                                    )
+                                }
+                            />
+                        </div>
+                    </div>
+
+                    <hr style={{ width: "100%", margin: "20px 0" }} />
+
+                    {/* Question Group Name */}
+                    <div className="field">
+                        <label htmlFor="question_group_name">
+                            Question Group Name
+                        </label>
+                        <InputText
+                            id="question_group_name"
+                            value={response.question_group_name}
+                            onChange={(e) =>
+                                setResponse({
+                                    ...response,
+                                    question_group_name: e.target.value,
+                                })
+                            }
+                            placeholder="eg. Produk Kopi"
+                            required
+                            autoFocus
+                            className={
+                                submitted && !response.question_group_name
+                                    ? "p-invalid"
+                                    : ""
+                            }
+                        />
+                        {submitted && !response.question_group_name && (
+                            <small className="p-error">
+                                Question Group Name is required.
+                            </small>
+                        )}
+                    </div>
+
+                    {/* Question Group Dta Status */}
+                    <div
+                        className="field"
+                        style={{ marginTop: "35px", marginBottom: "35px" }}
+                    >
+                        <div className="d-flex flex-row flex-wrap">
+                            <label
+                                htmlFor="question_group_data_status"
+                                style={{
+                                    fontWeight: "bold",
+                                    marginRight: "10px",
+                                }}
+                            >
+                                Active Question Group?:
+                            </label>
+                            <InputSwitch
+                                inputId="question_group_data_status"
+                                checked={
+                                    response.question_group_data_status === 1
+                                }
+                                onChange={(e) =>
+                                    onStatusChange(
+                                        e,
+                                        "question_group_data_status"
+                                    )
+                                }
+                            />
+                        </div>
+                    </div>
+                </Dialog>
             </div>
-        </div>
+        </>
     );
 }
