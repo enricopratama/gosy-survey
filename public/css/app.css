@@ -635,8 +635,14 @@ video {
 .mt-5 {
   margin-top: 1.25rem;
 }
+.ms-3 {
+  margin-inline-start: 0.75rem;
+}
 .block {
   display: block;
+}
+.inline-block {
+  display: inline-block;
 }
 .flex {
   display: flex;
@@ -682,6 +688,9 @@ video {
 }
 .gap-2 {
   gap: 0.5rem;
+}
+.gap-6 {
+  gap: 1.5rem;
 }
 .overflow-x-auto {
   overflow-x: auto;

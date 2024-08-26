@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { SelectButton } from "primereact/selectbutton";
 import { Dropdown } from "primereact/dropdown";
+import "../../css/ToolbarResponsive.css";
 
 export default function Step3Header({
     initialSize,
     onSizeChange,
     questionGroups,
     onQuestionGroupChange,
-    selectedQuestionGroup, // Prop passed from parent
+    selectedQuestionGroup,
     response,
 }) {
     const [sizeOptions] = useState([
@@ -45,9 +46,6 @@ export default function Step3Header({
     };
 
     // Filter question groups to match the survey_name from NewQuestions.js
-    // const filteredQuestionGroups = questionGroups.filter((group) =>
-    //     group.question_group_name.includes(response.survey_name)
-    // );
     const filteredQuestionGroups = questionGroups
         .filter((group) =>
             group.question_group_name.includes(response.survey_name)
@@ -57,13 +55,6 @@ export default function Step3Header({
                 .substring(group.question_group_name.indexOf("-") + 1)
                 .trim();
 
-            // console.log(
-            //     "Filtered group:",
-            //     group.question_group_name,
-            //     "=>",
-            //     groupNameAfterDash
-            // );
-
             return {
                 label: groupNameAfterDash,
                 value: group, // Use full question_group_name as the value
@@ -71,12 +62,14 @@ export default function Step3Header({
         });
 
     return (
-        <div className="d-flex justify-content-between mb-4 mt-4 p-toolbar p-component">
+        <div className="d-flex justify-content-between mb-4 mt-4 p-toolbar p-component flex-wrap toolbar-responsive">
             {/* SelectButton for size options */}
             <SelectButton
                 value={size}
                 onChange={handleSizeChange}
                 options={sizeOptions}
+                title="Select table size"
+                className="select-button-responsive"
             />
 
             {/* Dropdown for selecting question group */}
@@ -90,7 +83,11 @@ export default function Step3Header({
                 options={filteredQuestionGroups}
                 onChange={handleQuestionGroupSelect}
                 placeholder="Select Question Group"
-                breakpoints={{ "960px": "75vw", "641px": "85vw" }}
+                breakpoints={{ "960px": "75vw", "641px": "800vw" }}
+                title="Select Question Group"
+                checkmark={true}
+                highlightOnSelect={false}
+                className="dropdown-responsive"
             />
         </div>
     );

@@ -1,0 +1,13 @@
+.toolbar-responsive {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+@media (max-width: 960px) {
+    .select-button-responsive,
+    .dropdown-responsive {
+        width: 100%;
+        flex-basis: 100%;
+    }
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { SelectButton } from "primereact/selectbutton";
 import { Dropdown } from "primereact/dropdown";
+import { Button } from "primereact/button";
 
 // Must set state, and put size field in DataTable as a prop. Example:
 /* <TableSizeSelector
@@ -8,7 +9,11 @@ import { Dropdown } from "primereact/dropdown";
     onSizeChange={(newSize) => setSize(newSize)}
 /> */
 
-export default function TableSizeSelector({ initialSize, onSizeChange }) {
+// For step 2
+export default function TableSizeSelector({ initialSize, onSizeChange, dt }) {
+    const exportCSV = () => {
+        dt.current.exportCSV();
+    };
     const [sizeOptions] = useState([
         { label: "Small", value: "small" },
         { label: "Normal", value: "normal" },
@@ -44,6 +49,15 @@ export default function TableSizeSelector({ initialSize, onSizeChange }) {
                 value={size}
                 onChange={handleSizeChange}
                 options={sizeOptions}
+                title="Select table size"
+            />
+            <Button
+                label="Export"
+                icon="pi pi-upload"
+                iconPos="left"
+                onClick={exportCSV}
+                className="rounded"
+                title="Export this table"
             />
         </div>
     );

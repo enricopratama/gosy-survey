@@ -123,7 +123,7 @@ export default function OptionsDialog({
         <Dialog
             header={selectedRow.question_name}
             visible={visible}
-            style={{ width: "65vw", maxHeight: "90vh" }}
+            style={{ width: "70vw", maxHeight: "100vh" }}
             breakpoints={{ "960px": "75vw", "641px": "90vw" }}
             maximizable
             modal

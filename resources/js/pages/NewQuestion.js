@@ -155,6 +155,10 @@ export default function NewQuestion() {
         const val = e.checked ? 1 : 0;
         let _response = { ...response };
         _response[`${name}`] = parseInt(val, 10);
+
+        if (_response.sequence === 1 && name !== "is_parent") {
+            _response.is_parent = 1;
+        }
         setResponse(_response);
     };
 
@@ -456,6 +460,10 @@ export default function NewQuestion() {
             let _questions = [...questions];
             let _response = { ...response };
 
+            if (_response.sequence === 1) {
+                _response.is_parent = 1;
+            }
+
             var formData = new FormData();
             formData.append("question_group_id", _response.question_group_id);
             formData.append("question_name", _response.question_name);
@@ -502,6 +510,7 @@ export default function NewQuestion() {
                     }
                 } else {
                     // New Question
+
                     result = await axios.post("/addQuestion", formData);
                     if (result.status === 200) {
                         // This worked in updating UI
@@ -979,7 +988,7 @@ export default function NewQuestion() {
     );
 
     const openNew = () => {
-        // Max Sequence initialisation
+        // Max Sequence initialization
         const maxSeq = getMaxSequence(filteredQuestions);
         setMaxSequence(maxSeq);
         setResponse((prevResponse) => ({
@@ -1502,6 +1511,7 @@ export default function NewQuestion() {
                             rows={5}
                             sortField="sequence"
                             sortOrder={1}
+                            removableSort
                             filters={filters}
                             stripedRows
                             selectionMode="multiple"

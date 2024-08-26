@@ -97,7 +97,9 @@ const AddEditQuestionDialog = ({
                     <Checkbox
                         inputId="is_parent"
                         onChange={(e) => onCheckboxChange(e, "is_parent")}
-                        checked={response.is_parent === 1}
+                        checked={
+                            response.is_parent === 1 || response.sequence === 1
+                        }
                     />
                     <label htmlFor="is_parent" className="ms-2 mb-0">
                         Parent Question?
@@ -190,6 +192,7 @@ const AddEditQuestionDialog = ({
                             id="question_group_id"
                             value={response.question_group_id || ""}
                             readOnly={true}
+                            disabled
                             onChange={(e) =>
                                 onInputChange(e, "question_group_id")
                             }
@@ -218,6 +221,7 @@ const AddEditQuestionDialog = ({
                 <div className="field" style={{ marginBottom: "35px" }}>
                     <span className="p-float-label">
                         <InputText
+                            disabled
                             id="survey_name"
                             style={{ minWidth: "20rem" }}
                             value={response.survey_name || ""}
@@ -235,6 +239,7 @@ const AddEditQuestionDialog = ({
                 >
                     <span className="p-float-label">
                         <InputText
+                            disabled
                             id="question_group_name"
                             style={{ minWidth: "20rem" }}
                             value={response.question_group_name || ""}

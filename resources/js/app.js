@@ -1,7 +1,7 @@
 import "primereact/resources/themes/lara-light-indigo/theme.css"; // light mode
 // import "primereact/resources/themes/lara-dark-indigo/theme.css"; // dark mode
 import "primereact/resources/primereact.css"; // core css
-import "primeicons/primeicons.css"; // icons
+import "primeicons/primeicons.css";
 import React, { useContext, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import Register from "./pages/Register";
