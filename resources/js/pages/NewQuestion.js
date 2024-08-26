@@ -15,7 +15,6 @@ import { InputIcon } from "primereact/inputicon";
 import { IconField } from "primereact/iconfield";
 import { InputSwitch } from "primereact/inputswitch";
 import { PageControlButtons } from "../components/PageControls";
-import TableSizeSelector from "../handlers/TableSizeSelector";
 import axios from "axios";
 import "../../css/app.css";
 import "../../css/NewQuestion.css";
@@ -250,20 +249,6 @@ export default function NewQuestion() {
         getSurveys();
         getSurveyQuestionGroups();
     }, response);
-
-    // useEffect(() => {
-    //     const initializeData = async () => {
-    //         const maxSeq = getMaxSequence(filteredQuestions);
-    //         setMaxSequence(maxSeq);
-
-    //         setResponse((prevResponse) => ({
-    //             ...prevResponse,
-    //             sequence: maxSeq,
-    //         }));
-    //     };
-
-    //     initializeData();
-    // }, []);
 
     const filterQuestionsByGroupName = async () => {
         await getQuestions();
@@ -1089,6 +1074,7 @@ export default function NewQuestion() {
         );
     };
 
+    //TODO: update UI every option change
     const updateResponseOptions = async (updatedOptions) => {
         let _questions = [...questions];
         const index = findIndexByID(updatedOptions.question_id);
@@ -1107,12 +1093,12 @@ export default function NewQuestion() {
 
                 setQuestions(_questions);
 
-                // toast.current.show({
-                //     severity: "success",
-                //     summary: "Successful",
-                //     detail: `Options for Question ${updatedOptions.sequence} Updated`,
-                //     life: 2000,
-                // });
+                toast.current.show({
+                    severity: "success",
+                    summary: "Successful",
+                    detail: `Options for Question ${updatedOptions.sequence} Updated`,
+                    life: 2000,
+                });
 
                 setResponse((prevResponse) => ({
                     ...prevResponse,
@@ -1143,6 +1129,7 @@ export default function NewQuestion() {
                 is_parent: 0,
                 is_mandatory: 0,
             }));
+            setUpdateUI(!updateUI);
         }
     };
 
@@ -1493,6 +1480,7 @@ export default function NewQuestion() {
                             onSizeChange={(newSize) => setSize(newSize)}
                             questionGroups={surveyQuestionGroups}
                             onQuestionGroupChange={handleQuestionGroupClick}
+                            response={response}
                         />
                         <Toolbar
                             className="mb-4"

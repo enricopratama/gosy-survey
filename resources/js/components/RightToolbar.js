@@ -9,6 +9,7 @@ const RightToolbar = ({ exportCSV }) => {
             iconPos="left"
             onClick={exportCSV}
             className="rounded"
+            title="Export this table"
         />
     );
 };

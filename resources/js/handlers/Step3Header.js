@@ -8,6 +8,7 @@ export default function Step3Header({
     questionGroups,
     onQuestionGroupChange,
     selectedQuestionGroup, // Prop passed from parent
+    response,
 }) {
     const [sizeOptions] = useState([
         { label: "Small", value: "small" },
@@ -20,8 +21,8 @@ export default function Step3Header({
         const handleResize = () => {
             const newSize =
                 window.innerHeight > 640 && window.innerWidth > 540
-                    ? sizeOptions[1].value // "Normal" for tablets and larger
-                    : sizeOptions[0].value; // "Small" for mobile
+                    ? sizeOptions[1].value
+                    : sizeOptions[0].value;
             setSize(newSize);
             onSizeChange(newSize);
         };
@@ -43,6 +44,32 @@ export default function Step3Header({
         onQuestionGroupChange(selectedGroup);
     };
 
+    // Filter question groups to match the survey_name from NewQuestions.js
+    // const filteredQuestionGroups = questionGroups.filter((group) =>
+    //     group.question_group_name.includes(response.survey_name)
+    // );
+    const filteredQuestionGroups = questionGroups
+        .filter((group) =>
+            group.question_group_name.includes(response.survey_name)
+        )
+        .map((group) => {
+            const groupNameAfterDash = group.question_group_name
+                .substring(group.question_group_name.indexOf("-") + 1)
+                .trim();
+
+            // console.log(
+            //     "Filtered group:",
+            //     group.question_group_name,
+            //     "=>",
+            //     groupNameAfterDash
+            // );
+
+            return {
+                label: groupNameAfterDash,
+                value: group, // Use full question_group_name as the value
+            };
+        });
+
     return (
         <div className="d-flex justify-content-between mb-4 mt-4 p-toolbar p-component">
             {/* SelectButton for size options */}
@@ -60,14 +87,10 @@ export default function Step3Header({
                             group.question_group_name === selectedQuestionGroup
                     ) || null
                 }
-                options={questionGroups.map((group) => ({
-                    label: group.question_group_name,
-                    value: group,
-                }))}
+                options={filteredQuestionGroups}
                 onChange={handleQuestionGroupSelect}
                 placeholder="Select Question Group"
-                className="mr-4"
-                style={{ width: "300px" }}
+                breakpoints={{ "960px": "75vw", "641px": "85vw" }}
             />
         </div>
     );

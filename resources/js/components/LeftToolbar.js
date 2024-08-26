@@ -10,6 +10,7 @@ const LeftToolbar = ({ openNew, confirmDeleteSelected, selectedQuestions }) => {
                 iconPos="left"
                 onClick={openNew}
                 className="rounded"
+                title="Add a Question"
             />
             <Button
                 label="Delete"
@@ -19,6 +20,7 @@ const LeftToolbar = ({ openNew, confirmDeleteSelected, selectedQuestions }) => {
                 onClick={confirmDeleteSelected}
                 disabled={!selectedQuestions || !selectedQuestions.length}
                 className="rounded"
+                title="Delete a Question"
             />
         </div>
     );

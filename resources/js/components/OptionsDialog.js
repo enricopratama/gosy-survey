@@ -15,28 +15,25 @@ export default function OptionsDialog({
     questions,
 }) {
     const [optionsData, setOptionsData] = useState([]);
+    const [questionsFiltered, setQuestionsFiltered] = useState([]);
 
-    // TODO: change to only view question group names in dialog
-    const groupedQuestions = questions.reduce((groups, question) => {
-        const group = groups[question.question_group_id] || {
-            question_group_name: question.question_group_name,
-            items: [],
-        };
+    // Function to extract unique question group names and corresponding flows
+    const getQuestionGroupOptions = () => {
+        const uniqueGroups = [];
+        const groupMap = {};
 
-        group.items.push({
-            label: question.question_name,
-            value: question.question_key,
+        questions.forEach((question) => {
+            if (question.is_parent && !groupMap[question.question_group_id]) {
+                groupMap[question.question_group_id] = {
+                    label: question.question_group_name,
+                    value: question.question_key, // Store the question_key as the value
+                };
+                uniqueGroups.push(groupMap[question.question_group_id]);
+            }
         });
 
-        groups[question.question_group_id] = group;
-        return groups;
-    }, {});
-
-    // Convert grouped questions into the format expected by the Dropdown
-    const dropdownOptions = Object.keys(groupedQuestions).map((groupId) => ({
-        label: groupedQuestions[groupId].question_group_name,
-        items: groupedQuestions[groupId].items,
-    }));
+        setQuestionsFiltered(uniqueGroups);
+    };
 
     // Function to reformat options data from selectedRow
     const extractOptionsData = (row) => {
@@ -58,9 +55,10 @@ export default function OptionsDialog({
     };
 
     useEffect(() => {
+        getQuestionGroupOptions(); // Load the unique question groups on mount
         const options = extractOptionsData(selectedRow);
         setOptionsData(options);
-    }, [selectedRow]);
+    }, [selectedRow, questions]);
 
     const onRowEditComplete = (e) => {
         let _optionsData = [...optionsData];
@@ -73,10 +71,10 @@ export default function OptionsDialog({
 
     const handleSave = () => {
         const updatedResponse = { ...selectedRow };
-        optionsData.forEach((data) => {
-            updatedResponse[data.option_num] =
+        optionsData.forEach((data, index) => {
+            updatedResponse[`option_${index + 1}`] =
                 data.option_data !== "" ? data.option_data : null;
-            updatedResponse[`${data.option_num}_flow`] =
+            updatedResponse[`option_${index + 1}_flow`] =
                 data.option_flow !== "" ? data.option_flow : null;
         });
 
@@ -96,14 +94,16 @@ export default function OptionsDialog({
         return (
             <Dropdown
                 value={options.value || ""}
-                options={dropdownOptions}
+                options={questionsFiltered}
                 onChange={(e) => options.editorCallback(e.value)}
-                placeholder="Select a Question"
+                placeholder="Select a Question Group"
                 panelStyle={{ maxHeight: "600px", maxWidth: "90%" }}
                 filter
                 optionLabel="label"
-                optionGroupLabel="label"
-                optionGroupChildren="items"
+                highlightOnSelect={false}
+                checkmark={true}
+                editable={true}
+                clearIcon={true}
             />
         );
     };
@@ -160,14 +160,10 @@ export default function OptionsDialog({
                         header="Next Question Group"
                         editor={(options) => optionFlowsEditor(options)}
                         body={(rowData) => {
-                            const selectedQuestion = questions.find(
-                                (question) =>
-                                    question.question_key ===
-                                    rowData.option_flow
+                            const selectedGroup = questionsFiltered.find(
+                                (group) => group.value === rowData.option_flow
                             );
-                            return selectedQuestion
-                                ? selectedQuestion.question_name
-                                : "";
+                            return selectedGroup ? selectedGroup.label : "";
                         }}
                         style={{ width: "15%" }}
                     />
