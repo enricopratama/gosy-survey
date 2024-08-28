@@ -31,6 +31,10 @@ export default function OptionsDialog({
                 uniqueGroups.push(groupMap[question.question_group_id]);
             }
         });
+        uniqueGroups.push({
+            label: "End Survey",
+            value: "99999",
+        });
 
         setQuestionsFiltered(uniqueGroups);
     };

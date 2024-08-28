@@ -10,6 +10,16 @@ export const PageControlButtons = ({
     disabledBack = false,
     disabledNext = false,
 }) => {
+    const handleBackClick = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        onBackClick();
+    };
+
+    const handleNextClick = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        onNextClick();
+    };
+
     return (
         <div className="d-flex pt-4 justify-content-between mx-5">
             {showBack && (
@@ -18,7 +28,7 @@ export const PageControlButtons = ({
                     className="rounded"
                     icon="pi pi-arrow-left"
                     severity="secondary"
-                    onClick={onBackClick}
+                    onClick={handleBackClick}
                     disabled={disabledBack}
                 />
             )}
@@ -26,9 +36,9 @@ export const PageControlButtons = ({
                 <Button
                     label={doneLabel}
                     className="rounded"
-                    icon="pi pi-check"
+                    icon="pi pi-arrow-right"
                     iconPos="right"
-                    onClick={onNextClick}
+                    onClick={handleNextClick}
                     disabled={disabledNext}
                 />
             )}

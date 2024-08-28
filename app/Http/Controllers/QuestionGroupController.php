@@ -43,8 +43,7 @@ class QuestionGroupController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'question_group_name' =>
-                'required|string|max:1000|unique:mst_question_group,question_group_name',
+            'question_group_name' => 'required|string|max:1000',
             'data_status' => 'required|integer',
         ]);
 

@@ -11,10 +11,11 @@ import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { InputSwitch } from "primereact/inputswitch";
 import { Toolbar } from "primereact/toolbar";
-import { InputNumber } from "primereact/inputnumber";
 import axios from "axios";
 import TableSizeSelector from "../handlers/TableSizeSelector";
 import "../../css/DataTable.css";
+import { InputNumber } from "primereact/inputnumber";
+import { classNames } from "primereact/utils";
 
 export default function SurveyTable() {
     const toast = useRef(null);
@@ -129,6 +130,8 @@ export default function SurveyTable() {
         { field: "question_group_id", header: "Question Group ID" },
         { field: "data_status", header: "Data Status" },
         { field: "question_type", header: "Question Type" },
+        // { field: "question_group_name", header: "Question Group Name" },
+        // { field: "survey_name", header: "Survey Name" },
     ];
 
     const [visibleColumns, setVisibleColumns] = useState(defaultVisibleColumns);
@@ -402,7 +405,7 @@ export default function SurveyTable() {
                         onChange={onColumnToggle}
                         style={{
                             width: "100%",
-                            maxWidth: "22rem",
+                            maxWidth: "20rem",
                         }}
                         display="chip"
                         filter
@@ -419,24 +422,83 @@ export default function SurveyTable() {
         return (
             <React.Fragment>
                 <span className="vertical-align-middle ml-2 font-bold line-height-3">
-                    {rowData.question_group_name}
+                    {rowData.question_group_name} ({rowData.survey_name})
+                    <div className="ml-auto d-flex">
+                        <Button
+                            label="Edit"
+                            icon="pi pi-pencil"
+                            className="p-button-text rounded p-ml-2 outlined"
+                            onClick={() => onEditClick(rowData)}
+                        />
+                        <Button
+                            label="Delete"
+                            icon="pi pi-trash"
+                            className="p-button-danger p-button-text rounded p-ml-2"
+                            onClick={() => handleDeleteGroup(rowData)}
+                        />
+                    </div>
                 </span>
-                <div className="ml-auto d-flex">
-                    <Button
-                        label="Edit"
-                        icon="pi pi-pencil"
-                        className="p-button-text rounded p-ml-2 outlined"
-                        onClick={() => onEditClick(rowData)}
-                    />
-                    <Button
-                        label="Delete"
-                        icon="pi pi-trash"
-                        className="p-button-danger p-button-text rounded p-ml-2"
-                        onClick={() => handleDeleteGroup(rowData)}
-                    />
-                </div>
             </React.Fragment>
         );
+    };
+
+    const textEditor = (questions) => (
+        <InputText
+            type="text"
+            value={questions.value || ""}
+            onChange={(e) => questions.editorCallback(e.target.value)}
+            style={{ width: "100%" }}
+        />
+    );
+
+    const numberEditor = (questions) => (
+        <InputText
+            type="number"
+            value={questions.value || ""}
+            onChange={(e) => questions.editorCallback(e.target.value)}
+            style={{ width: "50%" }}
+        />
+    );
+
+    const onRowEditComplete = async (e) => {
+        let _questions = [...questions];
+        let { newData, index } = e; // e stores the New Data
+
+        try {
+            // Make an API call to update the question in the backend
+            const result = await axios.post(
+                `/editQuestion/${newData.question_id}`,
+                newData
+            );
+
+            if (result.status === 200) {
+                // Update the question in the local state after successful API call
+                _questions[index] = newData;
+                setQuestions(_questions);
+
+                // Optionally, show a success message
+                toast.current.show({
+                    severity: "success",
+                    summary: "Success",
+                    detail: `Question ID ${newData.question_id} updated successfully`,
+                    life: 3000,
+                });
+            }
+        } catch (error) {
+            // Handle error, revert the changes in the UI, and notify the user
+            console.error("Error updating question:", error);
+
+            toast.current.show({
+                severity: "error",
+                summary: "Error",
+                detail:
+                    error.response?.data?.message ||
+                    `Failed to update Question ID ${newData.question_id}`,
+                life: 3000,
+            });
+        } finally {
+            setUpdateUI(!updateUI);
+        }
     };
 
     const onRowReorder = (e) => {
@@ -453,6 +515,18 @@ export default function SurveyTable() {
         });
 
         setQuestions(reorderedQuestions);
+    };
+
+    const sequenceBodyTemplate = (rowData) => {
+        const stockClassName = classNames(
+            "d-inline-flex justify-content-center align-items-center rounded-circle font-weight-bold",
+            {
+                "bg-secondary text-white": rowData.sequence === 1,
+            },
+            "w-25 h-25"
+        );
+
+        return <div className={stockClassName}>{rowData.sequence}</div>;
     };
 
     return (
@@ -476,32 +550,41 @@ export default function SurveyTable() {
                         header={header}
                         rowGroupHeaderTemplate={rowHeaderTemplate}
                         rowGroupMode="subheader"
-                        groupRowsBy="question_group_name"
-                        sortField="question_group_name"
+                        groupRowsBy="question_group_id"
+                        // sortField="question_group_name"
                         sortOrder={1}
                         expandableRowGroups
                         expandedRows={expandedRows}
                         onRowToggle={(e) => setExpandedRows(e.data)}
-                        tableStyle={{ minWidth: "50rem" }}
+                        tableStyle={{ minWidth: "88vw" }}
                         stripedRows
                         reorderableRows
                         onRowReorder={onRowReorder}
                         className="p-datatable-gridlines"
+                        editMode="row"
+                        onRowEditComplete={onRowEditComplete}
+                        selectionMode="multiple"
                     >
-                        <Column rowReorder style={{ width: "1rem" }} />
+                        <Column
+                            rowReorder
+                            style={{ width: "5rem" }}
+                            bodyStyle={{ textAlign: "center" }}
+                        />
                         <Column
                             field="sequence"
                             header="Sequence"
                             sortable
-                            style={{ width: "1rem" }}
-                            className="border-right"
+                            style={{ width: "10px" }}
+                            // bodyStyle={{ textAlign: "center" }}
+                            editor={(question) => numberEditor(question)}
+                            body={sequenceBodyTemplate}
                         />
                         <Column
                             field="question_name"
                             header="Question Name"
                             sortable
-                            style={{ minWidth: "15rem" }}
-                            className="border-right"
+                            style={{ width: "30%" }}
+                            editor={(question) => textEditor(question)}
                         />
                         {visibleColumns.map((col) => (
                             <Column
@@ -509,10 +592,15 @@ export default function SurveyTable() {
                                 field={col.field}
                                 header={col.header}
                                 sortable
-                                style={{ minWidth: "8rem" }}
-                                className="border-left border-right"
+                                style={{ minWidth: "4rem" }}
+                                editor={(question) => textEditor(question)}
                             />
                         ))}
+                        <Column
+                            rowEditor={true}
+                            headerStyle={{ width: "10%" }}
+                            bodyStyle={{ textAlign: "right" }}
+                        />
                     </DataTable>
 
                     {/* Add New Question Group Dialog */}

@@ -27,6 +27,7 @@ import OptionsDialog from "../components/OptionsDialog";
 import SurveyDialog from "../components/SurveyDialog";
 import QuestionGroupDialog from "../components/QuestionGroupDialog";
 import Step3Header from "../handlers/Step3Header";
+import DSOSelection from "../components/DSOSelection";
 
 export default function NewQuestion() {
     const op = useRef(null);
@@ -174,6 +175,7 @@ export default function NewQuestion() {
      */
     const getQuestions = async () => {
         try {
+            setLoading(true);
             const response = await axios.get("/questions");
             setQuestions(response.data);
         } catch (error) {
@@ -188,6 +190,7 @@ export default function NewQuestion() {
      */
     const getSurveyQuestionGroups = async () => {
         try {
+            setLoading(true);
             const response = await axios.get("/questionGroups");
             setSurveyQuestionGroups(response.data);
         } catch (error) {
@@ -205,6 +208,7 @@ export default function NewQuestion() {
      */
     const getSurveys = async () => {
         try {
+            setLoading(true);
             const response = await axios.get("/api/survey");
             setSurveys(response.data);
         } catch (error) {
@@ -918,7 +922,7 @@ export default function NewQuestion() {
         );
     };
 
-    // Footer for: Step 1 (Add Survey Type/Name)
+    // Footer for: Step1 (Add Survey Type/Name)
     const questionDialogFooter = (
         <React.Fragment>
             <Button
@@ -1083,7 +1087,6 @@ export default function NewQuestion() {
         );
     };
 
-    //TODO: update UI every option change
     const updateResponseOptions = async (updatedOptions) => {
         let _questions = [...questions];
         const index = findIndexByID(updatedOptions.question_id);
@@ -1700,11 +1703,48 @@ export default function NewQuestion() {
                                 stepperRef.current.prevCallback()
                             }
                             showNext={true}
-                            doneLabel="Finish"
+                            doneLabel="Next"
                             onNextClick={() =>
                                 stepperRef.current.nextCallback()
                             }
                         />
+                    </StepperPanel>
+
+                    {/* Step 4 - DSO List */}
+                    <StepperPanel header="DSO Group">
+                        {/* <div className="rounded surface-ground flex-auto d-flex font-medium mx-5">
+                            <div className="d-flex flex-column">
+                                <h5 className="text-muted">Step 4</h5>
+                                <h1>Pilih DSO Untuk Di Survey</h1>
+                                <div className="d-flex justify-content-center text-center">
+                                    <DSOSelection />
+                                </div>
+                            </div>
+                        </div> */}
+                        <div className="rounded surface-ground flex-auto font-medium mx-5">
+                            <h5 className="text-muted">Step 4</h5>
+                            <h1>Pilih DSO Untuk Di Survey</h1>
+                            <div className="d-flex justify-content-center">
+                                <DSOSelection />
+                            </div>
+                        </div>
+
+                        <div className="d-flex pt-4 justify-content-start mx-5">
+                            <Button
+                                label="Back"
+                                className="rounded"
+                                icon="pi pi-arrow-left"
+                                iconPos="right"
+                                severity="secondary"
+                                onClick={() => {
+                                    window.scrollTo({
+                                        top: 0,
+                                        behavior: "smooth",
+                                    }),
+                                        stepperRef.current.prevCallback();
+                                }}
+                            />
+                        </div>
                     </StepperPanel>
                 </Stepper>
             </div>

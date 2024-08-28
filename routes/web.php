@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\QuestionGroupController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\SurveyQuestionGroupController;
+use App\Http\Controllers\BranchController;
 
 // Define a route that requires authentication middleware
 Route::get('/flights', function () {
@@ -33,10 +34,10 @@ Route::get('/users', [UserController::class, 'index'])->name('users');
 Route::get('/questionsRaw', [QuestionController::class, 'index']);
 Route::get('/questions', [QuestionController::class, 'getQuestions']); // original q
 Route::get('/questionsComplete', [QuestionController::class, 'getQuestionsComplete']); // updated q
-Route::get('/questions/{question_id}', [QuestionController::class, 'getQuestionById',]);
+Route::get('/questions/{question_id}', [QuestionController::class, 'getQuestionById']);
 Route::post('/addQuestion', [QuestionController::class, 'store']);
-Route::post('/editQuestion/{question_id}', [QuestionController::class, 'update',]);
-Route::delete('/deleteQuestion/{question_id}', [QuestionController::class, 'destroy',]);
+Route::post('/editQuestion/{question_id}', [QuestionController::class, 'update']);
+Route::delete('/deleteQuestion/{question_id}', [QuestionController::class, 'destroy']);
 
 // Surveys
 Route::get('/surveys', [SurveyController::class, 'index']); 
@@ -58,13 +59,20 @@ Route::post('/addSurveyQuestionGroup', [SurveyQuestionGroupController::class, 's
 Route::post('/editSurveyQuestionGroups/{id}', [SurveyQuestionGroupController::class, 'update']);
 Route::delete('/deleteSurveyQuestionGroups/{id}', [SurveyQuestionGroupController::class, 'destroy']);
 
+// Branches
+Route::get('/branches', [BranchController::class, 'index']);
+Route::get('/branches/{BranchCode}', [BranchController::class, 'getByBranchCode']);
+Route::post('/addBranch', [BranchController::class, 'store']);
+Route::post('/editBranch/{BranchCode}', [BranchController::class, 'update']);
+Route::delete('/deleteBranch/{BranchCode}', [BranchController::class, 'destroy']);
+
 // Data tables
 Route::get('/master-users', [UserController::class, 'getUserAccess']);
 Route::get('/master-users/{user_id}', [UserController::class, 'show']);
-Route::get('/master-users-by-company', [UserController::class,'getUserAccessByCompany',]);
+Route::get('/master-users-by-company', [UserController::class,'getUserAccessByCompany']);
 Route::get('/master-tokens', [UserController::class, 'getAccessToken']);
 
-// All other routes, are defined through React.js
+// All other routes are defined through React.js
 Route::get('/{path?}', [ReactController::class, 'show'])
     ->middleware('auth')
     ->where('path', '.*')
