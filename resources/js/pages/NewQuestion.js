@@ -53,6 +53,8 @@ export default function NewQuestion() {
         is_mandatory: 1,
     };
 
+    const [isReordering, setIsReordering] = useState(false);
+
     // Data Table Size
     const [size, setSize] = useState("small"); // Default size
 
@@ -903,6 +905,10 @@ export default function NewQuestion() {
         filterQuestionsByGroupName();
     };
 
+    const reorderState = () => {
+        setIsReordering((prevState) => !prevState);
+    };
+
     const actionBodyTemplate = (rowData) => {
         return (
             <React.Fragment>
@@ -1048,6 +1054,8 @@ export default function NewQuestion() {
                 openNew={openNew}
                 confirmDeleteSelected={confirmDeleteSelected}
                 selectedQuestions={selectedQuestions}
+                reorderState={reorderState}
+                isReordering={isReordering}
             />
         );
     };
@@ -1162,6 +1170,76 @@ export default function NewQuestion() {
                 is_mandatory: 0,
             }));
             setUpdateUI(!updateUI);
+        }
+    };
+
+    const onRowReorder = async (e) => {
+        const reorderedQuestions = e.value;
+        setQuestions(reorderedQuestions);
+
+        console.log("Reordered Questions", reorderedQuestions);
+
+        // Update the sequence and question_key for each question
+        const updatedQuestions = reorderedQuestions.map((question, index) => {
+            const newSequence = index + 1; // Sequence starts from 1
+            return {
+                ...question,
+                sequence: newSequence,
+                question_key: `${question.question_group_id}#${newSequence}`,
+                is_parent: newSequence === 1 ? 1 : 0,
+            };
+        });
+
+        setQuestions(updatedQuestions); // Update the state with the reordered questions
+
+        try {
+            // Optionally, make an API call to save the updated order in the backend
+            for (let i = 0; i < updatedQuestions.length; i++) {
+                const question = updatedQuestions[i];
+                const formData = new FormData();
+                formData.append(
+                    "question_group_id",
+                    question.question_group_id
+                );
+                formData.append("question_name", question.question_name);
+                formData.append("question_type", question.question_type);
+                formData.append("sequence", question.sequence);
+                formData.append("data_status", question.data_status);
+                formData.append("is_parent", question.is_parent);
+                formData.append("is_mandatory", question.is_mandatory);
+                formData.append("question_key", question.question_key);
+
+                const result = await axios.post(
+                    `/editQuestion/${question.question_id}`,
+                    formData
+                );
+
+                if (result.status !== 200) {
+                    throw new Error(
+                        `Failed to update question ID ${question.question_id}`
+                    );
+                }
+            }
+
+            // Show a success toast
+            toast.current.show({
+                severity: "success",
+                summary: "Success",
+                detail: "Question sequences updated successfully",
+                life: 3000,
+            });
+        } catch (error) {
+            console.error("Error updating sequences:", error);
+            toast.current.show({
+                severity: "error",
+                summary: "Error",
+                detail:
+                    error.response?.data?.message ||
+                    "Failed to edit question sequence",
+                life: 3000,
+            });
+        } finally {
+            setUpdateUI((prev) => !prev); // Force UI update if needed
         }
     };
 
@@ -1537,30 +1615,42 @@ export default function NewQuestion() {
                             paginatorRight={paginatorRight}
                             rows={5}
                             sortField="sequence"
-                            sortOrder={1}
+                            // sortOrder={1}
                             removableSort
                             filters={filters}
                             stripedRows
-                            selectionMode="multiple"
-                            dragSelection
+                            selectionMode={isReordering ? null : "multiple"}
                             header={header}
                             rowsPerPageOptions={[5, 10, 25]}
                             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                             currentPageReportTemplate="{first} to {last} of {totalRecords} questions"
                             className="p-datatable-gridlines"
+                            reorderableRows={isReordering}
+                            onRowReorder={onRowReorder}
                         >
-                            <Column
-                                selectionMode="multiple"
-                                exportable={false}
-                                style={{ width: "4rem" }}
-                                className="border-right"
-                            />
+                            {isReordering && (
+                                <Column
+                                    rowReorder={isReordering}
+                                    style={{ width: "5rem" }}
+                                    bodyStyle={{ textAlign: "center" }}
+                                />
+                            )}
+                            {!isReordering && (
+                                <Column
+                                    selectionMode="multiple"
+                                    exportable={false}
+                                    style={{ width: "4rem" }}
+                                    className="border-right"
+                                />
+                            )}
+
                             <Column
                                 field="sequence"
                                 header="Sequence"
                                 style={{ width: "2rem" }}
                                 sortable
                                 className="border-left border-right"
+                                bodyStyle={{ textAlign: "center" }}
                             />
                             <Column
                                 field="question_id"

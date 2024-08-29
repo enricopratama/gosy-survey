@@ -129,7 +129,6 @@ export default function SurveyTable() {
 
     const defaultVisibleColumns = [
         { field: "question_id", header: "ID" },
-        { field: "question_key", header: "Question Key" },
         { field: "question_group_id", header: "Question Group ID" },
         { field: "data_status", header: "Data Status" },
         { field: "question_type", header: "Question Type" },
@@ -197,7 +196,6 @@ export default function SurveyTable() {
             response.question_group_name.trim()
         ) {
             try {
-                // Step 1: Create the Survey
                 const surveyFormData = new FormData();
                 surveyFormData.append(
                     "survey_name",
@@ -514,15 +512,11 @@ export default function SurveyTable() {
         }
     };
 
-    const handleRowReorder = (e) => {
-        setQuestions(e.value);
-    };
-
     // TODO: Fix sequence ordering in DataTable (order by is missed up)
     const onRowReorder = async (e) => {
-        setQuestions(e.value);
         const reorderedQuestions = e.value;
-        // var _loading = loading;
+
+        console.log("Reordered Questions", reorderedQuestions);
 
         // Filter questions belonging to the edited group
         const editedGroupQuestions = reorderedQuestions.filter(
@@ -533,15 +527,14 @@ export default function SurveyTable() {
         editedGroupQuestions.forEach((question, index) => {
             const newSequence = index + 1; // Sequence starts from 1
             question.sequence = newSequence;
-            question.question_key = `${question.question_group_id}#${newSequence}`; // Update the question key accordingly
+            question.question_key = `${question.question_group_id}#${newSequence}`;
+            question.is_parent = newSequence === 1 ? 1 : 0;
         });
 
-        // Update the questions state with the reordered list
-
-        // setQuestions(reorderedQuestions);
+        // console.log("Edited Group Questions", editedGroupQuestions);
+        setQuestions(editedGroupQuestions);
 
         try {
-            // Set loading state to true and show loading toast with spinner
             setLoading(true);
             if (editState) {
                 // Make individual API calls to update each question using the /editQuestions route
@@ -565,10 +558,16 @@ export default function SurveyTable() {
                         formData
                     );
 
+                    console.log("result.data", result.data);
+
                     if (result.status !== 200) {
                         throw new Error(
                             `Failed to update question ID ${question.question_id}`
                         );
+                    }
+                    // Log the form data
+                    for (let [key, value] of formData.entries()) {
+                        console.log(`${key}: ${value}`);
                     }
                 }
 
@@ -592,7 +591,8 @@ export default function SurveyTable() {
             });
         } finally {
             setLoading(false);
-            // setUpdateUI((prev) => !prev); // Trigger a UI update
+            // setQuestions(editedGroupQuestions);
+            setUpdateUI((prev) => !prev); // Update: temporary fix
         }
     };
 
@@ -613,7 +613,6 @@ export default function SurveyTable() {
     };
 
     //TODO: Fix Sort by sequence automatically error, need for reordering rows
-    // Update: temporary fix
     return (
         <>
             <Toast ref={toast} />
@@ -636,9 +635,7 @@ export default function SurveyTable() {
                         rowGroupHeaderTemplate={rowHeaderTemplate}
                         rowGroupMode="subheader"
                         groupRowsBy="question_group_id"
-                        // sortField="sequence"
-                        // sortOrder={1}
-                        // onSort={customSort}
+                        sortField="sequence"
                         removableSort
                         expandableRowGroups
                         expandedRows={expandedRows}
@@ -651,11 +648,14 @@ export default function SurveyTable() {
                         onRowEditComplete={onRowEditComplete}
                         selectionMode={editState}
                     >
-                        <Column
-                            rowReorder={editState}
-                            style={{ width: "5rem" }}
-                            bodyStyle={{ textAlign: "center" }}
-                        />
+                        {/* {editState && (
+                            <Column
+                                rowReorder={editState}
+                                style={{ width: "5rem" }}
+                                bodyStyle={{ textAlign: "center" }}
+                            />
+                        )} */}
+
                         <Column
                             field="sequence"
                             header="Sequence"
@@ -663,6 +663,14 @@ export default function SurveyTable() {
                             style={{ width: "10px" }}
                             editor={(question) => numberEditor(question)}
                             body={sequenceBodyTemplate}
+                            bodyStyle={{ textAlign: "center" }}
+                        />
+                        <Column
+                            field="question_key"
+                            header="Question Key"
+                            sortable
+                            style={{ width: "10%" }}
+                            editor={(question) => textEditor(question)}
                         />
                         <Column
                             field="question_name"
@@ -671,6 +679,7 @@ export default function SurveyTable() {
                             style={{ width: "30%" }}
                             editor={(question) => textEditor(question)}
                         />
+
                         {visibleColumns.map((col) => (
                             <Column
                                 key={col.field}
@@ -682,7 +691,7 @@ export default function SurveyTable() {
                             />
                         ))}
                         <Column
-                            rowEditor={editState}
+                            rowEditor
                             headerStyle={{ width: "10%" }}
                             bodyStyle={{ textAlign: "right" }}
                         />
