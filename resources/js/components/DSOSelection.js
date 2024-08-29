@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Tree } from "primereact/tree";
-import { Calendar } from "primereact/calendar";
 import axios from "axios";
 import "../../css/DSOSelection.css";
 import RangeDemo from "./RangeDemo";
 
-// Utility function to check if the device is mobile based on breakpoints
 const useIsMobile = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -21,13 +19,15 @@ const useIsMobile = () => {
     return isMobile;
 };
 
-export default function DSOSelection() {
+export default function DSOSelection({
+    dates,
+    onDateChange,
+    selectedKeys,
+    onSelectionChange,
+}) {
     const [nodes, setNodes] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [selectedKeys, setSelectedKeys] = useState({});
-    const [dates, setDates] = useState({}); // Store start and end dates for each Wilayah
-
-    const isMobile = useIsMobile(); // Get the current breakpoint
+    const isMobile = useIsMobile();
 
     const getBranches = async () => {
         try {
@@ -46,7 +46,13 @@ export default function DSOSelection() {
                         label: (
                             <div className="d-flex align-items-center flex-wrap flex-column">
                                 <h5>{Wilayah}</h5>
-                                <RangeDemo />
+                                <RangeDemo
+                                    wilayahKey={Wilayah} // Pass the Wilayah name as a key
+                                    dates={dates[Wilayah] || null} // Initialize with stored dates
+                                    onDateChange={(newDates) =>
+                                        onDateChange(Wilayah, newDates)
+                                    }
+                                />
                             </div>
                         ),
                         children: [],
@@ -75,13 +81,6 @@ export default function DSOSelection() {
         getBranches();
     }, []);
 
-    const onSelectionChange = (e) => {
-        setSelectedKeys(e.value);
-    };
-
-    console.log("Selected keys", selectedKeys);
-    console.log("Dates State:", dates);
-
     return (
         <>
             <div className="card flex justify-content-center overflow-auto mt-4">
@@ -89,12 +88,12 @@ export default function DSOSelection() {
                     value={nodes}
                     selectionMode="checkbox"
                     selectionKeys={selectedKeys}
-                    onSelectionChange={onSelectionChange}
+                    onSelectionChange={(e) => onSelectionChange(e.value)}
                     loading={loading}
                     className="tree-container"
                     filter
                     filterMode="lenient"
-                    filterPlaceholder="Search By DSO Name..."
+                    filterPlaceholder="Search By Company Name..."
                 />
             </div>
         </>

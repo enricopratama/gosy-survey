@@ -1,9 +1,9 @@
 .tree-container {
-    width: 75vw;
+    width: 78vw; /* Default for small screens */
 }
 
-@media (min-width: 100px) {
+@media (min-width: 768px) {
     .tree-container {
-        width: 35vw;
+        width: 35vw; /* Width for medium and larger screens */
     }
 }

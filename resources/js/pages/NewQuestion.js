@@ -96,6 +96,7 @@ export default function NewQuestion() {
 
     // Mapping between question & question group id
     const [mapGrpId, setMapGrpId] = useState(null);
+
     const [response, setResponse] = useState({
         question_id: null,
         survey_name: null,
@@ -128,12 +129,9 @@ export default function NewQuestion() {
         option_9_flow: null,
     });
 
-    // const [surveyQGrpResp, setSurveyQGrpResp] = useState({
-    //     survey_id: response.survey_id,
-    //     sequence: 1, // set 1 default for now
-    //     question_group_id: response.question_group_id,
-    //     data_status: 1, // set 1 default for now
-    // });
+    // Per Flow (Survey --> Quest Grp --> DSO)
+    const [dates, setDates] = useState({}); // Store start and end dates for each Wilayah
+    const [selectedKeys, setSelectedKeys] = useState({}); // Store selected keys (checked data)
 
     // Filters
     const [globalFilterValue, setGlobalFilterValue] = useState("");
@@ -1240,8 +1238,19 @@ export default function NewQuestion() {
                 life: 3000,
             });
         } finally {
-            setUpdateUI((prev) => !prev); // Force UI update if needed
+            setUpdateUI((prev) => !prev);
         }
+    };
+
+    const handleDateChange = (wilayah, newDates) => {
+        setDates((prevDates) => ({
+            ...prevDates,
+            [wilayah]: newDates,
+        }));
+    };
+
+    const handleSelectionChange = (keys) => {
+        setSelectedKeys(keys);
     };
 
     return (
@@ -1249,12 +1258,7 @@ export default function NewQuestion() {
             <BreadcrumbComponent />
             <Toast ref={toast} />
             <div className="card d-flex justify-content-center">
-                <Stepper
-                    // orientation="vertical"
-                    // linear
-                    ref={stepperRef}
-                    style={{ marginTop: "2rem" }}
-                >
+                <Stepper ref={stepperRef} style={{ marginTop: "2rem" }}>
                     {/* Step 1 - Survey Type */}
                     <StepperPanel header="Survey Type">
                         <div className="d-flex flex-column">
@@ -1829,9 +1833,18 @@ export default function NewQuestion() {
                         <div className="rounded surface-ground flex-auto font-medium mx-5">
                             <h5 className="text-muted">Step 4</h5>
                             <h1>Pilih DSO Untuk Di Survey</h1>
+                            {response.survey_name !== null &&
+                                response.question_group_name !== null && (
+                                    <p>{`${response.survey_name} (${response.question_group_name})`}</p>
+                                )}
+
                             <div className="d-flex justify-content-center">
-                                <DSOSelection />
-                                {/* <RangeDemo /> */}
+                                <DSOSelection
+                                    dates={dates}
+                                    onDateChange={handleDateChange}
+                                    selectedKeys={selectedKeys}
+                                    onSelectionChange={handleSelectionChange}
+                                />
                             </div>
                         </div>
 
