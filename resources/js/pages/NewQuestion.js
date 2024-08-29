@@ -29,6 +29,7 @@ import SurveyDialog from "../components/SurveyDialog";
 import QuestionGroupDialog from "../components/QuestionGroupDialog";
 import Step3Header from "../handlers/Step3Header";
 import DSOSelection from "../components/DSOSelection";
+import RangeDemo from "../components/RangeDemo";
 
 export default function NewQuestion() {
     const op = useRef(null);
@@ -1643,7 +1644,6 @@ export default function NewQuestion() {
                                     className="border-right"
                                 />
                             )}
-
                             <Column
                                 field="sequence"
                                 header="Sequence"
@@ -1831,6 +1831,7 @@ export default function NewQuestion() {
                             <h1>Pilih DSO Untuk Di Survey</h1>
                             <div className="d-flex justify-content-center">
                                 <DSOSelection />
+                                {/* <RangeDemo /> */}
                             </div>
                         </div>
 

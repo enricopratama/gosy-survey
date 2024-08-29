@@ -2,8 +2,8 @@
     width: 75vw;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 100px) {
     .tree-container {
-        width: 50vw;
+        width: 35vw;
     }
 }

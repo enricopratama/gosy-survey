@@ -27,5 +27,17 @@ class Branch extends Model
         'UpdatedBy',
     ];
 
-    protected $primary_key = 'BranchCode';
+    protected $primaryKey = 'BranchCode';
+
+    /**
+     * Define a one-to-one relationship with the SurveyCompany model.
+     */
+    public function surveyCompany()
+    {
+        return $this->belongsTo(
+            SurveyCompany::class,
+            'CompanyCode',
+            'company_code'
+        );
+    }
 }

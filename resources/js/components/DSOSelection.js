@@ -1,12 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { Tree } from "primereact/tree";
+import { Calendar } from "primereact/calendar";
 import axios from "axios";
 import "../../css/DSOSelection.css";
+import RangeDemo from "./RangeDemo";
+
+// Utility function to check if the device is mobile based on breakpoints
+const useIsMobile = () => {
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    return isMobile;
+};
 
 export default function DSOSelection() {
     const [nodes, setNodes] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [selectedKeys, setSelectedKeys] = useState({}); // Initialize as an object
+    const [selectedKeys, setSelectedKeys] = useState({});
+    const [dates, setDates] = useState({}); // Store start and end dates for each Wilayah
+
+    const isMobile = useIsMobile(); // Get the current breakpoint
 
     const getBranches = async () => {
         try {
@@ -14,17 +35,20 @@ export default function DSOSelection() {
             const response = await axios.get("/branches");
             const branches = response.data;
 
-            // Transform the branches data into the format required by the Tree component
             const wilayahMap = {};
 
             branches.forEach((branch, index) => {
                 const { Wilayah, BranchName, BranchCode } = branch;
 
-                // Unique Wilayah
                 if (!wilayahMap[Wilayah]) {
                     wilayahMap[Wilayah] = {
                         key: `${index}`,
-                        label: Wilayah,
+                        label: (
+                            <div className="d-flex align-items-center flex-wrap flex-column">
+                                <h5>{Wilayah}</h5>
+                                <RangeDemo />
+                            </div>
+                        ),
                         children: [],
                     };
                 }
@@ -56,6 +80,7 @@ export default function DSOSelection() {
     };
 
     console.log("Selected keys", selectedKeys);
+    console.log("Dates State:", dates);
 
     return (
         <>
@@ -68,7 +93,7 @@ export default function DSOSelection() {
                     loading={loading}
                     className="tree-container"
                     filter
-                    filterMode="strict"
+                    filterMode="lenient"
                     filterPlaceholder="Search By DSO Name..."
                 />
             </div>
