@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Stepper } from "primereact/stepper";
+import { ProgressSpinner } from "primereact/progressspinner";
 import { StepperPanel } from "primereact/stepperpanel";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
@@ -124,12 +125,12 @@ export default function NewQuestion() {
         option_9_flow: null,
     });
 
-    const [surveyQGrpResp, setSurveyQGrpResp] = useState({
-        survey_id: response.survey_id,
-        sequence: 1, // set 1 default for now
-        question_group_id: response.question_group_id,
-        data_status: 1, // set 1 default for now
-    });
+    // const [surveyQGrpResp, setSurveyQGrpResp] = useState({
+    //     survey_id: response.survey_id,
+    //     sequence: 1, // set 1 default for now
+    //     question_group_id: response.question_group_id,
+    //     data_status: 1, // set 1 default for now
+    // });
 
     // Filters
     const [globalFilterValue, setGlobalFilterValue] = useState("");
@@ -559,8 +560,6 @@ export default function NewQuestion() {
 
                         setUpdateUI((prev) => !prev);
                         setQuestionDialog(false);
-                        // getQuestions();
-                        // filterQuestionsByGroupName();
                     }
                 }
             } catch (error) {
@@ -595,7 +594,6 @@ export default function NewQuestion() {
         setEditState(false);
     };
 
-    // TODO: fix mandatory UI change
     const doSaveDeleteQuestion = async () => {
         let _response = { ...response };
         const index = findIndexByID(_response.question_id);
@@ -613,6 +611,25 @@ export default function NewQuestion() {
         formData.append("is_mandatory", _response.is_mandatory);
 
         try {
+            // Set loading state to true and show loading toast with spinner
+            setLoading(true);
+            toast.current.show({
+                severity: "info",
+                summary: "Loading",
+                detail: (
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                        <ProgressSpinner
+                            style={{ width: "20px", height: "20px" }}
+                            strokeWidth="5"
+                        />
+                        <span style={{ marginLeft: "8px" }}>
+                            Processing your request...
+                        </span>
+                    </div>
+                ),
+                life: 2000,
+            });
+
             const result = await axios.post(
                 `/editQuestion/${_response.question_id}`,
                 formData
@@ -648,6 +665,9 @@ export default function NewQuestion() {
             setQuestions(_questions);
             setEditState(false);
             setUpdateUI((prev) => !prev);
+        } finally {
+            // Set loading state to false
+            setLoading(false);
         }
     };
 
@@ -1325,9 +1345,13 @@ export default function NewQuestion() {
                                     icon="pi pi-arrow-right"
                                     iconPos="right"
                                     disabled={response.survey_name === null}
-                                    onClick={() =>
-                                        stepperRef.current.nextCallback()
-                                    }
+                                    onClick={() => [
+                                        window.scrollTo({
+                                            top: 0,
+                                            behavior: "smooth",
+                                        }),
+                                        stepperRef.current.nextCallback(),
+                                    ]}
                                 />
                             </div>
                         </div>
@@ -1712,15 +1736,6 @@ export default function NewQuestion() {
 
                     {/* Step 4 - DSO List */}
                     <StepperPanel header="DSO Group">
-                        {/* <div className="rounded surface-ground flex-auto d-flex font-medium mx-5">
-                            <div className="d-flex flex-column">
-                                <h5 className="text-muted">Step 4</h5>
-                                <h1>Pilih DSO Untuk Di Survey</h1>
-                                <div className="d-flex justify-content-center text-center">
-                                    <DSOSelection />
-                                </div>
-                            </div>
-                        </div> */}
                         <div className="rounded surface-ground flex-auto font-medium mx-5">
                             <h5 className="text-muted">Step 4</h5>
                             <h1>Pilih DSO Untuk Di Survey</h1>

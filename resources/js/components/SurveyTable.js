@@ -16,6 +16,7 @@ import TableSizeSelector from "../handlers/TableSizeSelector";
 import "../../css/DataTable.css";
 import { InputNumber } from "primereact/inputnumber";
 import { classNames } from "primereact/utils";
+import tryCatch from "../hooks/tryCatch";
 
 export default function SurveyTable() {
     const toast = useRef(null);
@@ -31,6 +32,8 @@ export default function SurveyTable() {
     const [addDialog, setAddDialog] = useState(false);
 
     const [editDialog, setEditDialog] = useState(false);
+
+    const [editedQuestionGroupID, setEditedQuestionGroupID] = useState(null);
 
     // Question Group Response
     const [response, setResponse] = useState({
@@ -130,24 +133,18 @@ export default function SurveyTable() {
         { field: "question_group_id", header: "Question Group ID" },
         { field: "data_status", header: "Data Status" },
         { field: "question_type", header: "Question Type" },
-        // { field: "question_group_name", header: "Question Group Name" },
-        // { field: "survey_name", header: "Survey Name" },
     ];
 
     const [visibleColumns, setVisibleColumns] = useState(defaultVisibleColumns);
 
     const getQuestions = async () => {
-        try {
-            const response = await axios.get("/api/questions");
-            setQuestions(response.data);
-            setQuestions({
-                ...initialEmptyQuestion,
-            });
-        } catch (error) {
+        const [response, error] = await tryCatch(axios.get("/questions"));
+        if (error) {
             console.error("Error fetching the questions:", error);
-        } finally {
-            setLoading(false);
+        } else {
+            setQuestions(response.data);
         }
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -356,11 +353,8 @@ export default function SurveyTable() {
 
     // Edit handler
     const onEditClick = (rowData) => {
-        set;
+        setEditedQuestionGroupID(rowData.question_group_id);
     };
-
-    // Delete Data Handlers
-    const handleDeleteGroup = () => {};
 
     const onColumnToggle = (event) => {
         const selectedColumns = event.value;
@@ -385,7 +379,7 @@ export default function SurveyTable() {
         </div>
     );
 
-    const tableHeader = (
+    const tableTopHeader = (
         <div className="mb-4">
             <Toolbar
                 start={
@@ -410,7 +404,6 @@ export default function SurveyTable() {
                         display="chip"
                         filter
                         placeholder="Select Columns"
-                        className=""
                         title="Select datatable columns"
                     />
                 }
@@ -419,23 +412,41 @@ export default function SurveyTable() {
     );
 
     const rowHeaderTemplate = (rowData) => {
+        const isEditing = editedQuestionGroupID === rowData.question_group_id;
+
         return (
             <React.Fragment>
                 <span className="vertical-align-middle ml-2 font-bold line-height-3">
                     {rowData.question_group_name} ({rowData.survey_name})
                     <div className="ml-auto d-flex">
-                        <Button
-                            label="Edit"
-                            icon="pi pi-pencil"
-                            className="p-button-text rounded p-ml-2 outlined"
-                            onClick={() => onEditClick(rowData)}
-                        />
-                        <Button
+                        {isEditing ? (
+                            <Button
+                                label="Close"
+                                icon="pi pi-times"
+                                className="p-button-text rounded p-ml-2 outlined"
+                                onClick={() => {
+                                    setEditedQuestionGroupID(null);
+                                    setEditState(false);
+                                }}
+                            />
+                        ) : (
+                            <Button
+                                label="Edit"
+                                icon="pi pi-pencil"
+                                className="p-button-text rounded p-ml-2 outlined"
+                                onClick={() => {
+                                    // setEditedQuestionGroupID(rowData.question_group_id);
+                                    onEditClick(rowData);
+                                    setEditState(true);
+                                }}
+                            />
+                        )}
+                        {/* <Button
                             label="Delete"
                             icon="pi pi-trash"
                             className="p-button-danger p-button-text rounded p-ml-2"
                             onClick={() => handleDeleteGroup(rowData)}
-                        />
+                        /> */}
                     </div>
                 </span>
             </React.Fragment>
@@ -471,8 +482,10 @@ export default function SurveyTable() {
                 newData
             );
 
+            console.log("Result", result);
+
             if (result.status === 200) {
-                // Update the question in the local state after successful API call
+                // Update the question in the local state after successful API call (ALWAYS MAKE A COPY, else painful hours of debugging)
                 _questions[index] = newData;
                 setQuestions(_questions);
 
@@ -501,34 +514,108 @@ export default function SurveyTable() {
         }
     };
 
-    const onRowReorder = (e) => {
+    // TODO: Fix sequence ordering in DataTable (order by is missed up)
+    const onRowReorder = async (e) => {
         const reorderedQuestions = e.value;
+        var _loading = loading;
 
-        // Iterate through the reorderedQuestions to log the sequence
-        reorderedQuestions.forEach((question, index) => {
-            console.log(
-                `Question ID: ${question.question_id}, New Sequence: ${
-                    index + 1
-                }`
-            );
-            // question.sequence = index + 1; // Update the sequence if needed
+        // Filter questions belonging to the edited group
+        const editedGroupQuestions = reorderedQuestions.filter(
+            (question) => question.question_group_id === editedQuestionGroupID
+        );
+
+        // Update the sequence and question_key for each question in the edited group
+        editedGroupQuestions.forEach((question, index) => {
+            const newSequence = index + 1; // Sequence starts from 1
+            question.sequence = newSequence;
+            question.question_key = `${question.question_group_id}#${newSequence}`; // Update the question key accordingly
         });
 
+        // Update the questions state with the reordered list
         setQuestions(reorderedQuestions);
+
+        try {
+            // Set loading state to true and show loading toast with spinner
+            setLoading(true);
+            if (editState) {
+                // Make individual API calls to update each question using the /editQuestions route
+                for (let i = 0; i < editedGroupQuestions.length; i++) {
+                    const question = editedGroupQuestions[i];
+                    const formData = new FormData();
+                    formData.append(
+                        "question_group_id",
+                        question.question_group_id
+                    );
+                    formData.append("question_name", question.question_name);
+                    formData.append("question_type", question.question_type);
+                    formData.append("sequence", question.sequence);
+                    formData.append("data_status", question.data_status);
+                    formData.append("is_parent", question.is_parent);
+                    formData.append("is_mandatory", question.is_mandatory);
+                    formData.append("question_key", question.question_key);
+
+                    const result = await axios.post(
+                        `/editQuestion/${question.question_id}`,
+                        formData
+                    );
+
+                    console.log("Result", result);
+
+                    if (result.status !== 200) {
+                        throw new Error(
+                            `Failed to update question ID ${question.question_id}`
+                        );
+                    }
+                }
+
+                // Show success toast once all updates are complete
+                toast.current.show({
+                    severity: "success",
+                    summary: "Success",
+                    detail: "Question sequences updated successfully",
+                    life: 3000,
+                });
+            } else {
+                toast.current.show({
+                    severity: "error",
+                    summary: "Error",
+                    detail: "Edit State is not toggled",
+                    life: 3000,
+                });
+            }
+        } catch (error) {
+            console.error("Error updating sequences:", error);
+            toast.current.show({
+                severity: "error",
+                summary: "Error",
+                detail:
+                    error.response?.data?.message ||
+                    "Failed to edit question sequence",
+                life: 3000,
+            });
+        } finally {
+            setLoading(false);
+            setUpdateUI((prev) => !prev); // Trigger a UI update
+        }
     };
 
     const sequenceBodyTemplate = (rowData) => {
         const stockClassName = classNames(
             "d-inline-flex justify-content-center align-items-center rounded-circle font-weight-bold",
             {
-                "bg-secondary text-white": rowData.sequence === 1,
-            },
-            "w-25 h-25"
+                "bg-secondary font-weight-bold text-white":
+                    rowData.sequence === 1,
+            }
         );
 
-        return <div className={stockClassName}>{rowData.sequence}</div>;
+        return (
+            <div className={stockClassName} style={{ width: "25px" }}>
+                {rowData.sequence}
+            </div>
+        ); // Custom width
     };
 
+    //TODO: Fix Sort by sequence automatically error, need for reordering rows
     return (
         <>
             <Toast ref={toast} />
@@ -540,7 +627,7 @@ export default function SurveyTable() {
                         onSizeChange={(newSize) => setSize(newSize)}
                     />
                     {/* Place toolbar here */}
-                    {tableHeader}
+                    {tableTopHeader}
                     <DataTable
                         ref={dt}
                         value={questions}
@@ -552,37 +639,36 @@ export default function SurveyTable() {
                         rowGroupMode="subheader"
                         groupRowsBy="question_group_id"
                         // sortField="question_group_name"
-                        sortOrder={1}
+                        // sortOrder={1}
                         expandableRowGroups
                         expandedRows={expandedRows}
                         onRowToggle={(e) => setExpandedRows(e.data)}
                         tableStyle={{ minWidth: "88vw" }}
-                        stripedRows
                         reorderableRows
                         onRowReorder={onRowReorder}
                         className="p-datatable-gridlines"
                         editMode="row"
                         onRowEditComplete={onRowEditComplete}
-                        selectionMode="multiple"
+                        selectionMode={editState}
+                        removableSort
                     >
                         <Column
-                            rowReorder
+                            rowReorder={editState}
                             style={{ width: "5rem" }}
                             bodyStyle={{ textAlign: "center" }}
                         />
                         <Column
                             field="sequence"
                             header="Sequence"
-                            sortable
+                            // sortable
                             style={{ width: "10px" }}
-                            // bodyStyle={{ textAlign: "center" }}
                             editor={(question) => numberEditor(question)}
                             body={sequenceBodyTemplate}
                         />
                         <Column
                             field="question_name"
                             header="Question Name"
-                            sortable
+                            // sortable
                             style={{ width: "30%" }}
                             editor={(question) => textEditor(question)}
                         />
@@ -591,13 +677,13 @@ export default function SurveyTable() {
                                 key={col.field}
                                 field={col.field}
                                 header={col.header}
-                                sortable
+                                // sortable
                                 style={{ minWidth: "4rem" }}
                                 editor={(question) => textEditor(question)}
                             />
                         ))}
                         <Column
-                            rowEditor={true}
+                            rowEditor={editState}
                             headerStyle={{ width: "10%" }}
                             bodyStyle={{ textAlign: "right" }}
                         />

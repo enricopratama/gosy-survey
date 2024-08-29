@@ -183,15 +183,15 @@ class QuestionController extends Controller
      * Update the question in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $question_id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $question_id)
     {
+        // Validate the request data
         $validator = Validator::make($request->all(), [
             'question_group_id' => 'required|integer',
             'question_name' => 'required|string|max:255',
-            'question_key' => 'required|string|max:255',
             'question_type' => [
                 'required',
                 Rule::in([
@@ -224,14 +224,16 @@ class QuestionController extends Controller
             );
         }
 
-        // Log::info('Request data for validation:', $request->all());
-
         $question = Question::find($question_id);
         if (!$question) {
             return response()->json(['message' => 'Question not found'], 404);
         }
 
-        // Update the current question
+        $question_key = $request->question_group_id . '#' . $request->sequence;
+
+        $request->merge(['question_key' => $question_key]);
+
+        // Update the current question with the modified request data
         $question->update($request->all());
 
         return response()->json(

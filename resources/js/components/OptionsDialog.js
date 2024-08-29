@@ -91,6 +91,7 @@ export default function OptionsDialog({
             type="text"
             value={options.value || ""}
             onChange={(e) => options.editorCallback(e.target.value)}
+            style={{ minWidth: "50%" }}
         />
     );
 
@@ -108,6 +109,7 @@ export default function OptionsDialog({
                 checkmark={true}
                 editable={true}
                 clearIcon={true}
+                style={{ minWidth: "125%" }}
             />
         );
     };
