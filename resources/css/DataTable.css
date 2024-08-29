@@ -1,36 +1,27 @@
 .p-datatable-gridlines .p-datatable-tbody > tr > td {
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid #e4e7eb;
 }
 
 .p-datatable-gridlines .p-datatable-tbody > tr > td:first-child {
-    border-left: 1px solid #dee2e6;
+    border-left: 1px solid #e4e7eb;
 }
 
 .p-datatable-gridlines .p-datatable-tbody > tr > td:last-child {
-    border-right: 1px solid #dee2e6;
+    border-right: 1px solid #e4e7eb;
 }
 
 .border-left {
-    border-left: 1px solid #dee2e6;
+    border-left: 1px solid #e4e7eb;
 }
 
 .border-right {
-    border-right: 1px solid #dee2e6;
+    border-right: 1px solid #e4e7eb;
 }
 
 .border-bottom {
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid #e4e7eb;
 }
 
 .text-large {
     font-size: 1rem;
-}
-
-.arrow-right::after {
-    content: "→";
-    display: inline-block;
-    margin-left: 0.5rem;
-    font-size: 1.2rem;
-    color: #000;
-    vertical-align: middle;
 }

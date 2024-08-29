@@ -514,10 +514,15 @@ export default function SurveyTable() {
         }
     };
 
+    const handleRowReorder = (e) => {
+        setQuestions(e.value);
+    };
+
     // TODO: Fix sequence ordering in DataTable (order by is missed up)
     const onRowReorder = async (e) => {
+        setQuestions(e.value);
         const reorderedQuestions = e.value;
-        var _loading = loading;
+        // var _loading = loading;
 
         // Filter questions belonging to the edited group
         const editedGroupQuestions = reorderedQuestions.filter(
@@ -532,7 +537,8 @@ export default function SurveyTable() {
         });
 
         // Update the questions state with the reordered list
-        setQuestions(reorderedQuestions);
+
+        // setQuestions(reorderedQuestions);
 
         try {
             // Set loading state to true and show loading toast with spinner
@@ -559,8 +565,6 @@ export default function SurveyTable() {
                         formData
                     );
 
-                    console.log("Result", result);
-
                     if (result.status !== 200) {
                         throw new Error(
                             `Failed to update question ID ${question.question_id}`
@@ -573,13 +577,6 @@ export default function SurveyTable() {
                     severity: "success",
                     summary: "Success",
                     detail: "Question sequences updated successfully",
-                    life: 3000,
-                });
-            } else {
-                toast.current.show({
-                    severity: "error",
-                    summary: "Error",
-                    detail: "Edit State is not toggled",
                     life: 3000,
                 });
             }
@@ -595,7 +592,7 @@ export default function SurveyTable() {
             });
         } finally {
             setLoading(false);
-            setUpdateUI((prev) => !prev); // Trigger a UI update
+            // setUpdateUI((prev) => !prev); // Trigger a UI update
         }
     };
 
@@ -616,6 +613,7 @@ export default function SurveyTable() {
     };
 
     //TODO: Fix Sort by sequence automatically error, need for reordering rows
+    // Update: temporary fix
     return (
         <>
             <Toast ref={toast} />
@@ -638,8 +636,10 @@ export default function SurveyTable() {
                         rowGroupHeaderTemplate={rowHeaderTemplate}
                         rowGroupMode="subheader"
                         groupRowsBy="question_group_id"
-                        // sortField="question_group_name"
+                        // sortField="sequence"
                         // sortOrder={1}
+                        // onSort={customSort}
+                        removableSort
                         expandableRowGroups
                         expandedRows={expandedRows}
                         onRowToggle={(e) => setExpandedRows(e.data)}
@@ -650,7 +650,6 @@ export default function SurveyTable() {
                         editMode="row"
                         onRowEditComplete={onRowEditComplete}
                         selectionMode={editState}
-                        removableSort
                     >
                         <Column
                             rowReorder={editState}
@@ -660,7 +659,7 @@ export default function SurveyTable() {
                         <Column
                             field="sequence"
                             header="Sequence"
-                            // sortable
+                            sortable
                             style={{ width: "10px" }}
                             editor={(question) => numberEditor(question)}
                             body={sequenceBodyTemplate}
