@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Tree } from "primereact/tree";
 import axios from "axios";
 import "../../css/DSOSelection.css";
-import RangeDemo from "./RangeDemo";
+import RangeCalendar from "./RangeCalendar";
 
 const useIsMobile = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -46,7 +46,7 @@ export default function DSOSelection({
                         label: (
                             <div className="d-flex align-items-center flex-wrap flex-column">
                                 <h5>{Wilayah}</h5>
-                                <RangeDemo
+                                <RangeCalendar
                                     wilayahKey={Wilayah} // Pass the Wilayah name as a key
                                     dates={dates[Wilayah] || null} // Initialize with stored dates
                                     onDateChange={(newDates) =>

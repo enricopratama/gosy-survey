@@ -64,13 +64,47 @@ export default function OptionsDialog({
         setOptionsData(options);
     }, [selectedRow, questions]);
 
-    const onRowEditComplete = (e) => {
+    const onRowEditComplete = async (e) => {
         let _optionsData = [...optionsData];
         let { newData, index } = e;
 
         _optionsData[index] = newData;
 
-        setOptionsData(_optionsData);
+        try {
+            // Make an API call to update the question in the backend
+            const result = await axios.post(
+                `/editQuestion/${newData.question_id}`,
+                newData
+            );
+
+            console.log("Result", result);
+
+            if (result.status === 200) {
+                // Update the question in the local state after successful API call (ALWAYS MAKE A COPY, else painful hours of debugging)
+
+                // Optionally, show a success message
+                toast.current.show({
+                    severity: "success",
+                    summary: "Success",
+                    detail: `Question ID ${newData.question_id} updated successfully`,
+                    life: 3000,
+                });
+            }
+        } catch (error) {
+            // Handle error, revert the changes in the UI, and notify the user
+            console.error("Error updating question:", error);
+
+            toast.current.show({
+                severity: "error",
+                summary: "Error",
+                detail:
+                    error.response?.data?.message ||
+                    `Failed to update Question ID ${newData.question_id}`,
+                life: 3000,
+            });
+        } finally {
+            setOptionsData(_optionsData);
+        }
     };
 
     const handleSave = () => {
@@ -105,7 +139,6 @@ export default function OptionsDialog({
                 panelStyle={{ maxHeight: "600px", maxWidth: "90%" }}
                 filter
                 optionLabel="label"
-                highlightOnSelect={false}
                 checkmark={true}
                 editable={true}
                 clearIcon={true}

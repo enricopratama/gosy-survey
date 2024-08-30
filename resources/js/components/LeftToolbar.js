@@ -15,7 +15,7 @@ const LeftToolbar = ({
                 icon="pi pi-plus"
                 iconPos="left"
                 onClick={openNew}
-                className="rounded"
+                className="rounded flex-fill"
                 title="Add a Question"
             />
             <Button
@@ -24,7 +24,7 @@ const LeftToolbar = ({
                 iconPos="left"
                 severity={isReordering ? "success" : "primary"}
                 onClick={reorderState}
-                className="rounded"
+                className="rounded flex-fill"
                 title={isReordering ? "Done Reordering" : "Reorder Questions"}
             />
             <Button
@@ -38,7 +38,7 @@ const LeftToolbar = ({
                     !selectedQuestions.length ||
                     isReordering
                 }
-                className="rounded"
+                className="rounded flex-fill"
                 title="Delete Selected Questions"
             />
         </div>

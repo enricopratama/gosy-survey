@@ -4,6 +4,6 @@
 
 @media (min-width: 768px) {
     .tree-container {
-        width: 35vw; /* Width for medium and larger screens */
+        width: 30vw; /* Width for medium and larger screens */
     }
 }

@@ -129,6 +129,7 @@ export default function SurveyTable() {
 
     const defaultVisibleColumns = [
         { field: "question_id", header: "ID" },
+        { field: "question_key", header: "Question Key" },
         { field: "question_group_id", header: "Question Group ID" },
         { field: "data_status", header: "Data Status" },
         { field: "question_type", header: "Question Type" },

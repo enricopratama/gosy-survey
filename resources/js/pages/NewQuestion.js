@@ -29,7 +29,6 @@ import SurveyDialog from "../components/SurveyDialog";
 import QuestionGroupDialog from "../components/QuestionGroupDialog";
 import Step3Header from "../handlers/Step3Header";
 import DSOSelection from "../components/DSOSelection";
-import RangeDemo from "../components/RangeDemo";
 
 export default function NewQuestion() {
     const op = useRef(null);

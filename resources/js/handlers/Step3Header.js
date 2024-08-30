@@ -86,7 +86,6 @@ export default function Step3Header({
                 breakpoints={{ "960px": "75vw", "641px": "800vw" }}
                 title="Select Question Group"
                 checkmark={true}
-                highlightOnSelect={false}
                 className="dropdown-responsive"
             />
         </div>
