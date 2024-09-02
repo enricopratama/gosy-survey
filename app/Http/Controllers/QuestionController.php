@@ -99,6 +99,97 @@ class QuestionController extends Controller
         }
     }
 
+    public function getQuestionsBySurveyId($survey_id)
+    {
+        try {
+            $questions = Question::select(
+                'mst_question.*',
+                'mst_question_group.question_group_name AS question_group_name',
+                'mst_survey.survey_id AS survey_id',
+                'mst_survey.survey_name AS survey_name',
+                'mst_survey_question_group.survey_question_id AS survey_question_group_id',
+                'mst_survey_question_group.sequence AS survey_question_group_sequence',
+                'mst_question_group.data_status AS question_group_data_status',
+                'mst_survey.data_status AS survey_data_status',
+                'mst_survey_question_group.data_status AS survey_question_group_data_status'
+            )
+                ->leftJoin(
+                    'mst_survey_question_group',
+                    'mst_question.question_group_id',
+                    '=',
+                    'mst_survey_question_group.question_group_id'
+                )
+                ->leftJoin(
+                    'mst_survey',
+                    'mst_survey_question_group.survey_id',
+                    '=',
+                    'mst_survey.survey_id'
+                )
+                ->leftJoin(
+                    'mst_question_group',
+                    'mst_survey_question_group.question_group_id',
+                    '=',
+                    'mst_question_group.question_group_id'
+                )
+                ->where('mst_survey.survey_id', $survey_id) // Filter by survey_id
+                ->get();
+
+            if ($questions->isEmpty()) {
+                return response()->json(
+                    ['message' => 'No questions found for this survey_id'],
+                    404
+                );
+            }
+
+            return response()->json($questions, 200);
+        } catch (\Exception $e) {
+            return response()->json(
+                [
+                    'error' => 'Failed to retrieve questions for the survey.',
+                    'message' => $e->getMessage(),
+                ],
+                500
+            );
+        }
+    }
+
+    // public function getQuestionsBySurveyId($survey_id)
+    // {
+    //     try {
+    //         $questions = Question::select(
+    //             'mst_question.*',
+    //             'mst_survey.survey_id AS survey_id',
+    //             'mst_survey.survey_name AS survey_name',
+    //             'mst_survey.data_status AS survey_data_status'
+    //         )
+    //             ->leftJoin(
+    //                 'mst_survey',
+    //                 'mst_survey.survey_id',
+    //                 '=',
+    //                 'mst_question.survey_id'
+    //             )
+    //             ->where('mst_survey.survey_id', $survey_id) // Filter by survey_id
+    //             ->get();
+
+    //         if ($questions->isEmpty()) {
+    //             return response()->json(
+    //                 ['message' => 'No questions found for this survey_id'],
+    //                 404
+    //             );
+    //         }
+
+    //         return response()->json($questions, 200);
+    //     } catch (\Exception $e) {
+    //         return response()->json(
+    //             [
+    //                 'error' => 'Failed to retrieve questions for the survey.',
+    //                 'message' => $e->getMessage(),
+    //             ],
+    //             500
+    //         );
+    //     }
+    // }
+
     /**
      * Store the question in storage.
      *

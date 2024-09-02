@@ -4,21 +4,6 @@ import axios from "axios";
 import "../../css/DSOSelection.css";
 import RangeCalendar from "./RangeCalendar";
 
-const useIsMobile = () => {
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
-
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
-    return isMobile;
-};
-
 export default function DSOSelection({
     dates,
     onDateChange,
@@ -27,7 +12,14 @@ export default function DSOSelection({
 }) {
     const [nodes, setNodes] = useState([]);
     const [loading, setLoading] = useState(false);
-    const isMobile = useIsMobile();
+    const [localDates, setLocalDates] = useState({});
+
+    const handleDateChange = (wilayah, newDates) => {
+        setLocalDates((prevDates) => ({
+            ...prevDates,
+            [wilayah]: newDates,
+        }));
+    };
 
     const getBranches = async () => {
         try {
@@ -49,9 +41,10 @@ export default function DSOSelection({
                                 <RangeCalendar
                                     wilayahKey={Wilayah} // Pass the Wilayah name as a key
                                     dates={dates[Wilayah] || null} // Initialize with stored dates
-                                    onDateChange={(newDates) =>
-                                        onDateChange(Wilayah, newDates)
-                                    }
+                                    onDateChange={(newDates) => {
+                                        onDateChange(Wilayah, newDates),
+                                            handleDateChange(Wilayah, newDates);
+                                    }}
                                 />
                             </div>
                         ),

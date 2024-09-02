@@ -17,22 +17,20 @@ import "../../css/DataTable.css";
 import { InputNumber } from "primereact/inputnumber";
 import { classNames } from "primereact/utils";
 import tryCatch from "../hooks/tryCatch";
+import { columns } from "../../data/Columns";
+import { defaultVisibleColumns } from "../../data/Columns";
 
 export default function SurveyTable() {
     const toast = useRef(null);
     const dt = useRef(null);
     const [questions, setQuestions] = useState([]);
     const [size, setSize] = useState("normal");
-
     const [editState, setEditState] = useState(false);
-
     const [submitted, setSubmitted] = useState(false);
 
     // Dialog States
     const [addDialog, setAddDialog] = useState(false);
-
     const [editDialog, setEditDialog] = useState(false);
-
     const [editedQuestionGroupID, setEditedQuestionGroupID] = useState(null);
 
     // Question Group Response
@@ -87,54 +85,6 @@ export default function SurveyTable() {
 
     const [expandedRows, setExpandedRows] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    const columns = [
-        { field: "question_id", header: "ID" },
-        { field: "question_key", header: "Question Key" },
-        { field: "question_group_id", header: "Question Group ID" },
-        { field: "data_status", header: "Data Status" },
-        { field: "question_type", header: "Question Type" },
-        { field: "option_1", header: "Option 1" },
-        { field: "option_1_flow", header: "Option 1 Flow" },
-        { field: "option_2", header: "Option 2" },
-        { field: "option_2_flow", header: "Option 2 Flow" },
-        { field: "option_3", header: "Option 3" },
-        { field: "option_3_flow", header: "Option 3 Flow" },
-        { field: "option_4", header: "Option 4" },
-        { field: "option_4_flow", header: "Option 4 Flow" },
-        { field: "option_5", header: "Option 5" },
-        { field: "option_5_flow", header: "Option 5 Flow" },
-        { field: "option_6", header: "Option 6" },
-        { field: "option_6_flow", header: "Option 6 Flow" },
-        { field: "option_7", header: "Option 7" },
-        { field: "option_7_flow", header: "Option 7 Flow" },
-        { field: "option_8", header: "Option 8" },
-        { field: "option_8_flow", header: "Option 8 Flow" },
-        { field: "option_9", header: "Option 9" },
-        { field: "option_9_flow", header: "Option 9 Flow" },
-        {
-            field: "survey_question_group_id",
-            header: "Survey Question Group ID",
-        },
-        {
-            field: "survey_question_group_sequence",
-            header: "Survey Question Group Sequence",
-        },
-        {
-            field: "question_group_data_status",
-            header: "Question Group Active?",
-        },
-        { field: "survey_data_status", header: "Survey Active?" },
-    ];
-
-    const defaultVisibleColumns = [
-        { field: "question_id", header: "ID" },
-        { field: "question_key", header: "Question Key" },
-        { field: "question_group_id", header: "Question Group ID" },
-        { field: "data_status", header: "Data Status" },
-        { field: "question_type", header: "Question Type" },
-    ];
-
     const [visibleColumns, setVisibleColumns] = useState(defaultVisibleColumns);
 
     const getQuestions = async () => {
@@ -221,7 +171,6 @@ export default function SurveyTable() {
                         survey_id: newSurvey.survey_id,
                     }));
 
-                    // Step 2: Create the Question Group
                     const questionGroupFormData = new FormData();
                     const combinedName = `${surveyResponse.survey_name} - ${response.question_group_name}`;
                     questionGroupFormData.append(
@@ -249,7 +198,6 @@ export default function SurveyTable() {
                         const questionGroupId =
                             newQuestionGroup.question_group_id;
 
-                        // Step 3: Add to Survey Question Group
                         const surveyQuestionGroupFormData = new FormData();
                         surveyQuestionGroupFormData.append(
                             "survey_id",
@@ -472,10 +420,9 @@ export default function SurveyTable() {
 
     const onRowEditComplete = async (e) => {
         let _questions = [...questions];
-        let { newData, index } = e; // e stores the New Data
+        let { newData, index } = e;
 
         try {
-            // Make an API call to update the question in the backend
             const result = await axios.post(
                 `/editQuestion/${newData.question_id}`,
                 newData
@@ -484,11 +431,9 @@ export default function SurveyTable() {
             console.log("Result", result);
 
             if (result.status === 200) {
-                // Update the question in the local state after successful API call (ALWAYS MAKE A COPY, else painful hours of debugging)
                 _questions[index] = newData;
                 setQuestions(_questions);
 
-                // Optionally, show a success message
                 toast.current.show({
                     severity: "success",
                     summary: "Success",
@@ -497,7 +442,6 @@ export default function SurveyTable() {
                 });
             }
         } catch (error) {
-            // Handle error, revert the changes in the UI, and notify the user
             console.error("Error updating question:", error);
 
             toast.current.show({
@@ -649,14 +593,6 @@ export default function SurveyTable() {
                         onRowEditComplete={onRowEditComplete}
                         selectionMode={editState}
                     >
-                        {/* {editState && (
-                            <Column
-                                rowReorder={editState}
-                                style={{ width: "5rem" }}
-                                bodyStyle={{ textAlign: "center" }}
-                            />
-                        )} */}
-
                         <Column
                             field="sequence"
                             header="Sequence"
@@ -677,7 +613,7 @@ export default function SurveyTable() {
                             field="question_name"
                             header="Question Name"
                             // sortable
-                            style={{ width: "30%" }}
+                            style={{ minWidth: "20rem" }}
                             editor={(question) => textEditor(question)}
                         />
 

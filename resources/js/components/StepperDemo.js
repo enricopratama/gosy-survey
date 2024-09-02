@@ -21,12 +21,9 @@ const StepperDemo = () => {
         setVerticalActiveStep(index);
     };
 
-    /**
-     * Fetch Questions API
-     */
     const getQuestions = async () => {
         try {
-            const response = await axios.get("/api/questions");
+            const response = await axios.get("/questions");
             setQuestions(response.data);
         } catch (error) {
             console.error("There was an error fetching the questions!", error);

@@ -2,7 +2,7 @@
     width: 78vw; /* Default for small screens */
 }
 
-@media (min-width: 768px) {
+@media (min-width: 900px) {
     .tree-container {
         width: 30vw; /* Width for medium and larger screens */
     }

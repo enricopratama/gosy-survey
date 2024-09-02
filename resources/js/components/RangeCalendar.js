@@ -20,7 +20,7 @@ export default function RangeCalendar({ dates, onDateChange }) {
                 onChange={handleDateChange}
                 selectionMode="range"
                 readOnlyInput
-                placeholder="Select active survey period."
+                placeholder="Select active survey period"
                 hideOnRangeSelection
                 style={{ minWidth: "20vw" }}
                 showButtonBar

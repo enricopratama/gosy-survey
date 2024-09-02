@@ -29,6 +29,7 @@ import SurveyDialog from "../components/SurveyDialog";
 import QuestionGroupDialog from "../components/QuestionGroupDialog";
 import Step3Header from "../handlers/Step3Header";
 import DSOSelection from "../components/DSOSelection";
+import ExportReport from "../components/ExportReport";
 
 export default function NewQuestion() {
     const op = useRef(null);
@@ -99,6 +100,7 @@ export default function NewQuestion() {
     const [response, setResponse] = useState({
         question_id: null,
         survey_name: null,
+        survey_id: null,
         question_group_name: "",
         question_group_id: "",
         question_key: "",
@@ -210,7 +212,7 @@ export default function NewQuestion() {
     const getSurveys = async () => {
         try {
             setLoading(true);
-            const response = await axios.get("/api/survey");
+            const response = await axios.get("/surveys");
             setSurveys(response.data);
         } catch (error) {
             console.error("There was an error fetching the surveys!", error);
@@ -226,7 +228,7 @@ export default function NewQuestion() {
         try {
             setLoading(true);
             const response = await axios.get(
-                `/api/questionGroups/${question_group_name}`
+                `/questionGroups/${question_group_name}`
             );
             const questionGroupId = response.data.question_group_id;
             setMapGrpId(questionGroupId);
@@ -483,10 +485,10 @@ export default function NewQuestion() {
             formData.append("is_parent", _response.is_parent);
             formData.append("is_mandatory", _response.is_mandatory);
 
-            console.log("Form state before inserting");
-            formData.forEach((value, key) => {
-                console.log(`${key}: ${value}`);
-            });
+            // console.log("Form state before inserting");
+            // formData.forEach((value, key) => {
+            //     console.log(`${key}: ${value}`);
+            // });
 
             const index = findIndexByID(_response.question_id);
 
@@ -1665,7 +1667,7 @@ export default function NewQuestion() {
                             <Column
                                 field="question_name"
                                 header="Name"
-                                style={{ width: "20rem" }}
+                                style={{ minWidth: "20rem" }}
                                 className="border-left border-right"
                                 sortable
                             />
@@ -1809,7 +1811,6 @@ export default function NewQuestion() {
                                 setOptionDialogVisible(false);
                             }}
                             selectedRow={selectedRow}
-                            updateResponse={updateResponseOptions}
                             questions={questions}
                         />
 
@@ -1832,12 +1833,8 @@ export default function NewQuestion() {
                         <div className="rounded surface-ground flex-auto font-medium mx-5">
                             <h5 className="text-muted">Step 4</h5>
                             <h1>Pilih DSO Untuk Di Survey</h1>
-                            {response.survey_name !== null &&
-                                response.question_group_name !== null && (
-                                    <p>{`${response.survey_name} (${response.question_group_name})`}</p>
-                                )}
-
                             <div className="d-flex justify-content-center">
+                                {/* // TODO: implement backend for DSOSelection */}
                                 <DSOSelection
                                     dates={dates}
                                     onDateChange={handleDateChange}
@@ -1847,22 +1844,31 @@ export default function NewQuestion() {
                             </div>
                         </div>
 
-                        <div className="d-flex pt-4 justify-content-start mx-5">
-                            <Button
-                                label="Back"
-                                className="rounded"
-                                icon="pi pi-arrow-left"
-                                iconPos="right"
-                                severity="secondary"
-                                onClick={() => {
-                                    window.scrollTo({
-                                        top: 0,
-                                        behavior: "smooth",
-                                    }),
-                                        stepperRef.current.prevCallback();
-                                }}
-                            />
-                        </div>
+                        <PageControlButtons
+                            showBack={true}
+                            backLabel="Back"
+                            onBackClick={() =>
+                                stepperRef.current.prevCallback()
+                            }
+                            showNext={true}
+                            doneLabel="Next"
+                            onNextClick={() =>
+                                stepperRef.current.nextCallback()
+                            }
+                        />
+                    </StepperPanel>
+
+                    {/* Step 5 - Export Report To CSV */}
+                    <StepperPanel header="Export Report">
+                        <ExportReport survey_id={response.survey_id} />
+                        <PageControlButtons
+                            showBack={true}
+                            backLabel="Back"
+                            onBackClick={() =>
+                                stepperRef.current.prevCallback()
+                            }
+                            showNext={false}
+                        />
                     </StepperPanel>
                 </Stepper>
             </div>

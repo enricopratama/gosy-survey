@@ -11,6 +11,7 @@ use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\SurveyQuestionGroupController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\SurveyCompanyController;
+use App\Http\Controllers\ReportController;
 
 // Define a route that requires authentication middleware
 Route::get('/flights', function () {
@@ -34,6 +35,7 @@ Route::get('/users', [UserController::class, 'index'])->name('users');
 // Questions
 Route::get('/questionsRaw', [QuestionController::class, 'index']);
 Route::get('/questions', [QuestionController::class, 'getQuestions']); 
+Route::get('/surveyQuestions/{survey_id}', [QuestionController::class, 'getQuestionsBySurveyId']); 
 Route::get('/questionsComplete', [QuestionController::class, 'getQuestionsComplete']);
 Route::get('/questions/{question_id}', [QuestionController::class, 'getQuestionById']);
 Route::post('/addQuestion', [QuestionController::class, 'store']);
@@ -74,13 +76,17 @@ Route::post('/addBranch', [BranchController::class, 'store']);
 Route::post('/editBranch/{BranchCode}', [BranchController::class, 'update']);
 Route::delete('/deleteBranch/{BranchCode}', [BranchController::class, 'destroy']);
 
-// Data tables
+// Report
+Route::get('/questionReport/{survey_id}', [ReportController::class, 'getQuestionsBySurveyID']);
+Route::get('/questionAnswers/{survey_id}', [ReportController::class, 'getQuestionAnswersBySurveyID']);
+
+// Data Tables
 Route::get('/master-users', [UserController::class, 'getUserAccess']);
 Route::get('/master-users/{user_id}', [UserController::class, 'show']);
 Route::get('/master-users-by-company', [UserController::class,'getUserAccessByCompany']);
 Route::get('/master-tokens', [UserController::class, 'getAccessToken']);
 
-// All other routes are defined through React
+// React Routes
 Route::get('/{path?}', [ReactController::class, 'show'])
     ->middleware('auth')
     ->where('path', '.*')
