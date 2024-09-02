@@ -77,8 +77,7 @@ Route::post('/editBranch/{BranchCode}', [BranchController::class, 'update']);
 Route::delete('/deleteBranch/{BranchCode}', [BranchController::class, 'destroy']);
 
 // Report
-Route::get('/questionReport/{survey_id}', [ReportController::class, 'getQuestionsBySurveyID']);
-Route::get('/questionAnswers/{survey_id}', [ReportController::class, 'getQuestionAnswersBySurveyID']);
+Route::get('/questionAnswers/{survey_id}', [ReportController::class, 'getAnswersBySurveyID']);
 
 // Data Tables
 Route::get('/master-users', [UserController::class, 'getUserAccess']);

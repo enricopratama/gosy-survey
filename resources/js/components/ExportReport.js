@@ -63,7 +63,7 @@ export default function ExportReport({ survey_id }) {
 
     // Process answers to match the DataTable format
     const processAnswers = () => {
-        const groupedAnswers = {};
+        const groupedAnswers = {}; // Group answers by customer
 
         // Grouping answer together, assigning to a customerKey
         answers.forEach((answer) => {
@@ -86,13 +86,14 @@ export default function ExportReport({ survey_id }) {
             ] = cleanedAnswer;
         });
 
-        // Grouping for each column to have question and
+        // Grouping for each column to have question and answer
         return Object.values(groupedAnswers).map((entry) => {
             questions.forEach((question) => {
                 if (!entry.questions[`question_${question.question_id}`]) {
-                    entry.questions[`question_${question.question_id}`] = "";
+                    entry.questions[`question_${question.question_id}`] = "-";
                 }
             });
+            // Combines the original customer entry and the questions into a single object for each customer.
             return { ...entry, ...entry.questions };
         });
     };
@@ -113,8 +114,46 @@ export default function ExportReport({ survey_id }) {
         dt.current.exportCSV();
     };
 
+    const exportExcel = () => {
+        import("xlsx").then((xlsx) => {
+            const processedData = dt.current.props.value;
+            const worksheet = xlsx.utils.json_to_sheet(processedData);
+            const workbook = {
+                Sheets: { data: worksheet },
+                SheetNames: ["data"],
+            };
+            const excelBuffer = xlsx.write(workbook, {
+                bookType: "xlsx",
+                type: "array",
+            });
+
+            saveAsExcelFile(excelBuffer, "Survey_Report");
+        });
+    };
+
+    const saveAsExcelFile = (buffer, fileName) => {
+        import("file-saver").then((module) => {
+            if (module && module.default) {
+                let EXCEL_TYPE =
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
+                let EXCEL_EXTENSION = ".xlsx";
+                const data = new Blob([buffer], {
+                    type: EXCEL_TYPE,
+                });
+
+                module.default.saveAs(
+                    data,
+                    fileName +
+                        "_export_" +
+                        new Date().getTime() +
+                        EXCEL_EXTENSION
+                );
+            }
+        });
+    };
+
     const rightToolbarTemplate = () => {
-        return <RightToolbar exportCSV={exportCSV} />;
+        return <RightToolbar exportCSV={exportExcel} />;
     };
 
     const onGlobalFilterChange = (e) => {
@@ -150,8 +189,8 @@ export default function ExportReport({ survey_id }) {
                 paginator
                 paginatorLeft={paginatorLeft}
                 paginatorRight={paginatorRight}
-                rows={5}
-                rowsPerPageOptions={[5, 10, 25]}
+                rows={10}
+                rowsPerPageOptions={[5, 10, 25, 50, 100]}
                 stripedRows
                 paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                 currentPageReportTemplate="{first} to {last} of {totalRecords} questions"
@@ -161,31 +200,116 @@ export default function ExportReport({ survey_id }) {
                     "customer_name",
                     "customer_address",
                     "survey_datetime",
+                    "survey_name",
+                    "ASSM",
+                    "Branch",
+                    "salesman_name",
+                    "company_code",
+                    "customer_code",
+                    "customer-name",
+                    "company_address",
+                    "outlet_class",
+                    "kecamatan",
                 ]}
+                removableSort
             >
+                <Column
+                    header="No."
+                    headerStyle={{ width: "3rem" }}
+                    className="border-right"
+                    body={(data, options) => `${options.rowIndex + 1}.`}
+                    bodyStyle={{ textAlign: "center" }}
+                />
                 <Column
                     field="customer_name"
                     header="Customer Name"
                     style={{ minWidth: "150px" }}
                     className="border-right"
+                    sortable
                 />
                 <Column
                     field="customer_address"
                     header="Customer Address"
                     style={{ minWidth: "200px" }}
                     className="border-right"
+                    sortable
                 />
                 <Column
                     field="survey_datetime"
                     header="Survey Date"
                     style={{ minWidth: "150px" }}
                     className="border-right"
+                    sortable
                 />
                 <Column
                     field="survey_name"
                     header="Survey Name"
+                    style={{ minWidth: "200px" }}
+                    className="border-right"
+                    sortable
+                />
+                <Column
+                    field="ASSM"
+                    header="ASSM"
                     style={{ minWidth: "150px" }}
                     className="border-right"
+                    sortable
+                />
+                <Column
+                    field="Branch"
+                    header="Branch"
+                    style={{ minWidth: "150px" }}
+                    className="border-right"
+                    sortable
+                />
+                <Column
+                    field="salesman_name"
+                    header="Salesman Name"
+                    style={{ minWidth: "200px" }}
+                    className="border-right"
+                    sortable
+                />
+                <Column
+                    field="company_code"
+                    header="Company Code"
+                    style={{ minWidth: "200px" }}
+                    className="border-right"
+                    sortable
+                />
+                <Column
+                    field="customer_code"
+                    header="Customer Code"
+                    style={{ minWidth: "200px" }}
+                    className="border-right"
+                    sortable
+                />
+                <Column
+                    field="customer_name"
+                    header="Company Name"
+                    style={{ minWidth: "200px" }}
+                    className="border-right"
+                    sortable
+                />
+                <Column
+                    field="customer_address"
+                    header="Company Address"
+                    style={{ minWidth: "200px" }}
+                    className="border-right"
+                    sortable
+                />
+                <Column
+                    field="outlet_class"
+                    header="Outlet Class"
+                    style={{ minWidth: "200px" }}
+                    className="border-right"
+                    sortable
+                />
+                <Column
+                    field="kecamatan"
+                    header="Kecamatan"
+                    style={{ minWidth: "200px" }}
+                    className="border-right"
+                    sortable
                 />
                 {renderColumns()}
             </DataTable>

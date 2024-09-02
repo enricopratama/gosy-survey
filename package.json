@@ -49,7 +49,8 @@
         "react-favicon": "^2.0.7",
         "react-pro-sidebar": "^1.1.0",
         "react-router-dom": "^6.24.1",
-        "styled-components": "^5.3.11"
+        "styled-components": "^5.3.11",
+        "xlsx": "^0.18.5"
     },
     "prettier": {
         "ignorePath": ".prettierignore"
