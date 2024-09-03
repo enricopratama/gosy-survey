@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Calendar } from "primereact/calendar";
+import "../../css/DSOSelection.css";
 
 export default function RangeCalendar({ dates, onDateChange }) {
-    const [localDates, setLocalDates] = useState(dates); // Local state for this calendar
+    const [localDates, setLocalDates] = useState(dates);
+
+    // console.log("Local Dates", localDates);
 
     useEffect(() => {
-        setLocalDates(dates); // Update local state when the dates prop changes
+        setLocalDates(dates);
     }, [dates]);
 
     const handleDateChange = (e) => {
         setLocalDates(e.value);
-        onDateChange(e.value); // Pass the dates back to the parent component
+        onDateChange(e.value);
     };
 
     return (
-        <div className="card flex justify-content-center">
+        <div className="card flex justify-content-center calendar-container">
             <Calendar
                 value={localDates}
                 onChange={handleDateChange}
@@ -23,7 +26,7 @@ export default function RangeCalendar({ dates, onDateChange }) {
                 placeholder="Select active survey period"
                 hideOnRangeSelection
                 style={{ minWidth: "20vw" }}
-                showButtonBar
+                // showButtonBar
             />
         </div>
     );

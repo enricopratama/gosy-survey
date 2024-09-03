@@ -60,7 +60,7 @@ Route::delete('/deleteSurvey/{survey_id}', [SurveyController::class, 'destroy'])
 Route::get('/survey-companies', [SurveyCompanyController::class, 'index']);
 Route::post('/survey-companies', [SurveyCompanyController::class, 'store']);
 Route::get('/survey-companies/{id}', [SurveyCompanyController::class, 'show']);
-Route::put('/survey-companies/{id}', [SurveyCompanyController::class, 'update']);
+Route::put('/editSurveyCompanyActive/{CompanyCode}', [SurveyCompanyController::class, 'updateCompanyCodeActive']);
 Route::delete('/survey-companies/{id}', [SurveyCompanyController::class, 'destroy']);
 
 // Survey Question Groups
@@ -71,6 +71,7 @@ Route::delete('/deleteSurveyQuestionGroups/{id}', [SurveyQuestionGroupController
 
 // Branches
 Route::get('/branches', [BranchController::class, 'index']);
+Route::get('/branchesJoined', [BranchController::class, 'getBranchesWithSurveyDetails']);
 Route::get('/branches/{BranchCode}', [BranchController::class, 'getByBranchCode']);
 Route::post('/addBranch', [BranchController::class, 'store']);
 Route::post('/editBranch/{BranchCode}', [BranchController::class, 'update']);

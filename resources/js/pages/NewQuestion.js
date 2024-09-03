@@ -1243,16 +1243,16 @@ export default function NewQuestion() {
         }
     };
 
-    const handleDateChange = (wilayah, newDates) => {
-        setDates((prevDates) => ({
-            ...prevDates,
-            [wilayah]: newDates,
-        }));
-    };
+    // const handleDateChange = (wilayah, newDates) => {
+    //     setDates((prevDates) => ({
+    //         ...prevDates,
+    //         [wilayah]: newDates,
+    //     }));
+    // };
 
-    const handleSelectionChange = (keys) => {
-        setSelectedKeys(keys);
-    };
+    // const handleSelectionChange = (keys) => {
+    //     setSelectedKeys(keys);
+    // };
 
     return (
         <>
@@ -1592,7 +1592,7 @@ export default function NewQuestion() {
                         </div>
                     </StepperPanel>
 
-                    {/* Step 3 - Add Question */}
+                    {/* Step 3 - Question Details (Edit Questions) */}
                     <StepperPanel header="Questions Details">
                         <Step3Header
                             selectedQuestionGroup={response.question_group_name}
@@ -1834,12 +1834,11 @@ export default function NewQuestion() {
                             <h5 className="text-muted">Step 4</h5>
                             <h1>Pilih DSO Untuk Di Survey</h1>
                             <div className="d-flex justify-content-center">
-                                {/* // TODO: implement backend for DSOSelection */}
                                 <DSOSelection
-                                    dates={dates}
-                                    onDateChange={handleDateChange}
-                                    selectedKeys={selectedKeys}
-                                    onSelectionChange={handleSelectionChange}
+                                // dates={dates}
+                                // onDateChange={handleDateChange}
+                                // selectedKeys={selectedKeys}
+                                // onSelectionChange={handleSelectionChange}
                                 />
                             </div>
                         </div>

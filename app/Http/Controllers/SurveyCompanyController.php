@@ -62,34 +62,69 @@ class SurveyCompanyController extends Controller
     }
 
     /**
-     * Update the specified survey company in storage.
+     * Update the `is_active` status of a survey company based on the company code.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  string  $CompanyCode
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateCompanyCodeActive(Request $request, $CompanyCode)
     {
-        $company = SurveyCompany::find($id);
-
-        if (!$company) {
-            return response()->json(['message' => 'Company not found'], 404);
-        }
-
-        $validatedData = $request->validate([
-            'survey_id' => 'sometimes|required|exists:surveys,survey_id',
-            'company_code' => 'sometimes|required|string|max:255',
-            'data_status' => 'sometimes|required|string|max:255',
-            'start_date' => 'sometimes|required|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date',
+        $validator = Validator::make($request->all(), [
+            'BranchCode' => 'required|string|max:255',
+            'is_active' => 'required|boolean',
         ]);
 
-        $company->update($validatedData);
+        if ($validator->fails()) {
+            return response()->json(
+                [
+                    'status' => 0,
+                    'message' => 'Validation error',
+                    'errors' => $validator->errors(),
+                ],
+                422
+            );
+        }
 
-        // Eager load the related Branch and Survey models after update
-        $company->load(['branch', 'survey']);
+        // Find the survey company record by CompanyCode and BranchCode
+        $surveyCompany = SurveyCompany::where(
+            'BranchCode',
+            $request->BranchCode
+        )
+            ->where('CompanyCode', $CompanyCode)
+            ->first();
 
-        return response()->json($company);
+        if (!$surveyCompany) {
+            return response()->json(
+                ['message' => 'Survey company not found'],
+                404
+            );
+        }
+
+        DB::beginTransaction();
+        try {
+            // Update the is_active field only
+            $surveyCompany->update(['is_active' => $request->is_active]);
+            DB::commit();
+            return response()->json(
+                [
+                    'status' => 1,
+                    'message' => 'Survey company updated successfully',
+                    'data' => $surveyCompany,
+                ],
+                200
+            );
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(
+                [
+                    'status' => 0,
+                    'message' => 'Failed to update survey company',
+                    'error' => $e->getMessage(),
+                ],
+                500
+            );
+        }
     }
 
     /**

@@ -43,6 +43,88 @@ class BranchController extends Controller
     }
 
     /**
+     * Retrieves a list of branches with associated survey details from the database.
+     *
+     * This method joins the `gpd_mst_branch` table with the `mst_survey_company` table
+     * to fetch details about each branch, including its survey activity status (`is_active`).
+     * The results are distinct and are ordered by `BranchCode` to ensure consistency.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     *     A JSON response containing an array of branches with the following details:
+     *     - BranchCode: The unique code of the branch, cast as an integer.
+     *     - CompanyCode: The code representing the company to which the branch belongs.
+     *     - Wilayah: The regional designation of the branch.
+     *     - RSO: The regional sales office (RSO) associated with the branch.
+     *     - Area: The area in which the branch is located.
+     *     - CompanyName: The name of the company, assuming it's available in the branch table.
+     *     - BranchName: The name of the branch.
+     *     - is_active: A boolean value indicating whether the branch is active in the survey.
+     */
+    public function getBranchesWithSurveyDetails()
+    {
+        $branches = DB::table('gpd_mst_branch as gmb')
+            ->join(
+                'mst_survey_company as msc',
+                'msc.company_code',
+                '=',
+                'gmb.CompanyCode'
+            )
+            ->select(
+                'gmb.BranchCode',
+                'gmb.CompanyCode',
+                'gmb.Wilayah',
+                'gmb.RSO',
+                'gmb.Area',
+                'gmb.CompanyName', // Assuming CompanyName is available in the gpd_mst_branch table
+                'gmb.BranchName',
+                'msc.is_active' // Include is_active field from mst_survey_company table
+            )
+            ->orderBy('gmb.BranchCode')
+            ->distinct()
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'BranchCode' => $item->BranchCode,
+                    'CompanyCode' => $item->CompanyCode,
+                    'Wilayah' => $item->Wilayah,
+                    'RSO' => $item->RSO,
+                    'Area' => $item->Area,
+                    'CompanyName' => $item->CompanyName,
+                    'BranchName' => $item->BranchName,
+                    'is_active' => $item->is_active,
+                ];
+            });
+
+        return response()->json($branches);
+    }
+
+    // public function getBranchesWithSurveyDetails()
+    // {
+    //     $branches = DB::table('gpd_mst_branch as gmb')
+    //         ->join(
+    //             'mst_survey_company as msc',
+    //             'msc.company_code',
+    //             '=',
+    //             'gmb.CompanyCode'
+    //         )
+    //         ->select(
+    //             'gmb.BranchCode',
+    //             'gmb.CompanyCode',
+    //             'gmb.Wilayah',
+    //             'gmb.RSO',
+    //             'gmb.Area',
+    //             'gmb.BranchName',
+    //             'msc.start_date',
+    //             'msc.end_date',
+    //             'msc.is_active'
+    //         )
+    //         ->distinct()
+    //         ->get();
+
+    //     return response()->json($branches);
+    // }
+
+    /**
      * Store a newly created branch in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -102,7 +184,7 @@ class BranchController extends Controller
     }
 
     /**
-     * Update the specified branch in storage.
+     * Update the specified branch in storage per Company Code. 
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  string  $BranchCode
@@ -135,7 +217,11 @@ class BranchController extends Controller
             );
         }
 
-        $branch = Branch::where('BranchCode', $BranchCode)->first();
+        // Find the branch by BranchCode and CompanyCode
+        $branch = Branch::where('BranchCode', $BranchCode)
+            ->where('CompanyCode', $request->CompanyCode)
+            ->first();
+
         if (!$branch) {
             return response()->json(['message' => 'Branch not found'], 404);
         }

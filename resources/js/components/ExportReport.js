@@ -15,6 +15,7 @@ export default function ExportReport({ survey_id }) {
     const [questions, setQuestions] = useState([]);
     const [answers, setAnswers] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [csvData, setCsvData] = useState("");
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
     });
@@ -58,7 +59,12 @@ export default function ExportReport({ survey_id }) {
     );
 
     const paginatorRight = (
-        <Button type="button" icon="pi pi-download" text onClick={exportCSV} />
+        <Button
+            type="button"
+            icon="pi pi-download"
+            text
+            onClick={exportDataFromDataTable}
+        />
     );
 
     // Process answers to match the DataTable format
@@ -110,18 +116,26 @@ export default function ExportReport({ survey_id }) {
         ));
     };
 
-    const exportCSV = () => {
-        dt.current.exportCSV();
+    const exportDataFromDataTable = () => {
+        if (dt.current) {
+            const currentData = dt.current.getTable || []; // Access the data from DataTable's state
+            console.log("Current Data:", currentData);
+
+            // Example: Use the data for export
+            exportCSVToExcel(currentData);
+        } else {
+            console.log("DataTable is not yet initialized.");
+        }
     };
 
-    const exportExcel = () => {
+    const exportCSVToExcel = (data) => {
         import("xlsx").then((xlsx) => {
-            const processedData = dt.current.props.value;
-            const worksheet = xlsx.utils.json_to_sheet(processedData);
-            const workbook = {
-                Sheets: { data: worksheet },
-                SheetNames: ["data"],
-            };
+            // Use the provided data (instead of dt.current.value)
+            const worksheet = xlsx.utils.json_to_sheet(data);
+
+            const workbook = xlsx.utils.book_new();
+            xlsx.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+
             const excelBuffer = xlsx.write(workbook, {
                 bookType: "xlsx",
                 type: "array",
@@ -134,26 +148,26 @@ export default function ExportReport({ survey_id }) {
     const saveAsExcelFile = (buffer, fileName) => {
         import("file-saver").then((module) => {
             if (module && module.default) {
-                let EXCEL_TYPE =
+                const EXCEL_TYPE =
                     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
-                let EXCEL_EXTENSION = ".xlsx";
-                const data = new Blob([buffer], {
-                    type: EXCEL_TYPE,
-                });
+                const EXCEL_EXTENSION = ".xlsx";
+                const data = new Blob([buffer], { type: EXCEL_TYPE });
 
                 module.default.saveAs(
                     data,
-                    fileName +
-                        "_export_" +
-                        new Date().getTime() +
-                        EXCEL_EXTENSION
+                    `${fileName}_export_${new Date().getTime()}${EXCEL_EXTENSION}`
                 );
             }
         });
     };
 
     const rightToolbarTemplate = () => {
-        return <RightToolbar exportCSV={exportExcel} />;
+        return <RightToolbar exportCSV={exportCSV} />;
+    };
+
+    const exportCSV = () => {
+        const exportedCSV = dt.current.exportCSV();
+        setCsvData(exportedCSV);
     };
 
     const onGlobalFilterChange = (e) => {
@@ -164,6 +178,11 @@ export default function ExportReport({ survey_id }) {
         }));
         setGlobalFilterValue(value);
     };
+
+    console.log("dt.current", dt.current);
+    // console.log("dt.current.props", dt.current.props);
+    // console.log("dt.current.props.value", dt.current.props.value);
+    // console.log("dt.current.value", dt.current.value);
 
     return (
         <div className="text-center">

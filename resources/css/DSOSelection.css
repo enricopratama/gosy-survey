@@ -1,9 +1,60 @@
 .tree-container {
-    width: 78vw; /* Default for small screens */
+    width: 90vw;
+    max-width: 100%;
+    overflow-x: auto;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 576px) {
     .tree-container {
-        width: 30vw; /* Width for medium and larger screens */
+        width: 78vw;
+    }
+}
+
+@media (min-width: 768px) {
+    .tree-container {
+        width: 60vw;
+    }
+}
+
+@media (min-width: 992px) {
+    .tree-container {
+        width: 50vw;
+    }
+}
+
+@media (min-width: 1200px) {
+    .tree-container {
+        width: 40vw;
+    }
+}
+
+/* Calendar component */
+.calendar-container {
+    width: 40vw;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+@media (min-width: 576px) {
+    .calendar-container {
+        width: 60vw;
+    }
+}
+
+@media (min-width: 768px) {
+    .calendar-container {
+        width: 40vw;
+    }
+}
+
+@media (min-width: 992px) {
+    .calendar-container {
+        width: 30vw;
+    }
+}
+
+@media (min-width: 1200px) {
+    .calendar-container {
+        width: 30vw;
     }
 }

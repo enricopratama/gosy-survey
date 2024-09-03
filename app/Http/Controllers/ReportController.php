@@ -78,7 +78,7 @@ class ReportController extends Controller
                 'trx_survey.customer_address',
                 'trx_survey.outlet_class',
                 'trx_survey.kecamatan',
-                'mst_question.question_name',
+                // 'mst_question.question_name',
                 'trx_survey.user_answer'
             )
                 ->leftJoin(
