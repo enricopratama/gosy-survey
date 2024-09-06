@@ -60,7 +60,7 @@ Route::delete('/deleteSurvey/{survey_id}', [SurveyController::class, 'destroy'])
 Route::get('/survey-companies', [SurveyCompanyController::class, 'index']);
 Route::post('/survey-companies', [SurveyCompanyController::class, 'store']);
 Route::get('/survey-companies/{id}', [SurveyCompanyController::class, 'show']);
-Route::put('/editSurveyCompanyActive/{CompanyCode}', [SurveyCompanyController::class, 'updateCompanyCodeActive']);
+Route::post('/editSurveyCompanyActive/{CompanyCode}', [SurveyCompanyController::class, 'updateCompanyCodeActive']);
 Route::delete('/survey-companies/{id}', [SurveyCompanyController::class, 'destroy']);
 
 // Survey Question Groups

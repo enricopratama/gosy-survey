@@ -24,6 +24,7 @@ class SurveyCompany extends Model
         'data_status',
         'start_date',
         'end_date',
+        'is_active',
     ];
 
     protected $primaryKey = 'survey_company_id';
