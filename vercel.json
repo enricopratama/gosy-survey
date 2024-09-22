@@ -2,18 +2,22 @@
     "version": 2,
     "builds": [
       {
-        "src": "app.js",
-        "use": "@vercel/node"
+        "src": "public/index.php",
+        "use": "@vercel/php"
+      },
+      {
+        "src": "package.json",
+        "use": "@vercel/static-build"
       }
     ],
     "routes": [
       {
-        "src": "/sitemap.xml",
-        "dest": "/sitemap.xml"
+        "src": "/api/(.*)",
+        "dest": "/public/index.php"
       },
       {
         "src": "/(.*)",
-        "dest": "/app.js"
+        "dest": "/index.html"
       }
     ]
   }
