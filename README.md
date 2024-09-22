@@ -86,4 +86,3 @@ Follow these steps to set up the project on your local machine:
 
 ## Configuration
 
-Ensure your `.env` file is set up correctly. Here is an example of the critical parts:
